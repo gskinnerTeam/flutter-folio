@@ -1,0 +1,129 @@
+name: flutter_folio
+description: Create and share beautiful Scrapbooks using Photos, Text and Stickers!
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+version: 1.0.0+2
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  animate_do: ^1.7.5
+  async: ^2.4.2
+  auto_size_text:
+    git:
+      url: git://github.com/gskinnerTeam/auto_size_text.git
+      ref: 8800276218b053265ffc796a24e84820bebaaeac
+  bitsdojo_window: ^0.0.5
+  cached_network_image: ^2.5.0
+  cloudinary_public: ^0.6.2
+  darq: ^0.4.0+1
+  dotted_border: ^1.0.7
+  email_validator: ^1.0.6
+  enum_to_string: ^1.0.14
+  file_chooser:
+    git:
+      url: git://github.com/google/flutter-desktop-embedding.git
+      path: plugins/file_chooser
+      ref: 040f36c82b63e8764ec2fd97066767503a667b6d
+
+  flutter_state_notifier:
+  flutter_svg: ^0.19.3
+  fluttertoast: ^7.1.8
+  freezed_annotation:
+  image_size_getter: ^0.2.1
+  lorem_ipsum: any
+  multi_image_picker: ^4.7.14
+  menubar:
+    git:
+      url: git://github.com/google/flutter-desktop-embedding.git
+      path: plugins/menubar
+      ref: 040f36c82b63e8764ec2fd97066767503a667b6d
+  path_provider: ^1.6.24
+  xdg_directories: ^0.1.2
+  provider:
+  random_color: ^1.0.5
+  sized_context:
+  shortid: ^0.1.1
+  shared_preferences: ^0.5.12+4
+  share: ^0.6.5+4
+  system_info: ^0.1.3
+  statsfl:
+  timeago:
+  universal_platform: ^0.1.3
+  url_launcher: ^5.7.10
+  visibility_detector: ^0.1.5
+  window_size:
+    git:
+      url: git://github.com/google/flutter-desktop-embedding.git
+      path: plugins/window_size
+      ref: 040f36c82b63e8764ec2fd97066767503a667b6d
+  # FIREBASE
+  firedart:
+          git:
+            url: git://github.com/cenomla/firedart.git
+            ref: f89b0d98929fd19b79f4fa05efb4a1c84a3562a9
+  firebase_core: ^0.7.0
+  firebase_auth: ^0.20.0
+  cloud_firestore: ^0.16.0
+
+
+dev_dependencies:
+  # sample build cmd
+  # flutter pub run build_runner build --delete-conflicting-outputs
+  flutter_test:
+    sdk: flutter
+  build_runner:
+  freezed:
+  json_serializable:
+  flutter_launcher_icons: ^0.8.0
+flutter_icons:
+  android: true
+  ios: true
+  image_path: source-assets/app-flutter-folio.png
+
+flutter:
+
+  assets:
+    - images/
+    - images/icons/
+    - images/emoji/
+
+  uses-material-design: true
+
+  fonts:
+    - family: Fraunces
+      fonts:
+        - asset: fonts/Fraunces_72pt-SemiBold.ttf
+    - family: Raleway
+      fonts:
+        - asset: fonts/Raleway-Regular.ttf
+        - asset: fonts/Raleway-Italic.ttf
+          style: italic
+        - asset: fonts/Raleway-Medium.ttf
+          weight: 500
+        - asset: fonts/Raleway-Bold.ttf
+          weight: 700
+        - asset: fonts/Raleway-ExtraBold.ttf
+          weight: 800
+    - family: AlfaSlabOne
+      fonts:
+        - asset: fonts/scraps/AlfaSlabOne-Regular.ttf
+    - family: Amiri
+      fonts:
+        - asset: fonts/scraps/Amiri-Regular.ttf
+    - family: Caveat
+      fonts:
+        - asset: fonts/scraps/Caveat-Medium.ttf
+    - family: Lato
+      fonts:
+        - asset: fonts/scraps/Lato-Regular.ttf
+    - family: Mali
+      fonts:
+        - asset: fonts/scraps/Mali-Medium.ttf
+    - family: PathwayGothicOne
+      fonts:
+        - asset: fonts/scraps/PathwayGothicOne-Regular.ttf

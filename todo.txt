@@ -1,0 +1,115 @@
+CURRENT SPRINT: 
+// * Save on Edit when in EditView
+* Add Vector Emojis
+* Get deep-link working
+* Add Empty States (.5 days)
+
+MON
+* Add EditView TitleBar (1.5 day)
+* Finish Deeplink Implementation on Web (3 days)
+
+* [Deferred] Improve popup-menu sizing
+* [Deferred] Add rotation
+* Small Polish
+  - Consolidate SimpleBtn usages
+  - Remove all local imports
+  - Improve line height handling for InlineText
+  - Add keyboard accelerators to home view
+  - Add multi-select to editor (at least select-all + move)
+    //- Add long-press for rightclick to ContextMenuRegion
+  //- Add gradient to sortable view cards
+  //- Make sure ScrapPile is sorted by created date
+  //- Make scroll-wheel and arrows work right on the home page
+  // - Make sure ScrapPile is sorted by creationTime
+  //- Add "Span" selection for windows in List Picker (SHIFT key)
+
+* Bugs
+  - Focus not working properly in EditView (flutter issue)
+  //- Application menu not showing up in home menu
+  //- User reg seems broken
+  //- Why is picker sheet opening on Windows
+  // * User regisration is broken
+
+EXTRAS
+* Properly add rotation (2 days)
+* Switch to REST-style data flow (3 days)
+
+
+LINKS
+// Should we use documentId's directly, or use an alias?? 
+/#/book=JKF3J36V  // BookView
+/#/book=JKF3J36V/page=JD6DN8M/  // PageView
+/#/share=JKF3J36V/ // Deeplink
+
+DONE 
+//* Finish HomeView /w ListTransition
+//* Build ViewSwitcher
+//* Finish DataGridView
+//* Hookup Data & Btns
+//* Style the RightClickMenu
+//* Add ToolTips
+
+* Page Editor
+  //> Wire up page.boxes
+  //> Bind StackView to selectedPage
+  //* Get scale sync working
+  //* Rouch side menu to select images / stickers / text
+  // * Show scraps w/ delete controls
+  // * Add real scraps to content menu
+
+//  * Show ScrapsPage which is bound to book.scraps
+// * Custom Chrome (no go for now, fights with menubar)
+//* Add / Delete Books
+// File Menus
+// Set minWindowSize
+//* Add SideMenu
+//* Setup dreamhost
+// Add right click support
+// Drag and Drop
+//* Scroll artboard?
+//* Add drop shadows
+//* Upload images via Cloudinary
+// Syncing
+// Authenticate with Firebase
+// Update Firestore
+// Upload an image to Cloudinary
+// Download a Collection
+// Look into 
+// * Directionality
+// * Drag & Drop 
+// * Tree View
+// * Image uploading
+
+BLOG POSTS
+* Drag and DropTargets
+* Building an Optimized DragStack
+* Creating a ContextMenuOverlay
+* Using InteractiveViewer
+* Adding Tooltips to Flutter
+* Navigator 2.0 (basic deeplink / web history support)
+* File Menu
+* Code Generation with Freezed
+* Keyboard Handling (Esc to Dialogs, Tabs)
+* Adaptive Sizing / Padding / Hit Areas
+* Internationalization
+* Accessibility
+
+Other Feedback:
+* Detecting key events with Widgets seems un-useable
+* It's hard to coordinate between TextFields and keyboard shortcuts in the various views.
+* It would be nice if there was some way to ignore all keys, when Text is being edited
+* Need a better way to actually know when we are on-screen.
+  It would be ideal if RawKeyboardListenerMixin could auto-detect when it is hidden by a Visibility widget or is otherwise positioned offstage
+* Interactive viewer has a number of usability issues
+* Material styling still persists
+
+// DataSort Issues:
+// * Need to use a layoutBuilder to stretch to full width
+// * Can't style the ArrowWidget
+// * No sticky headers
+// * Can not set row spacing
+// * Adding a sort handler forces a visual gap into the column headers
+// * Can't disable or hide background buttons for rows
+// * Some sort of background/shadow on the header row
+// * Can't do something simple like span a outline around the entire row, or provide a bg for the entire row.
+// * Hard to listen to the entire row, have to add 3 listeners, and it intercepts Enter key on it's children.

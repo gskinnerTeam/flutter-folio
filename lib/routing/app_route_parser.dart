@@ -1,0 +1,27 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_folio/routing/app_link.dart';
+
+/// Converts browser location strings to [AppLink], and vice-versa.
+/// This leans on [AppLink] to the actual parsing, so this is largely boilerplate.
+class AppRouteParser extends RouteInformationParser<AppLink> {
+  @override
+  // Take a url bar location, and create an AppLink from it
+  Future<AppLink> parseRouteInformation(RouteInformation routeInformation) async {
+    AppLink link = AppLink.fromLocation(routeInformation.location);
+    if (kDebugMode) print("parseRouteInfo: ${routeInformation.location} == ${link.toLocation()}");
+    if (kDebugMode) print("link.user=${link.user},link.pageId=${link.pageId},link.bookId=${link.bookId},");
+    return link;
+  }
+
+  @override
+  // Convert an applink into a string used for the browser location
+  RouteInformation restoreRouteInformation(AppLink appLink) {
+    // Ask the applink to give us a string
+    String location = appLink.toLocation();
+    if (kDebugMode) print("restoreRouteInfo: $location");
+
+    // Pass that string back to the OS so it can update the url bar
+    return RouteInformation(location: location);
+  }
+}

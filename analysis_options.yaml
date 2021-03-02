@@ -1,0 +1,16 @@
+analyzer:
+  exclude:
+      - "**/*.g.dart"
+      - "**/*.freezed.dart"
+  language:
+    strict-inference: true
+  strong-mode:
+    implicit-casts: false
+  errors:
+    missing_required_param: error
+linter:
+  rules:
+    always-specify-types: true
+    always_declare_return_types: true
+    prefer-relative-imports: true
+    avoid_types_on_closure_parameters: false
