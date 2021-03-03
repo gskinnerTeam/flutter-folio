@@ -20,7 +20,7 @@ class FireIds {
 class FirebaseFactory {
   static bool _initComplete = false;
   static bool get useNative =>
-      kIsWeb || UniversalPlatform.isAndroid || UniversalPlatform.isIOS || UniversalPlatform.isMacOS;
+      kIsWeb || UniversalPlatform.isAndroid || UniversalPlatform.isIOS;// || UniversalPlatform.isMacOS;
 
   static FirebaseService create() {
     FirebaseService service = useNative

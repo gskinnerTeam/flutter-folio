@@ -42,7 +42,7 @@ packages:
       name: async
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.5.0"
+    version: "2.5.0-nullsafety.3"
   auto_size_text:
     dependency: "direct main"
     description:
@@ -97,7 +97,7 @@ packages:
       name: boolean_selector
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.0"
+    version: "2.1.0-nullsafety.3"
   build:
     dependency: transitive
     description:
@@ -167,14 +167,14 @@ packages:
       name: characters
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.0"
+    version: "1.1.0-nullsafety.5"
   charcode:
     dependency: transitive
     description:
       name: charcode
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.2.0"
+    version: "1.2.0-nullsafety.3"
   checked_yaml:
     dependency: transitive
     description:
@@ -195,7 +195,7 @@ packages:
       name: clock
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.0"
+    version: "1.1.0-nullsafety.3"
   cloud_firestore:
     dependency: "direct main"
     description:
@@ -237,7 +237,7 @@ packages:
       name: collection
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.15.0"
+    version: "1.15.0-nullsafety.5"
   convert:
     dependency: transitive
     description:
@@ -300,7 +300,7 @@ packages:
       name: fake_async
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.2.0"
+    version: "1.2.0-nullsafety.3"
   ffi:
     dependency: transitive
     description:
@@ -564,7 +564,7 @@ packages:
       name: js
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.6.3"
+    version: "0.6.3-nullsafety.3"
   json_annotation:
     dependency: transitive
     description:
@@ -599,7 +599,7 @@ packages:
       name: matcher
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.12.10"
+    version: "0.12.10-nullsafety.3"
   menubar:
     dependency: "direct main"
     description:
@@ -615,7 +615,7 @@ packages:
       name: meta
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.3.0"
+    version: "1.3.0-nullsafety.6"
   mime:
     dependency: transitive
     description:
@@ -671,7 +671,7 @@ packages:
       name: path
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.8.0"
+    version: "1.8.0-nullsafety.3"
   path_drawing:
     dependency: transitive
     description:
@@ -907,7 +907,7 @@ packages:
       name: source_span
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.8.1"
+    version: "1.8.0-nullsafety.4"
   sqflite:
     dependency: transitive
     description:
@@ -928,7 +928,7 @@ packages:
       name: stack_trace
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.10.0"
+    version: "1.10.0-nullsafety.6"
   state_notifier:
     dependency: transitive
     description:
@@ -949,7 +949,7 @@ packages:
       name: stream_channel
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.0"
+    version: "2.1.0-nullsafety.3"
   stream_transform:
     dependency: transitive
     description:
@@ -963,7 +963,7 @@ packages:
       name: string_scanner
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.0"
+    version: "1.1.0-nullsafety.3"
   synchronized:
     dependency: transitive
     description:
@@ -984,14 +984,14 @@ packages:
       name: term_glyph
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.2.0"
+    version: "1.2.0-nullsafety.3"
   test_api:
     dependency: transitive
     description:
       name: test_api
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.19"
+    version: "0.2.19-nullsafety.6"
   timeago:
     dependency: "direct main"
     description:
@@ -1012,7 +1012,7 @@ packages:
       name: typed_data
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.3.0"
+    version: "1.3.0-nullsafety.5"
   universal_platform:
     dependency: "direct main"
     description:
@@ -1075,7 +1075,7 @@ packages:
       name: vector_math
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.0"
+    version: "2.1.0-nullsafety.5"
   visibility_detector:
     dependency: "direct main"
     description:
