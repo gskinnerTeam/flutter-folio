@@ -1,25 +1,25 @@
 <br />
 <p align="center"><a href="https://flutter.gskinner.com"><img src="https://flutter.gskinner.com/assets/images/gskinnerxflutter.png?" width="440px"></a></p>
 
-# Flutter Folio
-
 <p align="center"><img src="https://flutter.gskinner.com/assets/images/git_promoimage.png?" width="800px"></p>
 
-A demo app showcasing how Flutter can deliver a great multi-platform experience for developers. Built by [gskinner](https://gskinner.com) in partnership with Google, Flutter Folio purposely considers  user expectations, input devices and idioms for each platform, ensuring it feels at home on every device.
+# Flutter Folio
+
+A demo app showcasing how Flutter can deliver a great multi-platform experience for developers. Built by [gskinner](https://gskinner.com) in partnership with Google, Flutter Folio purposely considers user expectations, input devices and idioms for each platform, ensuring it feels at home on every device.
 
 In addition to forking and reviewing the [MIT license](LICENSE.md) code available here, you can check out more information on the [Flutter Folio Showcase Website](https://flutter.gskinner.com).
 
 ### About gskinner
-We exist to build inovative digital experiences for smart clients, and we love how easy Flutter makes that. Don't hesitate to [stop by our site](https://gskinner.com) to learn more about what we do. We'd love to hear from you!
+We exist to build inovative digital experiences for smart clients, and we love how easy Flutter makes that experience. Don't hesitate to [stop by our site](https://gskinner.com) to learn more about what we do. We'd love to hear from you!
 
 <p align="center"><img src="https://flutter.gskinner.com/assets/images/git_dashes.png?" width="800px"></p>
 
 ### Demo Builds
-To preview the app without needing to run a build process you can download any of the latest released builds
+To preview the app without needing to run a build process you can download any of the latest released builds.
 
 | Target Platfom | Build |
 | ------ | ------ |
-| Web | [ www.flutterfolio.com ](https://www.flutterfolio.com/) |
+| Web | [ www.flutterfolio.com](https://www.flutterfolio.com/) |
 | Linux | [tar.gz](https://www.flutterfolio.com/builds/latest/linux-build/linux_build.tar.xz?84) |
 | Windows | [.zip](https://www.flutterfolio.com/builds/latest/windows-build/windows_build.zip?84) |
 | macOS | [dmg](https://www.flutterfolio.com/builds/latest/macos-build/FlutterFolio.dmg?84) |
