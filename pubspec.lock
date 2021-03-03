@@ -55,10 +55,21 @@ packages:
   bitsdojo_window:
     dependency: "direct main"
     description:
-      name: bitsdojo_window
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: bitsdojo_window
+      ref: b9b1658ab4ddc8b26f4438a3f20a1890a10db006
+      resolved-ref: b9b1658ab4ddc8b26f4438a3f20a1890a10db006
+      url: "git://github.com/gskinnerTeam/bitsdojo_window.git"
+    source: git
     version: "0.0.5"
+  bitsdojo_window_linux:
+    dependency: transitive
+    description:
+      path: bitsdojo_window_linux
+      ref: HEAD
+      resolved-ref: e71e77cb7e8b08b72522bd157b241af01a74d055
+      url: "git://github.com/gskinnerTeam/bitsdojo_window"
+    source: git
+    version: "0.0.2"
   bitsdojo_window_macos:
     dependency: transitive
     description:
@@ -100,7 +111,7 @@ packages:
       name: build_config
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.4.6"
+    version: "0.4.5"
   build_daemon:
     dependency: transitive
     description:
@@ -121,14 +132,14 @@ packages:
       name: build_runner
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.11.5"
+    version: "1.11.1"
   build_runner_core:
     dependency: transitive
     description:
       name: build_runner_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.1.10"
+    version: "6.1.7"
   built_collection:
     dependency: transitive
     description:
@@ -177,7 +188,7 @@ packages:
       name: cli_util
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.0"
+    version: "0.2.0"
   clock:
     dependency: transitive
     description:
@@ -303,7 +314,7 @@ packages:
       name: file
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.1.0"
+    version: "5.2.1"
   file_chooser:
     dependency: "direct main"
     description:
@@ -410,7 +421,7 @@ packages:
       name: flutter_state_notifier
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.7.0"
+    version: "0.6.1"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -455,7 +466,7 @@ packages:
       name: glob
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0"
+    version: "1.2.0"
   globbing:
     dependency: transitive
     description:
@@ -626,6 +637,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
+  node_interop:
+    dependency: transitive
+    description:
+      name: node_interop
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.2.1"
+  node_io:
+    dependency: transitive
+    description:
+      name: node_io
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.2.0"
   octo_image:
     dependency: transitive
     description:
@@ -730,14 +755,14 @@ packages:
       name: pool
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.5.0"
+    version: "1.4.0"
   process:
     dependency: transitive
     description:
       name: process
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.1.0"
+    version: "3.0.13"
   protobuf:
     dependency: transitive
     description:
@@ -751,14 +776,14 @@ packages:
       name: provider
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.0.0-nullsafety.5"
+    version: "4.3.3"
   pub_semver:
     dependency: transitive
     description:
       name: pub_semver
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0"
+    version: "1.4.4"
   pubspec_parse:
     dependency: transitive
     description:
@@ -882,7 +907,7 @@ packages:
       name: source_span
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.8.0"
+    version: "1.8.1"
   sqflite:
     dependency: transitive
     description:
@@ -910,7 +935,7 @@ packages:
       name: state_notifier
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.7.0"
+    version: "0.6.0"
   statsfl:
     dependency: "direct main"
     description:
@@ -1064,7 +1089,7 @@ packages:
       name: watcher
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0"
+    version: "0.9.7+15"
   web_socket_channel:
     dependency: transitive
     description:
@@ -1110,5 +1135,5 @@ packages:
     source: hosted
     version: "2.2.1"
 sdks:
-  dart: ">=2.12.0-29.10.beta <3.0.0"
+  dart: ">=2.12.0-0.0 <3.0.0"
   flutter: ">=1.24.0-10.1.pre"
