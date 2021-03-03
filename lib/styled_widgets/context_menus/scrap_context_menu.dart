@@ -31,10 +31,10 @@ class ScrapContextMenu extends BaseContextMenu {
       children: [
         ContextMenuBtn("Move forward",
             icon: AppIcons.move_forward,
-            shortcutLabel: "ctrl + [",
+            shortcutLabel: "ctrl + ]",
             onPressed: () => handlePressed(context, _handleForwardPressed)),
         ContextMenuBtn("Send backward",
-            shortcutLabel: "ctrl + ]",
+            shortcutLabel: "ctrl + [",
             icon: AppIcons.send_backward,
             onPressed: () => handlePressed(context, _handleBackPressed)),
         ContextDivider(),
