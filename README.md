@@ -30,7 +30,7 @@ To preview the app without needing to run a build process you can download any o
 
 If you're new to Flutter the first thing you'll need is to follow the [setup instructions](https://flutter.dev/docs/get-started/install). 
 
-Once Flutter is setup, you'll need to switch to the latest `dev` version:
+Once Flutter is setup, you'll can use the `stable` channel, or switch to the latest `dev` version to get the most current fixes for desktop/web:
  * Run `flutter channel dev`
  * Run `flutter upgrade`
 
