@@ -38,11 +38,24 @@ class LabeledTextInput extends StatefulWidget {
 }
 
 class _LabeledTextInputState extends State<LabeledTextInput> {
-  String lastValue;
+  String lastValue = "";
 
   int lastPosition;
 
   final FocusNode rawFocus = FocusNode();
+  TextEditingController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = widget.controller ?? TextEditingController(text: widget.text);
+  }
+
+  @override
+  void dispose() {
+    _controller?.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,14 +79,14 @@ class _LabeledTextInputState extends State<LabeledTextInput> {
               return RawKeyboardListener(
                 focusNode: rawFocus,
                 onKey: (value) {
-                  lastPosition = widget.controller.selection.start;
+                  lastPosition = _controller.selection.start;
                 },
                 child: TextFormField(
                   autofillHints: widget.autofillHints,
-                  controller: widget.controller,
+                  controller: _controller,
                   onChanged: UniversalPlatform.isLinux ? _fixTextOnLinux : widget.onChanged,
                   onFieldSubmitted: widget.onSubmit,
-                  initialValue: widget.text,
+                  //initialValue: widget.text,
                   style: widget.style ?? TextStyles.body2,
                   autofocus: true,
                   minLines: widget.numLines,
@@ -119,7 +132,7 @@ class _LabeledTextInputState extends State<LabeledTextInput> {
       final prefix = oldValue.substring(0, lastPosition);
       final suffix = oldValue.substring(lastPosition);
       final newValue = prefix + enteredChar + suffix;
-      widget.controller.value = TextEditingValue(
+      _controller.value = TextEditingValue(
         text: newValue,
         selection: TextSelection.collapsed(offset: lastPosition + 1),
       );

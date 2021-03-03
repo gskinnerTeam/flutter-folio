@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_utils/native_window_utils/titlebar_wrappers/macos_title_bar.dart';
 import 'package:flutter_folio/_utils/native_window_utils/titlebar_wrappers/windows_title_bar.dart';
+import 'package:flutter_folio/_utils/native_window_utils/titlebar_wrappers/linux_title_bar.dart';
 import 'package:flutter_folio/_utils/native_window_utils/window_utils.dart';
 
 IoUtils _instance = IoUtilsNative();
@@ -26,7 +27,7 @@ class IoUtilsNative implements IoUtils {
     if (Platform.isWindows) {
       return WindowsTitleBar(child);
     } else if (Platform.isLinux) {
-      return Container(); //_LinuxTitleBar(child);
+      return LinuxTitleBar(child);
     } else if (Platform.isMacOS) {
       return MacosTitleBar(child);
     }

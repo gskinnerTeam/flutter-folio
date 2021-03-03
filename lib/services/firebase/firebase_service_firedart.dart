@@ -12,6 +12,7 @@ class DartFirebaseService extends FirebaseService {
   DartFirebaseService({this.apiKey, this.projectId});
   final String apiKey;
   final String projectId;
+  bool _isSignedIn = false;
 
   Firestore get firestore => Firestore.instance;
 
@@ -21,6 +22,7 @@ class DartFirebaseService extends FirebaseService {
     final prefsStore = await PreferencesStore.create();
     FirebaseAuth.initialize(apiKey, prefsStore);
     Firestore.initialize(projectId);
+    _isSignedIn = FirebaseAuth.instance.isSignedIn;
   }
 
   /// //////////////////////////////
@@ -33,15 +35,17 @@ class DartFirebaseService extends FirebaseService {
     } else {
       user = await FirebaseAuth.instance.signIn(email, password);
     }
+    _isSignedIn = true;
     return AppUser(email: user.email, fireId: user.id);
   }
 
   @override
   Future<void> signOut() async {
     super.signOut();
+    _isSignedIn = false;
   }
 
-  bool get isSignedIn => FirebaseAuth.instance.isSignedIn;
+  bool get isSignedIn => _isSignedIn;
 
   /// ///////////////////////////////
   /// CRUD
