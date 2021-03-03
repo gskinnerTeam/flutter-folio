@@ -1,4 +1,4 @@
-name: flutter-travel-app
+name: flutter-folio
 version: 0.1.0
 summary: Record and share travel experiences
 description: A rich cross platform app for creating and sharing immersive travel memoirs
@@ -8,14 +8,14 @@ base: core18
 grade: stable
 
 apps:
-  flutter-travel-app:
+  flutter-folio:
     command: flutter_folio
     extensions: [flutter-master]
     plugs:
     - network
 
 parts:
-  flutter-travel-app:
+  flutter-folio:
     source: .
     plugin: flutter
     flutter-target: lib/main.dart

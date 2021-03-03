@@ -79,7 +79,7 @@ class BootstrapCommand extends Commands.BaseAppCommand {
     // /// Polish (for Windows OS), to hide any movement of the window on startup.
     IoUtils.instance.showWindowWhenReady();
 
-    setWindowTitle("FlutterBook");
+    setWindowTitle("Flutter Folio");
     Size minSize = Size(600, 700);
     setWindowMinSize(minSize);
     setWindowMaxSize(Size(8192, 8192)); // maxSize is needed for Linux to allow scaling, TODO: log an issue for this

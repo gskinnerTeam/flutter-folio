@@ -8,6 +8,7 @@ import 'package:universal_platform/universal_platform.dart';
 //TODO: Should we pull this feature completely since it's not supported on Windows?
 class RefreshMenuBarCommand extends BaseAppCommand {
   Future<void> run() async {
+    return;
     bool isDesktop = (UniversalPlatform.isWindows || UniversalPlatform.isMacOS || UniversalPlatform.isLinux);
     // Exit early if we're not on Desktop, this API does nothing.
     if (isDesktop == false) return;
