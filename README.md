@@ -5,9 +5,9 @@
 
 # Flutter Folio
 
-A demo app showcasing how Flutter can deliver a great multi-platform experience for developers. Built by [gskinner](https://gskinner.com) in partnership with Google, Flutter Folio purposely considers user expectations, input devices and idioms for each platform, ensuring it feels at home on every device.
+A demo app showcasing how Flutter can deliver a great multi-platform experience, targeting iOS, Android, MacOS, Windows, Linux, and web. Built by [gskinner](https://gskinner.com) in partnership with Google, Flutter Folio purposefully considers user expectations, input devices and idioms for each platform, ensuring it feels at home on every device.
 
-In addition to forking and reviewing the [MIT license](LICENSE.md) code available here, you can check out more information on the [Flutter Folio Showcase Website](https://flutter.gskinner.com).
+In addition to forking and reviewing the [MIT licensed](LICENSE.md) code available here, you can check out more information on the [Flutter Folio Showcase Website](https://flutter.gskinner.com).
 
 ### About gskinner
 We exist to build inovative digital experiences for smart clients, and we love how easy Flutter makes that experience. Don't hesitate to [stop by our site](https://gskinner.com) to learn more about what we do. We'd love to hear from you!
