@@ -67,7 +67,7 @@ dependencies:
             url: git://github.com/cenomla/firedart.git
             ref: f89b0d98929fd19b79f4fa05efb4a1c84a3562a9
   firebase_core: ^0.7.0
-  firebase_auth: ^0.20.0
+  firebase_auth: ^0.20.1
   cloud_firestore: ^0.16.0
 
 

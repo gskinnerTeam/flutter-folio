@@ -4,11 +4,12 @@ import 'package:flutter_folio/commands/commands.dart';
 import 'package:flutter_folio/data/book_data.dart';
 
 class UpdatePageScrapCommand extends BaseAppCommand {
-  Future<void> run(PlacedScrapItem scrapItem) async {
+  Future<void> run(PlacedScrapItem scrapItem, {bool localOnly = false}) async {
     PlacedScrapItem newScrap = scrapItem.copyWith(lastModifiedTime: TimeUtils.nowMillis);
     booksModel.replaceCurrentPageScrap(newScrap);
-
-    firebase.setPlacedScrap(newScrap);
-    UpdateBookModifiedCommand().run(bookId: scrapItem.bookId);
+    if (localOnly == false) {
+      firebase.setPlacedScrap(newScrap);
+      UpdateBookModifiedCommand().run(bookId: scrapItem.bookId);
+    }
   }
 }

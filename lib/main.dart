@@ -4,7 +4,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_folio/commands/app/bootstrap_command.dart';
-import 'package:flutter_folio/main_app_scaffold.dart';
 import 'package:flutter_folio/models/app_model.dart';
 import 'package:flutter_folio/models/books_model.dart';
 import 'package:flutter_folio/routing/app_route_parser.dart';
@@ -23,8 +22,7 @@ void main() async {
     // Increase Skia cache size to support bigger images.
     const int megabyte = 1000000;
     SystemChannels.skia.invokeMethod('Skia.setResourceCacheMaxBytes', 512 * megabyte);
-    // TODO: cant' await on invokeMethod due to https://github.com/flutter/flutter/issues/77018
-    //       so awaiting on Future.delayed instead.
+    // TODO: cant' await on invokeMethod due to https://github.com/flutter/flutter/issues/77018  so awaiting on Future.delayed instead.
     await Future<void>.delayed(Duration.zero);
   }
 

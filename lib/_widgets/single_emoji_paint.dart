@@ -22,7 +22,6 @@ class _EmojiPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     // A bunch of hacks to get emojis right on windows and mac
-    // TODO: Get a font embedded so we can have consistent behavior across devices: https://github.com/flutter/flutter/issues/76322#issuecomment-782505551
     double fontScale = UniversalPlatform.isMacOS ? 1.09 : .88;
     double offsetX = UniversalPlatform.isMacOS ? -.04 : -.1;
     double offsetY = UniversalPlatform.isMacOS ? -.04 : 0;

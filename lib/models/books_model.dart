@@ -50,7 +50,6 @@ class BooksModel extends EasyNotifier {
 
   List<ScrapPageData> get currentBookPages => _currentBookPages;
   set currentBookPages(List<ScrapPageData> value) {
-    value = DataUtils.sortListById((value ?? []), currentBook?.pageOrder ?? []);
     notify(() => _currentBookPages = value);
   }
 
@@ -118,7 +117,6 @@ class BooksModel extends EasyNotifier {
     for (var i = scraps.length; i-- > 0;) {
       if (equals(value, scraps[i])) scraps[i] = value;
     }
-    print("Replaced scrap");
     _currentPageScraps = scraps;
     if (silent == false) notify();
   }

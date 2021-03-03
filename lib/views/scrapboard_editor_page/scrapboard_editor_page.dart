@@ -3,7 +3,6 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/_utils/device_info.dart';
 import 'package:flutter_folio/_widgets/alignments.dart';
 import 'package:flutter_folio/commands/books/refresh_current_book_command.dart';
 import 'package:flutter_folio/core_packages.dart';
@@ -53,8 +52,6 @@ class _BookEditorPageState extends State<BookEditorPage> {
                   //bookId, pageId,
                   // tweak the start-offset of the scrap-board depending on form factor
                   startOffset: Offset(
-                    //TODO: This is just a quick-fix, try to think of a better way to align the initial scrapboard position depending which floating menus are shown.
-                    //      Almost like
                     showSimpleView ? Insets.offset : 300, // More left padding when the full-menus are present
                     showSimpleView ? 120 : 60, // More top padding when the simple menu is present
                   ),

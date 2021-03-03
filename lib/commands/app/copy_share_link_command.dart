@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_folio/_utils/device_info.dart';
 import 'package:flutter_folio/commands/commands.dart';

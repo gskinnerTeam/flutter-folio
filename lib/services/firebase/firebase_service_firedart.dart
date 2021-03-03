@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:firedart/auth/user_gateway.dart';
 import 'package:firedart/firedart.dart';
 import 'package:firedart/firestore/models.dart';
+import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/data/app_user.dart';
 import 'package:flutter_folio/services/firebase/firebase_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -84,9 +85,9 @@ class DartFirebaseService extends FirebaseService {
       {String documentId, bool addUserPath = true}) async {
     if (documentId != null) {
       keys.add(documentId);
-      print("Add Doc ${getPathFromKeys(keys)}");
+      //safePrint("Add Doc ${getPathFromKeys(keys)}");
       await firestore.document(getPathFromKeys(keys, addUserPath: addUserPath)).update(json);
-      print("Add Doc Complete");
+      //safePrint("Add Doc Complete");
       return documentId;
     }
     CollectionReference ref = firestore.collection(getPathFromKeys(keys, addUserPath: addUserPath));

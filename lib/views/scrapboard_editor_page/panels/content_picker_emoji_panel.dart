@@ -21,7 +21,6 @@ class ContentPickerEmojiPanel extends StatefulWidget {
   _ContentPickerEmojiPanelState createState() => _ContentPickerEmojiPanelState();
 }
 
-//TODO: This runs slow, maybe we can just rasterize these? Maybe an EmojiWidget with a CustomPainter?
 class _ContentPickerEmojiPanelState extends State<ContentPickerEmojiPanel> {
   static const List<Emojis> emojis = [
     Emojis.beers,

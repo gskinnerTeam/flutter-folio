@@ -17,13 +17,15 @@ class InlineTextEditor extends StatefulWidget {
       this.promptText,
       this.onFocusOut,
       this.onFocusIn,
+      this.controller,
       this.enableContextMenu = true,
-      this.controller})
+      this.autoFocus = false})
       : super(key: key);
   final double width;
   final String text;
   final TextStyle style;
   final int maxLines;
+  final bool autoFocus;
   final TextAlignVertical alignVertical;
   final TextAlign align;
   final void Function(String value) onChanged;
@@ -50,6 +52,10 @@ class _InlineTextEditorState extends State<InlineTextEditor> {
     _textController.addListener(() => setState(() {}));
     // Listen for focus out, so we can disable editing when user clicks somewhere else
     _textFocus.addListener(_handleFocusChanged);
+    if (widget.autoFocus) {
+      _isEditing = true;
+      _textFocus.requestFocus();
+    }
   }
 
   @override

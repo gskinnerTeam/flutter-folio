@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_folio/_utils/safe_print.dart';
 import 'package:flutter_folio/data/app_user.dart';
 import 'package:flutter_folio/services/firebase/firebase_service.dart';
 
@@ -13,6 +14,10 @@ class NativeFirebaseService extends FirebaseService {
 
   @override
   Future<void> init() async {
+    await auth.setPersistence(Persistence.LOCAL);
+    FirebaseAuth.instance.userChanges().listen((User user) {
+      return _isSignedIn = user != null;
+    });
     await Firebase.initializeApp().catchError((Object e) {
       print("$e");
     }).then((value) {
@@ -39,7 +44,8 @@ class NativeFirebaseService extends FirebaseService {
   }
 
   @override
-  bool get isSignedIn => auth.currentUser != null;
+  bool _isSignedIn = false;
+  bool get isSignedIn => _isSignedIn;
 
   // Streams
   Stream<Map<String, dynamic>> getDocStream(List<String> keys) {
@@ -60,9 +66,9 @@ class NativeFirebaseService extends FirebaseService {
       {String documentId, bool addUserPath = true}) async {
     if (documentId != null) {
       keys.add(documentId);
-      print("Add Doc ${getPathFromKeys(keys)}");
+      safePrint("Add Doc ${getPathFromKeys(keys)}");
       await firestore.doc(getPathFromKeys(keys, addUserPath: addUserPath)).set(json);
-      print("Add Doc Complete");
+      safePrint("Add Doc Complete");
       return documentId;
     }
     CollectionReference ref = firestore.collection(getPathFromKeys(keys, addUserPath: addUserPath));

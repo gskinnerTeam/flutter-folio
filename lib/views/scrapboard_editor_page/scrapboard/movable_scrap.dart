@@ -35,11 +35,6 @@ class MovableScrap<T> extends StatefulWidget {
   final bool showControls;
   final void Function(ScrapData<T> data, Offset delta) onMoved;
   final void Function(ScrapData<T> data) onMoveComplete;
-  // TODO: Why don't we just have the Tools widget change this??
-  // Because we need to track dragStart and dragEnd at the top level!
-  // Then Box should have a onDragStarted(), onDragEnded()
-  // OR, we just KISS pass the events 2 levels, big deal...
-  // OR, we could switch to a Notification...decouples it, no passing vars, more boilerplate in the parent.
   final void Function(ScrapData<T> data, double delta) onZoomed;
   final void Function(ScrapData<T> data, Offset delta) onCornerDragged;
   final void Function(ScrapData<T> data, Offset delta) onRotateDragged;
@@ -75,7 +70,7 @@ class MovableScrapState extends State<MovableScrap> {
             children: [
               // Controls
               Transform.rotate(
-                angle: widget.data.rot * pi / 180, // TODO: Add rotation
+                angle: widget.data.rot * pi / 180,
                 child: MovableScrapSelectionBox(
                   key: _uiKey,
                   onZoomed: (value) => widget.onZoomed(widget.data, value),

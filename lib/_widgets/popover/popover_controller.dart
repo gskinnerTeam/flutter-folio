@@ -43,10 +43,6 @@ class PopOverControllerState extends State<PopOverController> {
   bool _handleNotification(Notification n) {
     // Close any open popovers
     if (n is ClosePopoverNotification) {
-      /// TODO: Add some ability for a delay, or an await so we can support transition out effects...
-      /// The Widget that send the notification, can get the Controller via callback.
-      /// At that point, it could store the controller.content and controller.barrier, and control them.
-      /// We'd need some way for the dispatcher to tell the Controller to not manage these overlays, and instead leave it to the dispatcher. Otherwise someone else could close them under us.
       _closeOverlay();
       return true;
     }

@@ -17,9 +17,9 @@ class AuthenticateUserCommand extends BaseAppCommand {
         firebase.userId = email;
         await firebase.addUser(user);
       }
-      print("Authentication complete, user=$user");
+      safePrint("Authentication complete, user=$user");
     } on Exception catch (e) {
-      print(e.toString());
+      safePrint(e.toString());
     }
     //}
     // Login??

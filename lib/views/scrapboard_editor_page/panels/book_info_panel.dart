@@ -37,7 +37,7 @@ class _EditorPanelInfoState extends State<EditorPanelInfo> {
               InlineTextEditor(
                 _book.title,
                 width: widget.width * Insets.med * 2,
-                style: TextStyles.body3,
+                style: TextStyles.body3.copyWith(color: theme.greyStrong),
                 onFocusOut: _handleTitleChanged,
                 promptText: "Add Title",
               ),
@@ -46,7 +46,7 @@ class _EditorPanelInfoState extends State<EditorPanelInfo> {
                 child: InlineTextEditor(
                   _book.desc,
                   width: widget.width * Insets.med * 2,
-                  style: TextStyles.caption,
+                  style: TextStyles.caption.copyWith(color: theme.greyMedium),
                   alignVertical: TextAlignVertical.top,
                   maxLines: 4,
                   onFocusOut: _handleDescChanged,

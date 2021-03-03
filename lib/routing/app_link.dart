@@ -2,6 +2,8 @@
 // Can serialize itself to and from a location string like /book/23/ or ?book=23
 import 'dart:convert';
 
+import 'package:flutter_folio/core_packages.dart';
+
 class AppLink {
   static const String kBookParam = "bk";
   static const String kPageParam = "pg";
@@ -33,7 +35,7 @@ class AppLink {
       if (params.containsKey(key)) setter?.call(params[key]);
     }
 
-    print("parse-fromLocation: $location");
+    safePrint("parse-fromLocation: $location");
 
     // Create the applink, inject any params we've found
     AppLink link = AppLink();

@@ -43,7 +43,6 @@ class _CoversFlowListMobileState extends State<CoversFlowListMobile> {
           builder: (context, constraints) {
             bool isMobile = context.widthPx < Sizes.smallPhone;
             Size boxSize = Size(isMobile ? constraints.maxWidth : 260, 141);
-            print("Build, _bgBook=$_bgBook");
 
             _currentCursorPos = Offset(0, constraints.maxHeight - boxSize.width / 2);
 

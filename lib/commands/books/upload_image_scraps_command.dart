@@ -14,7 +14,7 @@ class UploadImageScrapsCommand extends BaseAppCommand {
   Future<void> run(String bookId, List<String> paths) async {
     if (paths?.isEmpty ?? true) return; // Guard against empty lists
 
-    // Remove any images that are .heic //TODO: Remove this when we figure out how to convert heic to jpg
+    // Remove any images that are .heic, somehow these have slipped through on iOS in the past.
     paths.removeWhere((p) => p.contains(".heic"));
     // Create scraps without images to start
     List<ScrapItem> newScraps = paths
@@ -33,7 +33,7 @@ class UploadImageScrapsCommand extends BaseAppCommand {
 
     // Upload images and get a public Url
     List<CloudinaryResponse> uploads = await cloudStorage.multiUpload(urls: paths);
-    uploads.forEach((u) => print(u.secureUrl));
+    uploads.forEach((u) => safePrint(u.secureUrl));
 
     // Now that we have urls, replace the newScraps with ones that have a url
     List<ScrapItem> items = uploads.map((u) {

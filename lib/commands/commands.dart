@@ -7,6 +7,7 @@ import 'package:flutter_folio/styles.dart';
 import 'package:flutter_folio/themes.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
+export 'package:flutter_folio/core_packages.dart';
 
 FToast _fToast;
 BuildContext _mainContext;

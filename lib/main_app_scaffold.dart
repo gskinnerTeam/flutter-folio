@@ -33,10 +33,6 @@ class _MainAppScaffoldState extends State<MainAppScaffold> {
           textDirection: textDirection,
           // Right-click support
           child: ContextMenuOverlay(
-            // Use a 2nd Navigator to provide an overlay for the popOverController
-            // TODO: Find some better way to do this... or just make PopOverController a stack??
-            //    https://stackoverflow.com/questions/66425271/how-to-use-an-overlay-with-the-navigator-app
-            //    https://github.com/flutter/flutter/issues/63429#issuecomment-788068875
             child: Navigator(
               onPopPage: (Route route, result) {
                 if (route.didPop(result)) return true;
@@ -64,7 +60,6 @@ class _MainAppScaffoldState extends State<MainAppScaffold> {
                               children: [
                                 // Bottom content area
                                 Expanded(
-                                  // MainNavigator() will define the current PageStack (TODO: Move to MaterialApp.Router)
                                   child: widget.child,
                                 ),
                                 // Top-aligned TitleBar

@@ -126,7 +126,7 @@ class _ProfileEditorCardContentState extends State<_ProfileEditorCardContent> {
     List<String> paths = await PickImagesCommand().run();
     CloudStorageService cloudStorage = context.read<CloudStorageService>();
     List<CloudinaryResponse> uploads = await cloudStorage.multiUpload(urls: paths);
-    uploads.forEach((u) => print(u.secureUrl));
+    uploads.forEach((u) => safePrint(u.secureUrl));
     // Update firebase
     if (uploads?.isNotEmpty ?? false) {
       AppModel m = context.read();

@@ -93,7 +93,7 @@ class _TextBox extends StatefulWidget {
 }
 
 class _TextBoxState extends State<_TextBox> {
-  Debouncer textChangedDebounce = Debouncer(Duration(milliseconds: 500));
+  Debouncer textChangedDebounce = Debouncer(Duration(milliseconds: 150));
   String _txtValue;
 
   @override
@@ -104,20 +104,23 @@ class _TextBoxState extends State<_TextBox> {
 
   @override
   Widget build(BuildContext context) {
+    // Write the text to
     void _handleTextChanged(String value) {
-      //print("$value");
+      // Update local data immediately, but debounce the firebase call
+      PlacedScrapItem newItem = widget.item.copyWith(data: value);
+      UpdatePageScrapCommand().run(newItem, localOnly: true);
+      // Debounce db update
+      textChangedDebounce.call(() => UpdatePageScrapCommand().run(newItem));
       setState(() => _txtValue = value);
-      textChangedDebounce.call(() {
-        UpdatePageScrapCommand().run(widget.item.copyWith(data: value));
-      });
     }
 
+    String promptText = "Type something...";
     return Container(
       padding: EdgeInsets.all(8.0),
       color: widget.item.boxStyle?.bgColor ?? Colors.transparent,
       child: LayoutBuilder(builder: (_, constraints) {
         return AutoSizeText(
-          _txtValue,
+          StringUtils.defaultOnEmpty(_txtValue, promptText),
           minFontSize: 10,
           maxFontSize: 999,
           textBuilder: (size, style, numLines) {
@@ -126,9 +129,11 @@ class _TextBoxState extends State<_TextBox> {
             return widget.isSelected
                 ? InlineTextEditor(
                     widget.item.data,
+                    autoFocus: false,
                     alignVertical: TextAlignVertical.center,
                     align: textAlign,
                     width: constraints.maxWidth,
+                    promptText: promptText,
                     maxLines: numLines,
                     enableContextMenu: false,
                     onFocusOut: _handleTextChanged,
@@ -136,10 +141,13 @@ class _TextBoxState extends State<_TextBox> {
                     onChanged: _handleTextChanged,
                     style: style.copyWith(fontSize: size, fontFamily: boxFontToFamily(widget.item.boxStyle.font)),
                   )
-                : Text(widget.item.data,
-                    style: style.copyWith(fontSize: size, fontFamily: boxFontToFamily(widget.item.boxStyle.font)),
-                    maxLines: numLines,
-                    textAlign: textAlign);
+                : Container(
+                    alignment: Alignment.centerLeft,
+                    child: Text(StringUtils.defaultOnEmpty(widget.item.data, promptText),
+                        style: style.copyWith(fontSize: size, fontFamily: boxFontToFamily(widget.item.boxStyle.font)),
+                        maxLines: numLines,
+                        textAlign: textAlign),
+                  );
           },
           style: TextStyle(fontSize: 999, letterSpacing: 0, height: 1.25),
         );

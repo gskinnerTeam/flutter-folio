@@ -8,6 +8,7 @@ import 'package:flutter_folio/_utils/time_utils.dart';
 import 'package:flutter_folio/commands/app/refresh_menubar_command.dart';
 import 'package:flutter_folio/commands/books/refresh_all_books_command.dart';
 import 'package:flutter_folio/commands/commands.dart' as Commands;
+import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/models/app_model.dart';
 import 'package:system_info/system_info.dart';
 import 'package:window_size/window_size.dart';
@@ -22,13 +23,18 @@ class BootstrapCommand extends Commands.BaseAppCommand {
     if (Commands.mainContext == null) {
       Commands.setContext(context);
     }
-    print("BootstrapCommand, v${AppModel.kVersion}");
+    print("Bootstrap Started, v${AppModel.kVersion}");
     // Load AppModel ASAP
     await appModel.load();
-    print("BootstrapCommand - App Loaded, user = ${appModel.currentUser}");
-    if (firebase.isSignedIn == false) {
-      // If we've lost firebase auth, clear the stale user data. // TODO: Can we try some sort of re-auth here instead of just bailing
-      appModel.currentUser = null;
+    safePrint("BootstrapCommand - AppModel Loaded, user = ${appModel.currentUser}");
+    if (firebase.isSignedIn == false && appModel.currentUser != null) {
+      // If we previously has a user, it's unexpected that firebase has lost auth. Give it some extra time.
+      await Future<void>.delayed(Duration(seconds: 1));
+      // See if we don't have auth now...
+      if (firebase.isSignedIn == false) {
+        //Still no auth, clear the stale user data. // TODO: Can we try some sort of re-auth here instead of just bailing
+        appModel.currentUser = null;
+      }
     }
     // Init services
     cloudStorage.init();
@@ -52,7 +58,7 @@ class BootstrapCommand extends Commands.BaseAppCommand {
       }
     }
     appModel.hasBootstrapped = true;
-    print("BootstrapCommand - Complete");
+    safePrint("BootstrapCommand - Complete");
   }
 
   void _configureMemoryCache() {
@@ -81,7 +87,7 @@ class BootstrapCommand extends Commands.BaseAppCommand {
     // Restore the previous window settings on load
     if (appModel.hasValidWindowRect) {
       setWindowFrame(appModel.windowRect);
-      print("Restoring window with frame: ${appModel.windowRect}");
+      safePrint("Restoring window with frame: ${appModel.windowRect}");
     } else {
       setWindowFrame(Rect.fromLTRB(50, 50, 800, 700));
     }

@@ -1,7 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_folio/_spikes/auth_spike.dart';
 import 'package:flutter_folio/commands/books/set_current_book_command.dart';
 import 'package:flutter_folio/commands/books/set_current_page_command.dart';
+import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/data/book_data.dart';
 import 'package:flutter_folio/main_app_scaffold.dart';
 import 'package:flutter_folio/models/app_model.dart';
@@ -41,9 +43,16 @@ class AppRouterDelegate extends RouterDelegate<AppLink> with ChangeNotifier {
 
   // Return a navigator, configured to match the current app state
   Widget build(BuildContext context) {
-    bool showSplash = !appModel.hasBootstrapped || !appModel.hasSetInitialRoute;
-    if (kDebugMode) print("RouterDelegate.build(), appModel.hasBootstrapped=${appModel.hasBootstrapped}");
-    String bookId = booksModel.currentBookId;
+    safePrint("RouterDelegate.build()");
+    // Bind to the app state we care about
+    bool hasBootstrapped = appModel.hasBootstrapped;
+    bool hasSetInitialRoute = appModel.hasSetInitialRoute;
+    bool isGuestUser = appModel.isGuestUser;
+    bool isAuthenticated = appModel.isAuthenticated;
+    String currentBookId = booksModel.currentBook?.documentId;
+    // Hold splash in place until our bootstrap cmd and any route parsing is done.
+    bool showSplash = hasBootstrapped == false || hasSetInitialRoute == false;
+    // See if we want to show a dev spike instead of the main app
     Widget devSpike = _getDevSpike();
     // Wrap
     return MainAppScaffold(
@@ -51,26 +60,27 @@ class AppRouterDelegate extends RouterDelegate<AppLink> with ChangeNotifier {
       child: Navigator(
         onPopPage: _handleNavigatorPop,
         pages: [
+          // Dev spike takes precedence
           if (devSpike != null) ...[
             devSpike,
           ] else if (showSplash) ...[
             SplashPage(),
           ]
           // Guest users can only see the EditView in read-only mode
-          else if (appModel.isGuestUser) ...[
-            BookEditorPage(bookId: bookId, readOnly: true),
+          else if (isGuestUser) ...[
+            BookEditorPage(bookId: currentBookId, readOnly: true),
           ]
           // Regular users
           else ...[
             // Not logged in, show auth
-            if (appModel.isAuthenticated == false) ...[
+            if (isAuthenticated == false) ...[
               AuthPage(),
             ]
             // Logged in, show HomePage + EditPage
             else ...[
               BooksHomePage(),
-              if (booksModel.currentBook != null) ...[
-                BookEditorPage(bookId: bookId),
+              if (currentBookId != null) ...[
+                BookEditorPage(bookId: currentBookId),
               ]
             ],
           ]
@@ -79,7 +89,7 @@ class AppRouterDelegate extends RouterDelegate<AppLink> with ChangeNotifier {
     );
   }
 
-  //TODO: Fix NoAnimationsPage
+  //TODO: Fix NoAnimationsPage, SB: NoAnimationPage was rebuilding constantly when resizing the app window, not sure why.
   Page _wrapContentInPage(Widget e) {
     //On mobile, use the Material/Cupertino transitions
     // if (DeviceInfo.isMobile) {
@@ -102,14 +112,14 @@ class AppRouterDelegate extends RouterDelegate<AppLink> with ChangeNotifier {
     }
     await setNewRoutePath(initialLink);
     appModel.hasSetInitialRoute = true;
-    if (kDebugMode) print("setInitialRoutePath complete");
+    if (kDebugMode) safePrint("setInitialRoutePath complete");
   }
 
   @override
   // The OS is asking us to change our location.
   // If we choose, we can update the app state to match the request from the OS.
   Future<void> setNewRoutePath(AppLink newLink) async {
-    if (kDebugMode) print("setNewRoutePath: ${newLink.toLocation()}");
+    safePrint("setNewRoutePath: ${newLink.toLocation()}");
 
     // If we've been passed a .user that is not us, then logout, we'll enter guest mode for another user...
     if (newLink.user != null && newLink.user != appModel.currentUserEmail) {
@@ -176,6 +186,7 @@ class AppRouterDelegate extends RouterDelegate<AppLink> with ChangeNotifier {
 
 Widget _getDevSpike() {
   if (kReleaseMode) return null;
+  //return NativeFirebaseAuthSpike();
   //return ModelCommandsSpike();
   //return RestApiSpikes();
   //return PopupPanelSpike();

@@ -1,9 +1,13 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/src/gestures/events.dart';
+import 'package:flutter_folio/_utils/context_utils.dart';
 import 'package:flutter_folio/_utils/input_utils.dart';
 import 'package:flutter_folio/_utils/keyboard_utils.dart';
+import 'package:flutter_folio/_utils/safe_print.dart';
 import 'package:flutter_folio/_widgets/mixins/raw_keyboard_listener_mixin.dart';
 import 'package:vector_math/vector_math_64.dart' as math64;
 
@@ -48,6 +52,8 @@ class Scrapboard<T> extends StatefulWidget {
 
 class ScrapboardState<T> extends State<Scrapboard<T>> with RawKeyboardListenerMixin {
   bool get _lockAspectOnResize => KeyboardUtils.isShiftDown;
+  double kBoardHeight = 1200;
+  double kBoardWidth = 1200 * 1.33;
 
   /// Internal
   ValueNotifier<bool> isCardHovered = ValueNotifier(false);
@@ -55,6 +61,7 @@ class ScrapboardState<T> extends State<Scrapboard<T>> with RawKeyboardListenerMi
   double _scale = 1;
   List<String> _selectedBoxIds = [];
   bool _isSpaceBarDown = false;
+  Size _viewSize;
 
   // We create a copy of the assigned boxList, so we can work on it internally
   List<ScrapData<T>> get _tmpBoxes => widget.boxes;
@@ -93,7 +100,7 @@ class ScrapboardState<T> extends State<Scrapboard<T>> with RawKeyboardListenerMi
                 child: InteractiveViewer(
                     transformationController: _transformController,
                     boundaryMargin: EdgeInsets.all(double.infinity),
-                    minScale: 0.7,
+                    minScale: 0.5,
                     maxScale: 3,
                     constrained: false,
                     scaleEnabled: !value,
@@ -103,8 +110,8 @@ class ScrapboardState<T> extends State<Scrapboard<T>> with RawKeyboardListenerMi
             },
             // Cache the Stack of Scraps so we can control panEnabled/scaleEnabled without rebuilding every card
             child: Container(
-              width: 1280 * 1.33,
-              height: 1280,
+              width: kBoardWidth,
+              height: kBoardHeight,
               color: Colors.grey.shade300,
               child: ClipRect(
                 child: Stack(
@@ -161,9 +168,9 @@ class ScrapboardState<T> extends State<Scrapboard<T>> with RawKeyboardListenerMi
     );
   }
 
-  Size _enforceMinBoxSize(ScrapData<T> boxData) => Size(
-        boxData.size.width.clamp(150, 1200).toDouble(),
-        boxData.size.height.clamp(150, 1200).toDouble(),
+  Size _clampBoxSize(ScrapData<T> boxData) => Size(
+        boxData.size.width.clamp(150, 2000).toDouble(),
+        boxData.size.height.clamp(150, 2000).toDouble(),
       );
 
   // Gets a cached key for a given document id
@@ -205,7 +212,7 @@ class ScrapboardState<T> extends State<Scrapboard<T>> with RawKeyboardListenerMi
   void _handleZoom(ScrapData<T> boxData, double delta) {
     //print(delta);
     boxData.size *= 1 + delta;
-    boxData.size = _enforceMinBoxSize(boxData);
+    boxData.size = _clampBoxSize(boxData);
     widget.onTranslated?.call(boxData);
   }
 
@@ -217,7 +224,7 @@ class ScrapboardState<T> extends State<Scrapboard<T>> with RawKeyboardListenerMi
     }
     Size origSize = boxData.size;
     boxData.size += delta;
-    boxData.size = _enforceMinBoxSize(boxData); // Enforce min size
+    boxData.size = _clampBoxSize(boxData); // Enforce min size
     delta = Offset(boxData.size.width - origSize.width, boxData.size.height - origSize.height);
     boxData.offset += delta * .5;
     widget.onTranslated?.call(boxData);

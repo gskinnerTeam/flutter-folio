@@ -18,7 +18,7 @@ class ScrapPilePickerView extends StatelessWidget {
     // Depending on the mode, we'll have different btns for adding images
     List<Widget> btns = [
       if (kIsWeb)
-        ...[] // No btns on web for now (TODO: Add later, need to support base64 uploading)
+        ...[] // No file upload on web for now (TODO: Add web support for file picking)
       else if (_mobileMode && DeviceInfo.isDesktop == false) ...[
         _TileBtn("Take photo", AppIcons.camera, () => state._handlePickImagesPressed(true)),
         _TileBtn("Choose from library", AppIcons.image, () => state._handlePickImagesPressed(false))

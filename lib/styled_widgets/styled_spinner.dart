@@ -6,7 +6,6 @@ class LoadingIndicator extends StatelessWidget {
   final double size;
 
   @override
-  //TODO: Add a better spinner
   Widget build(BuildContext context) {
     return Container(
         alignment: Alignment.center,

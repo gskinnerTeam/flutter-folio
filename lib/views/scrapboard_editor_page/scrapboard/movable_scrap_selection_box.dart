@@ -36,7 +36,7 @@ class MovableScrapSelectionBox extends StatefulWidget {
 }
 
 class MovableScrapSelectionBoxState extends State<MovableScrapSelectionBox> {
-  Debouncer _zoomDebounce = Debouncer(Duration(milliseconds: 50));
+  Debouncer _zoomDebounce = Debouncer(Duration(milliseconds: 350));
   bool get isVisible => widget.isVisible;
   @override
   Widget build(BuildContext context) {
@@ -101,7 +101,7 @@ class MovableScrapSelectionBoxState extends State<MovableScrapSelectionBox> {
   }
 
   void _handleScrollWheelEvent(PointerScrollEvent signal) {
-    print("${signal.scrollDelta.dy} @ ${TimeUtils.nowMillis}");
+    //print("${signal.scrollDelta.dy} @ ${TimeUtils.nowMillis}");
     double dir = signal.scrollDelta.dy > 0 ? -1 : 1;
     widget.onZoomed(dir * .1);
     _zoomDebounce.call(() => widget.onDragEnded?.call());

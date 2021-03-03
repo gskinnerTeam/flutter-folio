@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_utils/debouncer.dart';
 import 'package:flutter_folio/_utils/easy_notifier.dart';
+import 'package:flutter_folio/_utils/safe_print.dart';
 import 'package:flutter_folio/_utils/universal_file/universal_file.dart';
 import 'package:flutter_folio/data/app_user.dart';
 import 'package:flutter_folio/models/books_model.dart';
@@ -15,7 +16,7 @@ abstract class AbstractModel extends EasyNotifier {}
 // * Make sure file is cleared when we logout (ChangeUserCommand)
 class AppModel extends AbstractModel {
   static const kFileName = "app-model";
-  static const kVersion = "1.0.0-RC3";
+  static const kVersion = "1.0.0-RC5";
 
   // Enable "isGuestUser" if we have no current user, but firebase has been assigned a userId, and we have a current book.
   // This should cause the app to show a single scrap-board view, with read-only functionality.
@@ -84,7 +85,7 @@ class AppModel extends AbstractModel {
   Rect _windowRect = Rect.zero;
   Rect get windowRect => _windowRect;
   set windowRect(Rect value) {
-    print("Set windowRect $value");
+    safePrint("Set windowRect $value");
     notify(() => _windowRect = value);
   }
 

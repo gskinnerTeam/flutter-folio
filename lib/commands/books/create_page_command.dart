@@ -20,12 +20,14 @@ class CreatePageCommand extends BaseAppCommand {
 
     /// Add page locally
     booksModel.currentBookPages = List.from(booksModel.currentBookPages)..add(newPage);
-    booksModel.currentPage = newPage;
+    if (booksModel.currentPage == null) {
+      booksModel.currentPage = newPage;
+    }
 
     /// Add to database
     String pageId = await firebase.addPage(newPage);
 
-    // Add a hidden scrap, this sidesteps a bug in firedart regarding empty collections. // TODO: Remove when firedart is replaced
+    // Add a hidden scrap, this sidesteps a bug in firedart regarding empty collections.
     ScrapItem emptyScrap = ScrapItem(bookId: newPage.bookId, contentType: ContentType.Hidden, data: "");
     await CreatePlacedScrapCommand().run(pageId: pageId, size: Size.zero, scraps: [emptyScrap]);
   }

@@ -10,7 +10,6 @@ class CloudStorageService {
     _cloudinary = CloudinaryPublic(AppKeys.cloudinaryCloud, AppKeys.cloudinaryPreset, cache: false);
   }
 
-  // Todo: This shouldn't really be returning raw CloudinaryResponse here, more like CloudinaryResult<AppImage, CloudinaryResponse>
   // The response would have any errors, but List<AppImage> would be created here.
   Future<List<CloudinaryResponse>> multiUpload({@required List<String> urls}) async {
     List<Future<CloudinaryFile>> f = urls.map((url) async {
@@ -30,7 +29,7 @@ class CloudStorageService {
     );
   }
 
-  // TODO: Transform images on upload, not on request (Eager Upload was not working)
+  // TODO: Transform images on upload, not on request (SB: cloudinaries "eager transforms" were not working, needs more debugging)
   static void addMaxSizeToUrlList<T>(List<T> items, String Function(T) getUrl, T Function(T, String) setUrl) {
     for (var i = items.length; i-- > 0;) {
       T item = items.removeAt(i);

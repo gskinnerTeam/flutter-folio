@@ -45,4 +45,6 @@ class StringUtils {
 
   static String titleCaseSingle(String s) => '${s[0].toUpperCase()}${s.substring(1)}';
   static String titleCase(String s) => s.split(" ").map(titleCaseSingle).join(" ");
+
+  static String defaultOnEmpty(String value, String fallback) => isEmpty(value) ? fallback : value;
 }

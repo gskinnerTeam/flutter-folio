@@ -68,7 +68,6 @@ class _BookCoverWidgetState extends State<BookCoverWidget> {
       duration: Duration(milliseconds: widget.isSelected ? 0 : 200),
       child: widget.isSelected
           ? Container(color: Colors.white.withOpacity(.2))
-          // TODO: Make a widget for this or switch to btn?
           : MouseRegion(
               opaque: false,
               cursor: isClickable ? SystemMouseCursors.click : MouseCursor.defer,

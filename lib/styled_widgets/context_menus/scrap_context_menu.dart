@@ -41,7 +41,7 @@ class ScrapContextMenu extends BaseContextMenu {
         ContextMenuBtn("Set as cover photo",
             shortcutLabel: "ctrl + k",
             icon: AppIcons.star,
-            iconColor: isCoverPhoto ? theme.accent1 : theme.greyStrong,
+            iconColor: isCoverPhoto ? theme.accent1 : null,
             onPressed: disableCoverPhotoBtn ? null : () => handlePressed(context, _handleCoverPhotoPressed)),
         ContextMenuBtn("Delete",
             hoverBgColor: theme.greyStrong,
