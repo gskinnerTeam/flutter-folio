@@ -61,7 +61,10 @@ class _InlineTextEditorState extends State<InlineTextEditor> {
 
   @override
   void dispose() {
-    _textController.dispose();
+    // Only dispose our internal controller
+    if (_textController != widget.controller) {
+      _textController.dispose();
+    }
     _textFocus.dispose();
     super.dispose();
   }

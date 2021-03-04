@@ -7,20 +7,21 @@ import 'package:flutter_folio/models/app_model.dart';
 import 'package:universal_platform/universal_platform.dart';
 
 class LabeledTextInput extends StatefulWidget {
-  const LabeledTextInput({
-    Key key,
-    this.text,
-    this.label,
-    this.onChanged,
-    this.onSubmit,
-    this.style,
-    this.labelStyle,
-    this.numLines = 1,
-    this.hintText,
-    this.controller,
-    this.autofillHints,
-    this.obscureText,
-  }) : super(key: key);
+  const LabeledTextInput(
+      {Key key,
+      this.text,
+      this.label,
+      this.onChanged,
+      this.onSubmit,
+      this.style,
+      this.labelStyle,
+      this.numLines = 1,
+      this.hintText,
+      this.controller,
+      this.autofillHints,
+      this.obscureText,
+      this.autoFocus = false})
+      : super(key: key);
 
   final String label;
   final String text;
@@ -33,6 +34,7 @@ class LabeledTextInput extends StatefulWidget {
   final TextEditingController controller;
   final List<String> autofillHints;
   final bool obscureText;
+  final bool autoFocus;
 
   @override
   _LabeledTextInputState createState() => _LabeledTextInputState();
@@ -70,7 +72,7 @@ class _LabeledTextInputState extends State<LabeledTextInput> {
                   onFieldSubmitted: widget.onSubmit,
                   //initialValue: widget.text,
                   style: widget.style ?? TextStyles.body2,
-                  autofocus: true,
+                  autofocus: widget.autoFocus,
                   minLines: widget.numLines,
                   maxLines: widget.numLines,
                   obscureText: widget.obscureText ?? false,
@@ -120,7 +122,10 @@ class _LabeledTextInputState extends State<LabeledTextInput> {
 
   @override
   void dispose() {
-    _controller?.dispose();
+    // Only dispose our internal controller
+    if (_controller != widget.controller) {
+      _controller?.dispose();
+    }
     super.dispose();
   }
 

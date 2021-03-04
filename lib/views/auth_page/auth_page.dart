@@ -1,6 +1,7 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_folio/_utils/input_utils.dart';
 import 'package:flutter_folio/_widgets/context_menu_overlay.dart';
 import 'package:flutter_folio/_widgets/flexibles/seperated_flexibles.dart';
 import 'package:flutter_folio/_widgets/mixins/loading_state_mixin.dart';
@@ -85,6 +86,7 @@ class _AuthPageState extends State<AuthPage> with LoadingStateMixin {
                           LabeledTextInput(
                             onSubmit: (_) => _handleSubmitPressed(),
                             controller: _emailController,
+                            autoFocus: true,
                             style: TextStyles.body1,
                             hintText: "Email",
                             autofillHints: [AutofillHints.email, AutofillHints.username],
@@ -150,5 +152,6 @@ class _AuthPageState extends State<AuthPage> with LoadingStateMixin {
     formMode = isCreatingAccount ? _AuthFormMode.SignIn : _AuthFormMode.CreateAccount;
     _emailController.text = "";
     _passController.text = "";
+    InputUtils.unFocus();
   }
 }

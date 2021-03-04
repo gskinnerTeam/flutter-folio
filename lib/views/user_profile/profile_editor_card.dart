@@ -73,6 +73,7 @@ class _ProfileEditorCardContentState extends State<_ProfileEditorCardContent> {
     super.dispose();
     // When we're closed, submit any changes to the user.
     // Use a microtask cause this will trigger some builds.
+    // TODO: remove this after AppRouter re-write
     scheduleMicrotask(() {
       UpdateUserCommand().run(_user);
     });
