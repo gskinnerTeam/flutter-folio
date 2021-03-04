@@ -109,16 +109,20 @@ class SimpleBtn extends StatelessWidget {
 
 /// Text Btn - wraps a [SimpleBtn]
 class TextBtn extends StatelessWidget {
-  const TextBtn(this.label, {Key key, @required this.onPressed, this.isCompact = false, this.style}) : super(key: key);
+  const TextBtn(this.label,
+      {Key key, @required this.onPressed, this.isCompact = false, this.style, this.showUnderline = false})
+      : super(key: key);
   final String label;
   final VoidCallback onPressed;
   final bool isCompact;
   final TextStyle style;
+  final bool showUnderline;
 
   @override
   Widget build(BuildContext context) {
-    TextStyle finalStyle =
-        style ?? TextStyles.caption.copyWith(decoration: TextDecoration.underline, fontWeight: FontWeight.w500);
+    TextStyle finalStyle = style ??
+        TextStyles.caption.copyWith(
+            decoration: showUnderline ? TextDecoration.underline : TextDecoration.none, fontWeight: FontWeight.w500);
     bool enableTouchMode = context.select((AppModel m) => m.enableTouchMode);
     int extraPadding = enableTouchMode ? 3 : 0;
     return SimpleBtn(

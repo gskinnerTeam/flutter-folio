@@ -41,7 +41,7 @@ class ScrapPilePickerTitleBar extends StatelessWidget {
                     onPressed: onClosePressed)
               ],
             ),
-          Center(child: Text(title, style: TextStyles.title1))
+          Center(child: SelectableText(title, style: TextStyles.title1))
         ],
       ),
     );

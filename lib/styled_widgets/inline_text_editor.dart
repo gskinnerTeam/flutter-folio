@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_folio/_utils/string_utils.dart';
 import 'package:flutter_folio/_widgets/context_menu_overlay.dart';
 import 'package:flutter_folio/core_packages.dart';
+import 'package:universal_platform/universal_platform.dart';
 
 //TODO: This is a good package / code example / blogpost
 class InlineTextEditor extends StatefulWidget {
@@ -60,13 +61,17 @@ class _InlineTextEditorState extends State<InlineTextEditor> {
 
   @override
   void dispose() {
-    _textController.dispose();
+    // Only dispose our internal controller
+    if (_textController != widget.controller) {
+      _textController.dispose();
+    }
     _textFocus.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    AppTheme theme = context.watch();
     // Measure Size of text using a maxWidth and maxLines so we can reserve a space of that size
     String textToMeasure = _textController.text;
     Size textSize = StringUtils.measure(textToMeasure, widget.style, maxLines: widget.maxLines, maxWidth: widget.width);
@@ -110,22 +115,28 @@ class _InlineTextEditorState extends State<InlineTextEditor> {
               isEnabled: widget.enableContextMenu,
               contextMenu: TextContextMenu(data: _textController.text, controller: _textController),
               child: Container(
-                color: Colors.red.withOpacity(.1),
-                child: TextFormField(
-                    scrollPhysics: NeverScrollableScrollPhysics(),
-                    onChanged: widget.onChanged,
-                    style: widget.style,
-                    textAlign: widget.align,
-                    textAlignVertical: widget.alignVertical,
-                    focusNode: _textFocus,
-                    controller: _textController,
-                    decoration: InputDecoration(
-                      contentPadding: EdgeInsets.only(top: 10, bottom: 0),
-                      border: InputBorder.none,
-                      isDense: true,
-                    ),
-                    minLines: widget.maxLines,
-                    maxLines: widget.maxLines),
+                color: theme.accent1.withOpacity(.1),
+                child: RawKeyboardListener(
+                  focusNode: rawFocus,
+                  onKey: (value) {
+                    lastPosition = _textController.selection.start;
+                  },
+                  child: TextFormField(
+                      scrollPhysics: NeverScrollableScrollPhysics(),
+                      onChanged: UniversalPlatform.isLinux ? _fixTextOnLinux : widget.onChanged,
+                      style: widget.style,
+                      textAlign: widget.align,
+                      textAlignVertical: widget.alignVertical,
+                      focusNode: _textFocus,
+                      controller: _textController,
+                      decoration: InputDecoration(
+                        contentPadding: EdgeInsets.only(top: 10, bottom: 0),
+                        border: InputBorder.none,
+                        isDense: true,
+                      ),
+                      minLines: widget.maxLines,
+                      maxLines: widget.maxLines),
+                ),
               ),
             ),
           ]
@@ -153,6 +164,35 @@ class _InlineTextEditorState extends State<InlineTextEditor> {
     //_textController.selection = TextSelection(baseOffset: 0, extentOffset: _textController.text.length);
     _textFocus.requestFocus();
   }
+
+  //region Fix for bug: https://github.com/flutter/flutter/issues/76474
+  // TODO: Remove
+  String lastValue = "";
+  int lastPosition;
+  final FocusNode rawFocus = FocusNode();
+  @override
+  void _fixTextOnLinux(String value) {
+    if (value.length > 1 && lastValue.length < value.length) {
+      final enteredChar = value[0];
+      final oldValue = value.substring(1);
+
+      final prefix = oldValue.substring(0, lastPosition);
+      final suffix = oldValue.substring(lastPosition);
+      final newValue = prefix + enteredChar + suffix;
+      _textController.value = TextEditingValue(
+        text: newValue,
+        selection: TextSelection.collapsed(offset: lastPosition + 1),
+      );
+      lastValue = newValue;
+      lastPosition = lastPosition + 1;
+    } else {
+      lastValue = value;
+      lastPosition = value.length;
+    }
+    widget.onChanged(value);
+  }
+
+//endregion
 }
 
 class InlineTextEditorFocusNotification extends Notification {

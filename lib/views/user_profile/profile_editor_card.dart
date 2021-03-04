@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloudinary_public/cloudinary_public.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_utils/input_utils.dart';
@@ -65,6 +67,17 @@ class _ProfileEditorCardContent extends StatefulWidget {
 
 class _ProfileEditorCardContentState extends State<_ProfileEditorCardContent> {
   AppUser _user;
+
+  @override
+  void dispose() {
+    super.dispose();
+    // When we're closed, submit any changes to the user.
+    // Use a microtask cause this will trigger some builds.
+    // TODO: remove this after AppRouter re-write
+    scheduleMicrotask(() {
+      UpdateUserCommand().run(_user);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -135,19 +148,8 @@ class _ProfileEditorCardContentState extends State<_ProfileEditorCardContent> {
     }
   }
 
-  void _handleFirstNameChanged(String value) {
-    AppModel m = context.read();
-    m.currentUser = _user.copyWith(firstName: value);
-    UpdateUserCommand().run(m.currentUser);
-    m.scheduleSave();
-  }
-
-  void _handleLastNameChanged(String value) {
-    AppModel m = context.read();
-    m.currentUser = _user.copyWith(lastName: value);
-    UpdateUserCommand().run(m.currentUser);
-    m.scheduleSave();
-  }
+  void _handleFirstNameChanged(String value) => _user = _user.copyWith(firstName: value);
+  void _handleLastNameChanged(String value) => _user = _user.copyWith(lastName: value);
 
   void _handleLogoutPressed() {
     if (widget.bottomSheet) {
