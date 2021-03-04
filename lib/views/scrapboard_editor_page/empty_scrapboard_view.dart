@@ -4,13 +4,16 @@ import 'package:flutter_folio/commands/books/create_page_command.dart';
 import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/styled_widgets/styled_spacers.dart';
 
-class NoPagesView extends StatelessWidget {
+class EmptyScrapboardView extends StatelessWidget {
+  const EmptyScrapboardView({Key key, @required this.readOnly}) : super(key: key);
+  final bool readOnly;
+
   @override
   Widget build(BuildContext context) {
     AppTheme theme = context.watch();
     return Center(
       child: Column(mainAxisSize: MainAxisSize.min, children: [
-        Text("Hi, here are some instructions for Flutter Folio.", style: TextStyles.title1),
+        SelectableText("Hi, here are some instructions for Flutter Folio.", style: TextStyles.title1),
         VSpace.xl,
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 60),
@@ -34,18 +37,20 @@ class NoPagesView extends StatelessWidget {
           ),
         ),
         VSpace.lg,
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text("To get started, ", style: TextStyles.title1),
-            TextBtn(
-              "create your first page!",
-              isCompact: true,
-              onPressed: _handleCreatePagePressed,
-              style: TextStyles.title1.copyWith(color: theme.accent1),
-            )
-          ],
-        )
+        if (readOnly == false) ...[
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SelectableText("To get started, ", style: TextStyles.title1),
+              TextBtn(
+                "create your first page!",
+                isCompact: true,
+                onPressed: _handleCreatePagePressed,
+                style: TextStyles.title1.copyWith(color: theme.accent1),
+              )
+            ],
+          )
+        ]
       ]),
     );
   }
@@ -63,9 +68,9 @@ class _FeatureRow extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text(icon, style: TextStyles.title2),
+        SelectableText(icon, style: TextStyles.title2),
         HSpace.lg,
-        Flexible(child: Text(label, style: TextStyles.title2)),
+        Flexible(child: SelectableText(label, style: TextStyles.title2)),
       ],
     );
   }

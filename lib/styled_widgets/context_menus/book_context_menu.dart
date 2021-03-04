@@ -20,6 +20,7 @@ class BookContextMenu extends BaseContextMenu {
 
   @override
   Widget build(BuildContext context) {
+    AppTheme theme = context.watch();
     return ContextMenuCard(
       children: [
         ContextMenuBtn("View",
@@ -29,7 +30,9 @@ class BookContextMenu extends BaseContextMenu {
             icon: AppIcons.share, onPressed: () => handlePressed(context, () => _handleSharePressed())),
         ContextDivider(),
         ContextMenuBtn("Delete",
-            icon: AppIcons.trashcan, onPressed: () => handlePressed(context, () => _handleDeletePressed())),
+            hoverBgColor: theme.greyStrong,
+            icon: AppIcons.trashcan,
+            onPressed: () => handlePressed(context, () => _handleDeletePressed())),
       ],
     );
   }

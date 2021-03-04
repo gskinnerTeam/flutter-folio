@@ -12,7 +12,7 @@ import 'package:flutter_folio/models/books_model.dart';
 import 'package:flutter_folio/views/scrap_pile_picker/scrap_pile_picker.dart';
 
 import 'networked_scrapboard.dart';
-import 'no_pages_view.dart';
+import 'empty_scrapboard_view.dart';
 import 'panels/book_info_panel.dart';
 import 'panels/content_picker_tab_menu.dart';
 import 'panels/draggable_page_menu_panel.dart';
@@ -60,7 +60,7 @@ class _BookEditorPageState extends State<BookEditorPage> {
           ] else ...[
             Padding(
               padding: EdgeInsets.only(left: showSimpleView ? 0 : 240, right: showSimpleView ? 0 : 80),
-              child: NoPagesView(),
+              child: EmptyScrapboardView(readOnly: widget.readOnly),
             ),
           ],
 

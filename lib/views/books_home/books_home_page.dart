@@ -90,12 +90,12 @@ class _EmptyHomeView extends StatelessWidget {
         padding: EdgeInsets.all(Insets.offset),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Spacer(),
-          Text("Welcome to flutterfolio", style: TextStyles.h1.copyWith(color: Colors.white)),
+          Text("Welcome to Flutter Folio!", style: TextStyles.h1.copyWith(color: Colors.white)),
           VSpace.sm,
           SizedBox(
             width: 380,
             child: Text(
-                "Suspendisse sed libero eget purus efficitur sodales non vel elit. Nulla egestas elit sed enim aliquam rutrum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "Create beautiful scrap books and share them with your friends and family. To get started, create a new Folio and upload some pictures!",
                 style: TextStyles.body1.copyWith(color: Colors.white)),
           ),
           VSpace.xl,

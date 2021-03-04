@@ -1,4 +1,5 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_folio/commands/books/set_current_book_command.dart';
@@ -70,7 +71,9 @@ class _LargeBookCoverState extends State<LargeBookCover> {
                   onFocusIn: _handleEditingStarted,
                   onFocusOut: _handleDescEditingEnded,
                   width: 370,
-                  style: TextStyles.body1.copyWith(height: 1.8, color: theme.greyWeak),
+                  // SB: Set web to 1 instead of 1.8, it was causing rendering issues where the text would get cut-off.
+                  // TODO: Log bug on this ^
+                  style: TextStyles.body1.copyWith(height: kIsWeb ? 1 : 1.8, color: theme.greyWeak),
                   maxLines: 3),
               VSpace(Insets.xl * 1.2 * paddingScale),
 

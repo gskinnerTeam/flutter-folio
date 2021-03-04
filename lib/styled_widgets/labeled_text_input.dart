@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_folio/_utils/string_utils.dart';
+import 'package:flutter_folio/_widgets/context_menu_overlay.dart';
 import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/models/app_model.dart';
 import 'package:universal_platform/universal_platform.dart';
@@ -38,25 +39,6 @@ class LabeledTextInput extends StatefulWidget {
 }
 
 class _LabeledTextInputState extends State<LabeledTextInput> {
-  String lastValue = "";
-
-  int lastPosition;
-
-  final FocusNode rawFocus = FocusNode();
-  TextEditingController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = widget.controller ?? TextEditingController(text: widget.text);
-  }
-
-  @override
-  void dispose() {
-    _controller?.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     AppTheme theme = context.watch();
@@ -124,6 +106,24 @@ class _LabeledTextInputState extends State<LabeledTextInput> {
     );
   }
 
+  //region Fix for bug: https://github.com/flutter/flutter/issues/76474
+  // TODO: Remove
+  String lastValue = "";
+  int lastPosition;
+  final FocusNode rawFocus = FocusNode();
+  TextEditingController _controller;
+  @override
+  void initState() {
+    super.initState();
+    _controller = widget.controller ?? TextEditingController(text: widget.text);
+  }
+
+  @override
+  void dispose() {
+    _controller?.dispose();
+    super.dispose();
+  }
+
   void _fixTextOnLinux(String value) {
     if (value.length > 1 && lastValue.length < value.length) {
       final enteredChar = value[0];
@@ -144,4 +144,6 @@ class _LabeledTextInputState extends State<LabeledTextInput> {
     }
     widget.onChanged(value);
   }
+
+  //endregion
 }
