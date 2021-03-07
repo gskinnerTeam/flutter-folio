@@ -16,7 +16,7 @@ abstract class AbstractModel extends EasyNotifier {}
 // * Make sure file is cleared when we logout (ChangeUserCommand)
 class AppModel extends AbstractModel {
   static const kFileName = "app-model";
-  static const kVersion = "1.1.1";
+  static const kVersion = "1.1.2";
 
   // Enable "isGuestUser" if we have no current user, but firebase has been assigned a userId, and we have a current book.
   // This should cause the app to show a single scrap-board view, with read-only functionality.
