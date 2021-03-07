@@ -11,7 +11,7 @@ import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/data/app_user.dart';
 import 'package:flutter_folio/models/app_model.dart';
 import 'package:flutter_folio/models/books_model.dart';
-import 'package:flutter_folio/views/user_profile/profile_editor_card.dart';
+import 'package:flutter_folio/views/user_profile_card/user_profile_card.dart';
 import 'package:universal_platform/universal_platform.dart';
 
 part 'app_title_bar_desktop.dart';
@@ -111,7 +111,7 @@ class _AdaptiveProfileBtn extends StatelessWidget {
               )
             : PopOverRegion.click(
                 popChild: ClipRect(
-                  child: ProfileEditorCard(),
+                  child: UserProfileCard(),
                   //child: Container(width: 100, height: 100, color: Colors.red),
                 ),
                 popAnchor: invertRow ? Alignment.topRight : Alignment.topLeft,

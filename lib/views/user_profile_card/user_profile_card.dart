@@ -13,7 +13,7 @@ import 'package:flutter_folio/data/app_user.dart';
 import 'package:flutter_folio/models/app_model.dart';
 import 'package:flutter_folio/services/cloudinary/cloud_storage_service.dart';
 
-class ProfileEditorCard extends StatelessWidget {
+class UserProfileCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AppTheme theme = context.watch();

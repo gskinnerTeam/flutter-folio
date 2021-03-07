@@ -13,9 +13,10 @@ import 'package:flutter_folio/views/scrap_pile_picker/scrap_pile_picker.dart';
 
 import 'networked_scrapboard.dart';
 import 'empty_scrapboard_view.dart';
-import 'panels/book_info_panel.dart';
+import 'panels/collapsable_info_panel.dart';
 import 'panels/content_picker_tab_menu.dart';
-import 'panels/draggable_page_menu_panel.dart';
+import 'panels/collapsable_pages_panel.dart';
+import 'panels/collapsable_panels.dart';
 import 'panels/simple_pages_menu.dart';
 
 class BookEditorPage extends StatefulWidget {
@@ -58,6 +59,7 @@ class _BookEditorPageState extends State<BookEditorPage> {
                   readOnly: widget.readOnly),
             ),
           ] else ...[
+            // Empty placeholder view
             Padding(
               padding: EdgeInsets.only(left: showSimpleView ? 0 : 240, right: showSimpleView ? 0 : 80),
               child: EmptyScrapboardView(readOnly: widget.readOnly),
@@ -80,7 +82,7 @@ class _BookEditorPageState extends State<BookEditorPage> {
           else ...{
             /// Collapsing Info and Page panels with Editable Text
             FocusTraversalGroup(
-              child: _InfoAndPagePanels(bookId, pageList, width: leftMenuWidth),
+              child: CollapsablePanels(bookId, pageList, width: leftMenuWidth),
             ),
 
             /// Content Picker, this should sit on top of everything
@@ -94,8 +96,6 @@ class _BookEditorPageState extends State<BookEditorPage> {
     );
     // });
   }
-
-  void _handleGuestUserPoll(Timer timer) => RefreshCurrentBookCommand();
 
   void _handleScrapPilePressed(BuildContext context, String bookId) {
     showStyledBottomSheet(context,
@@ -128,49 +128,5 @@ class _MobileScrapPileBtn extends StatelessWidget {
             )),
       ),
     );
-  }
-}
-
-/// Vertical stack of 2 menus
-/// TODO: This could be more responsive, using more height for the top panel, and more width for both panels when extended.
-class _InfoAndPagePanels extends StatelessWidget {
-  const _InfoAndPagePanels(this.bookId, this.pages, {Key key, @required this.width}) : super(key: key);
-  final String bookId;
-  final List<ScrapPageData> pages;
-  final double width;
-
-  @override
-  Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (_, constraints) {
-        // Calculate the size for the two stacked panels. Top one is fixed, the btm fills the remainder of the space.
-        Size size = constraints.biggest;
-        // Menu gets wider as screen size grows
-        double panelWidth = width;
-        double topPanelHeight = 168;
-        double bottomPanelHeight = max(size.height - (Insets.xl + topPanelHeight + Insets.lg + Insets.xl), 100);
-        return Stack(
-          children: [
-            /// Left-side Books Menu
-            Positioned(
-              left: Insets.offset,
-              top: Insets.xl,
-              bottom: Insets.xl,
-              width: panelWidth,
-              child: Column(
-                children: [
-                  // Info Panel
-                  EditorPanelInfo(width: panelWidth, height: topPanelHeight),
-                  VSpace.lg,
-                  // Pages Panel
-                  DraggablePageMenuPanel(pages, height: bottomPanelHeight),
-                ],
-              ), // BookPagesMenu(),
-            )
-          ],
-        );
-      },
-    );
-    //});
   }
 }

@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_folio/_widgets/context_menu_overlay.dart';
 import 'package:flutter_folio/commands/books/set_current_book_command.dart';
 import 'package:flutter_folio/commands/books/update_book_command.dart';
 import 'package:flutter_folio/core_packages.dart';
@@ -80,7 +81,10 @@ class _LargeBookCoverState extends State<LargeBookCover> {
               /// Call to Action Button
               Row(
                 children: [
-                  PrimaryBtn(label: "VIEW FOLIO", icon: Icons.chevron_right, onPressed: _handleViewFolioPressed),
+                  ContextMenuRegion(
+                      contextMenu: BookContextMenu(book),
+                      child: PrimaryBtn(
+                          label: "VIEW FOLIO", icon: Icons.chevron_right, onPressed: _handleViewFolioPressed)),
                   HSpace.sm,
                   StyledSharedBtn(book: book),
                 ],

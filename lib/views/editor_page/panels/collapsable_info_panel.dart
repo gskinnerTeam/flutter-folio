@@ -25,7 +25,7 @@ class _EditorPanelInfoState extends State<EditorPanelInfo> {
       title: "Folio Information",
       titleClosed: _book.title,
       icon: IconBtn(Icons.share,
-          padding: EdgeInsets.all(Insets.sm), color: theme.greyStrong, onPressed: _handleSharePressed),
+          padding: EdgeInsets.all(Insets.sm + 1), color: theme.greyStrong, onPressed: _handleSharePressed),
       child: Padding(
         padding: EdgeInsets.all(Insets.lg).copyWith(top: Insets.med),
         child: Container(

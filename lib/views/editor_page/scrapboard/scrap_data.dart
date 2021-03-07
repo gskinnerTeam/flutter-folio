@@ -12,10 +12,6 @@ class ScrapData<T> extends EasyNotifier {
   Size get size => _size;
   set size(Size value) => notify(() => _size = value);
 
-  // double _scale = 1;
-  // double get scale => _scale;
-  // set scale(double value) => notify(() => _scale = value);
-
   double _rot = 1;
   double get rot => _rot;
   set rot(double value) => notify(() => _rot = value);

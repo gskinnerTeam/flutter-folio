@@ -5,18 +5,18 @@ import 'package:flutter_folio/commands/books/set_current_page_command.dart';
 import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/data/book_data.dart';
 import 'package:flutter_folio/models/books_model.dart';
-import 'package:flutter_folio/views/scrapboard_editor_page/draggable_page_menu/draggable_page_menu.dart';
+import 'package:flutter_folio/views/editor_page/draggable_page_menu/draggable_page_menu.dart';
 
-class DraggablePageMenuPanel extends StatefulWidget {
-  const DraggablePageMenuPanel(this.pages, {Key key, @required this.height}) : super(key: key);
+class CollapsablePagesPanel extends StatefulWidget {
+  const CollapsablePagesPanel(this.pages, {Key key, @required this.height}) : super(key: key);
   final List<ScrapPageData> pages;
   final double height;
 
   @override
-  _DraggablePageMenuPanelState createState() => _DraggablePageMenuPanelState();
+  _CollapsablePagesPanelState createState() => _CollapsablePagesPanelState();
 }
 
-class _DraggablePageMenuPanelState extends State<DraggablePageMenuPanel> {
+class _CollapsablePagesPanelState extends State<CollapsablePagesPanel> {
   ScrapBookData _book;
 
   @override
@@ -35,15 +35,15 @@ class _DraggablePageMenuPanelState extends State<DraggablePageMenuPanel> {
       child: Stack(
         fit: StackFit.expand,
         children: [
-          if (page != null) ...[
-            Container(
-              child: DraggablePagesMenu(
-                pageId: page.documentId,
-                pages: list,
-                onPressed: _handlePagePressed,
-              ),
-            ),
-          ]
+          Container(
+            child: list.isEmpty
+                ? _EmptyView()
+                : DraggablePagesMenu(
+                    pageId: page?.documentId,
+                    pages: list,
+                    onPressed: _handlePagePressed,
+                  ),
+          ),
         ],
       ),
     );
@@ -76,5 +76,25 @@ class _RoundedBtn extends StatelessWidget {
               ),
               child: MaterialIcon(Icons.add, color: theme.bg1, size: 16)),
         ));
+  }
+}
+
+class _EmptyView extends StatefulWidget {
+  @override
+  __EmptyViewState createState() => __EmptyViewState();
+}
+
+class __EmptyViewState extends State<_EmptyView> {
+  @override
+  Widget build(BuildContext context) {
+    AppTheme theme = context.watch();
+    return Padding(
+      padding: EdgeInsets.all(Insets.med).copyWith(top: Insets.xl),
+      child: Text(
+        "Create your first page by pressing the ➕ button.",
+        textAlign: TextAlign.center,
+        style: TextStyles.callout1.copyWith(color: theme.greyMedium, height: 1.5),
+      ),
+    );
   }
 }

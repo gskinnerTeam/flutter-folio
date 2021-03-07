@@ -3,7 +3,7 @@ import 'package:flutter_folio/commands/books/update_book_command.dart';
 import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/data/book_data.dart';
 import 'package:flutter_folio/models/books_model.dart';
-import 'package:flutter_folio/views/scrapboard_editor_page/draggable_page_menu/draggable_page_title_btn.dart';
+import 'package:flutter_folio/views/editor_page/draggable_page_menu/draggable_page_title_btn.dart';
 
 class DraggablePagesMenu extends StatefulWidget {
   const DraggablePagesMenu({Key key, @required this.pages, @required this.pageId, @required this.onPressed})

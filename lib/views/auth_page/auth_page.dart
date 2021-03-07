@@ -51,7 +51,7 @@ class _AuthPageState extends State<AuthPage> with LoadingStateMixin {
     String switchLabel = isCreatingAccount ? "Already have an account?" : "Create an account?";
     return Stack(
       children: [
-        ContextMenuRegion(contextMenu: AppContextMenu(), child: Container()),
+        ContextMenuRegion(isEnabled: kIsWeb == false, contextMenu: AppContextMenu(), child: Container()),
         Center(
           child: IntrinsicHeight(
             child: Container(

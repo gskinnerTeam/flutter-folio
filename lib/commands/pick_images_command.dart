@@ -1,4 +1,5 @@
 import 'package:file_chooser/file_chooser.dart';
+import 'package:file_selector/file_selector.dart';
 import 'package:flutter_folio/_utils/device_info.dart';
 import 'package:flutter_folio/_utils/string_utils.dart';
 import 'package:flutter_folio/commands/commands.dart';
@@ -7,24 +8,29 @@ import 'package:multi_image_picker/multi_image_picker.dart';
 class PickImagesCommand extends BaseAppCommand {
   Future<List<String>> run({bool allowMultiple = false, bool enableCamera = true}) async {
     List<String> paths = [];
-    if (DeviceInfo.isDesktop) {
-      FileChooserResult result = await showOpenPanel(
-        //initialDirectory: initialPath,
-        allowedFileTypes: [
-          FileTypeFilterGroup(
-            label: "images",
-            fileExtensions: [
-              "png",
-              "jpg",
-              "jpeg"
-            ], //"gif", "webm" // removed gif/web because they didn't seem  to work on web
-          ),
-        ],
-        allowsMultipleSelection: allowMultiple,
-        canSelectDirectories: false,
-        confirmButtonText: "Select Images",
-      );
-      paths = List.from(result.paths);
+    if (DeviceInfo.isDesktopOrWeb) {
+      final typeGroup = XTypeGroup(label: 'images', extensions: ['jpg', 'jpeg', 'png']);
+      paths = (await openFiles(acceptedTypeGroups: [typeGroup])).map((e) {
+        return e.path;
+      }).toList();
+      //
+      // FileChooserResult result = await showOpenPanel(
+      //   //initialDirectory: initialPath,
+      //   allowedFileTypes: [
+      //     FileTypeFilterGroup(
+      //       label: "images",
+      //       fileExtensions: [
+      //         "png",
+      //         "jpg",
+      //         "jpeg"
+      //       ], //"gif", "webm" // removed gif/web because they didn't seem  to work on web
+      //     ),
+      //   ],
+      //   allowsMultipleSelection: allowMultiple,
+      //   canSelectDirectories: false,
+      //   confirmButtonText: "Select Images",
+      // );
+      //paths = List.from(result.paths);
     } else {
       int maxImages = 24; // Need to pick some limit
       paths = (await MultiImagePicker.pickImages(enableCamera: enableCamera, maxImages: allowMultiple ? maxImages : 1))

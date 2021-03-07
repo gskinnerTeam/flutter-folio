@@ -7,8 +7,8 @@ import 'package:flutter_folio/_widgets/gradient_container.dart';
 import 'package:flutter_folio/_widgets/rounded_card.dart';
 import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/data/book_data.dart';
-import 'package:flutter_folio/views/books_home/book_cover/book_cover_large.dart';
-import 'package:flutter_folio/views/books_home/book_cover/book_cover_small.dart';
+import 'package:flutter_folio/views/home_page/book_cover/book_cover_large.dart';
+import 'package:flutter_folio/views/home_page/book_cover/book_cover_small.dart';
 import 'package:provider/provider.dart';
 
 /// Represents the Cover for one ScrapBook.

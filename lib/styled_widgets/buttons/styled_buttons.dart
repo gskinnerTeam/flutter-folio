@@ -155,7 +155,7 @@ class IconBtn extends StatelessWidget {
           duration: Times.fast,
           curve: Curves.easeOut,
           padding: padding ?? EdgeInsets.all(Insets.xs + extraPadding),
-          child: Icon(icon, color: color ?? Colors.black),
+          child: Icon(icon, color: color ?? Colors.black, size: 20),
         ),
         onPressed: onPressed);
   }

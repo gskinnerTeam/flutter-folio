@@ -11,7 +11,7 @@ import 'package:flutter_folio/commands/books/update_placed_scrap_command.dart';
 import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/data/book_data.dart';
 import 'package:flutter_folio/styled_widgets/emoji.dart';
-import 'package:flutter_folio/views/scrapboard_editor_page/placed_scrap_keyboard_listener.dart';
+import 'package:flutter_folio/views/editor_page/placed_scrap_keyboard_listener.dart';
 
 class PlacedScrapRenderer extends StatelessWidget {
   const PlacedScrapRenderer(
@@ -142,7 +142,6 @@ class _TextBoxState extends State<_TextBox> {
                     style: style.copyWith(fontSize: size, fontFamily: boxFontToFamily(widget.item.boxStyle.font)),
                   )
                 : Container(
-                    alignment: Alignment.centerLeft,
                     child: Text(StringUtils.defaultOnEmpty(widget.item.data, promptText),
                         style: style.copyWith(fontSize: size, fontFamily: boxFontToFamily(widget.item.boxStyle.font)),
                         maxLines: numLines,

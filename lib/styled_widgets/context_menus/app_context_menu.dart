@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/commands/app/set_current_user_command.dart';
 import 'package:flutter_folio/core_packages.dart';
@@ -16,11 +17,11 @@ class AppContextMenu extends BaseContextMenu {
     return ContextMenuCard(
       children: [
         if (isLoggedIn) ...[
-          ContextMenuBtn("Home"),
-          ContextDivider(),
           ContextMenuBtn("Sign Out", onPressed: () => handlePressed(context, _handleSignoutPressed)),
         ],
-        ContextMenuBtn("Exit Application", onPressed: () => handlePressed(context, exit(0))),
+        if (kIsWeb == false) ...[
+          ContextMenuBtn("Exit Application", onPressed: () => handlePressed(context, exit(0))),
+        ],
       ],
     );
   }

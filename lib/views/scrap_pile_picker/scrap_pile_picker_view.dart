@@ -17,9 +17,7 @@ class ScrapPilePickerView extends StatelessWidget {
     //TODO: Feature this code snippet
     // Depending on the mode, we'll have different btns for adding images
     List<Widget> btns = [
-      if (kIsWeb)
-        ...[] // No file upload on web for now (TODO: Add web support for file picking)
-      else if (_mobileMode && DeviceInfo.isDesktop == false) ...[
+      if (_mobileMode && DeviceInfo.isDesktop == false) ...[
         _TileBtn("Take photo", AppIcons.camera, () => state._handlePickImagesPressed(true)),
         _TileBtn("Choose from library", AppIcons.image, () => state._handlePickImagesPressed(false))
       ] else ...[
@@ -93,11 +91,11 @@ class ScrapPilePickerView extends StatelessWidget {
                                         if (scrapIndex < 0) return btns[index];
                                         ScrapItem scrap = bookScraps[scrapIndex];
                                         return ContextMenuRegion(
-                                          key: ObjectKey(scrap.documentId),
                                           contextMenu: GenericContextMenu(
                                               labels: state.widget.contextMenuLabels?.call(scrap),
                                               actions: state.widget.contextMenuActions?.call(scrap)),
                                           child: ScrapPickerBtn(
+                                              key: ValueKey(scrap.documentId),
                                               img: scrap.data,
                                               isSelected: _selectedIds.contains(scrap.documentId),
                                               onPressed: () => state._handleScrapPressed(scrapIndex)),

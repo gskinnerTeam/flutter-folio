@@ -4,7 +4,7 @@ import 'dart:ui';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_utils/time_utils.dart';
-import 'package:flutter_folio/views/scrapboard_editor_page/scrapboard/scrap_data.dart';
+import 'package:flutter_folio/views/editor_page/scrapboard/scrap_data.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:lorem_ipsum/lorem_ipsum.dart';
 

@@ -1,13 +1,9 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/src/gestures/events.dart';
-import 'package:flutter_folio/_utils/context_utils.dart';
 import 'package:flutter_folio/_utils/input_utils.dart';
 import 'package:flutter_folio/_utils/keyboard_utils.dart';
-import 'package:flutter_folio/_utils/safe_print.dart';
 import 'package:flutter_folio/_widgets/mixins/raw_keyboard_listener_mixin.dart';
 import 'package:vector_math/vector_math_64.dart' as math64;
 

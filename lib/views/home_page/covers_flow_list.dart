@@ -76,7 +76,7 @@ class _CoversFlowListState extends State<CoversFlowList> {
                 /// BackgroundCard, this gets updated when the OpeningCard finishes opening
                 if (_bgBook != null) ...[
                   ContextMenuRegion(
-                    contextMenu: BookContextMenu(_bgBook),
+                    contextMenu: AppContextMenu(),
                     child: BookCoverWidget(_bgBook, largeMode: true),
                   ),
                 ],

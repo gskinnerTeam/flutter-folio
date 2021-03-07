@@ -11,6 +11,7 @@ class _AppTitleBarDesktop extends StatelessWidget {
     bool isMac = UniversalPlatform.isMacOS;
     bool isMobile = context.widthPx < Sizes.smallPhone;
     bool showTouchToggle = true; //context.select((AppModel m) => m.hasUser) == true;
+
     return Stack(children: [
       // Centered TitleText
       Center(child: _TitleText()),

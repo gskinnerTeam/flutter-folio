@@ -7,8 +7,8 @@ import 'package:flutter/src/gestures/events.dart';
 import 'package:flutter_folio/_widgets/listenable_builder.dart';
 import 'package:flutter_folio/_widgets/sized_and_translated.dart';
 import 'package:flutter_folio/core_packages.dart';
-import 'package:flutter_folio/views/scrapboard_editor_page/scrapboard/movable_scrap_selection_box.dart';
-import 'package:flutter_folio/views/scrapboard_editor_page/scrapboard/scrap_data.dart';
+import 'package:flutter_folio/views/editor_page/scrapboard/movable_scrap_selection_box.dart';
+import 'package:flutter_folio/views/editor_page/scrapboard/scrap_data.dart';
 
 // Wraps some content in a draggable box and with editing controls
 // Provides basic support for translation, selection and scale events

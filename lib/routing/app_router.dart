@@ -11,8 +11,8 @@ import 'package:flutter_folio/models/books_model.dart';
 import 'package:flutter_folio/routing/app_link.dart';
 import 'package:flutter_folio/services/firebase/firebase_service.dart';
 import 'package:flutter_folio/views/auth_page/auth_page.dart';
-import 'package:flutter_folio/views/books_home/books_home_page.dart';
-import 'package:flutter_folio/views/scrapboard_editor_page/scrapboard_editor_page.dart';
+import 'package:flutter_folio/views/home_page/home_page.dart';
+import 'package:flutter_folio/views/editor_page/editor_page.dart';
 import 'package:flutter_folio/views/splash_page.dart';
 
 class AppRouterDelegate extends RouterDelegate<AppLink> with ChangeNotifier {

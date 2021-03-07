@@ -7,10 +7,10 @@ import 'package:flutter_folio/commands/books/update_placed_scrap_command.dart';
 import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/data/book_data.dart';
 import 'package:flutter_folio/models/books_model.dart';
-import 'package:flutter_folio/views/scrap_popup_editor/scrap_popup_editor.dart';
-import 'package:flutter_folio/views/scrapboard_editor_page/placed_scrap_renderer.dart';
-import 'package:flutter_folio/views/scrapboard_editor_page/scrapboard/scrap_data.dart';
-import 'package:flutter_folio/views/scrapboard_editor_page/scrapboard/scrapboard.dart';
+import 'package:flutter_folio/views/editor_page/scrap_popup_editor/scrap_popup_editor.dart';
+import 'package:flutter_folio/views/editor_page/placed_scrap_renderer.dart';
+import 'package:flutter_folio/views/editor_page/scrapboard/scrap_data.dart';
+import 'package:flutter_folio/views/editor_page/scrapboard/scrapboard.dart';
 
 /// The [NetworkedScrapboard] binds a Scrapboard component to the Database.
 class NetworkedScrapboard extends StatefulWidget {
