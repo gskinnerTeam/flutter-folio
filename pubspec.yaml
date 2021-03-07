@@ -24,18 +24,11 @@ dependencies:
   dotted_border: ^1.0.7
   email_validator: ^1.0.6
   enum_to_string: ^1.0.14
-  file_chooser:
-    git:
-      url: git://github.com/google/flutter-desktop-embedding.git
-      path: plugins/file_chooser
-      ref: 040f36c82b63e8764ec2fd97066767503a667b6d
-
   file_selector: ^0.8.2
   file_selector_windows: ^0.0.2
   file_selector_macos: ^0.0.4
   file_selector_linux: ^0.0.2
   file_selector_web: ^0.8.1
-
   flutter_state_notifier:
   flutter_svg: ^0.19.3
   fluttertoast: ^7.1.8
@@ -98,42 +91,42 @@ flutter_icons:
 flutter:
 
   assets:
-    - images/
-    - images/icons/
-    - images/emoji/
+    - assets/images/
+    - assets/images/icons/
+    - assets/images/emoji/
 
   uses-material-design: true
 
   fonts:
     - family: Fraunces
       fonts:
-        - asset: fonts/Fraunces_72pt-SemiBold.ttf
+        - asset: assets/fonts/Fraunces_72pt-SemiBold.ttf
     - family: Raleway
       fonts:
-        - asset: fonts/Raleway-Regular.ttf
-        - asset: fonts/Raleway-Italic.ttf
+        - asset: assets/fonts/Raleway-Regular.ttf
+        - asset: assets/fonts/Raleway-Italic.ttf
           style: italic
-        - asset: fonts/Raleway-Medium.ttf
+        - asset: assets/fonts/Raleway-Medium.ttf
           weight: 500
-        - asset: fonts/Raleway-Bold.ttf
+        - asset: assets/fonts/Raleway-Bold.ttf
           weight: 700
-        - asset: fonts/Raleway-ExtraBold.ttf
+        - asset: assets/fonts/Raleway-ExtraBold.ttf
           weight: 800
     - family: AlfaSlabOne
       fonts:
-        - asset: fonts/scraps/AlfaSlabOne-Regular.ttf
+        - asset: assets/fonts/scraps/AlfaSlabOne-Regular.ttf
     - family: Amiri
       fonts:
-        - asset: fonts/scraps/Amiri-Regular.ttf
+        - asset: assets/fonts/scraps/Amiri-Regular.ttf
     - family: Caveat
       fonts:
-        - asset: fonts/scraps/Caveat-Medium.ttf
+        - asset: assets/fonts/scraps/Caveat-Medium.ttf
     - family: Lato
       fonts:
-        - asset: fonts/scraps/Lato-Regular.ttf
+        - asset: assets/fonts/scraps/Lato-Regular.ttf
     - family: Mali
       fonts:
-        - asset: fonts/scraps/Mali-Medium.ttf
+        - asset: assets/fonts/scraps/Mali-Medium.ttf
     - family: PathwayGothicOne
       fonts:
-        - asset: fonts/scraps/PathwayGothicOne-Regular.ttf
+        - asset: assets/fonts/scraps/PathwayGothicOne-Regular.ttf

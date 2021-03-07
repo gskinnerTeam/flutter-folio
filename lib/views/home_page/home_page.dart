@@ -83,7 +83,7 @@ class _EmptyHomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(fit: StackFit.expand, children: [
       // Bg w/ Gradient
-      Positioned.fill(child: Image.asset("images/empty_home_bg.png", fit: BoxFit.cover)),
+      Positioned.fill(child: Image.asset("assets/images/empty_home_bg.png", fit: BoxFit.cover)),
       Align(alignment: Alignment.topLeft, child: _SideGradient()),
 
       Padding(

@@ -4,7 +4,6 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   bitsdojo_window_windows
-  file_chooser
   file_selector_windows
   menubar
   url_launcher_windows

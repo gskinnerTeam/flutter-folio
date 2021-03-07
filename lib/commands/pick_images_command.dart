@@ -1,4 +1,3 @@
-import 'package:file_chooser/file_chooser.dart';
 import 'package:file_selector/file_selector.dart';
 import 'package:flutter_folio/_utils/device_info.dart';
 import 'package:flutter_folio/_utils/string_utils.dart';
@@ -13,24 +12,6 @@ class PickImagesCommand extends BaseAppCommand {
       paths = (await openFiles(acceptedTypeGroups: [typeGroup])).map((e) {
         return e.path;
       }).toList();
-      //
-      // FileChooserResult result = await showOpenPanel(
-      //   //initialDirectory: initialPath,
-      //   allowedFileTypes: [
-      //     FileTypeFilterGroup(
-      //       label: "images",
-      //       fileExtensions: [
-      //         "png",
-      //         "jpg",
-      //         "jpeg"
-      //       ], //"gif", "webm" // removed gif/web because they didn't seem  to work on web
-      //     ),
-      //   ],
-      //   allowsMultipleSelection: allowMultiple,
-      //   canSelectDirectories: false,
-      //   confirmButtonText: "Select Images",
-      // );
-      //paths = List.from(result.paths);
     } else {
       int maxImages = 24; // Need to pick some limit
       paths = (await MultiImagePicker.pickImages(enableCamera: enableCamera, maxImages: allowMultiple ? maxImages : 1))

@@ -31,7 +31,7 @@ class AppIcon extends StatelessWidget {
       width: size,
       height: size,
       child: Center(
-        child: Image.asset('images/icons/' + i + '.png', width: size, height: size, color: color),
+        child: Image.asset('assets/images/icons/' + i + '.png', width: size, height: size, color: color),
       ),
     );
   }

@@ -21,7 +21,7 @@ class _BookCoverImageState extends State<BookCoverImage> {
       //print(widget.data.imageUrl);
       return HostedImage(widget.data.imageUrl, fit: BoxFit.cover);
     } else {
-      return Image.asset("images/empty-background.png", fit: BoxFit.cover);
+      return Image.asset("assets/images/empty-background.png", fit: BoxFit.cover);
     }
   }
 }

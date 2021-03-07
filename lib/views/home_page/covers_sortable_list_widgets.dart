@@ -184,7 +184,7 @@ class ImageAndNameContent extends StatelessWidget {
           left: Insets.lg,
           child: Row(
             children: [
-              SimpleBtn(onPressed: _handleSharePressed, child: Icon(Icons.share, color: theme.surface1)),
+              StyledSharedBtn(book: data),
               HSpace.lg,
               Text(
                 data.title,
