@@ -52,13 +52,14 @@ class _LargeBookCoverState extends State<LargeBookCover> {
               VSpace.med,
 
               /// Meta-Data (page count, last edited, etc)
-              Row(children: [
-                Text("${book.pageCount} page${book.pageCount == 1 ? "" : "s"}",
+              SelectableText.rich(TextSpan(children: [
+                TextSpan(
+                    text: "${book.pageCount} page${book.pageCount == 1 ? "" : "s"}, ",
                     style: TextStyles.title1.copyWith(color: theme.surface1)),
-                HSpace.med,
-                Text("edited ${timeago.format(book.getLastModifiedDate())}",
-                    style: TextStyles.title2.copyWith(color: theme.grey)),
-              ]),
+                TextSpan(
+                    text: " edited ${timeago.format(book.getLastModifiedDate())}",
+                    style: TextStyles.title2.copyWith(color: theme.grey))
+              ])),
 
               /// Thick Divider
               VSpace(36 * paddingScale),

@@ -118,7 +118,7 @@ class _ProfileEditorCardContentState extends State<_ProfileEditorCardContent> {
           VSpace.lg,
 
           /// Account
-          Container(width: double.infinity, child: Text("Account", style: TextStyles.caption)),
+          Container(width: double.infinity, child: SelectableText("Account", style: TextStyles.caption)),
           Row(
             children: [
               Expanded(child: Text(_user.email, style: TextStyles.body3)),

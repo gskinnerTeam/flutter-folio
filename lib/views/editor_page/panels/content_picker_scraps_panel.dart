@@ -124,7 +124,7 @@ class _PanelBottomBar extends StatelessWidget {
       AnimatedOpacity(
           duration: Times.fast,
           opacity: hasSelection ? 1 : .6,
-          child: Text("$selectionCount items selected", style: TextStyles.body3)),
+          child: SelectableText("$selectionCount items selected", style: TextStyles.body3)),
       Spacer(),
       SecondaryBtn(onPressed: hasSelection ? onDeletePressed : null, label: "DELETE"),
       HSpace.med,

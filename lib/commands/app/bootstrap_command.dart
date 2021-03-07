@@ -52,8 +52,8 @@ class BootstrapCommand extends Commands.BaseAppCommand {
     }
     // For aesthetics, we'll keep splash screen up for some min-time (skip on web)
     if (kIsWeb == false) {
-      int remaining = TimeUtils.nowMillis - startTime;
-      if (remaining < kMinBootstrapTimeMs) {
+      int remaining = kMinBootstrapTimeMs - (TimeUtils.nowMillis - startTime);
+      if (remaining > 0) {
         await Future<void>.delayed(Duration(milliseconds: remaining));
       }
     }

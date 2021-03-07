@@ -24,8 +24,8 @@ class BooksHomeTopNavBar extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: Insets.offset, vertical: Insets.lg),
           child: Row(
             children: [
-              RichText(
-                text: TextSpan(
+              SelectableText.rich(
+                TextSpan(
                   text: 'Good $_dayPeriod',
                   style:
                       TextStyles.body1.copyWith(height: 1.2, color: showListView ? theme.greyMedium : theme.surface1),

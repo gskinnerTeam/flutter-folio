@@ -159,7 +159,7 @@ class _CollapsableCardHeader extends StatelessWidget {
                   HSpace.sm,
                   Transform.rotate(angle: pi * animation.value, child: Icon(Icons.keyboard_arrow_down)),
                   HSpace.xs,
-                  Text(title.toUpperCase(), style: TextStyles.callout2.copyWith(color: theme.greyStrong)),
+                  SelectableText(title.toUpperCase(), style: TextStyles.callout2.copyWith(color: theme.greyStrong)),
                   Flexible(child: Container()),
                   if (icon != null) icon,
                 ],

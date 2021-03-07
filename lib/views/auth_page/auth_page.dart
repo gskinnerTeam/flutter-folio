@@ -75,9 +75,9 @@ class _AuthPageState extends State<AuthPage> with LoadingStateMixin {
                         separatorBuilder: () => VSpace.med,
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Text(submitLabel.toUpperCase(), style: TextStyles.title1).addContextMenu(submitLabel),
+                          SelectableText(submitLabel.toUpperCase(), style: TextStyles.title1),
                           if (isCreatingAccount) ...[
-                            Text(
+                            SelectableText(
                               "Please enter a valid email and a  password that is at least 6 characters.",
                               style: TextStyles.body2,
                             ),
@@ -104,7 +104,7 @@ class _AuthPageState extends State<AuthPage> with LoadingStateMixin {
                           ),
                           // ERROR MSG
                           if (_errorText.isNotEmpty) ...[
-                            Text(errorText, style: TextStyle(color: Colors.red.shade800)),
+                            SelectableText(errorText, style: TextStyle(color: Colors.red.shade800)),
                           ],
                           // SUBMIT BTN
                           isLoading
