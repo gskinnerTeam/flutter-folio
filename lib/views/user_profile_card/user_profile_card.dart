@@ -121,7 +121,7 @@ class _ProfileEditorCardContentState extends State<_ProfileEditorCardContent> {
           Container(width: double.infinity, child: SelectableText("Account", style: TextStyles.caption)),
           Row(
             children: [
-              Expanded(child: Text(_user.email, style: TextStyles.body3)),
+              Expanded(child: SelectableText(_user.email, style: TextStyles.body3)),
               PrimaryBtn(
                   icon: Icons.logout,
                   leadingIcon: false,

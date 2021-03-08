@@ -5,16 +5,16 @@ import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/data/book_data.dart';
 import 'package:flutter_folio/models/books_model.dart';
 
-class EditorPanelInfo extends StatefulWidget {
-  const EditorPanelInfo({Key key, @required this.width, @required this.height}) : super(key: key);
+class CollapsibleInfoPanel extends StatefulWidget {
+  const CollapsibleInfoPanel({Key key, @required this.width, @required this.height}) : super(key: key);
   final double width;
   final double height;
 
   @override
-  _EditorPanelInfoState createState() => _EditorPanelInfoState();
+  _CollapsibleInfoPanelState createState() => _CollapsibleInfoPanelState();
 }
 
-class _EditorPanelInfoState extends State<EditorPanelInfo> {
+class _CollapsibleInfoPanelState extends State<CollapsibleInfoPanel> {
   ScrapBookData _book;
   @override
   Widget build(BuildContext context) {

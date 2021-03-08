@@ -13,10 +13,10 @@ import 'package:flutter_folio/views/scrap_pile_picker/scrap_pile_picker.dart';
 
 import 'networked_scrapboard.dart';
 import 'empty_scrapboard_view.dart';
-import 'panels/collapsable_info_panel.dart';
+import 'panels/collapsible_info_panel.dart';
 import 'panels/content_picker_tab_menu.dart';
-import 'panels/collapsable_pages_panel.dart';
-import 'panels/collapsable_panels.dart';
+import 'panels/collapsible_pages_panel.dart';
+import 'panels/collapsible_panels.dart';
 import 'panels/simple_pages_menu.dart';
 
 class BookEditorPage extends StatefulWidget {

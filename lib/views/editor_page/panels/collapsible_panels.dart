@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_folio/data/book_data.dart';
 import 'package:flutter_folio/styled_widgets/styled_spacers.dart';
 import 'package:flutter_folio/styles.dart';
-import 'package:flutter_folio/views/editor_page/panels/collapsable_info_panel.dart';
-import 'package:flutter_folio/views/editor_page/panels/collapsable_pages_panel.dart';
+import 'package:flutter_folio/views/editor_page/panels/collapsible_info_panel.dart';
+import 'package:flutter_folio/views/editor_page/panels/collapsible_pages_panel.dart';
 
 /// Vertical stack of 2 menus
 /// TODO: This could be more responsive, using more height for the top panel, and more width for both panels when extended.
@@ -36,7 +36,7 @@ class CollapsablePanels extends StatelessWidget {
               child: Column(
                 children: [
                   // Info Panel
-                  EditorPanelInfo(width: panelWidth, height: topPanelHeight),
+                  CollapsibleInfoPanel(width: panelWidth, height: topPanelHeight),
                   VSpace.lg,
                   // Pages Panel
                   CollapsablePagesPanel(pages, height: bottomPanelHeight),

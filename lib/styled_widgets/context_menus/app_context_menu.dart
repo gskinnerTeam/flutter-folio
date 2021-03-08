@@ -17,7 +17,7 @@ class AppContextMenu extends BaseContextMenu {
     return ContextMenuCard(
       children: [
         if (isLoggedIn) ...[
-          ContextMenuBtn("Sign Out", onPressed: () => handlePressed(context, _handleSignoutPressed)),
+          ContextMenuBtn("Logout", onPressed: () => handlePressed(context, _handleSignoutPressed)),
         ],
         if (kIsWeb == false) ...[
           ContextMenuBtn("Exit Application", onPressed: () => handlePressed(context, exit(0))),
