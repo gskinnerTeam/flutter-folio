@@ -89,17 +89,19 @@ class _ProfileEditorCardContentState extends State<_ProfileEditorCardContent> {
     return SingleChildScrollView(
       child: Stack(
         children: [
-          Align(
-              alignment: Alignment.centerLeft,
-              child: SelectableText("v" + AppModel.kVersion, style: TextStyles.caption)),
+          Align(alignment: Alignment.centerLeft, child: UiText("v" + AppModel.kVersion, style: TextStyles.caption)),
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SimpleBtn(
+                cornerRadius: 99,
                 onPressed: _handleProfileImgPressed,
                 child: SizedBox(
-                  height: 80,
-                  child: StyledCircleImage(url: _user.imageUrl ?? AppUser.kDefaultImageUrl),
+                  height: 80 + Insets.xs * 2,
+                  child: Padding(
+                    padding: EdgeInsets.all(Insets.xs),
+                    child: StyledCircleImage(url: _user.imageUrl ?? AppUser.kDefaultImageUrl),
+                  ),
                 ),
               ),
 
@@ -125,10 +127,10 @@ class _ProfileEditorCardContentState extends State<_ProfileEditorCardContent> {
               VSpace.lg,
 
               /// Account
-              Container(width: double.infinity, child: SelectableText("Account", style: TextStyles.caption)),
+              Container(width: double.infinity, child: UiText("Account", style: TextStyles.caption)),
               Row(
                 children: [
-                  Expanded(child: SelectableText(_user.email, style: TextStyles.body3)),
+                  Expanded(child: UiText(_user.email, style: TextStyles.body3)),
                   PrimaryBtn(
                       icon: Icons.logout,
                       leadingIcon: false,

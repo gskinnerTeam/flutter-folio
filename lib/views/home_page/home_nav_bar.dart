@@ -24,7 +24,7 @@ class HomeNavBar extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: Insets.offset, vertical: Insets.lg),
           child: Row(
             children: [
-              SelectableText.rich(
+              UiText.rich(
                 TextSpan(
                   text: 'Good $_dayPeriod',
                   style:

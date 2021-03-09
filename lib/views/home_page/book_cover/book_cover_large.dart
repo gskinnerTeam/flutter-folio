@@ -49,7 +49,7 @@ class _LargeBookCoverState extends State<LargeBookCover> {
               VSpace.med,
 
               /// Meta-Data (page count, last edited, etc)
-              SelectableText.rich(TextSpan(children: [
+              UiText.rich(TextSpan(children: [
                 TextSpan(
                     text: "${book.pageCount} page${book.pageCount == 1 ? "" : "s"}, ",
                     style: TextStyles.title1.copyWith(color: theme.surface1)),

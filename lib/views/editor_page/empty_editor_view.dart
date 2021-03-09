@@ -18,7 +18,7 @@ class EmptyEditorView extends StatelessWidget {
             VSpace.lg,
             Padding(
               padding: EdgeInsets.only(left: Insets.med),
-              child: SelectableText.rich(
+              child: UiText.rich(
                   TextSpan(children: [
                     TextSpan(
                         text: "Welcome to Flutter Folio!\n\n",

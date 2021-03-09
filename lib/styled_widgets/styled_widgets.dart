@@ -27,3 +27,4 @@ export 'styled_spinner.dart';
 export 'styled_spinner.dart';
 export 'styled_toggle_switch.dart';
 export 'styled_tooltip.dart';
+export 'ui_text.dart';

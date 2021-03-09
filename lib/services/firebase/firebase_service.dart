@@ -53,7 +53,10 @@ abstract class FirebaseService {
   // Helper method for getting a path from keys, and optionally prepending the scope (users/email)
   String getPathFromKeys(List<String> keys, {bool addUserPath = true}) {
     String path = addUserPath ? userPath.followedBy(keys).join("/") : keys.join("/");
-    return path.replaceAll("//", "/");
+    if (FirebaseFactory.useNative) {
+      return path.replaceAll("//", "/");
+    }
+    return path;
   }
 
   /////////////////////////////////////////////////////////

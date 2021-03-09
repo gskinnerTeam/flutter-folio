@@ -52,7 +52,7 @@ class _LabeledTextInputState extends State<LabeledTextInput> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (StringUtils.isNotEmpty(widget.label)) ...[
-            SelectableText(
+            UiText(
               widget.label ?? "",
               style: widget.labelStyle ?? TextStyles.caption,
             ),
@@ -115,7 +115,7 @@ class _LabeledTextInputState extends State<LabeledTextInput> {
   // TODO: Remove
   String lastValue = "";
   int lastPosition;
-  final FocusNode rawFocus = FocusNode();
+  final FocusNode rawFocus = FocusNode(canRequestFocus: false);
   TextEditingController _controller;
   @override
   void initState() {
