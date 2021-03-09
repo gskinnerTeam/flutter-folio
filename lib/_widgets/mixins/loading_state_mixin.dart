@@ -1,3 +1,4 @@
+//dart 2.9
 import 'package:flutter/material.dart';
 
 // Provides the common functionalist of having a isLoading toggle for a view, that is turned on while loading some content.

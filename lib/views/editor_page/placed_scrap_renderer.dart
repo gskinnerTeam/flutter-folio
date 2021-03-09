@@ -1,3 +1,4 @@
+//dart 2.9
 import 'dart:ui';
 
 import 'package:auto_size_text/auto_size_text.dart';

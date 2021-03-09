@@ -1,3 +1,4 @@
+//dart 2.9
 //If in web, this class will write a string to the prefs file, using filename as key
 //If on desktop or mobile, write to the appData folder
 
