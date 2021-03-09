@@ -20,7 +20,7 @@ class FireIds {
 class FirebaseFactory {
   static bool _initComplete = false;
   static bool get useNative =>
-      kIsWeb || UniversalPlatform.isAndroid || UniversalPlatform.isIOS;// || UniversalPlatform.isMacOS;
+      kIsWeb || UniversalPlatform.isAndroid || UniversalPlatform.isIOS; // || UniversalPlatform.isMacOS;
 
   static FirebaseService create() {
     FirebaseService service = useNative
@@ -52,7 +52,8 @@ abstract class FirebaseService {
   List<String> get userPath => [FireIds.users, userId];
   // Helper method for getting a path from keys, and optionally prepending the scope (users/email)
   String getPathFromKeys(List<String> keys, {bool addUserPath = true}) {
-    return addUserPath ? userPath.followedBy(keys).join("/") : keys.join("/");
+    String path = addUserPath ? userPath.followedBy(keys).join("/") : keys.join("/");
+    return path.replaceAll("//", "/");
   }
 
   /////////////////////////////////////////////////////////

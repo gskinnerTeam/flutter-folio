@@ -39,19 +39,13 @@ class _CoversFlowListState extends State<CoversFlowList> {
   @override
   void didUpdateWidget(covariant CoversFlowList oldWidget) {
     if (oldWidget.books != widget.books) {
-      String currentId = _bgBook?.documentId;
-      _bgBook = null;
-      widget.books.forEach((b) {
-        if (b.documentId == _fgBook.documentId) {
-          _fgBook = b;
-        }
-        if (b.documentId == currentId) {
-          _bgBook = b;
-        }
-      });
-      // If the current book was removed, fallback to the first item in the list
+      ScrapBookData prevBook = _bgBook;
+      _bgBook = widget.books.firstWhereOrDefault((b) => b.documentId == _bgBook.documentId);
+      _fgBook = widget.books.firstWhereOrDefault((b) => b.documentId == _fgBook.documentId);
+      // If the current book is missing, fallback to the first item in the list
       if (_bgBook == null && widget.books.length > 0) {
-        _bgBook = widget.books[0];
+        _bgBook = prevBook; // use the deleted object as the bg for a nice transition
+        _fgBook = widget.books[0];
       }
       keysByIndex.clear();
     }

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/styled_widgets/styled_spacers.dart';
 
-class EmptyScrapboardView extends StatelessWidget {
-  const EmptyScrapboardView({Key key, @required this.readOnly}) : super(key: key);
+class EmptyEditorView extends StatelessWidget {
+  const EmptyEditorView({Key key, @required this.readOnly}) : super(key: key);
   final bool readOnly;
 
   @override

@@ -4,9 +4,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_folio/_widgets/animated/opening_card.dart';
 import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/data/book_data.dart';
-
-import 'book_cover/book_cover.dart';
-import 'book_cover/book_cover_notifications.dart';
+import 'package:flutter_folio/views/home_page/book_cover/book_cover.dart';
 
 /// Holds a list of [BookCover] and a Stack that features one of them in a Fullscreen format.
 class CoversFlowListMobile extends StatefulWidget {
@@ -53,11 +51,7 @@ class _CoversFlowListMobileState extends State<CoversFlowListMobile> {
                 /// ///////////////////////////////////////////////////
                 /// BackgroundCard, this gets updated then the OpeningCard finishes opening
                 if (_bgBook != null) ...[
-                  // Listen for editing notifications so we don't do transitions when editing text
-                  NotificationListener<BookEditingEndedNotification>(
-                    onNotification: _handleTextEditNotifications,
-                    child: BookCoverWidget(_bgBook, largeMode: true),
-                  ),
+                  BookCoverWidget(_bgBook, largeMode: true),
                 ],
 
                 if (_currentCardPos != null) ...[

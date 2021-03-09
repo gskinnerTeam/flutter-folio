@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/_spikes/auth_spike.dart';
 import 'package:flutter_folio/commands/books/set_current_book_command.dart';
 import 'package:flutter_folio/commands/books/set_current_page_command.dart';
 import 'package:flutter_folio/core_packages.dart';
@@ -162,7 +161,7 @@ class AppRouterDelegate extends RouterDelegate<AppLink> with ChangeNotifier {
   // Go back one level in our state if possible
   bool tryGoBack() {
     if (booksModel.currentBook != null) {
-      booksModel.currentBook = null;
+      SetCurrentBookCommand().run(null);
       return true; //true means we handled it
     }
     return false; //false lets the whole app go into background

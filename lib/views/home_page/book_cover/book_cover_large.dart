@@ -10,8 +10,6 @@ import 'package:flutter_folio/data/book_data.dart';
 import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
-import 'book_cover_notifications.dart';
-
 /// Represents the Widget in "Large Mode"
 class LargeBookCover extends StatefulWidget {
   const LargeBookCover(this.book, {Key key}) : super(key: key);
@@ -42,7 +40,6 @@ class _LargeBookCoverState extends State<LargeBookCover> {
               InlineTextEditor(
                 book.title,
                 maxLines: 2,
-                onFocusIn: _handleEditingStarted,
                 onFocusOut: _handleTitleEditingEnded,
                 promptText: "Add Title",
                 key: ValueKey("title" + book.title),
@@ -70,7 +67,6 @@ class _LargeBookCoverState extends State<LargeBookCover> {
               InlineTextEditor(book.desc,
                   key: ValueKey("desc" + book.desc),
                   promptText: "Add Description",
-                  onFocusIn: _handleEditingStarted,
                   onFocusOut: _handleDescEditingEnded,
                   width: 370,
                   // SB: Set web to 1 instead of 1.8, it was causing rendering issues where the text would get cut-off.
@@ -100,17 +96,11 @@ class _LargeBookCoverState extends State<LargeBookCover> {
 
   void _handleViewFolioPressed() => SetCurrentBookCommand().run(book);
 
-  void _handleEditingStarted() {
-    BookEditingEndedNotification().dispatch(context);
-  }
-
   void _handleTitleEditingEnded(String value) {
     UpdateBookCommand().run(book.copyWith(title: value));
-    BookEditingEndedNotification().dispatch(context);
   }
 
   void _handleDescEditingEnded(String value) {
     UpdateBookCommand().run(book.copyWith(desc: value));
-    BookEditingEndedNotification().dispatch(context);
   }
 }

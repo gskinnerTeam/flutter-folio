@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_folio/_utils/string_utils.dart';
 import 'package:flutter_folio/_widgets/app_image.dart';
 import 'package:flutter_folio/core_packages.dart';
+import 'package:flutter_folio/styled_widgets/styled_load_spinner.dart';
 
 import 'scrap_pile_picker.dart';
 
@@ -16,7 +17,7 @@ class ScrapPickerBtn extends StatelessWidget {
   Widget build(BuildContext context) {
     AppTheme theme = context.watch();
     if (StringUtils.isEmpty(img)) {
-      return Center(child: CircularProgressIndicator());
+      return Center(child: StyledLoadSpinner());
     }
     return Stack(
       children: [

@@ -29,7 +29,7 @@ class AppTitleBar extends StatelessWidget {
           // All titlebars share a bg
           ShadowedBg(theme.surface1),
           // Switch between mobile and desktop title bars
-          if (DeviceInfo.isDesktop || kIsWeb) ...[
+          if (DeviceInfo.isDesktopOrWeb) ...[
             _AppTitleBarDesktop(),
           ] else ...[
             _AppTitleBarMobile(),
@@ -97,7 +97,7 @@ class _AdaptiveProfileBtn extends StatelessWidget {
     if (user == null) return Container();
     // Use a non-scaled vertical padding here
     final profileIcon = StyledCircleImage(
-      padding: EdgeInsets.symmetric(horizontal: Insets.med, vertical: 4),
+      padding: EdgeInsets.symmetric(horizontal: Insets.sm, vertical: 4),
       url: user?.imageUrl ?? AppUser.kDefaultImageUrl,
       borderSize: 2,
     );

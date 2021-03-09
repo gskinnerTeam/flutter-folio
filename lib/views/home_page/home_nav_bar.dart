@@ -5,8 +5,8 @@ import 'package:flutter_folio/data/app_user.dart';
 import 'package:flutter_folio/models/app_model.dart';
 import 'package:flutter_folio/models/books_model.dart';
 
-class BooksHomeTopNavBar extends StatelessWidget {
-  const BooksHomeTopNavBar({Key key, this.invertText, this.onToggled, this.showListView}) : super(key: key);
+class HomeNavBar extends StatelessWidget {
+  const HomeNavBar({Key key, this.invertText, this.onToggled, this.showListView}) : super(key: key);
   final void Function(bool value) onToggled;
   final bool showListView;
   final bool invertText;
@@ -15,7 +15,7 @@ class BooksHomeTopNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     AppTheme theme = Provider.of(context);
     AppUser user = context.select((AppModel m) => m.currentUser);
-    int pageCount = context.select((BooksModel m) => m.books?.length ?? 0);
+    int bookCount = context.select((BooksModel m) => m.books?.length ?? 0);
     String name = user.getDisplayName();
     return LayoutBuilder(
       builder: (_, constraints) {
@@ -33,7 +33,7 @@ class BooksHomeTopNavBar extends StatelessWidget {
                     if (name != null) TextSpan(text: " " + name, style: TextStyle(fontWeight: FontWeight.bold)),
                     TextSpan(text: ". ${breakText ? "\n" : ""}You've created "),
                     TextSpan(
-                        text: " ${pageCount} folio${pageCount == 1 ? "" : "s"}",
+                        text: " ${bookCount} folio${bookCount == 1 ? "" : "s"}",
                         style: TextStyle(fontWeight: FontWeight.bold)),
                     TextSpan(text: " in total."),
                   ],

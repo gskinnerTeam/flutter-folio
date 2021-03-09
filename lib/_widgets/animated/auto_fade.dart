@@ -28,7 +28,9 @@ class _AutoFadeState extends State<AutoFade> with SingleTickerProviderStateMixin
     animController = AnimationController(vsync: this, duration: widget.duration);
     animController.addListener(() => setState(() {}));
     anim = animController.drive(CurveTween(curve: widget.curve));
-    Future.delayed(widget.delay ?? Duration.zero, animController.forward);
+    Future.delayed(widget.delay ?? Duration.zero, () {
+      if (mounted) animController.forward();
+    });
     super.initState();
   }
 

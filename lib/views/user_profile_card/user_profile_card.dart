@@ -87,47 +87,56 @@ class _ProfileEditorCardContentState extends State<_ProfileEditorCardContent> {
     if (_user == null) return Container();
 
     return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+      child: Stack(
         children: [
-          SimpleBtn(
-            onPressed: _handleProfileImgPressed,
-            child: SizedBox(
-              height: 80,
-              child: StyledCircleImage(url: _user.imageUrl ?? AppUser.kDefaultImageUrl),
-            ),
-          ),
-
-          /// Upload PhotoBtn
-          SimpleBtn(
-            onPressed: _handleProfileImgPressed,
-            child: Padding(
-              padding: EdgeInsets.all(Insets.sm),
-              child: Text(
-                "Update Photo",
-                style: TextStyles.caption.copyWith(color: theme.mainTextColor, decoration: TextDecoration.underline),
-              ),
-            ),
-          ),
-          VSpace.lg,
-
-          /// TextInputs
-          LabeledTextInput(label: "First Name", text: _user.firstName, onChanged: _handleFirstNameChanged),
-          VSpace.lg,
-          LabeledTextInput(label: "Last Name", text: _user.lastName, onChanged: _handleLastNameChanged),
-          VSpace.lg,
-
-          /// Account
-          Container(width: double.infinity, child: SelectableText("Account", style: TextStyles.caption)),
-          Row(
+          Align(
+              alignment: Alignment.centerLeft,
+              child: SelectableText("v" + AppModel.kVersion, style: TextStyles.caption)),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Expanded(child: SelectableText(_user.email, style: TextStyles.body3)),
-              PrimaryBtn(
-                  icon: Icons.logout,
-                  leadingIcon: false,
-                  label: "LOGOUT",
-                  isCompact: true,
-                  onPressed: _handleLogoutPressed)
+              SimpleBtn(
+                onPressed: _handleProfileImgPressed,
+                child: SizedBox(
+                  height: 80,
+                  child: StyledCircleImage(url: _user.imageUrl ?? AppUser.kDefaultImageUrl),
+                ),
+              ),
+
+              /// Upload PhotoBtn
+              SimpleBtn(
+                onPressed: _handleProfileImgPressed,
+                child: Padding(
+                  padding: EdgeInsets.all(Insets.sm),
+                  child: Text(
+                    "Update Photo",
+                    style:
+                        TextStyles.caption.copyWith(color: theme.mainTextColor, decoration: TextDecoration.underline),
+                  ),
+                ),
+              ),
+              VSpace.lg,
+
+              /// TextInputs
+              LabeledTextInput(
+                  autoFocus: true, label: "First Name", text: _user.firstName, onChanged: _handleFirstNameChanged),
+              VSpace.lg,
+              LabeledTextInput(label: "Last Name", text: _user.lastName, onChanged: _handleLastNameChanged),
+              VSpace.lg,
+
+              /// Account
+              Container(width: double.infinity, child: SelectableText("Account", style: TextStyles.caption)),
+              Row(
+                children: [
+                  Expanded(child: SelectableText(_user.email, style: TextStyles.body3)),
+                  PrimaryBtn(
+                      icon: Icons.logout,
+                      leadingIcon: false,
+                      label: "LOGOUT",
+                      isCompact: true,
+                      onPressed: _handleLogoutPressed)
+                ],
+              ),
             ],
           ),
         ],

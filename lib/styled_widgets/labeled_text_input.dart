@@ -52,7 +52,10 @@ class _LabeledTextInputState extends State<LabeledTextInput> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (StringUtils.isNotEmpty(widget.label)) ...[
-            SelectableText(widget.label ?? "", style: widget.labelStyle ?? TextStyles.caption),
+            SelectableText(
+              widget.label ?? "",
+              style: widget.labelStyle ?? TextStyles.caption,
+            ),
             VSpace.med,
           ],
           TweenAnimationBuilder<double>(

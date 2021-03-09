@@ -7,7 +7,6 @@ class _AppTitleBarMobile extends StatelessWidget {
     return Stack(children: [
       Row(
         children: [
-          HSpace.lg,
           if (showBackBtn) _BackBtn(),
           Spacer(),
           _AdaptiveProfileBtn(invertRow: true, useBottomSheet: true),

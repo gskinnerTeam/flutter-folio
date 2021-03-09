@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_folio/commands/books/create_folio_command.dart';
 import 'package:flutter_folio/core_packages.dart';
 import 'package:provider/provider.dart';
 
-import 'create_folio_bottom_sheet_content.dart';
-
-class BooksHomePageBottomNav extends StatelessWidget {
+class HomeNavBarMobile extends StatelessWidget {
   final bool showListView;
   final void Function(bool) onToggled;
   final VoidCallback onNewPressed;
 
-  BooksHomePageBottomNav({this.showListView = true, this.onToggled, this.onNewPressed});
+  HomeNavBarMobile({this.showListView = true, this.onToggled, this.onNewPressed});
 
   Widget build(BuildContext context) {
     AppTheme theme = Provider.of(context);
@@ -58,7 +57,7 @@ class BooksHomePageBottomNav extends StatelessWidget {
           alignment: Alignment.bottomCenter,
           child: Padding(
             padding: EdgeInsets.only(bottom: Insets.med),
-            child: _MobileNewFolioBtn(),
+            child: _NewFolioFab(),
           ),
         ),
       ],
@@ -66,9 +65,9 @@ class BooksHomePageBottomNav extends StatelessWidget {
   }
 }
 
-class _MobileNewFolioBtn extends StatelessWidget {
+class _NewFolioFab extends StatelessWidget {
   Widget build(BuildContext context) {
-    void _handleNewPressed() => showStyledBottomSheet(context, child: CreateFolioBottomSheetContent());
+    void _handleNewPressed() => showStyledBottomSheet(context, child: _NewFolioCard());
 
     Decoration circleDec(Color c) => ShapeDecoration(shape: CircleBorder(), color: c);
     AppTheme theme = Provider.of(context);
@@ -93,5 +92,51 @@ class _MobileNewFolioBtn extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class _NewFolioCard extends StatefulWidget {
+  const _NewFolioCard({Key key, this.onSubmit}) : super(key: key);
+  final VoidCallback onSubmit;
+
+  @override
+  _NewFolioCardState createState() => _NewFolioCardState();
+}
+
+class _NewFolioCardState extends State<_NewFolioCard> {
+  String _title = "";
+  String _desc = "";
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: Insets.xl, vertical: Insets.lg),
+      child: Column(
+        children: [
+          Text("Folio Information".toUpperCase(), style: TextStyles.callout1),
+          VSpace.med,
+          LabeledTextInput(
+              label: "Title", labelStyle: TextStyles.title1, text: _title, onChanged: (value) => _title = value),
+          VSpace.lg,
+          LabeledTextInput(
+            label: "Description",
+            labelStyle: TextStyles.title1,
+            text: _desc,
+            numLines: 5,
+            hintText: "Optional",
+            onChanged: (value) => _desc = value,
+          ),
+          VSpace.med,
+          PrimaryBtn(
+            label: "Create a new collection",
+            onPressed: _handleNewCollectionPressed,
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _handleNewCollectionPressed() {
+    Navigator.pop(context);
+    CreateFolioCommand().run(title: _title, desc: _desc);
   }
 }

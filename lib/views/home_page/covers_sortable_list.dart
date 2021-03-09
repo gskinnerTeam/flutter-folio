@@ -12,7 +12,8 @@ class CoversSortableList extends StatefulWidget {
   final List<ScrapBookData> books;
   final double rowHeight;
   final bool isMobile;
-  const CoversSortableList({Key key, this.books, this.rowHeight = 120, this.isMobile = false}) : super(key: key);
+  const CoversSortableList({Key key, @required this.books, this.rowHeight = 120, this.isMobile = false})
+      : super(key: key);
 
   State createState() => _CoversSortableListState();
 }
