@@ -1,4 +1,4 @@
-//dart 2.9
+// @dart=2.9
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_spikes/controlled_router/controlled_route_parser.dart';
 import 'package:flutter_folio/_spikes/controlled_router/controlled_router_delegate.dart';

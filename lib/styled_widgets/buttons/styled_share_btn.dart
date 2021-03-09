@@ -1,4 +1,4 @@
-//dart 2.9
+// @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_widgets/popover/popover_notifications.dart';
 import 'package:flutter_folio/_widgets/popover/popover_region.dart';
@@ -8,11 +8,11 @@ import 'package:flutter_folio/data/book_data.dart';
 
 class StyledSharedBtn extends StatelessWidget {
   const StyledSharedBtn({
-    Key key,
-    @required this.book,
+    Key? key,
+    required this.book,
     this.iconColor,
   }) : super(key: key);
-  final Color iconColor;
+  final Color? iconColor;
   final ScrapBookData book;
 
   @override

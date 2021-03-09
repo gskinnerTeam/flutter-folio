@@ -1,4 +1,4 @@
-//dart 2.9
+// @dart=2.9
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_folio/_widgets/alignments.dart';
@@ -278,6 +278,7 @@ class PopPanelIconBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SimpleBtn(
+      onPressed: null,
       child: Container(
         padding: EdgeInsets.all(Insets.sm),
         child: MaterialIcon(Icons.rotate_right_outlined),

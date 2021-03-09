@@ -1,4 +1,4 @@
-//dart 2.9
+// @dart=2.9
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'universal_file.dart';

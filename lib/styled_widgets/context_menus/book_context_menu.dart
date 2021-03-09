@@ -1,4 +1,4 @@
-//dart 2.9
+// @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/commands/app/copy_share_link_command.dart';
 import 'package:flutter_folio/commands/books/delete_book_command.dart';

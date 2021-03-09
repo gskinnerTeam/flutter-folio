@@ -1,4 +1,4 @@
-//dart 2.9
+// @dart=2.9
 import 'scrapboard_model.dart';
 
 class ScrapsController {

@@ -1,4 +1,4 @@
-//dart 2.9
+// @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/commands/books/update_placed_scrap_command.dart';
 import 'package:flutter_folio/data/book_data.dart';
@@ -7,7 +7,7 @@ import 'package:flutter_folio/styled_widgets/labeled_text_input.dart';
 import 'package:flutter_folio/styles.dart';
 
 class ScrapTextEditorDialog extends StatelessWidget {
-  const ScrapTextEditorDialog(this.item, {Key key}) : super(key: key);
+  const ScrapTextEditorDialog(this.item, {Key? key}) : super(key: key);
   final PlacedScrapItem item;
 
   @override

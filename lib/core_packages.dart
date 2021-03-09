@@ -1,4 +1,4 @@
-//dart 2.9
+// @dart=2.9
 export 'package:darq/darq.dart'; // Extra list sorting methods sortByDescending, etc
 export 'package:flutter_folio/styled_widgets/styled_widgets.dart';
 export 'package:provider/provider.dart'; // Context extensions for Provider, .watch() etc

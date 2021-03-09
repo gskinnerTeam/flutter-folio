@@ -1,4 +1,4 @@
-//dart 2.9
+// @dart=2.9
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
@@ -73,8 +73,7 @@ mixin _$ScrapBookData {
 
 /// @nodoc
 abstract class $ScrapBookDataCopyWith<$Res> {
-  factory $ScrapBookDataCopyWith(
-          ScrapBookData value, $Res Function(ScrapBookData) then) =
+  factory $ScrapBookDataCopyWith(ScrapBookData value, $Res Function(ScrapBookData) then) =
       _$ScrapBookDataCopyWithImpl<$Res>;
   $Res call(
       {@nullable String documentId,
@@ -89,8 +88,7 @@ abstract class $ScrapBookDataCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ScrapBookDataCopyWithImpl<$Res>
-    implements $ScrapBookDataCopyWith<$Res> {
+class _$ScrapBookDataCopyWithImpl<$Res> implements $ScrapBookDataCopyWith<$Res> {
   _$ScrapBookDataCopyWithImpl(this._value, this._then);
 
   final ScrapBookData _value;
@@ -110,29 +108,22 @@ class _$ScrapBookDataCopyWithImpl<$Res>
     Object pageOrder = freezed,
   }) {
     return _then(_value.copyWith(
-      documentId:
-          documentId == freezed ? _value.documentId : documentId as String,
+      documentId: documentId == freezed ? _value.documentId : documentId as String,
       key: key == freezed ? _value.key : key as String,
       title: title == freezed ? _value.title : title as String,
       desc: desc == freezed ? _value.desc : desc as String,
-      creationTime:
-          creationTime == freezed ? _value.creationTime : creationTime as int,
-      lastModifiedTime: lastModifiedTime == freezed
-          ? _value.lastModifiedTime
-          : lastModifiedTime as int,
+      creationTime: creationTime == freezed ? _value.creationTime : creationTime as int,
+      lastModifiedTime: lastModifiedTime == freezed ? _value.lastModifiedTime : lastModifiedTime as int,
       pageCount: pageCount == freezed ? _value.pageCount : pageCount as int,
       imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
-      pageOrder:
-          pageOrder == freezed ? _value.pageOrder : pageOrder as List<String>,
+      pageOrder: pageOrder == freezed ? _value.pageOrder : pageOrder as List<String>,
     ));
   }
 }
 
 /// @nodoc
-abstract class _$ScrapBookDataCopyWith<$Res>
-    implements $ScrapBookDataCopyWith<$Res> {
-  factory _$ScrapBookDataCopyWith(
-          _ScrapBookData value, $Res Function(_ScrapBookData) then) =
+abstract class _$ScrapBookDataCopyWith<$Res> implements $ScrapBookDataCopyWith<$Res> {
+  factory _$ScrapBookDataCopyWith(_ScrapBookData value, $Res Function(_ScrapBookData) then) =
       __$ScrapBookDataCopyWithImpl<$Res>;
   @override
   $Res call(
@@ -148,11 +139,9 @@ abstract class _$ScrapBookDataCopyWith<$Res>
 }
 
 /// @nodoc
-class __$ScrapBookDataCopyWithImpl<$Res>
-    extends _$ScrapBookDataCopyWithImpl<$Res>
+class __$ScrapBookDataCopyWithImpl<$Res> extends _$ScrapBookDataCopyWithImpl<$Res>
     implements _$ScrapBookDataCopyWith<$Res> {
-  __$ScrapBookDataCopyWithImpl(
-      _ScrapBookData _value, $Res Function(_ScrapBookData) _then)
+  __$ScrapBookDataCopyWithImpl(_ScrapBookData _value, $Res Function(_ScrapBookData) _then)
       : super(_value, (v) => _then(v as _ScrapBookData));
 
   @override
@@ -171,20 +160,15 @@ class __$ScrapBookDataCopyWithImpl<$Res>
     Object pageOrder = freezed,
   }) {
     return _then(_ScrapBookData(
-      documentId:
-          documentId == freezed ? _value.documentId : documentId as String,
+      documentId: documentId == freezed ? _value.documentId : documentId as String,
       key: key == freezed ? _value.key : key as String,
       title: title == freezed ? _value.title : title as String,
       desc: desc == freezed ? _value.desc : desc as String,
-      creationTime:
-          creationTime == freezed ? _value.creationTime : creationTime as int,
-      lastModifiedTime: lastModifiedTime == freezed
-          ? _value.lastModifiedTime
-          : lastModifiedTime as int,
+      creationTime: creationTime == freezed ? _value.creationTime : creationTime as int,
+      lastModifiedTime: lastModifiedTime == freezed ? _value.lastModifiedTime : lastModifiedTime as int,
       pageCount: pageCount == freezed ? _value.pageCount : pageCount as int,
       imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
-      pageOrder:
-          pageOrder == freezed ? _value.pageOrder : pageOrder as List<String>,
+      pageOrder: pageOrder == freezed ? _value.pageOrder : pageOrder as List<String>,
     ));
   }
 }
@@ -210,8 +194,7 @@ class _$_ScrapBookData extends _ScrapBookData with DiagnosticableTreeMixin {
         assert(pageCount != null),
         super._();
 
-  factory _$_ScrapBookData.fromJson(Map<String, dynamic> json) =>
-      _$_$_ScrapBookDataFromJson(json);
+  factory _$_ScrapBookData.fromJson(Map<String, dynamic> json) => _$_$_ScrapBookDataFromJson(json);
 
   @override
   @nullable
@@ -267,29 +250,19 @@ class _$_ScrapBookData extends _ScrapBookData with DiagnosticableTreeMixin {
     return identical(this, other) ||
         (other is _ScrapBookData &&
             (identical(other.documentId, documentId) ||
-                const DeepCollectionEquality()
-                    .equals(other.documentId, documentId)) &&
-            (identical(other.key, key) ||
-                const DeepCollectionEquality().equals(other.key, key)) &&
-            (identical(other.title, title) ||
-                const DeepCollectionEquality().equals(other.title, title)) &&
-            (identical(other.desc, desc) ||
-                const DeepCollectionEquality().equals(other.desc, desc)) &&
+                const DeepCollectionEquality().equals(other.documentId, documentId)) &&
+            (identical(other.key, key) || const DeepCollectionEquality().equals(other.key, key)) &&
+            (identical(other.title, title) || const DeepCollectionEquality().equals(other.title, title)) &&
+            (identical(other.desc, desc) || const DeepCollectionEquality().equals(other.desc, desc)) &&
             (identical(other.creationTime, creationTime) ||
-                const DeepCollectionEquality()
-                    .equals(other.creationTime, creationTime)) &&
+                const DeepCollectionEquality().equals(other.creationTime, creationTime)) &&
             (identical(other.lastModifiedTime, lastModifiedTime) ||
-                const DeepCollectionEquality()
-                    .equals(other.lastModifiedTime, lastModifiedTime)) &&
+                const DeepCollectionEquality().equals(other.lastModifiedTime, lastModifiedTime)) &&
             (identical(other.pageCount, pageCount) ||
-                const DeepCollectionEquality()
-                    .equals(other.pageCount, pageCount)) &&
-            (identical(other.imageUrl, imageUrl) ||
-                const DeepCollectionEquality()
-                    .equals(other.imageUrl, imageUrl)) &&
+                const DeepCollectionEquality().equals(other.pageCount, pageCount)) &&
+            (identical(other.imageUrl, imageUrl) || const DeepCollectionEquality().equals(other.imageUrl, imageUrl)) &&
             (identical(other.pageOrder, pageOrder) ||
-                const DeepCollectionEquality()
-                    .equals(other.pageOrder, pageOrder)));
+                const DeepCollectionEquality().equals(other.pageOrder, pageOrder)));
   }
 
   @override
@@ -329,8 +302,7 @@ abstract class _ScrapBookData extends ScrapBookData {
       @nullable String imageUrl,
       List<String> pageOrder}) = _$_ScrapBookData;
 
-  factory _ScrapBookData.fromJson(Map<String, dynamic> json) =
-      _$_ScrapBookData.fromJson;
+  factory _ScrapBookData.fromJson(Map<String, dynamic> json) = _$_ScrapBookData.fromJson;
 
   @override
   @nullable
@@ -412,8 +384,7 @@ mixin _$ScrapPageData {
 
 /// @nodoc
 abstract class $ScrapPageDataCopyWith<$Res> {
-  factory $ScrapPageDataCopyWith(
-          ScrapPageData value, $Res Function(ScrapPageData) then) =
+  factory $ScrapPageDataCopyWith(ScrapPageData value, $Res Function(ScrapPageData) then) =
       _$ScrapPageDataCopyWithImpl<$Res>;
   $Res call(
       {@nullable String documentId,
@@ -425,8 +396,7 @@ abstract class $ScrapPageDataCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ScrapPageDataCopyWithImpl<$Res>
-    implements $ScrapPageDataCopyWith<$Res> {
+class _$ScrapPageDataCopyWithImpl<$Res> implements $ScrapPageDataCopyWith<$Res> {
   _$ScrapPageDataCopyWithImpl(this._value, this._then);
 
   final ScrapPageData _value;
@@ -443,23 +413,19 @@ class _$ScrapPageDataCopyWithImpl<$Res>
     Object boxOrder = freezed,
   }) {
     return _then(_value.copyWith(
-      documentId:
-          documentId == freezed ? _value.documentId : documentId as String,
+      documentId: documentId == freezed ? _value.documentId : documentId as String,
       key: key == freezed ? _value.key : key as String,
       bookId: bookId == freezed ? _value.bookId : bookId as String,
       title: title == freezed ? _value.title : title as String,
       desc: desc == freezed ? _value.desc : desc as String,
-      boxOrder:
-          boxOrder == freezed ? _value.boxOrder : boxOrder as List<String>,
+      boxOrder: boxOrder == freezed ? _value.boxOrder : boxOrder as List<String>,
     ));
   }
 }
 
 /// @nodoc
-abstract class _$ScrapPageDataCopyWith<$Res>
-    implements $ScrapPageDataCopyWith<$Res> {
-  factory _$ScrapPageDataCopyWith(
-          _ScrapPageData value, $Res Function(_ScrapPageData) then) =
+abstract class _$ScrapPageDataCopyWith<$Res> implements $ScrapPageDataCopyWith<$Res> {
+  factory _$ScrapPageDataCopyWith(_ScrapPageData value, $Res Function(_ScrapPageData) then) =
       __$ScrapPageDataCopyWithImpl<$Res>;
   @override
   $Res call(
@@ -472,11 +438,9 @@ abstract class _$ScrapPageDataCopyWith<$Res>
 }
 
 /// @nodoc
-class __$ScrapPageDataCopyWithImpl<$Res>
-    extends _$ScrapPageDataCopyWithImpl<$Res>
+class __$ScrapPageDataCopyWithImpl<$Res> extends _$ScrapPageDataCopyWithImpl<$Res>
     implements _$ScrapPageDataCopyWith<$Res> {
-  __$ScrapPageDataCopyWithImpl(
-      _ScrapPageData _value, $Res Function(_ScrapPageData) _then)
+  __$ScrapPageDataCopyWithImpl(_ScrapPageData _value, $Res Function(_ScrapPageData) _then)
       : super(_value, (v) => _then(v as _ScrapPageData));
 
   @override
@@ -492,14 +456,12 @@ class __$ScrapPageDataCopyWithImpl<$Res>
     Object boxOrder = freezed,
   }) {
     return _then(_ScrapPageData(
-      documentId:
-          documentId == freezed ? _value.documentId : documentId as String,
+      documentId: documentId == freezed ? _value.documentId : documentId as String,
       key: key == freezed ? _value.key : key as String,
       bookId: bookId == freezed ? _value.bookId : bookId as String,
       title: title == freezed ? _value.title : title as String,
       desc: desc == freezed ? _value.desc : desc as String,
-      boxOrder:
-          boxOrder == freezed ? _value.boxOrder : boxOrder as List<String>,
+      boxOrder: boxOrder == freezed ? _value.boxOrder : boxOrder as List<String>,
     ));
   }
 }
@@ -509,18 +471,12 @@ class __$ScrapPageDataCopyWithImpl<$Res>
 /// @nodoc
 class _$_ScrapPageData extends _ScrapPageData with DiagnosticableTreeMixin {
   _$_ScrapPageData(
-      {@nullable this.documentId,
-      @nullable this.key,
-      this.bookId,
-      this.title = "",
-      this.desc = "",
-      this.boxOrder})
+      {@nullable this.documentId, @nullable this.key, this.bookId, this.title = "", this.desc = "", this.boxOrder})
       : assert(title != null),
         assert(desc != null),
         super._();
 
-  factory _$_ScrapPageData.fromJson(Map<String, dynamic> json) =>
-      _$_$_ScrapPageDataFromJson(json);
+  factory _$_ScrapPageData.fromJson(Map<String, dynamic> json) => _$_$_ScrapPageDataFromJson(json);
 
   @override
   @nullable
@@ -562,19 +518,12 @@ class _$_ScrapPageData extends _ScrapPageData with DiagnosticableTreeMixin {
     return identical(this, other) ||
         (other is _ScrapPageData &&
             (identical(other.documentId, documentId) ||
-                const DeepCollectionEquality()
-                    .equals(other.documentId, documentId)) &&
-            (identical(other.key, key) ||
-                const DeepCollectionEquality().equals(other.key, key)) &&
-            (identical(other.bookId, bookId) ||
-                const DeepCollectionEquality().equals(other.bookId, bookId)) &&
-            (identical(other.title, title) ||
-                const DeepCollectionEquality().equals(other.title, title)) &&
-            (identical(other.desc, desc) ||
-                const DeepCollectionEquality().equals(other.desc, desc)) &&
-            (identical(other.boxOrder, boxOrder) ||
-                const DeepCollectionEquality()
-                    .equals(other.boxOrder, boxOrder)));
+                const DeepCollectionEquality().equals(other.documentId, documentId)) &&
+            (identical(other.key, key) || const DeepCollectionEquality().equals(other.key, key)) &&
+            (identical(other.bookId, bookId) || const DeepCollectionEquality().equals(other.bookId, bookId)) &&
+            (identical(other.title, title) || const DeepCollectionEquality().equals(other.title, title)) &&
+            (identical(other.desc, desc) || const DeepCollectionEquality().equals(other.desc, desc)) &&
+            (identical(other.boxOrder, boxOrder) || const DeepCollectionEquality().equals(other.boxOrder, boxOrder)));
   }
 
   @override
@@ -608,8 +557,7 @@ abstract class _ScrapPageData extends ScrapPageData {
       String desc,
       List<String> boxOrder}) = _$_ScrapPageData;
 
-  factory _ScrapPageData.fromJson(Map<String, dynamic> json) =
-      _$_ScrapPageData.fromJson;
+  factory _ScrapPageData.fromJson(Map<String, dynamic> json) = _$_ScrapPageData.fromJson;
 
   @override
   @nullable
@@ -696,8 +644,7 @@ mixin _$ScrapItem {
 
 /// @nodoc
 abstract class $ScrapItemCopyWith<$Res> {
-  factory $ScrapItemCopyWith(ScrapItem value, $Res Function(ScrapItem) then) =
-      _$ScrapItemCopyWithImpl<$Res>;
+  factory $ScrapItemCopyWith(ScrapItem value, $Res Function(ScrapItem) then) = _$ScrapItemCopyWithImpl<$Res>;
   $Res call(
       {@nullable String documentId,
       @nullable String key,
@@ -731,28 +678,22 @@ class _$ScrapItemCopyWithImpl<$Res> implements $ScrapItemCopyWith<$Res> {
     Object contentType = freezed,
   }) {
     return _then(_value.copyWith(
-      documentId:
-          documentId == freezed ? _value.documentId : documentId as String,
+      documentId: documentId == freezed ? _value.documentId : documentId as String,
       key: key == freezed ? _value.key : key as String,
       bookId: bookId == freezed ? _value.bookId : bookId as String,
       data: data == freezed ? _value.data : data as String,
       config: config == freezed ? _value.config : config as String,
       photos: photos == freezed ? _value.photos : photos as List<String>,
-      creationTime:
-          creationTime == freezed ? _value.creationTime : creationTime as int,
+      creationTime: creationTime == freezed ? _value.creationTime : creationTime as int,
       aspect: aspect == freezed ? _value.aspect : aspect as double,
-      contentType: contentType == freezed
-          ? _value.contentType
-          : contentType as ContentType,
+      contentType: contentType == freezed ? _value.contentType : contentType as ContentType,
     ));
   }
 }
 
 /// @nodoc
 abstract class _$ScrapItemCopyWith<$Res> implements $ScrapItemCopyWith<$Res> {
-  factory _$ScrapItemCopyWith(
-          _ScrapItem value, $Res Function(_ScrapItem) then) =
-      __$ScrapItemCopyWithImpl<$Res>;
+  factory _$ScrapItemCopyWith(_ScrapItem value, $Res Function(_ScrapItem) then) = __$ScrapItemCopyWithImpl<$Res>;
   @override
   $Res call(
       {@nullable String documentId,
@@ -767,8 +708,7 @@ abstract class _$ScrapItemCopyWith<$Res> implements $ScrapItemCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$ScrapItemCopyWithImpl<$Res> extends _$ScrapItemCopyWithImpl<$Res>
-    implements _$ScrapItemCopyWith<$Res> {
+class __$ScrapItemCopyWithImpl<$Res> extends _$ScrapItemCopyWithImpl<$Res> implements _$ScrapItemCopyWith<$Res> {
   __$ScrapItemCopyWithImpl(_ScrapItem _value, $Res Function(_ScrapItem) _then)
       : super(_value, (v) => _then(v as _ScrapItem));
 
@@ -788,19 +728,15 @@ class __$ScrapItemCopyWithImpl<$Res> extends _$ScrapItemCopyWithImpl<$Res>
     Object contentType = freezed,
   }) {
     return _then(_ScrapItem(
-      documentId:
-          documentId == freezed ? _value.documentId : documentId as String,
+      documentId: documentId == freezed ? _value.documentId : documentId as String,
       key: key == freezed ? _value.key : key as String,
       bookId: bookId == freezed ? _value.bookId : bookId as String,
       data: data == freezed ? _value.data : data as String,
       config: config == freezed ? _value.config : config as String,
       photos: photos == freezed ? _value.photos : photos as List<String>,
-      creationTime:
-          creationTime == freezed ? _value.creationTime : creationTime as int,
+      creationTime: creationTime == freezed ? _value.creationTime : creationTime as int,
       aspect: aspect == freezed ? _value.aspect : aspect as double,
-      contentType: contentType == freezed
-          ? _value.contentType
-          : contentType as ContentType,
+      contentType: contentType == freezed ? _value.contentType : contentType as ContentType,
     ));
   }
 }
@@ -824,8 +760,7 @@ class _$_ScrapItem extends _ScrapItem with DiagnosticableTreeMixin {
         assert(aspect != null),
         super._();
 
-  factory _$_ScrapItem.fromJson(Map<String, dynamic> json) =>
-      _$_$_ScrapItemFromJson(json);
+  factory _$_ScrapItem.fromJson(Map<String, dynamic> json) => _$_$_ScrapItemFromJson(json);
 
   @override
   @nullable
@@ -880,26 +815,17 @@ class _$_ScrapItem extends _ScrapItem with DiagnosticableTreeMixin {
     return identical(this, other) ||
         (other is _ScrapItem &&
             (identical(other.documentId, documentId) ||
-                const DeepCollectionEquality()
-                    .equals(other.documentId, documentId)) &&
-            (identical(other.key, key) ||
-                const DeepCollectionEquality().equals(other.key, key)) &&
-            (identical(other.bookId, bookId) ||
-                const DeepCollectionEquality().equals(other.bookId, bookId)) &&
-            (identical(other.data, data) ||
-                const DeepCollectionEquality().equals(other.data, data)) &&
-            (identical(other.config, config) ||
-                const DeepCollectionEquality().equals(other.config, config)) &&
-            (identical(other.photos, photos) ||
-                const DeepCollectionEquality().equals(other.photos, photos)) &&
+                const DeepCollectionEquality().equals(other.documentId, documentId)) &&
+            (identical(other.key, key) || const DeepCollectionEquality().equals(other.key, key)) &&
+            (identical(other.bookId, bookId) || const DeepCollectionEquality().equals(other.bookId, bookId)) &&
+            (identical(other.data, data) || const DeepCollectionEquality().equals(other.data, data)) &&
+            (identical(other.config, config) || const DeepCollectionEquality().equals(other.config, config)) &&
+            (identical(other.photos, photos) || const DeepCollectionEquality().equals(other.photos, photos)) &&
             (identical(other.creationTime, creationTime) ||
-                const DeepCollectionEquality()
-                    .equals(other.creationTime, creationTime)) &&
-            (identical(other.aspect, aspect) ||
-                const DeepCollectionEquality().equals(other.aspect, aspect)) &&
+                const DeepCollectionEquality().equals(other.creationTime, creationTime)) &&
+            (identical(other.aspect, aspect) || const DeepCollectionEquality().equals(other.aspect, aspect)) &&
             (identical(other.contentType, contentType) ||
-                const DeepCollectionEquality()
-                    .equals(other.contentType, contentType)));
+                const DeepCollectionEquality().equals(other.contentType, contentType)));
   }
 
   @override
@@ -917,8 +843,7 @@ class _$_ScrapItem extends _ScrapItem with DiagnosticableTreeMixin {
 
   @JsonKey(ignore: true)
   @override
-  _$ScrapItemCopyWith<_ScrapItem> get copyWith =>
-      __$ScrapItemCopyWithImpl<_ScrapItem>(this, _$identity);
+  _$ScrapItemCopyWith<_ScrapItem> get copyWith => __$ScrapItemCopyWithImpl<_ScrapItem>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -939,8 +864,7 @@ abstract class _ScrapItem extends ScrapItem {
       double aspect,
       @nullable ContentType contentType}) = _$_ScrapItem;
 
-  factory _ScrapItem.fromJson(Map<String, dynamic> json) =
-      _$_ScrapItem.fromJson;
+  factory _ScrapItem.fromJson(Map<String, dynamic> json) = _$_ScrapItem.fromJson;
 
   @override
   @nullable
@@ -1064,8 +988,7 @@ mixin _$PlacedScrapItem {
 
 /// @nodoc
 abstract class $PlacedScrapItemCopyWith<$Res> {
-  factory $PlacedScrapItemCopyWith(
-          PlacedScrapItem value, $Res Function(PlacedScrapItem) then) =
+  factory $PlacedScrapItemCopyWith(PlacedScrapItem value, $Res Function(PlacedScrapItem) then) =
       _$PlacedScrapItemCopyWithImpl<$Res>;
   $Res call(
       {@nullable String documentId,
@@ -1091,8 +1014,7 @@ abstract class $PlacedScrapItemCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$PlacedScrapItemCopyWithImpl<$Res>
-    implements $PlacedScrapItemCopyWith<$Res> {
+class _$PlacedScrapItemCopyWithImpl<$Res> implements $PlacedScrapItemCopyWith<$Res> {
   _$PlacedScrapItemCopyWithImpl(this._value, this._then);
 
   final PlacedScrapItem _value;
@@ -1121,8 +1043,7 @@ class _$PlacedScrapItemCopyWithImpl<$Res>
     Object lastModifiedTime = freezed,
   }) {
     return _then(_value.copyWith(
-      documentId:
-          documentId == freezed ? _value.documentId : documentId as String,
+      documentId: documentId == freezed ? _value.documentId : documentId as String,
       key: key == freezed ? _value.key : key as String,
       bookId: bookId == freezed ? _value.bookId : bookId as String,
       pageId: pageId == freezed ? _value.pageId : pageId as String,
@@ -1134,17 +1055,12 @@ class _$PlacedScrapItemCopyWithImpl<$Res>
       rot: rot == freezed ? _value.rot : rot as double,
       scale: scale == freezed ? _value.scale : scale as double,
       aspect: aspect == freezed ? _value.aspect : aspect as double,
-      contentType: contentType == freezed
-          ? _value.contentType
-          : contentType as ContentType,
+      contentType: contentType == freezed ? _value.contentType : contentType as ContentType,
       data: data == freezed ? _value.data : data as String,
       config: config == freezed ? _value.config : config as String,
       boxStyle: boxStyle == freezed ? _value.boxStyle : boxStyle as BoxStyle,
-      creationTime:
-          creationTime == freezed ? _value.creationTime : creationTime as int,
-      lastModifiedTime: lastModifiedTime == freezed
-          ? _value.lastModifiedTime
-          : lastModifiedTime as int,
+      creationTime: creationTime == freezed ? _value.creationTime : creationTime as int,
+      lastModifiedTime: lastModifiedTime == freezed ? _value.lastModifiedTime : lastModifiedTime as int,
     ));
   }
 
@@ -1160,10 +1076,8 @@ class _$PlacedScrapItemCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$PlacedScrapItemCopyWith<$Res>
-    implements $PlacedScrapItemCopyWith<$Res> {
-  factory _$PlacedScrapItemCopyWith(
-          _PlacedScrapItem value, $Res Function(_PlacedScrapItem) then) =
+abstract class _$PlacedScrapItemCopyWith<$Res> implements $PlacedScrapItemCopyWith<$Res> {
+  factory _$PlacedScrapItemCopyWith(_PlacedScrapItem value, $Res Function(_PlacedScrapItem) then) =
       __$PlacedScrapItemCopyWithImpl<$Res>;
   @override
   $Res call(
@@ -1191,11 +1105,9 @@ abstract class _$PlacedScrapItemCopyWith<$Res>
 }
 
 /// @nodoc
-class __$PlacedScrapItemCopyWithImpl<$Res>
-    extends _$PlacedScrapItemCopyWithImpl<$Res>
+class __$PlacedScrapItemCopyWithImpl<$Res> extends _$PlacedScrapItemCopyWithImpl<$Res>
     implements _$PlacedScrapItemCopyWith<$Res> {
-  __$PlacedScrapItemCopyWithImpl(
-      _PlacedScrapItem _value, $Res Function(_PlacedScrapItem) _then)
+  __$PlacedScrapItemCopyWithImpl(_PlacedScrapItem _value, $Res Function(_PlacedScrapItem) _then)
       : super(_value, (v) => _then(v as _PlacedScrapItem));
 
   @override
@@ -1223,8 +1135,7 @@ class __$PlacedScrapItemCopyWithImpl<$Res>
     Object lastModifiedTime = freezed,
   }) {
     return _then(_PlacedScrapItem(
-      documentId:
-          documentId == freezed ? _value.documentId : documentId as String,
+      documentId: documentId == freezed ? _value.documentId : documentId as String,
       key: key == freezed ? _value.key : key as String,
       bookId: bookId == freezed ? _value.bookId : bookId as String,
       pageId: pageId == freezed ? _value.pageId : pageId as String,
@@ -1236,17 +1147,12 @@ class __$PlacedScrapItemCopyWithImpl<$Res>
       rot: rot == freezed ? _value.rot : rot as double,
       scale: scale == freezed ? _value.scale : scale as double,
       aspect: aspect == freezed ? _value.aspect : aspect as double,
-      contentType: contentType == freezed
-          ? _value.contentType
-          : contentType as ContentType,
+      contentType: contentType == freezed ? _value.contentType : contentType as ContentType,
       data: data == freezed ? _value.data : data as String,
       config: config == freezed ? _value.config : config as String,
       boxStyle: boxStyle == freezed ? _value.boxStyle : boxStyle as BoxStyle,
-      creationTime:
-          creationTime == freezed ? _value.creationTime : creationTime as int,
-      lastModifiedTime: lastModifiedTime == freezed
-          ? _value.lastModifiedTime
-          : lastModifiedTime as int,
+      creationTime: creationTime == freezed ? _value.creationTime : creationTime as int,
+      lastModifiedTime: lastModifiedTime == freezed ? _value.lastModifiedTime : lastModifiedTime as int,
     ));
   }
 }
@@ -1285,8 +1191,7 @@ class _$_PlacedScrapItem extends _PlacedScrapItem with DiagnosticableTreeMixin {
         assert(lastModifiedTime != null),
         super._();
 
-  factory _$_PlacedScrapItem.fromJson(Map<String, dynamic> json) =>
-      _$_$_PlacedScrapItemFromJson(json);
+  factory _$_PlacedScrapItem.fromJson(Map<String, dynamic> json) => _$_$_PlacedScrapItemFromJson(json);
 
   @override
   @nullable
@@ -1375,47 +1280,27 @@ class _$_PlacedScrapItem extends _PlacedScrapItem with DiagnosticableTreeMixin {
     return identical(this, other) ||
         (other is _PlacedScrapItem &&
             (identical(other.documentId, documentId) ||
-                const DeepCollectionEquality()
-                    .equals(other.documentId, documentId)) &&
-            (identical(other.key, key) ||
-                const DeepCollectionEquality().equals(other.key, key)) &&
-            (identical(other.bookId, bookId) ||
-                const DeepCollectionEquality().equals(other.bookId, bookId)) &&
-            (identical(other.pageId, pageId) ||
-                const DeepCollectionEquality().equals(other.pageId, pageId)) &&
-            (identical(other.scrapId, scrapId) ||
-                const DeepCollectionEquality()
-                    .equals(other.scrapId, scrapId)) &&
-            (identical(other.dx, dx) ||
-                const DeepCollectionEquality().equals(other.dx, dx)) &&
-            (identical(other.dy, dy) ||
-                const DeepCollectionEquality().equals(other.dy, dy)) &&
-            (identical(other.width, width) ||
-                const DeepCollectionEquality().equals(other.width, width)) &&
-            (identical(other.height, height) ||
-                const DeepCollectionEquality().equals(other.height, height)) &&
-            (identical(other.rot, rot) ||
-                const DeepCollectionEquality().equals(other.rot, rot)) &&
-            (identical(other.scale, scale) ||
-                const DeepCollectionEquality().equals(other.scale, scale)) &&
-            (identical(other.aspect, aspect) ||
-                const DeepCollectionEquality().equals(other.aspect, aspect)) &&
+                const DeepCollectionEquality().equals(other.documentId, documentId)) &&
+            (identical(other.key, key) || const DeepCollectionEquality().equals(other.key, key)) &&
+            (identical(other.bookId, bookId) || const DeepCollectionEquality().equals(other.bookId, bookId)) &&
+            (identical(other.pageId, pageId) || const DeepCollectionEquality().equals(other.pageId, pageId)) &&
+            (identical(other.scrapId, scrapId) || const DeepCollectionEquality().equals(other.scrapId, scrapId)) &&
+            (identical(other.dx, dx) || const DeepCollectionEquality().equals(other.dx, dx)) &&
+            (identical(other.dy, dy) || const DeepCollectionEquality().equals(other.dy, dy)) &&
+            (identical(other.width, width) || const DeepCollectionEquality().equals(other.width, width)) &&
+            (identical(other.height, height) || const DeepCollectionEquality().equals(other.height, height)) &&
+            (identical(other.rot, rot) || const DeepCollectionEquality().equals(other.rot, rot)) &&
+            (identical(other.scale, scale) || const DeepCollectionEquality().equals(other.scale, scale)) &&
+            (identical(other.aspect, aspect) || const DeepCollectionEquality().equals(other.aspect, aspect)) &&
             (identical(other.contentType, contentType) ||
-                const DeepCollectionEquality()
-                    .equals(other.contentType, contentType)) &&
-            (identical(other.data, data) ||
-                const DeepCollectionEquality().equals(other.data, data)) &&
-            (identical(other.config, config) ||
-                const DeepCollectionEquality().equals(other.config, config)) &&
-            (identical(other.boxStyle, boxStyle) ||
-                const DeepCollectionEquality()
-                    .equals(other.boxStyle, boxStyle)) &&
+                const DeepCollectionEquality().equals(other.contentType, contentType)) &&
+            (identical(other.data, data) || const DeepCollectionEquality().equals(other.data, data)) &&
+            (identical(other.config, config) || const DeepCollectionEquality().equals(other.config, config)) &&
+            (identical(other.boxStyle, boxStyle) || const DeepCollectionEquality().equals(other.boxStyle, boxStyle)) &&
             (identical(other.creationTime, creationTime) ||
-                const DeepCollectionEquality()
-                    .equals(other.creationTime, creationTime)) &&
+                const DeepCollectionEquality().equals(other.creationTime, creationTime)) &&
             (identical(other.lastModifiedTime, lastModifiedTime) ||
-                const DeepCollectionEquality()
-                    .equals(other.lastModifiedTime, lastModifiedTime)));
+                const DeepCollectionEquality().equals(other.lastModifiedTime, lastModifiedTime)));
   }
 
   @override
@@ -1473,8 +1358,7 @@ abstract class _PlacedScrapItem extends PlacedScrapItem {
       int creationTime,
       int lastModifiedTime}) = _$_PlacedScrapItem;
 
-  factory _PlacedScrapItem.fromJson(Map<String, dynamic> json) =
-      _$_PlacedScrapItem.fromJson;
+  factory _PlacedScrapItem.fromJson(Map<String, dynamic> json) = _$_PlacedScrapItem.fromJson;
 
   @override
   @nullable
@@ -1533,14 +1417,10 @@ class _$BoxStyleTearOff {
 
 // ignore: unused_element
   _BoxStyle call(
-      {@JsonKey(fromJson: _colorFromJson, toJson: _colorToJson)
-          Color bgColor = Colors.transparent,
-      @JsonKey(fromJson: _colorFromJson, toJson: _colorToJson)
-          Color fgColor = Colors.black,
-      @nullable
-          BoxFonts font,
-      @nullable
-          TextAlign align}) {
+      {@JsonKey(fromJson: _colorFromJson, toJson: _colorToJson) Color bgColor = Colors.transparent,
+      @JsonKey(fromJson: _colorFromJson, toJson: _colorToJson) Color fgColor = Colors.black,
+      @nullable BoxFonts font,
+      @nullable TextAlign align}) {
     return _BoxStyle(
       bgColor: bgColor,
       fgColor: fgColor,
@@ -1577,8 +1457,7 @@ mixin _$BoxStyle {
 
 /// @nodoc
 abstract class $BoxStyleCopyWith<$Res> {
-  factory $BoxStyleCopyWith(BoxStyle value, $Res Function(BoxStyle) then) =
-      _$BoxStyleCopyWithImpl<$Res>;
+  factory $BoxStyleCopyWith(BoxStyle value, $Res Function(BoxStyle) then) = _$BoxStyleCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(fromJson: _colorFromJson, toJson: _colorToJson) Color bgColor,
       @JsonKey(fromJson: _colorFromJson, toJson: _colorToJson) Color fgColor,
@@ -1612,8 +1491,7 @@ class _$BoxStyleCopyWithImpl<$Res> implements $BoxStyleCopyWith<$Res> {
 
 /// @nodoc
 abstract class _$BoxStyleCopyWith<$Res> implements $BoxStyleCopyWith<$Res> {
-  factory _$BoxStyleCopyWith(_BoxStyle value, $Res Function(_BoxStyle) then) =
-      __$BoxStyleCopyWithImpl<$Res>;
+  factory _$BoxStyleCopyWith(_BoxStyle value, $Res Function(_BoxStyle) then) = __$BoxStyleCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(fromJson: _colorFromJson, toJson: _colorToJson) Color bgColor,
@@ -1623,8 +1501,7 @@ abstract class _$BoxStyleCopyWith<$Res> implements $BoxStyleCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$BoxStyleCopyWithImpl<$Res> extends _$BoxStyleCopyWithImpl<$Res>
-    implements _$BoxStyleCopyWith<$Res> {
+class __$BoxStyleCopyWithImpl<$Res> extends _$BoxStyleCopyWithImpl<$Res> implements _$BoxStyleCopyWith<$Res> {
   __$BoxStyleCopyWithImpl(_BoxStyle _value, $Res Function(_BoxStyle) _then)
       : super(_value, (v) => _then(v as _BoxStyle));
 
@@ -1652,20 +1529,15 @@ class __$BoxStyleCopyWithImpl<$Res> extends _$BoxStyleCopyWithImpl<$Res>
 /// @nodoc
 class _$_BoxStyle extends _BoxStyle with DiagnosticableTreeMixin {
   _$_BoxStyle(
-      {@JsonKey(fromJson: _colorFromJson, toJson: _colorToJson)
-          this.bgColor = Colors.transparent,
-      @JsonKey(fromJson: _colorFromJson, toJson: _colorToJson)
-          this.fgColor = Colors.black,
-      @nullable
-          this.font,
-      @nullable
-          this.align})
+      {@JsonKey(fromJson: _colorFromJson, toJson: _colorToJson) this.bgColor = Colors.transparent,
+      @JsonKey(fromJson: _colorFromJson, toJson: _colorToJson) this.fgColor = Colors.black,
+      @nullable this.font,
+      @nullable this.align})
       : assert(bgColor != null),
         assert(fgColor != null),
         super._();
 
-  factory _$_BoxStyle.fromJson(Map<String, dynamic> json) =>
-      _$_$_BoxStyleFromJson(json);
+  factory _$_BoxStyle.fromJson(Map<String, dynamic> json) => _$_$_BoxStyleFromJson(json);
 
   @override
   @JsonKey(fromJson: _colorFromJson, toJson: _colorToJson)
@@ -1700,16 +1572,10 @@ class _$_BoxStyle extends _BoxStyle with DiagnosticableTreeMixin {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _BoxStyle &&
-            (identical(other.bgColor, bgColor) ||
-                const DeepCollectionEquality()
-                    .equals(other.bgColor, bgColor)) &&
-            (identical(other.fgColor, fgColor) ||
-                const DeepCollectionEquality()
-                    .equals(other.fgColor, fgColor)) &&
-            (identical(other.font, font) ||
-                const DeepCollectionEquality().equals(other.font, font)) &&
-            (identical(other.align, align) ||
-                const DeepCollectionEquality().equals(other.align, align)));
+            (identical(other.bgColor, bgColor) || const DeepCollectionEquality().equals(other.bgColor, bgColor)) &&
+            (identical(other.fgColor, fgColor) || const DeepCollectionEquality().equals(other.fgColor, fgColor)) &&
+            (identical(other.font, font) || const DeepCollectionEquality().equals(other.font, font)) &&
+            (identical(other.align, align) || const DeepCollectionEquality().equals(other.align, align)));
   }
 
   @override
@@ -1722,8 +1588,7 @@ class _$_BoxStyle extends _BoxStyle with DiagnosticableTreeMixin {
 
   @JsonKey(ignore: true)
   @override
-  _$BoxStyleCopyWith<_BoxStyle> get copyWith =>
-      __$BoxStyleCopyWithImpl<_BoxStyle>(this, _$identity);
+  _$BoxStyleCopyWith<_BoxStyle> get copyWith => __$BoxStyleCopyWithImpl<_BoxStyle>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {

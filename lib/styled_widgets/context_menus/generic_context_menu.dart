@@ -1,4 +1,4 @@
-//dart 2.9
+// @dart=2.12
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -10,12 +10,12 @@ import 'core/context_menu_card.dart';
 
 class GenericContextMenu extends BaseContextMenu {
   const GenericContextMenu({
-    Key key,
-    this.labels,
-    this.actions,
+    Key? key,
+    required this.labels,
+    required this.actions,
     this.addDividers = false,
   }) : super(key: key);
-  final List<String> labels;
+  final List<String?> labels;
   final List<VoidCallback> actions;
   final bool addDividers;
 

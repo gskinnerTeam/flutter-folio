@@ -1,4 +1,4 @@
-//dart 2.9
+// @dart=2.9
 import 'package:flutter/material.dart';
 
 // Some mixins to save boilerplate and prevent bugs around setup/teardown of AnimationControllers

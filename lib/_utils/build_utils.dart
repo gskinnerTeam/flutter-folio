@@ -1,8 +1,7 @@
-//dart 2.9
+// @dart=2.9
 import 'package:flutter/material.dart';
 
 class BuildUtils {
-
   static void getFutureSizeFromGlobalKey(GlobalKey key, void Function(Size size) callback) {
     Future.microtask(() {
       Size size = getSizeFromContext(key.currentContext);
@@ -21,6 +20,4 @@ class BuildUtils {
     RenderBox rb = context.findRenderObject() as RenderBox;
     return rb?.localToGlobal(offset ?? Offset.zero);
   }
-
-
 }

@@ -1,4 +1,4 @@
-//dart 2.9
+// @dart=2.9
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
@@ -62,15 +62,9 @@ mixin _$AppUser {
 
 /// @nodoc
 abstract class $AppUserCopyWith<$Res> {
-  factory $AppUserCopyWith(AppUser value, $Res Function(AppUser) then) =
-      _$AppUserCopyWithImpl<$Res>;
+  factory $AppUserCopyWith(AppUser value, $Res Function(AppUser) then) = _$AppUserCopyWithImpl<$Res>;
   $Res call(
-      {@nullable String documentId,
-      String email,
-      String fireId,
-      String firstName,
-      String lastName,
-      String imageUrl});
+      {@nullable String documentId, String email, String fireId, String firstName, String lastName, String imageUrl});
 }
 
 /// @nodoc
@@ -91,8 +85,7 @@ class _$AppUserCopyWithImpl<$Res> implements $AppUserCopyWith<$Res> {
     Object imageUrl = freezed,
   }) {
     return _then(_value.copyWith(
-      documentId:
-          documentId == freezed ? _value.documentId : documentId as String,
+      documentId: documentId == freezed ? _value.documentId : documentId as String,
       email: email == freezed ? _value.email : email as String,
       fireId: fireId == freezed ? _value.fireId : fireId as String,
       firstName: firstName == freezed ? _value.firstName : firstName as String,
@@ -104,23 +97,15 @@ class _$AppUserCopyWithImpl<$Res> implements $AppUserCopyWith<$Res> {
 
 /// @nodoc
 abstract class _$AppUserCopyWith<$Res> implements $AppUserCopyWith<$Res> {
-  factory _$AppUserCopyWith(_AppUser value, $Res Function(_AppUser) then) =
-      __$AppUserCopyWithImpl<$Res>;
+  factory _$AppUserCopyWith(_AppUser value, $Res Function(_AppUser) then) = __$AppUserCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@nullable String documentId,
-      String email,
-      String fireId,
-      String firstName,
-      String lastName,
-      String imageUrl});
+      {@nullable String documentId, String email, String fireId, String firstName, String lastName, String imageUrl});
 }
 
 /// @nodoc
-class __$AppUserCopyWithImpl<$Res> extends _$AppUserCopyWithImpl<$Res>
-    implements _$AppUserCopyWith<$Res> {
-  __$AppUserCopyWithImpl(_AppUser _value, $Res Function(_AppUser) _then)
-      : super(_value, (v) => _then(v as _AppUser));
+class __$AppUserCopyWithImpl<$Res> extends _$AppUserCopyWithImpl<$Res> implements _$AppUserCopyWith<$Res> {
+  __$AppUserCopyWithImpl(_AppUser _value, $Res Function(_AppUser) _then) : super(_value, (v) => _then(v as _AppUser));
 
   @override
   _AppUser get _value => super._value as _AppUser;
@@ -135,8 +120,7 @@ class __$AppUserCopyWithImpl<$Res> extends _$AppUserCopyWithImpl<$Res>
     Object imageUrl = freezed,
   }) {
     return _then(_AppUser(
-      documentId:
-          documentId == freezed ? _value.documentId : documentId as String,
+      documentId: documentId == freezed ? _value.documentId : documentId as String,
       email: email == freezed ? _value.email : email as String,
       fireId: fireId == freezed ? _value.fireId : fireId as String,
       firstName: firstName == freezed ? _value.firstName : firstName as String,
@@ -161,8 +145,7 @@ class _$_AppUser extends _AppUser {
         assert(fireId != null),
         super._();
 
-  factory _$_AppUser.fromJson(Map<String, dynamic> json) =>
-      _$_$_AppUserFromJson(json);
+  factory _$_AppUser.fromJson(Map<String, dynamic> json) => _$_$_AppUserFromJson(json);
 
   @override
   @nullable
@@ -188,21 +171,13 @@ class _$_AppUser extends _AppUser {
     return identical(this, other) ||
         (other is _AppUser &&
             (identical(other.documentId, documentId) ||
-                const DeepCollectionEquality()
-                    .equals(other.documentId, documentId)) &&
-            (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)) &&
-            (identical(other.fireId, fireId) ||
-                const DeepCollectionEquality().equals(other.fireId, fireId)) &&
+                const DeepCollectionEquality().equals(other.documentId, documentId)) &&
+            (identical(other.email, email) || const DeepCollectionEquality().equals(other.email, email)) &&
+            (identical(other.fireId, fireId) || const DeepCollectionEquality().equals(other.fireId, fireId)) &&
             (identical(other.firstName, firstName) ||
-                const DeepCollectionEquality()
-                    .equals(other.firstName, firstName)) &&
-            (identical(other.lastName, lastName) ||
-                const DeepCollectionEquality()
-                    .equals(other.lastName, lastName)) &&
-            (identical(other.imageUrl, imageUrl) ||
-                const DeepCollectionEquality()
-                    .equals(other.imageUrl, imageUrl)));
+                const DeepCollectionEquality().equals(other.firstName, firstName)) &&
+            (identical(other.lastName, lastName) || const DeepCollectionEquality().equals(other.lastName, lastName)) &&
+            (identical(other.imageUrl, imageUrl) || const DeepCollectionEquality().equals(other.imageUrl, imageUrl)));
   }
 
   @override
@@ -217,8 +192,7 @@ class _$_AppUser extends _AppUser {
 
   @JsonKey(ignore: true)
   @override
-  _$AppUserCopyWith<_AppUser> get copyWith =>
-      __$AppUserCopyWithImpl<_AppUser>(this, _$identity);
+  _$AppUserCopyWith<_AppUser> get copyWith => __$AppUserCopyWithImpl<_AppUser>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {

@@ -1,4 +1,4 @@
-//dart 2.9
+// @dart=2.9
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

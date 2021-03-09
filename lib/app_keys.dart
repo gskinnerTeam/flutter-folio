@@ -1,4 +1,4 @@
-//dart 2.9
+// @dart=2.9
 class AppKeys {
   static String cloudinaryCloud = "flutterfoliodemo";
   static String cloudinaryPreset = "ujszrrfn";

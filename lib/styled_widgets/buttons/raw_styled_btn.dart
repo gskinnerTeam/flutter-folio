@@ -1,4 +1,4 @@
-//dart 2.9
+// @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_folio/_utils/string_utils.dart';
@@ -9,10 +9,10 @@ import 'package:flutter_folio/models/app_model.dart';
 import 'package:provider/provider.dart';
 
 class BtnColors {
-  BtnColors({@required this.bg, @required this.fg, this.outline});
+  BtnColors({required this.bg, required this.fg, this.outline});
   final Color bg;
   final Color fg;
-  final Color outline;
+  final Color? outline;
 }
 
 enum BtnTheme { Primary, Secondary, Raw }
@@ -22,44 +22,44 @@ enum BtnTheme { Primary, Secondary, Raw }
 // It takes care of adding a visual indicator  when the btn is Focused.
 class RawBtn extends StatefulWidget {
   const RawBtn(
-      {Key key,
-      @required this.child,
+      {Key? key,
+      required this.child,
+      required this.onPressed,
       this.normalColors,
       this.hoverColors,
-      @required this.onPressed,
       this.padding,
       this.focusMargin,
-      this.enableShadow,
-      this.enableFocus,
+      this.enableShadow = true,
+      this.enableFocus = true,
       this.cornerRadius})
       : super(key: key);
   final Widget child;
-  final BtnColors normalColors;
-  final BtnColors hoverColors;
-  final VoidCallback onPressed;
-  final EdgeInsets padding;
-  final double focusMargin;
+  final VoidCallback? onPressed;
+  final BtnColors? normalColors;
+  final BtnColors? hoverColors;
+  final EdgeInsets? padding;
+  final double? focusMargin;
   final bool enableShadow;
   final bool enableFocus;
-  final double cornerRadius;
+  final double? cornerRadius;
 
   @override
   _RawBtnState createState() => _RawBtnState();
 }
 
 class _RawBtnState extends State<RawBtn> {
-  FocusNode _focusNode = FocusNode();
+  late FocusNode _focusNode;
 
   @override
   void initState() {
     super.initState();
-    _focusNode = FocusNode(canRequestFocus: widget.enableFocus ?? true);
+    _focusNode = FocusNode(canRequestFocus: widget.enableFocus);
     _focusNode.addListener(() => setState(() {}));
   }
 
   @override
   void didUpdateWidget(covariant RawBtn oldWidget) {
-    _focusNode.canRequestFocus = widget.enableFocus ?? true;
+    _focusNode.canRequestFocus = widget.enableFocus;
     super.didUpdateWidget(oldWidget);
   }
 
@@ -71,14 +71,14 @@ class _RawBtnState extends State<RawBtn> {
 
   @override
   Widget build(BuildContext context) {
-    MaterialStateProperty<T> getMaterialState<T>({T normal, T hover}) =>
+    MaterialStateProperty<T> getMaterialState<T>({required T normal, required T hover}) =>
         MaterialStateProperty.resolveWith<T>((Set states) {
           if (states.contains(MaterialState.hovered)) return hover;
           if (states.contains(MaterialState.focused)) return hover;
           return normal;
         });
     AppTheme theme = Provider.of(context);
-    List<BoxShadow> shadows = (widget.enableShadow ?? true) ? Shadows.universal : [];
+    List<BoxShadow> shadows = (widget.enableShadow) ? Shadows.universal : [];
     BtnColors normalColors = widget.normalColors ?? BtnColors(fg: theme.greyMedium, bg: Colors.transparent);
     BtnColors hoverColors = widget.hoverColors ?? BtnColors(fg: theme.focus, bg: theme.focus.withOpacity(.1));
     double focusMargin = widget.focusMargin ?? -5;
@@ -92,9 +92,7 @@ class _RawBtnState extends State<RawBtn> {
           Container(
             // Add custom shadow
             decoration: BoxDecoration(
-                borderRadius:
-                    widget.cornerRadius != null ? BorderRadius.circular(widget.cornerRadius) : Corners.medBorder,
-                boxShadow: shadows),
+                borderRadius: BorderRadius.circular(widget.cornerRadius ?? Corners.med), boxShadow: shadows),
             child: TextButton(
               focusNode: _focusNode,
               onPressed: widget.onPressed,
@@ -105,8 +103,8 @@ class _RawBtnState extends State<RawBtn> {
                   borderRadius: BorderRadius.circular(widget.cornerRadius ?? Corners.med),
                 )),
                 side: getMaterialState(
-                    normal: BorderSide(color: normalColors?.outline ?? Colors.transparent),
-                    hover: BorderSide(color: hoverColors?.outline ?? Colors.transparent)),
+                    normal: BorderSide(color: normalColors.outline ?? Colors.transparent),
+                    hover: BorderSide(color: hoverColors.outline ?? Colors.transparent)),
                 overlayColor: MaterialStateProperty.all(Colors.transparent),
                 foregroundColor: getMaterialState(normal: normalColors.fg, hover: hoverColors.fg),
                 backgroundColor: getMaterialState(normal: normalColors.bg, hover: hoverColors.bg),
@@ -134,14 +132,14 @@ class _RawBtnState extends State<RawBtn> {
 // Accepts label, icon and child, with child taking precedence.
 class BtnContent extends StatelessWidget {
   const BtnContent(
-      {Key key, this.label, this.icon, this.child, this.leadingIcon = false, this.isCompact = false, this.labelStyle})
+      {Key? key, this.label, this.icon, this.child, this.leadingIcon = false, this.isCompact = false, this.labelStyle})
       : super(key: key);
-  final Widget child;
-  final String label;
-  final IconData icon;
   final bool leadingIcon;
   final bool isCompact;
-  final TextStyle labelStyle;
+  final Widget? child;
+  final String? label;
+  final IconData? icon;
+  final TextStyle? labelStyle;
 
   @override
   Widget build(BuildContext context) {
@@ -164,7 +162,8 @@ class BtnContent extends StatelessWidget {
             children: [
               /// Label?
               if (hasLbl) ...[
-                Text(label.toUpperCase(), style: labelStyle ?? (isCompact ? TextStyles.callout2 : TextStyles.callout1)),
+                Text((label ?? "").toUpperCase(),
+                    style: labelStyle ?? (isCompact ? TextStyles.callout2 : TextStyles.callout1)),
               ],
 
               /// Spacer - Show if both pieces of content are visible

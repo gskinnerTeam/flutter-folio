@@ -1,4 +1,4 @@
-//dart 2.9
+// @dart=2.9
 import 'package:flutter/material.dart';
 
 // Has a notify() method that reduces boilerplate in ChangeNotifiers, similar to setState((){}) in a StatefulWidget;

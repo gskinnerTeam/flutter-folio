@@ -1,4 +1,4 @@
-//dart 2.9
+// @dart=2.9
 import 'dart:io';
 
 import 'package:flutter_folio/commands/app/set_current_user_command.dart';

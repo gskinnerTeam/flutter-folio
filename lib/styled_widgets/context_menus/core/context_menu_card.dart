@@ -1,10 +1,10 @@
-//dart 2.9
+// @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/core_packages.dart';
 
 // Styled Background for each ContextMenu
 class ContextMenuCard extends StatelessWidget {
-  const ContextMenuCard({Key key, this.children}) : super(key: key);
+  const ContextMenuCard({Key? key, required this.children}) : super(key: key);
   final List<Widget> children;
   @override
   Widget build(BuildContext context) {

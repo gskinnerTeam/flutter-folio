@@ -1,4 +1,4 @@
-//dart 2.9
+// @dart=2.9
 import 'package:flutter_folio/_utils/input_utils.dart';
 import 'package:flutter_folio/commands/books/refresh_current_book_command.dart';
 import 'package:flutter_folio/commands/commands.dart';

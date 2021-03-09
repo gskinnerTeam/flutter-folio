@@ -1,13 +1,13 @@
-//dart 2.9
+// @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_utils/string_utils.dart';
 import 'package:flutter_folio/core_packages.dart';
 
 class DeleteDialog extends StatelessWidget {
-  const DeleteDialog({Key key, @required this.title, @required this.desc1, this.desc2}) : super(key: key);
+  const DeleteDialog({Key? key, required this.title, required this.desc1, this.desc2}) : super(key: key);
   final String title;
   final String desc1;
-  final String desc2;
+  final String? desc2;
 
   @override
   Widget build(BuildContext context) {

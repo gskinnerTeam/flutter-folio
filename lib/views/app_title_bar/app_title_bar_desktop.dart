@@ -1,4 +1,4 @@
-//dart 2.9
+// @dart=2.9
 part of 'app_title_bar.dart';
 
 class _AppTitleBarDesktop extends StatelessWidget {

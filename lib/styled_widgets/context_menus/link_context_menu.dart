@@ -1,4 +1,4 @@
-//dart 2.9
+// @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -8,7 +8,7 @@ import 'core/context_menu_button.dart';
 import 'core/context_menu_card.dart';
 
 class LinkContextMenu extends BaseContextMenu {
-  const LinkContextMenu({Key key, @required this.url}) : super(key: key);
+  const LinkContextMenu({Key? key, required this.url}) : super(key: key);
   final String url;
 
   String getUrl() {

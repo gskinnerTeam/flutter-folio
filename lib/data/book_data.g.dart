@@ -1,4 +1,4 @@
-//dart 2.9
+// @dart=2.9
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 part of 'book_data.dart';
@@ -21,8 +21,7 @@ _$_ScrapBookData _$_$_ScrapBookDataFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$_ScrapBookDataToJson(_$_ScrapBookData instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$_$_ScrapBookDataToJson(_$_ScrapBookData instance) => <String, dynamic>{
       'documentId': instance.documentId,
       'key': instance.key,
       'title': instance.title,
@@ -45,8 +44,7 @@ _$_ScrapPageData _$_$_ScrapPageDataFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$_ScrapPageDataToJson(_$_ScrapPageData instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$_$_ScrapPageDataToJson(_$_ScrapPageData instance) => <String, dynamic>{
       'documentId': instance.documentId,
       'key': instance.key,
       'bookId': instance.bookId,
@@ -65,13 +63,11 @@ _$_ScrapItem _$_$_ScrapItemFromJson(Map<String, dynamic> json) {
     photos: (json['photos'] as List)?.map((e) => e as String)?.toList() ?? [],
     creationTime: json['creationTime'] as int ?? -1,
     aspect: (json['aspect'] as num)?.toDouble() ?? 1,
-    contentType:
-        _$enumDecodeNullable(_$ContentTypeEnumMap, json['contentType']),
+    contentType: _$enumDecodeNullable(_$ContentTypeEnumMap, json['contentType']),
   );
 }
 
-Map<String, dynamic> _$_$_ScrapItemToJson(_$_ScrapItem instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$_$_ScrapItemToJson(_$_ScrapItem instance) => <String, dynamic>{
       'documentId': instance.documentId,
       'key': instance.key,
       'bookId': instance.bookId,
@@ -93,9 +89,7 @@ T _$enumDecode<T>(
         '${enumValues.values.join(', ')}');
   }
 
-  final value = enumValues.entries
-      .singleWhere((e) => e.value == source, orElse: () => null)
-      ?.key;
+  final value = enumValues.entries.singleWhere((e) => e.value == source, orElse: () => null)?.key;
 
   if (value == null && unknownValue == null) {
     throw ArgumentError('`$source` is not one of the supported values: '
@@ -136,20 +130,16 @@ _$_PlacedScrapItem _$_$_PlacedScrapItemFromJson(Map<String, dynamic> json) {
     rot: (json['rot'] as num)?.toDouble() ?? 0,
     scale: (json['scale'] as num)?.toDouble() ?? 1,
     aspect: (json['aspect'] as num)?.toDouble() ?? 1,
-    contentType:
-        _$enumDecodeNullable(_$ContentTypeEnumMap, json['contentType']),
+    contentType: _$enumDecodeNullable(_$ContentTypeEnumMap, json['contentType']),
     data: json['data'] as String,
     config: json['config'] as String,
-    boxStyle: json['boxStyle'] == null
-        ? null
-        : BoxStyle.fromJson(json['boxStyle'] as Map<String, dynamic>),
+    boxStyle: json['boxStyle'] == null ? null : BoxStyle.fromJson(json['boxStyle'] as Map<String, dynamic>),
     creationTime: json['creationTime'] as int ?? -1,
     lastModifiedTime: json['lastModifiedTime'] as int ?? -1,
   );
 }
 
-Map<String, dynamic> _$_$_PlacedScrapItemToJson(_$_PlacedScrapItem instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$_$_PlacedScrapItemToJson(_$_PlacedScrapItem instance) => <String, dynamic>{
       'documentId': instance.documentId,
       'key': instance.key,
       'bookId': instance.bookId,
@@ -179,8 +169,7 @@ _$_BoxStyle _$_$_BoxStyleFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$_BoxStyleToJson(_$_BoxStyle instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$_$_BoxStyleToJson(_$_BoxStyle instance) => <String, dynamic>{
       'bgColor': _colorToJson(instance.bgColor),
       'fgColor': _colorToJson(instance.fgColor),
       'font': _$BoxFontsEnumMap[instance.font],

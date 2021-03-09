@@ -1,4 +1,4 @@
-//dart 2.9
+// @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/commands/books/delete_page_scrap_command.dart';
 import 'package:flutter_folio/commands/books/shift_placed_scraps_sort_order_command.dart';
@@ -11,7 +11,7 @@ import 'package:flutter_folio/styled_widgets/context_menus/core/context_menu_but
 import 'package:flutter_folio/styled_widgets/context_menus/core/context_menu_card.dart';
 
 class ScrapContextMenu extends BaseContextMenu {
-  ScrapContextMenu({Key key, @required this.scrap}) : super(key: key);
+  ScrapContextMenu({Key? key, required this.scrap}) : super(key: key);
   final PlacedScrapItem scrap;
 
   @override

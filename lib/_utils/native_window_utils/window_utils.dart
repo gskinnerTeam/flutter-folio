@@ -1,4 +1,4 @@
-//dart 2.9
+// @dart=2.9
 library native_utils;
 
 import 'package:flutter/material.dart';

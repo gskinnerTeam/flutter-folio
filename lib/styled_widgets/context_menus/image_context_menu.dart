@@ -1,4 +1,4 @@
-//dart 2.9
+// @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/styled_widgets/context_menus/core/base_context_menu.dart';
 import 'package:flutter_folio/styled_widgets/context_menus/core/context_menu_button.dart';
@@ -6,7 +6,7 @@ import 'package:flutter_folio/styled_widgets/context_menus/core/context_menu_car
 
 // TODO: Add this to all images, and finish it off by adding a FilePicker so images can be downloaded.
 class ImageContextMenu extends BaseContextMenu {
-  const ImageContextMenu({Key key, this.url}) : super(key: key);
+  const ImageContextMenu({Key? key, required this.url}) : super(key: key);
   final String url;
 
   @override

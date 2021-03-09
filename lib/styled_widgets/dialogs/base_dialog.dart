@@ -1,13 +1,13 @@
-//dart 2.9
+// @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/core_packages.dart';
 
 class BaseStyledDialog extends StatelessWidget {
-  final Color bgColor;
-  final EdgeInsets padding;
+  final Color? bgColor;
+  final EdgeInsets? padding;
   final Widget child;
 
-  const BaseStyledDialog({Key key, this.bgColor, this.padding, this.child}) : super(key: key);
+  const BaseStyledDialog({Key? key, required this.child, this.bgColor, this.padding}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     var theme = context.watch<AppTheme>();

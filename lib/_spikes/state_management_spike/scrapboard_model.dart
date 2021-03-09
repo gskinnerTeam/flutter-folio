@@ -1,4 +1,4 @@
-//dart 2.9
+// @dart=2.9
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_folio/_utils/easy_notifier.dart';
 import 'package:flutter_folio/data/book_data.dart';

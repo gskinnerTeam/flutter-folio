@@ -1,4 +1,4 @@
-//dart 2.9
+// @dart=2.9
 import 'package:flutter_folio/data/book_data.dart';
 
 class _IndexPair {
