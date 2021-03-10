@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +25,7 @@ class AppIcon extends StatelessWidget {
   final double size;
   final Color color;
 
-  const AppIcon(this.icon, {Key key, this.size, this.color}) : super(key: key);
+  const AppIcon(this.icon, {Key? key, required this.size, required this.color}) : super(key: key);
   Widget build(BuildContext c) {
     String i = describeEnum(icon).toLowerCase().replaceAll("_", "-");
     return Container(

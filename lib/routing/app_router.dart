@@ -68,7 +68,7 @@ class AppRouterDelegate extends RouterDelegate<AppLink> with ChangeNotifier {
           ]
           // Guest users can only see the EditView in read-only mode
           else if (isGuestUser) ...[
-            BookEditorPage(bookId: currentBookId, readOnly: true),
+            EditorPage(bookId: currentBookId, readOnly: true),
           ]
           // Regular users
           else ...[
@@ -80,7 +80,7 @@ class AppRouterDelegate extends RouterDelegate<AppLink> with ChangeNotifier {
             else ...[
               BooksHomePage(),
               if (currentBookId != null) ...[
-                BookEditorPage(bookId: currentBookId),
+                EditorPage(bookId: currentBookId),
               ]
             ],
           ]

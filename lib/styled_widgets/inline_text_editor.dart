@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_folio/_utils/string_utils.dart';
@@ -9,33 +9,33 @@ import 'package:universal_platform/universal_platform.dart';
 //TODO: This is a good package / code example / blogpost
 class InlineTextEditor extends StatefulWidget {
   const InlineTextEditor(this.text,
-      {Key key,
-      @required this.width,
+      {Key? key,
+      required this.width,
       this.style,
       this.maxLines = 1,
       this.alignVertical = TextAlignVertical.center,
       this.align = TextAlign.left,
       this.onChanged,
       this.promptText,
-      this.onFocusOut,
       this.onFocusIn,
+      this.onFocusOut,
       this.controller,
       this.enableContextMenu = true,
       this.autoFocus = false})
       : super(key: key);
   final double width;
   final String text;
-  final TextStyle style;
   final int maxLines;
   final bool autoFocus;
   final TextAlignVertical alignVertical;
   final TextAlign align;
-  final void Function(String value) onChanged;
-  final void Function() onFocusIn;
-  final void Function(String value) onFocusOut;
-  final String promptText;
+  final TextStyle? style;
+  final void Function(String value)? onChanged;
+  final String? promptText;
+  final void Function()? onFocusIn;
+  final void Function(String value)? onFocusOut;
+  final TextEditingController? controller;
   final bool enableContextMenu;
-  final TextEditingController controller;
 
   @override
   _InlineTextEditorState createState() => _InlineTextEditorState();
@@ -43,7 +43,7 @@ class InlineTextEditor extends StatefulWidget {
 
 class _InlineTextEditorState extends State<InlineTextEditor> {
   bool _isEditing = false;
-  TextEditingController _textController;
+  late TextEditingController _textController;
   FocusNode _textFocus = FocusNode();
 
   @override
@@ -167,11 +167,11 @@ class _InlineTextEditorState extends State<InlineTextEditor> {
   }
 
   //region Fix for bug: https://github.com/flutter/flutter/issues/76474
-  // TODO: Remove
+  // TODO: Remove when this bug is fixed
   String lastValue = "";
-  int lastPosition;
+  int lastPosition = 0;
   final FocusNode rawFocus = FocusNode();
-  @override
+
   void _fixTextOnLinux(String value) {
     if (value.length > 1 && lastValue.length < value.length) {
       final enteredChar = value[0];
@@ -190,7 +190,7 @@ class _InlineTextEditorState extends State<InlineTextEditor> {
       lastValue = value;
       lastPosition = value.length;
     }
-    widget.onChanged(value);
+    widget.onChanged?.call(value);
   }
 
 //endregion

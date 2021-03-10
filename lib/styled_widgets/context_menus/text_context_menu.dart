@@ -14,47 +14,49 @@ class TextContextMenu extends BaseContextMenu {
   final bool obscuredText;
 
   void _handleCopyPressed() async {
-    String value = controller?.selection?.textInside(data) ?? data;
+    String value = controller?.selection.textInside(data) ?? data;
     Clipboard.setData(ClipboardData(text: value));
   }
 
   void _handleDeletePressed() async => controller?.clear();
 
   void _handleSelectAllPressed() async {
-    if (controller == null) return;
-    controller?.selection = TextSelection(baseOffset: 0, extentOffset: controller?.text?.length ?? 0);
+    controller?.selection = TextSelection(baseOffset: 0, extentOffset: controller?.text.length ?? 0);
   }
 
   void _handlePastePressed() async {
-    if (controller == null) return;
-    int start = controller!.selection.start;
-    removeTextRange(controller!.selection.start, controller!.selection.end);
+    final c = controller;
+    if (c == null) return;
+    int start = c.selection.start;
+    removeTextRange(c.selection.start, c.selection.end);
     String? value = (await Clipboard.getData("text/plain"))?.text;
     if (value != null) {
-      addTextAtOffset(controller!.selection.start, value);
+      addTextAtOffset(c.selection.start, value);
       // Move cursor to end on paste, as one does on desktop :)
-      controller!.selection = TextSelection.fromPosition(TextPosition(offset: start + value.length));
+      c.selection = TextSelection.fromPosition(TextPosition(offset: start + value.length));
     }
   }
 
   void _handleCutPressed() async {
-    if (controller == null) return;
+    final c = controller;
+    if (c == null) return;
     // Remove selected section, insert new selection at offset
-    int start = controller!.selection.start;
-    int end = controller!.selection.end;
+    int start = c.selection.start;
+    int end = c.selection.end;
     //Copy content
-    String content = controller!.text.substring(start, end);
+    String content = c.text.substring(start, end);
     Clipboard.setData(ClipboardData(text: content));
     //Remove content
     removeTextRange(start, end);
   }
 
   void addTextAtOffset(int start, String value) {
-    if (controller == null) return;
-    String p1 = controller!.text.substring(0, start);
-    String p2 = controller!.text.substring(start);
-    controller!.text = p1 + value + p2;
-    controller!.selection = TextSelection.fromPosition(TextPosition(offset: start + value.length));
+    final c = controller;
+    if (c == null) return;
+    String p1 = c.text.substring(0, start);
+    String p2 = c.text.substring(start);
+    c.text = p1 + value + p2;
+    c.selection = TextSelection.fromPosition(TextPosition(offset: start + value.length));
   }
 
   void removeTextRange(int start, int end) {
@@ -70,7 +72,7 @@ class TextContextMenu extends BaseContextMenu {
     bool allSelected = false, noneSelected = true;
     final c = controller;
     if (c != null) {
-      c.value.selection == TextSelection(baseOffset: 0, extentOffset: c.text.length ?? 0);
+      c.value.selection == TextSelection(baseOffset: 0, extentOffset: c.text.length);
       noneSelected = c.value.selection.isCollapsed;
     }
     bool disableCopy = noneSelected || obscuredText;
@@ -96,4 +98,19 @@ class TextContextMenu extends BaseContextMenu {
       ],
     );
   }
+}
+
+class Foo extends StatelessWidget {
+  const Foo({Key? key, this.value}) : super(key: key);
+  final String? value;
+
+  @override
+  Widget build(BuildContext context) {
+    return (value == null) ? Container() : Text(value!);
+  }
+}
+
+class Bar extends Foo {
+  @override
+  String? get value => null;
 }

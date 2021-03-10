@@ -9,7 +9,7 @@ abstract class BaseContextMenu extends StatelessWidget {
   const BaseContextMenu({Key? key}) : super(key: key);
   // Convenience method so each menu item does not need to manually Close the context menu.
   void handlePressed(BuildContext context, VoidCallback action) {
-    action?.call();
+    action.call();
     CloseContextMenuNotification().dispatch(context);
   }
 }

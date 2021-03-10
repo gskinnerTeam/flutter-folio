@@ -1,17 +1,16 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_folio/_utils/string_utils.dart';
-import 'package:flutter_folio/_widgets/context_menu_overlay.dart';
 import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/models/app_model.dart';
 import 'package:universal_platform/universal_platform.dart';
 
 class LabeledTextInput extends StatefulWidget {
   const LabeledTextInput(
-      {Key key,
+      {Key? key,
       this.text,
-      this.label,
+      this.label = "",
       this.onChanged,
       this.onSubmit,
       this.style,
@@ -20,20 +19,20 @@ class LabeledTextInput extends StatefulWidget {
       this.hintText,
       this.controller,
       this.autofillHints,
-      this.obscureText,
+      this.obscureText = false,
       this.autoFocus = false})
       : super(key: key);
 
   final String label;
-  final String text;
-  final TextStyle style;
-  final TextStyle labelStyle;
+  final String? text;
+  final TextStyle? style;
+  final TextStyle? labelStyle;
   final int numLines;
-  final void Function(String value) onChanged;
-  final void Function(String value) onSubmit;
-  final String hintText;
-  final TextEditingController controller;
-  final List<String> autofillHints;
+  final void Function(String value)? onChanged;
+  final void Function(String value)? onSubmit;
+  final String? hintText;
+  final TextEditingController? controller;
+  final List<String>? autofillHints;
   final bool obscureText;
   final bool autoFocus;
 
@@ -54,7 +53,7 @@ class _LabeledTextInputState extends State<LabeledTextInput> {
         children: [
           if (StringUtils.isNotEmpty(widget.label)) ...[
             UiText(
-              widget.label ?? "",
+              widget.label,
               style: widget.labelStyle ?? TextStyles.caption,
             ),
             VSpace.med,
@@ -79,7 +78,7 @@ class _LabeledTextInputState extends State<LabeledTextInput> {
                   autofocus: widget.autoFocus,
                   minLines: widget.numLines,
                   maxLines: widget.numLines,
-                  obscureText: widget.obscureText ?? false,
+                  obscureText: widget.obscureText,
                   decoration: InputDecoration(
                       hintText: widget.hintText ?? "",
                       enabledBorder: OutlineInputBorder(
@@ -115,9 +114,9 @@ class _LabeledTextInputState extends State<LabeledTextInput> {
   //region Fix for bug: https://github.com/flutter/flutter/issues/76474
   // TODO: Remove
   String lastValue = "";
-  int lastPosition;
+  int lastPosition = 0;
   final FocusNode rawFocus = FocusNode(canRequestFocus: false);
-  TextEditingController _controller;
+  late TextEditingController _controller;
   @override
   void initState() {
     super.initState();
@@ -128,7 +127,7 @@ class _LabeledTextInputState extends State<LabeledTextInput> {
   void dispose() {
     // Only dispose our internal controller
     if (_controller != widget.controller) {
-      _controller?.dispose();
+      _controller.dispose();
     }
     super.dispose();
   }
@@ -151,7 +150,7 @@ class _LabeledTextInputState extends State<LabeledTextInput> {
       lastValue = value;
       lastPosition = value.length;
     }
-    widget.onChanged(value);
+    widget.onChanged?.call(value);
   }
 
   //endregion

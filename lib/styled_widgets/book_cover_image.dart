@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 // Wraps a CachedNetworkImage + a fallback placeholder if no image is set.
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_utils/string_utils.dart';
@@ -7,7 +7,7 @@ import 'package:flutter_folio/data/book_data.dart';
 
 /// An image that falls back to a placeholder img
 class BookCoverImage extends StatefulWidget {
-  const BookCoverImage(this.data, {Key key}) : super(key: key);
+  const BookCoverImage(this.data, {Key? key}) : super(key: key);
   final ScrapBookData data;
 
   @override
@@ -17,7 +17,7 @@ class BookCoverImage extends StatefulWidget {
 class _BookCoverImageState extends State<BookCoverImage> {
   @override
   Widget build(BuildContext context) {
-    bool usePlaceholder = StringUtils.isEmpty(widget?.data?.imageUrl);
+    bool usePlaceholder = StringUtils.isEmpty(widget.data.imageUrl);
     if (!usePlaceholder) {
       //print(widget.data.imageUrl);
       return HostedImage(widget.data.imageUrl, fit: BoxFit.cover);

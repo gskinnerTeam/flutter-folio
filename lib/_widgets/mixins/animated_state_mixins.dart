@@ -2,7 +2,8 @@
 import 'package:flutter/material.dart';
 
 // Some mixins to save boilerplate and prevent bugs around setup/teardown of AnimationControllers
-mixin AnimationMixin1<T extends StatefulWidget> on State<T>, TickerProviderStateMixin<T> {
+//mixin TickerProviderStateMixin<T extends StatefulWidget> on State<T> implements TickerProvider {
+mixin AnimationMixin1<T extends StatefulWidget> on State<T> implements TickerProviderStateMixin<T> {
   AnimationController anim1;
 
   @override

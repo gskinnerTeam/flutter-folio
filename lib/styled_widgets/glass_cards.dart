@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'dart:math';
 import 'dart:ui';
 
@@ -10,10 +10,10 @@ import 'package:flutter_folio/_widgets/mixins/animated_state_mixins.dart';
 import 'package:flutter_folio/core_packages.dart';
 
 class GlassCard extends StatelessWidget {
-  const GlassCard({Key key, @required this.child, this.alpha = .6, this.radius}) : super(key: key);
+  const GlassCard({Key? key, required this.child, this.alpha = .6, this.radius}) : super(key: key);
   final Widget child;
   final double alpha;
-  final BorderRadius radius;
+  final BorderRadius? radius;
 
   @override
   Widget build(BuildContext context) {
@@ -35,19 +35,20 @@ class GlassCard extends StatelessWidget {
 
 class CollapsingCard extends StatefulWidget {
   const CollapsingCard(
-      {Key key, @required this.child, @required this.height, @required this.title, this.icon, this.titleClosed})
+      {Key? key, required this.child, required this.height, required this.title, this.icon, this.titleClosed})
       : super(key: key);
   final Widget child;
   final double height;
   final String title;
-  final String titleClosed;
-  final Widget icon;
+  final String? titleClosed;
+  final Widget? icon;
 
   @override
   _CollapsingCardState createState() => _CollapsingCardState();
 }
 
-class _CollapsingCardState extends State<CollapsingCard> with TickerProviderStateMixin, AnimationMixin1 {
+class _CollapsingCardState extends State<CollapsingCard> with TickerProviderStateMixin {
+  late AnimationController anim1;
   static const double kHeaderHeight = 40;
   bool _isOpen = true;
   double animatedHeightValue(double headerHeight) {
@@ -55,9 +56,9 @@ class _CollapsingCardState extends State<CollapsingCard> with TickerProviderStat
   }
 
   @override
-  void initAnimations() {
-    anim1.duration = Times.fast;
-    anim1.value = 1; //Start open
+  void initState() {
+    super.initState();
+    anim1 = AnimationController(vsync: this, duration: Times.fast, value: 1);
     anim1.addListener(() => setState(() {}));
   }
 
@@ -65,7 +66,7 @@ class _CollapsingCardState extends State<CollapsingCard> with TickerProviderStat
   Widget build(BuildContext context) {
     String title = widget.title;
     if (_isOpen == false && StringUtils.isNotEmpty(widget.titleClosed)) {
-      title = widget.titleClosed;
+      title = widget.titleClosed!;
     }
     return Container(
       height: animatedHeightValue(kHeaderHeight),
@@ -107,12 +108,12 @@ class _CollapsingCardState extends State<CollapsingCard> with TickerProviderStat
 // Button w/ arrow that sits on top of a [CollapsableCard]
 class _CollapsableCardHeader extends StatelessWidget {
   const _CollapsableCardHeader(
-      {Key key,
-      @required this.onPressed,
-      @required this.height,
-      @required this.animation,
-      @required this.isOpen,
-      @required this.title,
+      {Key? key,
+      required this.onPressed,
+      required this.height,
+      required this.animation,
+      required this.isOpen,
+      required this.title,
       this.icon})
       : super(key: key);
   final VoidCallback onPressed;
@@ -120,7 +121,7 @@ class _CollapsableCardHeader extends StatelessWidget {
   final AnimationController animation;
   final bool isOpen;
   final String title;
-  final Widget icon;
+  final Widget? icon;
 
   @override
   Widget build(BuildContext context) {
@@ -162,7 +163,7 @@ class _CollapsableCardHeader extends StatelessWidget {
                   HSpace.xs,
                   Text(title.toUpperCase(), style: TextStyles.callout2.copyWith(color: theme.greyStrong)),
                   Flexible(child: Container()),
-                  if (icon != null) icon,
+                  if (icon != null) icon!,
                 ],
               ),
             )),

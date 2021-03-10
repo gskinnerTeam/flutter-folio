@@ -1,13 +1,12 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_widgets/app_image.dart';
 import 'package:flutter_folio/core_packages.dart';
 
 class StyledCircleImage extends StatelessWidget {
-  const StyledCircleImage({Key key, @required this.url, this.borderSize, this.padding}) : super(key: key);
+  const StyledCircleImage({Key? key, required this.url, this.padding}) : super(key: key);
 
-  final double borderSize;
-  final EdgeInsets padding;
+  final EdgeInsets? padding;
   final String url;
 
   @override

@@ -30,14 +30,13 @@ class AppLink {
 
   static AppLink fromLocation(String location) {
     location = Uri.decodeFull(location);
-    // Shared function to inject keys if they are not null
     Map<String, String> params = Uri.parse(location).queryParameters;
+    // Shared function to inject keys if they are not null
     void trySet(String key, void Function(String) setter) {
       if (params.containsKey(key)) setter?.call(params[key]);
     }
 
     safePrint("parse-fromLocation: $location");
-
     // Create the applink, inject any params we've found
     AppLink link = AppLink();
     trySet(AppLink.kBookParam, (s) => link.bookId = s);

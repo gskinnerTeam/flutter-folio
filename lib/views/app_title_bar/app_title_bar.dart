@@ -98,10 +98,8 @@ class _AdaptiveProfileBtn extends StatelessWidget {
     if (user == null) return Container();
     // Use a non-scaled vertical padding here
     final profileIcon = StyledCircleImage(
-      padding: EdgeInsets.symmetric(horizontal: Insets.sm, vertical: 4),
-      url: user?.imageUrl ?? AppUser.kDefaultImageUrl,
-      borderSize: 2,
-    );
+        padding: EdgeInsets.symmetric(horizontal: Insets.sm, vertical: 4),
+        url: user?.imageUrl ?? AppUser.kDefaultImageUrl);
 
     return Visibility(
         visible: isVisible,

@@ -1,10 +1,10 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/core_packages.dart';
 import 'package:provider/provider.dart';
 
 class StyledBottomSheet extends StatelessWidget {
-  StyledBottomSheet({this.child});
+  StyledBottomSheet({required this.child});
   final Widget child;
 
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class StyledBottomSheet extends StatelessWidget {
   }
 }
 
-Future<T> showStyledBottomSheet<T>(BuildContext context, {@required Widget child}) async {
+Future<void> showStyledBottomSheet<T>(BuildContext context, {required Widget child}) async {
   return showModalBottomSheet(
       isScrollControlled: true,
       context: context,

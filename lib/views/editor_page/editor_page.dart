@@ -1,35 +1,30 @@
 // @dart=2.9
-import 'dart:async';
-import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_widgets/alignments.dart';
-import 'package:flutter_folio/commands/books/refresh_current_book_command.dart';
 import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/data/book_data.dart';
 import 'package:flutter_folio/models/app_model.dart';
 import 'package:flutter_folio/models/books_model.dart';
 import 'package:flutter_folio/views/scrap_pile_picker/scrap_pile_picker.dart';
 
-import 'networked_scrapboard.dart';
 import 'empty_editor_view.dart';
-import 'panels/collapsible_info_panel.dart';
-import 'panels/content_picker_tab_menu.dart';
-import 'panels/collapsible_pages_panel.dart';
+import 'networked_scrapboard.dart';
 import 'panels/collapsible_panels.dart';
+import 'panels/content_picker_tab_menu.dart';
 import 'panels/simple_pages_menu.dart';
 
-class BookEditorPage extends StatefulWidget {
-  const BookEditorPage({Key key, @required this.bookId, this.readOnly = false}) : super(key: key);
+class EditorPage extends StatefulWidget {
+  const EditorPage({Key key, @required this.bookId, this.readOnly = false}) : super(key: key);
   final String bookId;
   final bool readOnly;
 
   @override
-  _BookEditorPageState createState() => _BookEditorPageState();
+  _EditorPageState createState() => _EditorPageState();
 }
 
-class _BookEditorPageState extends State<BookEditorPage> {
+class _EditorPageState extends State<EditorPage> {
   String get bookId => widget.bookId;
 
   @override
@@ -125,7 +120,7 @@ class _MobileScrapPileBtn extends StatelessWidget {
             child: PrimaryBtn(
               cornerRadius: 99,
               onPressed: onPressed,
-              child: AppIcon(AppIcons.image, color: theme.surface1),
+              child: AppIcon(AppIcons.image, color: theme.surface1, size: 20),
             )),
       ),
     );

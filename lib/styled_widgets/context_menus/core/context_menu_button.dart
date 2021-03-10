@@ -52,7 +52,7 @@ class _ContextMenuBtnState extends State<ContextMenuBtn> {
               children: [
                 /// Optional Icon
                 if (widget.icon != null) ...[
-                  AppIcon(widget.icon, size: 16, color: widget.iconColor ?? fgColor),
+                  AppIcon(widget.icon!, size: 16, color: widget.iconColor ?? fgColor),
                   HSpace.med,
                 ],
 

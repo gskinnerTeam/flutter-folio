@@ -1,12 +1,12 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_folio/core_packages.dart';
 
 class AppLogoText extends StatelessWidget {
-  const AppLogoText({Key key, this.constraints, this.color}) : super(key: key);
-  final BoxConstraints constraints;
-  final Color color;
+  const AppLogoText({Key? key, this.constraints, this.color}) : super(key: key);
+  final BoxConstraints? constraints;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +18,6 @@ class AppLogoText extends StatelessWidget {
       //TODO: Log bug for blurry image filtering on windows
       filterQuality: FilterQuality.high,
     );
-    return (constraints == null) ? img : ConstrainedBox(constraints: constraints, child: img);
+    return (constraints == null) ? img : ConstrainedBox(constraints: constraints!, child: img);
   }
 }

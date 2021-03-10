@@ -16,12 +16,12 @@ class GenericContextMenu extends BaseContextMenu {
     this.addDividers = false,
   }) : super(key: key);
   final List<String?> labels;
-  final List<VoidCallback> actions;
+  final List<VoidCallback?> actions;
   final bool addDividers;
 
   @override
   Widget build(BuildContext context) {
-    if ((labels?.isEmpty ?? true) || (actions?.isEmpty ?? true)) {
+    if ((labels.isEmpty ?? true) || (actions.isEmpty ?? true)) {
       scheduleMicrotask(() {
         // Automatically close a context menu that would be empty anyways
         CloseContextMenuNotification().dispatch(context);
@@ -37,7 +37,7 @@ class GenericContextMenu extends BaseContextMenu {
       children: labels.map(
         (lbl) {
           if (lbl == null) return ContextDivider();
-          VoidCallback action = actions[labels.indexOf(lbl)];
+          VoidCallback? action = actions[labels.indexOf(lbl)];
           return ContextMenuBtn(lbl, onPressed: action == null ? null : () => handlePressed(context, action));
         },
       ).toList(),

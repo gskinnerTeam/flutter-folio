@@ -1,15 +1,15 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_widgets/popover/popover_region.dart';
 import 'package:flutter_folio/core_packages.dart';
 
 class StyledToggleSwitch extends StatefulWidget {
   StyledToggleSwitch(
-      {Key key,
+      {Key? key,
       this.value = false,
       this.onToggled,
-      @required this.tooltip1,
-      @required this.tooltip2,
+      required this.tooltip1,
+      required this.tooltip2,
       this.icon1,
       this.icon2,
       this.materialIcon1,
@@ -18,12 +18,12 @@ class StyledToggleSwitch extends StatefulWidget {
     assert((icon1 != null || materialIcon1 != null) && (icon2 != null || materialIcon2 != null));
   }
   final bool value;
-  final void Function(bool value) onToggled;
-  final AppIcons icon1;
-  final IconData materialIcon1;
+  final void Function(bool value)? onToggled;
+  final AppIcons? icon1;
+  final IconData? materialIcon1;
   final String tooltip1;
-  final AppIcons icon2;
-  final IconData materialIcon2;
+  final AppIcons? icon2;
+  final IconData? materialIcon2;
   final String tooltip2;
 
   @override
@@ -95,7 +95,7 @@ class _StyledToggleSwitchState extends State<StyledToggleSwitch> {
     );
   }
 
-  Widget _buildIcon(AppIcons appIcon, IconData materialIcon, {Color color}) {
+  Widget _buildIcon(AppIcons? appIcon, IconData? materialIcon, {Color? color}) {
     AppTheme theme = context.watch();
     color ??= theme.grey;
     double size = 16;
@@ -106,11 +106,11 @@ class _StyledToggleSwitchState extends State<StyledToggleSwitch> {
 }
 
 class _BtnWithTooltip extends StatelessWidget {
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final String toolTip;
   final Widget child;
 
-  const _BtnWithTooltip({Key key, this.onPressed, this.toolTip, this.child}) : super(key: key);
+  const _BtnWithTooltip({Key? key, this.onPressed, required this.toolTip, required this.child}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Expanded(

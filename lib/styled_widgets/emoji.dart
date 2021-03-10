@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -32,13 +32,12 @@ enum Emojis {
 
 class Emoji extends StatelessWidget {
   final Emojis emoji;
-  final double size;
-  final Color color;
+  final double? size;
 
-  const Emoji(this.emoji, {Key key, this.size, this.color}) : super(key: key);
+  const Emoji(this.emoji, {Key? key, this.size}) : super(key: key);
   Widget build(BuildContext c) {
     String fileName = describeEnum(emoji).toLowerCase().replaceAll("_", "-");
     String path = 'assets/images/emoji/' + fileName + '.svg';
-    return SvgPicture.asset(path, width: size, height: size, color: color);
+    return SvgPicture.asset(path, width: size, height: size);
   }
 }
