@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_folio/core_packages.dart';
@@ -6,16 +6,15 @@ import 'package:flutter_folio/models/app_model.dart';
 
 // Notification to trigger the ContextMenu
 class ShowContextMenuNotification extends Notification {
-  ShowContextMenuNotification({this.child, this.size});
+  ShowContextMenuNotification({required this.child});
   final Widget child;
-  final Size size;
 }
 
 class CloseContextMenuNotification extends Notification {}
 
 // Helper widget, to dispatch Notifications when a right-click is detected on some child
 class ContextMenuRegion extends StatelessWidget {
-  const ContextMenuRegion({Key key, @required this.child, @required this.contextMenu, this.isEnabled = true})
+  const ContextMenuRegion({Key? key, required this.child, required this.contextMenu, this.isEnabled = true})
       : super(key: key);
   final Widget child;
   final Widget contextMenu;
@@ -36,17 +35,17 @@ class ContextMenuRegion extends StatelessWidget {
 
 // The main overlay class, holds a Stack which contains the main app, contextMenu and contextModal
 class ContextMenuOverlay extends StatefulWidget {
-  const ContextMenuOverlay({Key key, this.child}) : super(key: key);
+  const ContextMenuOverlay({Key? key, required this.child}) : super(key: key);
   final Widget child;
   @override
   _ContextMenuOverlayState createState() => _ContextMenuOverlayState();
 }
 
 class _ContextMenuOverlayState extends State<ContextMenuOverlay> {
-  Widget _currentMenu;
+  Widget? _currentMenu;
+  Size? _prevSize;
   Size _menuSize = Size.zero;
   Offset _mousePos = Offset.zero;
-  Size _prevSize;
 
   void closeCurrent() => setState(() => _currentMenu = null);
 
@@ -76,10 +75,11 @@ class _ContextMenuOverlayState extends State<ContextMenuOverlay> {
     nullMenuIfWindowsWasResized(context);
     // Offset the menu depending on which quadrant of the app we're in, this will make sure it always stays in bounds.
     double dx = 0, dy = 0;
-    if (_mousePos.dx > _prevSize.width / 2) dx = -_menuSize.width;
-    if (_mousePos.dy > _prevSize.height / 2) dy = -_menuSize.height;
+    if (_mousePos.dx > (_prevSize?.width ?? 0) / 2) dx = -_menuSize.width;
+    if (_mousePos.dy > (_prevSize?.height ?? 0) / 2) dy = -_menuSize.height;
     // The final menuPos, is mousePos + quadrant offset
     Offset _menuPos = _mousePos + Offset(dx, dy);
+    Widget? menuToShow = _currentMenu;
     return Scaffold(
       body: MouseRegion(
         onHover: (event) => _mousePos = event.position,
@@ -92,7 +92,7 @@ class _ContextMenuOverlayState extends State<ContextMenuOverlay> {
               // Child is the contents of the overlay, usually the entire app.
               widget.child,
               // Show the menu?
-              if (_currentMenu != null) ...[
+              if (menuToShow != null) ...[
                 Positioned.fill(child: Container(color: Colors.transparent)),
                 // Modal underlay, blocks all taps to the main content.
                 GestureDetector(
@@ -109,7 +109,7 @@ class _ContextMenuOverlayState extends State<ContextMenuOverlay> {
                     opacity: _menuSize != Size.zero ? 1 : 0,
                     child: _MeasureSize(
                       onChange: _handleMenuSizeChanged,
-                      child: _currentMenu,
+                      child: menuToShow,
                     ),
                   ),
                 ),
@@ -126,19 +126,19 @@ class _MeasureSizeRenderObject extends RenderProxyBox {
   _MeasureSizeRenderObject(this.onChange);
   void Function(Size size) onChange;
 
-  Size _prevSize;
+  Size? _prevSize;
   @override
   void performLayout() {
     super.performLayout();
-    Size newSize = child.size;
+    Size newSize = child?.size ?? Size.zero;
     if (_prevSize == newSize) return;
     _prevSize = newSize;
-    WidgetsBinding.instance.addPostFrameCallback((_) => onChange(newSize));
+    WidgetsBinding.instance?.addPostFrameCallback((_) => onChange(newSize));
   }
 }
 
 class _MeasureSize extends SingleChildRenderObjectWidget {
-  const _MeasureSize({Key key, @required this.onChange, @required Widget child}) : super(key: key, child: child);
+  const _MeasureSize({Key? key, required this.onChange, required Widget child}) : super(key: key, child: child);
   final void Function(Size size) onChange;
   @override
   RenderObject createRenderObject(BuildContext context) => _MeasureSizeRenderObject(onChange);

@@ -1,9 +1,13 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter/material.dart';
 
 class _AnimatedSize extends StatelessWidget {
   _AnimatedSize(
-      {@required this.child, @required this.duration, this.begin, @required this.end, this.curve = Curves.easeOut});
+      {required this.child,
+      required this.duration,
+      required this.begin,
+      required this.end,
+      this.curve = Curves.easeOut});
   final Widget child;
   final Duration duration;
   final Size begin;
@@ -14,7 +18,7 @@ class _AnimatedSize extends StatelessWidget {
     return TweenAnimationBuilder<Size>(
       duration: duration,
       curve: curve,
-      tween: Tween(begin: begin ?? end, end: end),
+      tween: Tween(begin: begin, end: end),
       builder: (context, size, _) {
         return SizedBox(width: size.width, height: size.height, child: child);
       },
@@ -30,12 +34,12 @@ class AnimatedHeight extends StatelessWidget {
   final Curve curve;
 
   const AnimatedHeight({
-    this.child,
-    @required this.duration,
-    @required this.begin,
-    @required this.end,
-    @required this.curve,
-    Key key,
+    required this.child,
+    required this.duration,
+    required this.begin,
+    required this.end,
+    required this.curve,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -52,12 +56,12 @@ class AnimatedWidth extends StatelessWidget {
   final Curve curve;
 
   const AnimatedWidth({
-    this.child,
-    @required this.duration,
-    @required this.begin,
-    @required this.end,
-    @required this.curve,
-    Key key,
+    required this.child,
+    required this.duration,
+    required this.begin,
+    required this.end,
+    required this.curve,
+    Key? key,
   }) : super(key: key);
 
   @override

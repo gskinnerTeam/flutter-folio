@@ -14,16 +14,16 @@ import 'package:flutter_folio/models/app_model.dart';
 import 'content_picker_emoji_panel.dart';
 import 'content_picker_scraps_panel.dart';
 
-class ContentPickerMenuPanel extends StatefulWidget {
-  const ContentPickerMenuPanel({Key key, @required this.pageId, @required this.bookId}) : super(key: key);
+class ContentPickerTabMenu extends StatefulWidget {
+  const ContentPickerTabMenu({Key key, @required this.pageId, @required this.bookId}) : super(key: key);
   final String bookId;
   final String pageId;
 
   @override
-  _ContentPickerMenuPanelState createState() => _ContentPickerMenuPanelState();
+  _ContentPickerTabMenuState createState() => _ContentPickerTabMenuState();
 }
 
-class _ContentPickerMenuPanelState extends State<ContentPickerMenuPanel> {
+class _ContentPickerTabMenuState extends State<ContentPickerTabMenu> {
   ContentType _currentMenuType = null;
   @override
   Widget build(BuildContext context) {

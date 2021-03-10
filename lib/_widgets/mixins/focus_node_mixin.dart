@@ -1,8 +1,8 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter/material.dart';
 
 mixin SingleFocusNodeMixin<T extends StatefulWidget> on State<T> {
-  FocusNode focusNode;
+  late FocusNode focusNode;
 
   @override
   void initState() {

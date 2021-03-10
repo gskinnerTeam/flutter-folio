@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 //Takes a x,y or z rotation, in degrees, and rotates. Good for spins & 3d flip effects
 import 'dart:math';
 
@@ -13,7 +13,7 @@ class Rotation3d extends StatelessWidget {
   final double rotationY;
   final double rotationZ;
 
-  const Rotation3d({Key key, @required this.child, this.rotationX = 0, this.rotationY = 0, this.rotationZ = 0})
+  const Rotation3d({Key? key, required this.child, this.rotationX = 0, this.rotationY = 0, this.rotationZ = 0})
       : super(key: key);
 
   @override

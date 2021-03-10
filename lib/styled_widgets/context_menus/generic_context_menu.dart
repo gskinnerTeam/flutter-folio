@@ -21,7 +21,7 @@ class GenericContextMenu extends BaseContextMenu {
 
   @override
   Widget build(BuildContext context) {
-    if ((labels.isEmpty ?? true) || (actions.isEmpty ?? true)) {
+    if ((labels.isEmpty) || (actions.isEmpty)) {
       scheduleMicrotask(() {
         // Automatically close a context menu that would be empty anyways
         CloseContextMenuNotification().dispatch(context);

@@ -1,15 +1,15 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter/material.dart';
 
 class AnimatedScale extends StatelessWidget {
   const AnimatedScale(
-      {Key key, @required this.child, @required this.end, @required this.duration, this.begin, this.curve})
+      {Key? key, required this.child, required this.end, required this.duration, this.begin, this.curve})
       : super(key: key);
   final Widget child;
   final Duration duration;
-  final double begin;
+  final double? begin;
   final double end;
-  final Curve curve;
+  final Curve? curve;
 
   @override
   Widget build(BuildContext context) => TweenAnimationBuilder<double>(

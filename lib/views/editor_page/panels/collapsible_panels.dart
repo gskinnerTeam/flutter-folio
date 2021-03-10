@@ -10,8 +10,8 @@ import 'package:flutter_folio/views/editor_page/panels/collapsible_pages_panel.d
 
 /// Vertical stack of 2 menus
 /// TODO: This could be more responsive, using more height for the top panel, and more width for both panels when extended.
-class CollapsablePanels extends StatelessWidget {
-  const CollapsablePanels(this.bookId, this.pages, {Key key, @required this.width}) : super(key: key);
+class CollapsiblePanels extends StatelessWidget {
+  const CollapsiblePanels(this.bookId, this.pages, {Key key, @required this.width}) : super(key: key);
   final String bookId;
   final List<ScrapPageData> pages;
   final double width;
@@ -40,7 +40,7 @@ class CollapsablePanels extends StatelessWidget {
                   CollapsibleInfoPanel(width: panelWidth, height: topPanelHeight),
                   VSpace.lg,
                   // Pages Panel
-                  CollapsablePagesPanel(pages, height: bottomPanelHeight),
+                  CollapsiblePagesPanel(pages, height: bottomPanelHeight),
                 ],
               ), // BookPagesMenu(),
             )

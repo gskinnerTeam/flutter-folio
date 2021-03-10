@@ -67,7 +67,7 @@ class BookColumnHeader extends StatelessWidget {
                     duration: sortDir != 0 ? Times.fast : Duration.zero,
                     opacity: sortDir != 0 ? 1 : 0,
                     child: AnimatedRotation(
-                      begin: sortDir == -1 ? 0 : 180,
+                      end: sortDir == -1 ? 0 : 180,
                       duration: Times.fast,
                       child: Icon(Icons.keyboard_arrow_down),
                     ),
@@ -84,7 +84,7 @@ class BookColumnHeader extends StatelessWidget {
                     duration: sortDir != 0 ? Times.fast : Duration.zero,
                     opacity: sortDir != 0 ? 1 : 0,
                     child: AnimatedRotation(
-                      begin: sortDir == -1 ? 0 : 180,
+                      end: sortDir == -1 ? 0 : 180,
                       duration: Times.fast,
                       child: Icon(Icons.keyboard_arrow_down),
                     ),

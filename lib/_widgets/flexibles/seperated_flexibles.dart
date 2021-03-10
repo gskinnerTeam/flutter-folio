@@ -1,9 +1,22 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter/material.dart';
 
 // Extra Flexible
 
 class SeparatedRow extends StatelessWidget {
+  const SeparatedRow({
+    Key? key,
+    required this.children,
+    required this.separatorBuilder,
+    this.mainAxisAlignment = MainAxisAlignment.start,
+    this.crossAxisAlignment = CrossAxisAlignment.center,
+    this.mainAxisSize = MainAxisSize.max,
+    this.verticalDirection = VerticalDirection.down,
+    this.textBaseline = TextBaseline.alphabetic,
+    this.textDirection = TextDirection.ltr,
+    this.padding = EdgeInsets.zero,
+  }) : super(key: key);
+
   final List<Widget> children;
   final Widget Function() separatorBuilder;
   final MainAxisAlignment mainAxisAlignment;
@@ -13,19 +26,6 @@ class SeparatedRow extends StatelessWidget {
   final TextDirection textDirection;
   final VerticalDirection verticalDirection;
   final EdgeInsets padding;
-
-  const SeparatedRow({
-    Key key,
-    this.children,
-    this.separatorBuilder,
-    this.mainAxisAlignment = MainAxisAlignment.start,
-    this.crossAxisAlignment = CrossAxisAlignment.center,
-    this.mainAxisSize = MainAxisSize.max,
-    this.verticalDirection = VerticalDirection.down,
-    this.textBaseline,
-    this.textDirection,
-    this.padding,
-  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +42,7 @@ class SeparatedRow extends StatelessWidget {
       textDirection: textDirection,
       verticalDirection: verticalDirection,
     );
-    return this.padding == null ? row : Padding(padding: padding, child: row);
+    return Padding(padding: padding, child: row);
   }
 }
 
@@ -58,16 +58,16 @@ class SeparatedColumn extends StatelessWidget {
   final EdgeInsets padding;
 
   const SeparatedColumn({
-    Key key,
-    this.children,
-    this.separatorBuilder,
+    Key? key,
+    required this.children,
+    required this.separatorBuilder,
     this.mainAxisAlignment = MainAxisAlignment.start,
     this.crossAxisAlignment = CrossAxisAlignment.center,
     this.mainAxisSize = MainAxisSize.max,
     this.verticalDirection = VerticalDirection.down,
-    this.textBaseline,
-    this.textDirection,
-    this.padding,
+    this.textBaseline = TextBaseline.alphabetic,
+    this.textDirection = TextDirection.ltr,
+    this.padding = EdgeInsets.zero,
   }) : super(key: key);
 
   @override
@@ -85,6 +85,6 @@ class SeparatedColumn extends StatelessWidget {
       textDirection: textDirection,
       verticalDirection: verticalDirection,
     );
-    return this.padding == null ? col : Padding(padding: padding, child: col);
+    return Padding(padding: this.padding, child: col);
   }
 }

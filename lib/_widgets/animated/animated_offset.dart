@@ -1,18 +1,18 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_widgets/alignments.dart';
 
 class AnimatedOffset extends StatelessWidget {
   AnimatedOffset({
-    @required this.child,
-    @required this.duration,
+    required this.child,
+    required this.duration,
     this.begin,
-    @required this.end,
+    required this.end,
     this.curve = Curves.easeOut,
   });
   final Widget child;
   final Duration duration;
-  final Offset begin;
+  final Offset? begin;
   final Offset end;
   final Curve curve;
 

@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -7,11 +7,11 @@ import 'package:flutter/material.dart';
 // Relies on Tranform.translate() and SizedBox to move and size the Child
 class OpeningContainer extends StatefulWidget {
   OpeningContainer({
-    Key key,
-    @required this.onEnd,
-    @required this.child,
-    @required this.topLeftOffset,
-    @required this.closedSize,
+    Key? key,
+    required this.onEnd,
+    required this.child,
+    required this.topLeftOffset,
+    required this.closedSize,
     this.duration = const Duration(milliseconds: 350),
     this.curve = Curves.easeOut,
     this.isOpen = true,

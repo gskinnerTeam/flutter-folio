@@ -1,18 +1,18 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter/material.dart';
 
 class SizedAndTranslated extends StatelessWidget {
   const SizedAndTranslated({
-    Key key,
-    @required this.size,
-    @required this.offset,
-    @required this.child,
+    Key? key,
+    required this.size,
+    required this.offset,
+    required this.child,
     this.pivotPoint,
   }) : super(key: key);
   final Size size;
   final Offset offset;
   final Widget child;
-  final Alignment pivotPoint;
+  final Alignment? pivotPoint;
 
   @override
   Widget build(BuildContext context) {

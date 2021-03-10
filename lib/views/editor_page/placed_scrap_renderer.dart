@@ -46,7 +46,7 @@ class PlacedScrapRenderer extends StatelessWidget {
       return SizedBox(width: 0, height: 0);
     }
 
-    return ScrapKeyboardShortcutsListener(
+    return PlacedScrapKeyboardListener(
       item: item,
       enableKeyListener: isSelected ?? false,
       child: ContextMenuRegion(

@@ -1,8 +1,8 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter/material.dart';
 
 class PositionedAll extends StatelessWidget {
-  const PositionedAll({Key key, this.all = 0, this.child}) : super(key: key);
+  const PositionedAll({Key? key, this.all = 0, required this.child}) : super(key: key);
   final Widget child;
   final double all;
 

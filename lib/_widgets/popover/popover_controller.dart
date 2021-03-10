@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
@@ -12,7 +12,7 @@ import 'popover_notifications.dart';
 /// Context listens for Notifications, and inserts/removes layers from the Overlay stack in response.
 /// The context wraps the content in a
 class PopOverController extends StatefulWidget {
-  const PopOverController({Key key, this.child}) : super(key: key);
+  const PopOverController({Key? key, required this.child}) : super(key: key);
   final Widget child;
 
   @override
@@ -20,9 +20,9 @@ class PopOverController extends StatefulWidget {
 }
 
 class PopOverControllerState extends State<PopOverController> {
-  OverlayEntry barrierOverlay;
-  OverlayEntry mainContentOverlay;
-  ValueNotifier<Size> _sizeNotifier = ValueNotifier(Size.zero);
+  OverlayEntry? barrierOverlay;
+  OverlayEntry? mainContentOverlay;
+  ValueNotifier<Size?> _sizeNotifier = ValueNotifier(Size.zero);
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class PopOverControllerState extends State<PopOverController> {
   bool get isBarrierOpen => barrierOverlay != null;
 
   void _closeOverlay() {
-    _sizeNotifier?.value = null;
+    _sizeNotifier.value = null;
     barrierOverlay?.remove();
     mainContentOverlay?.remove();
     barrierOverlay = mainContentOverlay = null;
@@ -57,27 +57,28 @@ class PopOverControllerState extends State<PopOverController> {
 
       // Use Barrier? Hovers and Toasts don't user barriers, ClickOvers do
       if (n.useBarrier) {
-        barrierOverlay = OverlayEntry(
+        OverlayEntry b = OverlayEntry(
           builder: (_) {
             return GestureDetector(
               onTap: n.dismissOnBarrierClick ? _closeOverlay : null,
               onPanStart: n.dismissOnBarrierClick ? (_) => _closeOverlay() : null,
-              child: Container(color: n.barrierColor ?? Colors.transparent),
+              child: Container(color: n.barrierColor),
             );
           },
         );
-        Overlay.of(n.context)?.insert(barrierOverlay);
+        Overlay.of(n.context)?.insert(b);
+        barrierOverlay = b;
       }
 
       /// Main Content Overlay
-      mainContentOverlay = OverlayEntry(builder: (_) {
+      OverlayEntry content = OverlayEntry(builder: (_) {
         // Wrap the child in a Listener, since it will technically be parented above us in the Stack (overlay items are above Navigator children)
         return NotificationListener(
           onNotification: _handleNotification,
           child: Material(
             type: MaterialType.transparency,
             // The overlay is wrapped in a VLB, so it can rebuild when the child calls us with a new size
-            child: ValueListenableBuilder<Size>(
+            child: ValueListenableBuilder<Size?>(
                 valueListenable: _sizeNotifier,
                 builder: (_, size, __) {
                   // Calculate the normalized offset, from a top-left starting point
@@ -106,7 +107,8 @@ class PopOverControllerState extends State<PopOverController> {
           ),
         );
       });
-      Overlay.of(n.context)?.insert(mainContentOverlay);
+      Overlay.of(n.context)?.insert(content);
+      mainContentOverlay = content;
       return true;
     }
     return false;
@@ -120,19 +122,19 @@ class MeasureSizeRenderObject extends RenderProxyBox {
   MeasureSizeRenderObject(this.onChange);
   void Function(Size size) onChange;
 
-  Size _prevSize;
+  Size? _prevSize;
   @override
   void performLayout() {
     super.performLayout();
-    Size newSize = child.size;
+    Size newSize = child?.size ?? Size.zero;
     if (_prevSize == newSize) return;
     _prevSize = newSize;
-    WidgetsBinding.instance.addPostFrameCallback((_) => onChange(newSize));
+    WidgetsBinding.instance?.addPostFrameCallback((_) => onChange(newSize));
   }
 }
 
 class MeasureSize extends SingleChildRenderObjectWidget {
-  const MeasureSize({Key key, @required this.onChange, @required Widget child}) : super(key: key, child: child);
+  const MeasureSize({Key? key, required this.onChange, required Widget child}) : super(key: key, child: child);
   final void Function(Size size) onChange;
   @override
   RenderObject createRenderObject(BuildContext context) => MeasureSizeRenderObject(onChange);

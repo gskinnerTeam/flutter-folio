@@ -1,19 +1,19 @@
-// @dart=2.9
+// @dart=2.12
 import 'dart:math';
 
 import 'package:flutter/material.dart';
 
 class AnimatedRotation extends StatelessWidget {
   AnimatedRotation({
-    @required this.begin,
-    @required this.duration,
-    @required this.child,
-    this.end,
+    this.begin,
+    required this.end,
+    required this.duration,
+    required this.child,
     this.curve = Curves.linear,
   });
   final Widget child;
   final Duration duration;
-  final double begin;
+  final double? begin;
   final double end;
   final Curve curve;
 

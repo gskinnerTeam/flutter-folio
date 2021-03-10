@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -9,7 +9,7 @@ extension ClickableExtensions on Widget {
       onTap: action,
       child: MouseRegion(
         cursor: SystemMouseCursors.click,
-        opaque: opaque ?? false,
+        opaque: opaque,
         child: this,
       ),
     );

@@ -8,16 +8,16 @@ import 'package:flutter_folio/data/book_data.dart';
 import 'package:flutter_folio/models/books_model.dart';
 import 'package:flutter_folio/views/editor_page/draggable_page_menu/draggable_page_menu.dart';
 
-class CollapsablePagesPanel extends StatefulWidget {
-  const CollapsablePagesPanel(this.pages, {Key key, @required this.height}) : super(key: key);
+class CollapsiblePagesPanel extends StatefulWidget {
+  const CollapsiblePagesPanel(this.pages, {Key key, @required this.height}) : super(key: key);
   final List<ScrapPageData> pages;
   final double height;
 
   @override
-  _CollapsablePagesPanelState createState() => _CollapsablePagesPanelState();
+  _CollapsiblePagesPanelState createState() => _CollapsiblePagesPanelState();
 }
 
-class _CollapsablePagesPanelState extends State<CollapsablePagesPanel> {
+class _CollapsiblePagesPanelState extends State<CollapsiblePagesPanel> {
   ScrapBookData _book;
 
   @override

@@ -78,13 +78,13 @@ class _EditorPageState extends State<EditorPage> {
           else ...{
             /// Collapsing Info and Page panels with Editable Text
             FocusTraversalGroup(
-              child: CollapsablePanels(bookId, pageList, width: leftMenuWidth),
+              child: CollapsiblePanels(bookId, pageList, width: leftMenuWidth),
             ),
 
             /// Content Picker, this should sit on top of everything
             /// as it has an internal Stack with an overlay-like layer
             FocusTraversalGroup(
-              child: ContentPickerMenuPanel(bookId: bookId, pageId: pageId),
+              child: ContentPickerTabMenu(bookId: bookId, pageId: pageId),
             ),
           },
         ],

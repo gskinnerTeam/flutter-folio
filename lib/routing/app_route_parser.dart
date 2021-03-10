@@ -22,7 +22,6 @@ class AppRouteParser extends RouteInformationParser<AppLink> {
     // Ask the applink to give us a string
     String location = appLink.toLocation();
     safePrint("restoreRouteInfo: $location");
-
     // Pass that string back to the OS so it can update the url bar
     return RouteInformation(location: location);
   }

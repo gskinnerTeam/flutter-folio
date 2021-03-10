@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter/material.dart';
 
 // Provides the common functionalist of having a isLoading toggle for a view, that is turned on while loading some content.
@@ -14,7 +14,7 @@ mixin LoadingStateMixin<T extends StatefulWidget> on State<T> {
 
   Future<R> load<R>(Future<R> action()) async {
     isLoading = true;
-    R result = await action?.call();
+    R result = await action();
     isLoading = false;
     return result;
   }

@@ -1,7 +1,19 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter/material.dart';
 
 class PaddedRow extends StatelessWidget {
+  const PaddedRow({
+    Key? key,
+    required this.children,
+    this.mainAxisAlignment = MainAxisAlignment.start,
+    this.crossAxisAlignment = CrossAxisAlignment.center,
+    this.mainAxisSize = MainAxisSize.max,
+    this.verticalDirection = VerticalDirection.down,
+    this.textBaseline = TextBaseline.alphabetic,
+    this.textDirection = TextDirection.ltr,
+    this.padding = EdgeInsets.zero,
+  }) : super(key: key);
+
   final List<Widget> children;
   final MainAxisAlignment mainAxisAlignment;
   final CrossAxisAlignment crossAxisAlignment;
@@ -10,18 +22,6 @@ class PaddedRow extends StatelessWidget {
   final TextDirection textDirection;
   final VerticalDirection verticalDirection;
   final EdgeInsets padding;
-
-  const PaddedRow({
-    Key key,
-    this.children,
-    this.mainAxisAlignment = MainAxisAlignment.start,
-    this.crossAxisAlignment = CrossAxisAlignment.center,
-    this.mainAxisSize = MainAxisSize.max,
-    this.verticalDirection = VerticalDirection.down,
-    this.textBaseline,
-    this.textDirection,
-    this.padding,
-  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,11 +35,22 @@ class PaddedRow extends StatelessWidget {
       textDirection: textDirection,
       verticalDirection: verticalDirection,
     );
-    return this.padding == null ? row : Padding(padding: padding, child: row);
+    return Padding(padding: this.padding, child: row);
   }
 }
 
 class PaddedColumn extends StatelessWidget {
+  const PaddedColumn({
+    Key? key,
+    required this.children,
+    this.mainAxisAlignment = MainAxisAlignment.start,
+    this.crossAxisAlignment = CrossAxisAlignment.center,
+    this.mainAxisSize = MainAxisSize.max,
+    this.verticalDirection = VerticalDirection.down,
+    this.textBaseline = TextBaseline.alphabetic,
+    this.textDirection = TextDirection.ltr,
+    this.padding = EdgeInsets.zero,
+  }) : super(key: key);
   final List<Widget> children;
   final MainAxisAlignment mainAxisAlignment;
   final CrossAxisAlignment crossAxisAlignment;
@@ -48,19 +59,6 @@ class PaddedColumn extends StatelessWidget {
   final TextDirection textDirection;
   final VerticalDirection verticalDirection;
   final EdgeInsets padding;
-
-  const PaddedColumn({
-    Key key,
-    this.children,
-    this.mainAxisAlignment = MainAxisAlignment.start,
-    this.crossAxisAlignment = CrossAxisAlignment.center,
-    this.mainAxisSize = MainAxisSize.max,
-    this.verticalDirection = VerticalDirection.down,
-    this.textBaseline,
-    this.textDirection,
-    this.padding,
-  }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     List<Widget> c = children.toList();
@@ -73,6 +71,6 @@ class PaddedColumn extends StatelessWidget {
       textDirection: textDirection,
       verticalDirection: verticalDirection,
     );
-    return this.padding == null ? col : Padding(padding: padding, child: col);
+    return Padding(padding: this.padding, child: col);
   }
 }

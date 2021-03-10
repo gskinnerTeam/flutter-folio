@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -28,27 +28,28 @@ enum PopOverRegionMode {
 
 class PopOverRegion extends StatefulWidget {
   PopOverRegion(
-      {Key key,
-      @required this.child,
-      @required this.popChild,
+      {Key? key,
+      required this.child,
+      required this.popChild,
       this.anchor,
       this.popAnchor,
       this.barrierDismissable,
       this.barrierColor,
-      this.mode})
+      required this.mode})
       : super(key: key);
   final Widget child;
   final Widget popChild;
-  final bool barrierDismissable;
-  final Color barrierColor;
-  final Alignment anchor;
-  final Alignment popAnchor;
+  final bool? barrierDismissable;
+  final Color? barrierColor;
+  final Alignment? anchor;
+  final Alignment? popAnchor;
   final PopOverRegionMode mode;
   @override
   PopOverRegionState createState() => PopOverRegionState();
 
   // Non-interactive tool-tips, triggered on a delayed hover. Auto-close when you roll-out of the PopOverRegion
-  static PopOverRegion hover({Widget child, Widget popChild, Alignment anchor, Alignment popAnchor, Key key}) {
+  static PopOverRegion hover(
+      {Key? key, required Widget child, required Widget popChild, Alignment? anchor, Alignment? popAnchor}) {
     return PopOverRegion(
         key: key,
         child: child,
@@ -60,13 +61,13 @@ class PopOverRegion extends StatefulWidget {
 
   // Click to open/close. Use for interactive panels, or other elements that should close themselves
   static PopOverRegion click(
-      {Key key,
-      Widget child,
-      Widget popChild,
-      Alignment anchor,
-      Alignment popAnchor,
-      bool barrierDismissable,
-      Color barrierColor}) {
+      {Key? key,
+      required Widget child,
+      required Widget popChild,
+      Alignment? anchor,
+      Alignment? popAnchor,
+      bool? barrierDismissable,
+      Color? barrierColor}) {
     return PopOverRegion(
       key: key,
       child: child,
@@ -80,16 +81,16 @@ class PopOverRegion extends StatefulWidget {
   }
 
   static PopOverRegion hoverWithClick({
-    Key key,
-    @required Widget child,
+    Key? key,
+    required Widget child,
+    required Widget hoverPopChild,
+    required Widget clickPopChild,
     bool barrierDismissable = true,
-    Color barrierColor,
-    @required Widget hoverPopChild,
-    Alignment hoverAnchor,
-    Alignment hoverPopAnchor,
-    @required Widget clickPopChild,
-    Alignment clickAnchor,
-    Alignment clickPopAnchor,
+    Color? barrierColor,
+    Alignment? hoverAnchor,
+    Alignment? hoverPopAnchor,
+    Alignment? clickAnchor,
+    Alignment? clickPopAnchor,
   }) {
     return click(
         key: key,
@@ -103,10 +104,10 @@ class PopOverRegion extends StatefulWidget {
 }
 
 class PopOverRegionState extends State<PopOverRegion> {
-  Timer _timer;
+  Timer? _timer;
   LayerLink _link = LayerLink();
 
-  PopOverControllerState _popContext;
+  PopOverControllerState? _popContext;
   @override
   Widget build(BuildContext context) {
     Widget content;
@@ -118,7 +119,7 @@ class PopOverRegionState extends State<PopOverRegion> {
           _timer?.cancel();
           _timer = Timer.periodic(Duration(milliseconds: 400), (timer) {
             show();
-            timer?.cancel();
+            timer.cancel();
           });
         },
         onExit: (_) {

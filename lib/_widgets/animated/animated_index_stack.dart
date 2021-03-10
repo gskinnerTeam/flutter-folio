@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter/material.dart';
 
 class AnimatedIndexStack extends StatefulWidget {
@@ -7,9 +7,9 @@ class AnimatedIndexStack extends StatefulWidget {
   final Duration duration;
 
   const AnimatedIndexStack({
-    Key key,
-    this.index,
-    this.children,
+    Key? key,
+    required this.index,
+    required this.children,
     this.duration = const Duration(milliseconds: 250),
   }) : super(key: key);
 
@@ -18,15 +18,7 @@ class AnimatedIndexStack extends StatefulWidget {
 }
 
 class _AnimatedIndexStackState extends State<AnimatedIndexStack> with SingleTickerProviderStateMixin {
-  AnimationController _controller;
-
-  @override
-  void didUpdateWidget(AnimatedIndexStack oldWidget) {
-    if (widget.index != oldWidget.index) {
-      _controller.forward(from: 0.0);
-    }
-    super.didUpdateWidget(oldWidget);
-  }
+  late AnimationController _controller;
 
   @override
   void initState() {
@@ -39,6 +31,14 @@ class _AnimatedIndexStackState extends State<AnimatedIndexStack> with SingleTick
   void dispose() {
     _controller.dispose();
     super.dispose();
+  }
+
+  @override
+  void didUpdateWidget(AnimatedIndexStack oldWidget) {
+    if (widget.index != oldWidget.index) {
+      _controller.forward(from: 0.0);
+    }
+    super.didUpdateWidget(oldWidget);
   }
 
   @override

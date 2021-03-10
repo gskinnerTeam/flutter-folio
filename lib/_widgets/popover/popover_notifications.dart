@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_widgets/popover/popover_controller.dart';
 
@@ -10,9 +10,9 @@ class ShowPopOverNotification extends Notification {
   ShowPopOverNotification(
     this.context,
     this.link, {
-    @required this.anchor,
-    @required this.popAnchor,
-    @required this.popChild,
+    required this.anchor,
+    required this.popAnchor,
+    required this.popChild,
     this.useBarrier = true,
     this.barrierColor = Colors.transparent,
     this.dismissOnBarrierClick = true,
@@ -26,7 +26,7 @@ class ShowPopOverNotification extends Notification {
   final bool useBarrier;
   final Color barrierColor;
   final bool dismissOnBarrierClick;
-  final void Function(PopOverControllerState) onContextHandled;
+  final void Function(PopOverControllerState)? onContextHandled;
 }
 
 // Dispatched from the PopOver Widget, so the PopOverContext can get the size of an arbitrary child Widget
