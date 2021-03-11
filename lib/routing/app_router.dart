@@ -187,7 +187,7 @@ class AppRouterDelegate extends RouterDelegate<AppLink> with ChangeNotifier {
 
 Widget _getDevSpike() {
   if (kReleaseMode) return null;
-  return FirebaseRealtimeDbSpike();
+  //return FirebaseRealtimeDbSpike();
   //return NativeFirebaseAuthSpike();
   //return ModelCommandsSpike();
   //return RestApiSpikes();

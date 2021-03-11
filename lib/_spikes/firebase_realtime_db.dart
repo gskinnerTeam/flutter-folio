@@ -1,8 +1,10 @@
 // @dart=2.12
 import 'dart:async';
+import 'dart:io';
 
 import 'package:firebase_auth_rest/firebase_auth_rest.dart';
 import 'package:firebase_database_rest/firebase_database_rest.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/commands/commands.dart';
 import 'package:flutter_folio/data/app_user.dart';
@@ -13,7 +15,7 @@ class FirebaseRealtimeDbSpike extends StatefulWidget {
   _FirebaseRealtimeDbSpikeState createState() => _FirebaseRealtimeDbSpikeState();
 }
 
-class _FirebaseRealtimeDbSpikeState extends State<FirebaseRealtimeDbSpike> {
+class _FirebaseRealtimeDbSpikeState extends State<FirebaseRealtimeDbSpike> with SingleTickerProviderStateMixin {
   FirebaseAuth? _auth;
   FirebaseDatabase? _db;
   FirebaseAccount? _acct;
@@ -21,11 +23,6 @@ class _FirebaseRealtimeDbSpikeState extends State<FirebaseRealtimeDbSpike> {
   String _errorMsg = "";
   StreamSubscription<StoreEvent<AppUser>>? _rootStoreStream;
   FirebaseStore<AppUser>? _rootStore;
-
-  @override
-  void initState() {
-    super.initState();
-  }
 
   void signIn() async {
     setState(() => _errorMsg = "");
