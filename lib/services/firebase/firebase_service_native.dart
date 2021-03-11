@@ -43,7 +43,6 @@ class NativeFirebaseService extends FirebaseService {
     super.signOut();
   }
 
-  @override
   bool _isSignedIn = false;
   bool get isSignedIn => _isSignedIn;
 

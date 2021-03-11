@@ -198,8 +198,6 @@ class ImageAndNameContent extends StatelessWidget {
       ],
     );
   }
-
-  void _handleSharePressed() => CopyShareLinkCommand().run(data.documentId);
 }
 
 class TextContent extends StatelessWidget {
