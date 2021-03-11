@@ -1,4 +1,3 @@
-import 'package:flutter_folio/_utils/data_utils.dart';
 import 'package:flutter_folio/_utils/easy_notifier.dart';
 import 'package:flutter_folio/_utils/string_utils.dart';
 import 'package:flutter_folio/data/book_data.dart';

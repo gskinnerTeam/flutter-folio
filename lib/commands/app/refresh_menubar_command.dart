@@ -1,9 +1,4 @@
-import 'dart:io';
-
-import 'package:flutter_folio/commands/app/set_current_user_command.dart';
 import 'package:flutter_folio/commands/commands.dart';
-import 'package:menubar/menubar.dart';
-import 'package:universal_platform/universal_platform.dart';
 
 //TODO: Should we pull this feature completely since it's not supported on Windows?
 class RefreshMenuBarCommand extends BaseAppCommand {

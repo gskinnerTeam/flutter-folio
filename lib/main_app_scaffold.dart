@@ -27,7 +27,7 @@ class _MainAppScaffoldState extends State<MainAppScaffold> {
     return Provider.value(
       value: appTheme,
       child: StatsFl(
-        isEnabled: false && (kProfileMode || kDebugMode),
+        isEnabled: false,
         align: Alignment.bottomCenter,
         child: Directionality(
           textDirection: textDirection,

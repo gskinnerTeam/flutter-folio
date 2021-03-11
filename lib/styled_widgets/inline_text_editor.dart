@@ -170,7 +170,7 @@ class _InlineTextEditorState extends State<InlineTextEditor> {
   String lastValue = "";
   int lastPosition;
   final FocusNode rawFocus = FocusNode();
-  @override
+
   void _fixTextOnLinux(String value) {
     if (value.length > 1 && lastValue.length < value.length) {
       final enteredChar = value[0];
