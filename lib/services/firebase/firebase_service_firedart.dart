@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:firedart/auth/user_gateway.dart';
 import 'package:firedart/firedart.dart';
 import 'package:firedart/firestore/models.dart';
-import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/data/app_user.dart';
 import 'package:flutter_folio/services/firebase/firebase_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';

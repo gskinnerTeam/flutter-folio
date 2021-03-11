@@ -1,10 +1,7 @@
-import 'dart:async';
-import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_widgets/alignments.dart';
-import 'package:flutter_folio/commands/books/refresh_current_book_command.dart';
 import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/data/book_data.dart';
 import 'package:flutter_folio/models/app_model.dart';
@@ -13,9 +10,7 @@ import 'package:flutter_folio/views/scrap_pile_picker/scrap_pile_picker.dart';
 
 import 'networked_scrapboard.dart';
 import 'empty_scrapboard_view.dart';
-import 'panels/collapsible_info_panel.dart';
 import 'panels/content_picker_tab_menu.dart';
-import 'panels/collapsible_pages_panel.dart';
 import 'panels/collapsible_panels.dart';
 import 'panels/simple_pages_menu.dart';
 

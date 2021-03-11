@@ -57,7 +57,6 @@ class ScrapboardState<T> extends State<Scrapboard<T>> with RawKeyboardListenerMi
   double _scale = 1;
   List<String> _selectedBoxIds = [];
   bool _isSpaceBarDown = false;
-  Size _viewSize;
 
   // We create a copy of the assigned boxList, so we can work on it internally
   List<ScrapData<T>> get _tmpBoxes => widget.boxes;

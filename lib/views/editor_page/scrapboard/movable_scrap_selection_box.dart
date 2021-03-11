@@ -5,7 +5,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_utils/debouncer.dart';
-import 'package:flutter_folio/_utils/time_utils.dart';
 import 'package:flutter_folio/core_packages.dart';
 
 class MovableScrapSelectionBox extends StatefulWidget {

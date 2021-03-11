@@ -4,7 +4,6 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_folio/_widgets/animated/animated_rotation.dart';
 import 'package:flutter_folio/_widgets/context_menu_overlay.dart';
 import 'package:flutter_folio/_widgets/gradient_container.dart';
-import 'package:flutter_folio/commands/app/copy_share_link_command.dart';
 import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/data/book_data.dart';
 import 'package:timeago/timeago.dart' as timeago;
@@ -198,8 +197,6 @@ class ImageAndNameContent extends StatelessWidget {
       ],
     );
   }
-
-  void _handleSharePressed() => CopyShareLinkCommand().run(data.documentId);
 }
 
 class TextContent extends StatelessWidget {

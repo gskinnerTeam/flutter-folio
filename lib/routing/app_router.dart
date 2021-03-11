@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/_spikes/auth_spike.dart';
 import 'package:flutter_folio/commands/books/set_current_book_command.dart';
 import 'package:flutter_folio/commands/books/set_current_page_command.dart';
 import 'package:flutter_folio/core_packages.dart';
