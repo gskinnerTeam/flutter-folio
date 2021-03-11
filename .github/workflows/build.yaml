@@ -16,5 +16,4 @@ jobs:
           flutter-version: "2.0.1"
       - run: flutter pub get
       - run: flutter analyze
-      - run: flutter test --coverage
 
