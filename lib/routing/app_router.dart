@@ -1,6 +1,7 @@
 // @dart=2.9
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_folio/_spikes/firebase_realtime_db.dart';
 import 'package:flutter_folio/commands/books/set_current_book_command.dart';
 import 'package:flutter_folio/commands/books/set_current_page_command.dart';
 import 'package:flutter_folio/core_packages.dart';
@@ -186,6 +187,7 @@ class AppRouterDelegate extends RouterDelegate<AppLink> with ChangeNotifier {
 
 Widget _getDevSpike() {
   if (kReleaseMode) return null;
+  return FirebaseRealtimeDbSpike();
   //return NativeFirebaseAuthSpike();
   //return ModelCommandsSpike();
   //return RestApiSpikes();
