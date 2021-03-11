@@ -129,6 +129,7 @@ class _InlineTextEditorState extends State<InlineTextEditor> {
                       textAlign: widget.align,
                       textAlignVertical: widget.alignVertical,
                       focusNode: _textFocus,
+                      cursorColor: theme.grey,
                       controller: _textController,
                       decoration: InputDecoration(
                         contentPadding: EdgeInsets.only(top: 10, bottom: 0),
