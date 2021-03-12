@@ -69,7 +69,7 @@ class BootstrapCommand extends Commands.BaseAppCommand {
         // Use some percentage of system ram, but don't fall below the default, in case this returns 0 or some other invalid value.
         cacheSize = max(cacheSize, (SysInfo.getTotalPhysicalMemory() / 4).round());
       } on Exception catch (e) {
-        print(e);
+        safePrint(e.toString());
       }
     }
     imageCache.maximumSizeBytes = cacheSize;
