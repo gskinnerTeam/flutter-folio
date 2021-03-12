@@ -1,22 +1,17 @@
-import 'dart:async';
-import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_widgets/alignments.dart';
-import 'package:flutter_folio/commands/books/refresh_current_book_command.dart';
 import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/data/book_data.dart';
 import 'package:flutter_folio/models/app_model.dart';
 import 'package:flutter_folio/models/books_model.dart';
 import 'package:flutter_folio/views/scrap_pile_picker/scrap_pile_picker.dart';
 
-import 'networked_scrapboard.dart';
 import 'empty_editor_view.dart';
-import 'panels/collapsible_info_panel.dart';
-import 'panels/content_picker_tab_menu.dart';
-import 'panels/collapsible_pages_panel.dart';
+import 'networked_scrapboard.dart';
 import 'panels/collapsible_panels.dart';
+import 'panels/content_picker_tab_menu.dart';
 import 'panels/simple_pages_menu.dart';
 
 class BookEditorPage extends StatefulWidget {
@@ -39,7 +34,7 @@ class _BookEditorPageState extends State<BookEditorPage> {
 
     double leftMenuWidth = 212;
     bool isPhone = context.widthPx < Sizes.largePhone;
-    bool showSimpleView = widget.readOnly || isPhone;
+    bool disableEditing = widget.readOnly || isPhone;
 
     return StyledPageScaffold(
       body: Stack(
@@ -53,21 +48,21 @@ class _BookEditorPageState extends State<BookEditorPage> {
                   //bookId, pageId,
                   // tweak the start-offset of the scrap-board depending on form factor
                   startOffset: Offset(
-                    showSimpleView ? Insets.offset : 300, // More left padding when the full-menus are present
-                    showSimpleView ? 120 : 60, // More top padding when the simple menu is present
+                    disableEditing ? Insets.offset : 300, // More left padding when the full-menus are present
+                    disableEditing ? 120 : 60, // More top padding when the simple menu is present
                   ),
-                  readOnly: widget.readOnly),
+                  readOnly: disableEditing),
             ),
           ] else ...[
             // Empty placeholder view
             Padding(
-              padding: EdgeInsets.only(left: showSimpleView ? 0 : 240, right: showSimpleView ? 0 : 80),
+              padding: EdgeInsets.only(left: disableEditing ? 0 : 240, right: disableEditing ? 0 : 80),
               child: EmptyEditorView(readOnly: widget.readOnly),
             ),
           ],
 
           /// Mobile or Read-Only mode share the same simple menu...
-          if (showSimpleView) ...[
+          if (disableEditing) ...[
             FocusTraversalGroup(
               child: TopLeft(child: SimplePagesMenu(pageList, selectedPageId: pageId)),
             ),
