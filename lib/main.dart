@@ -10,6 +10,7 @@ import 'package:flutter_folio/routing/app_route_parser.dart';
 import 'package:flutter_folio/routing/app_router.dart';
 import 'package:flutter_folio/services/cloudinary/cloud_storage_service.dart';
 import 'package:flutter_folio/services/firebase/firebase_service.dart';
+import 'package:flutter_folio/themes.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -77,6 +78,7 @@ class _AppBootstrapperState extends State<_AppBootstrapper> {
 
   @override
   Widget build(BuildContext context) {
+    AppTheme theme = context.select((AppModel m) => m.theme);
     return MaterialApp.router(
       // Convert appState to (and from) a string "location"
       routeInformationParser: routeParser,
@@ -84,6 +86,7 @@ class _AppBootstrapperState extends State<_AppBootstrapper> {
       routerDelegate: router,
       // Disable debug banner
       debugShowCheckedModeBanner: false,
+      theme: theme.themeData,
     );
   }
 }
