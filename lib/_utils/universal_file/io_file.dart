@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter_folio/_utils/path_utils.dart';
+import 'package:flutter_folio/_utils/safe_print.dart';
 import 'package:path/path.dart' as p;
 
 import 'universal_file.dart';
@@ -27,10 +28,12 @@ class IoFileWriter implements UniversalFile {
   Future<String> read() async {
     await getDataPath();
     print("Loading file @ $fullPath");
-    return await File("$fullPath").readAsString().catchError((Object e) {
-      print(e);
-      return null;
-    });
+    if (await File("$fullPath").exists()) {
+      return await File("$fullPath").readAsString().catchError((Object e) {
+        safePrint(e.toString());
+      });
+    }
+    return null;
   }
 
   @override

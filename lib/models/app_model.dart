@@ -122,7 +122,7 @@ class AppModel extends AbstractModel {
     try {
       fromJson(jsonDecode(saveJson) as Map<String, dynamic>);
     } catch (e) {
-      print("Failed to decode save file json: $e");
+      safePrint("Failed to load save file");
     }
     print("File loaded, $windowRect");
   }
