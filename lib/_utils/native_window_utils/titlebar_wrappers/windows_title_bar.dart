@@ -26,6 +26,7 @@ class WindowsTitleBar extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
+                //Container(height: 40, width: 40, color: Colors.red),
                 MinimizeWindowButton(colors: _btnColors),
                 MaximizeWindowButton(colors: _btnColors),
                 CloseWindowButton(),

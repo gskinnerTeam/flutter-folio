@@ -94,7 +94,11 @@ class _BookEditorPageState extends State<BookEditorPage> {
 
   void _handleScrapPilePressed(BuildContext context, String bookId) {
     showStyledBottomSheet(context,
-        child: SizedBox(height: context.heightPx * .6, child: ScrapPilePicker(bookId: bookId, mobileMode: true)));
+        child: SizedBox(
+          height: context.heightPx * .6,
+          // Show scrap-pile picker in a bottom-sheet
+          child: ScrapPilePicker(bookId: bookId, mobileMode: true),
+        ));
   }
 }
 

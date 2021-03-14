@@ -12,6 +12,7 @@ import 'package:flutter_folio/services/cloudinary/cloud_storage_service.dart';
 import 'package:flutter_folio/services/firebase/firebase_service.dart';
 import 'package:flutter_folio/themes.dart';
 import 'package:provider/provider.dart';
+import '_spikes/image_picker_example.dart';
 
 void main() async {
   //Call this first to make sure we can make other system level calls safely

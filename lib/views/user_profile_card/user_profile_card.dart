@@ -147,9 +147,12 @@ class _ProfileEditorCardContentState extends State<_ProfileEditorCardContent> {
   }
 
   void _handleProfileImgPressed() async {
-    List<String> paths = await PickImagesCommand().run();
+    List<PickedImage> paths = await PickImagesCommand().run();
     CloudStorageService cloudStorage = context.read<CloudStorageService>();
-    List<CloudinaryResponse> uploads = await cloudStorage.multiUpload(urls: paths);
+    List<CloudinaryResponse> uploads = await cloudStorage.multiUpload(images: paths);
+
+    // Make a command that picks images, uploads them, and returns a list of remote paths?
+
     uploads.forEach((u) => safePrint(u.secureUrl));
     // Update firebase
     if (uploads?.isNotEmpty ?? false) {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_utils/string_utils.dart';
 import 'package:flutter_folio/core_packages.dart';
+import 'package:universal_platform/universal_platform.dart';
 
 class DeleteDialog extends StatelessWidget {
   const DeleteDialog({Key key, @required this.title, @required this.desc1, this.desc2}) : super(key: key);
@@ -11,7 +12,7 @@ class DeleteDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AppTheme theme = context.watch();
-
+    TextDirection btnDirection = UniversalPlatform.isMacOS ? TextDirection.ltr : TextDirection.rtl;
     return BaseStyledDialog(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,9 +39,15 @@ class DeleteDialog extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              SecondaryBtn(label: "CANCEL", isCompact: true, onPressed: () => Navigator.of(context).pop(false)),
-              HSpace.sm,
-              PrimaryBtn(label: "DELETE", isCompact: true, onPressed: () => Navigator.of(context).pop(true)),
+              Spacer(),
+              Row(
+                textDirection: btnDirection,
+                children: [
+                  SecondaryBtn(label: "CANCEL", isCompact: true, onPressed: () => Navigator.of(context).pop(false)),
+                  HSpace.sm,
+                  PrimaryBtn(label: "DELETE", isCompact: true, onPressed: () => Navigator.of(context).pop(true)),
+                ],
+              ),
               HSpace.lg,
             ],
           ),
