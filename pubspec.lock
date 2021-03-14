@@ -58,7 +58,14 @@ packages:
       name: bitsdojo_window
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.8"
+    version: "0.0.9"
+  bitsdojo_window_linux:
+    dependency: transitive
+    description:
+      name: bitsdojo_window_linux
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.1"
   bitsdojo_window_macos:
     dependency: transitive
     description:
@@ -416,13 +423,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_absolute_path:
-    dependency: "direct main"
-    description:
-      name: flutter_absolute_path
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.6"
   flutter_blurhash:
     dependency: transitive
     description:
