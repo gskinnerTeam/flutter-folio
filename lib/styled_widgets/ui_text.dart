@@ -15,6 +15,6 @@ class UiText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ExcludeFocus(excluding: true, child: SelectableText(data, style: style));
+    return SelectableText(data, style: style, focusNode: FocusNode(skipTraversal: true));
   }
 }
