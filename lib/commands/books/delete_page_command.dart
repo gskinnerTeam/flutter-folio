@@ -23,20 +23,21 @@ class DeletePageCommand extends BaseAppCommand {
             }) ??
         false;
     //Delete
-    if (doDelete ?? false) {
+    if (doDelete) {
       // If we're deleting the current page, we will want to select another one if we can.
       bool wasCurrentPage = booksModel.currentPage?.documentId == page.documentId;
 
+      bool hasPages = booksModel.currentBookPages?.isNotEmpty ?? false;
       // Remove page locally
       booksModel.removePageById(page.documentId);
-      if (wasCurrentPage && booksModel.currentBookPages.isNotEmpty) {
-        booksModel.currentPage = booksModel.currentBookPages.first;
+      if (wasCurrentPage && hasPages) {
+        booksModel.currentPage = booksModel.currentBookPages?.first;
       }
 
       // Select a replacement page if we can, since we deleted the current one
-      if (wasCurrentPage && booksModel.currentBookPages.isNotEmpty) {
+      if (wasCurrentPage && hasPages) {
         // Decrement pageCount
-        await UpdatePageCountCommand().run(max(booksModel.currentBookPages.length - 1, 0));
+        await UpdatePageCountCommand().run(max(booksModel.currentBookPages!.length - 1, 0));
       }
 
       // Remove page from db
@@ -44,8 +45,10 @@ class DeletePageCommand extends BaseAppCommand {
 
       // Decrement the page count
       bool isCurrentBook = booksModel.currentBookId == page.bookId;
-      ScrapBookData book = isCurrentBook ? booksModel.currentBook : (await firebase.getBook(bookId: page.bookId));
-      UpdatePageCountCommand().run(book.pageCount - 1, book: book);
+      ScrapBookData? book = isCurrentBook ? booksModel.currentBook : (await firebase.getBook(bookId: page.bookId));
+      if (book != null) {
+        UpdatePageCountCommand().run(book.pageCount - 1, book: book);
+      }
     }
   }
 }

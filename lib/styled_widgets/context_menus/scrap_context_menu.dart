@@ -24,7 +24,7 @@ class ScrapContextMenu extends BaseContextMenu {
 
     void _handleDeletePressed() => DeletePageScrapCommand().run(scrap);
 
-    String currentCoverPhoto = context.select((BooksModel m) => m.currentBook.imageUrl);
+    String? currentCoverPhoto = context.select((BooksModel m) => m.currentBook)?.imageUrl;
     bool isCoverPhoto = scrap.isPhoto && scrap.data == currentCoverPhoto;
     bool disableCoverPhotoBtn = isCoverPhoto || scrap.isPhoto == false;
     AppTheme theme = context.watch();

@@ -8,7 +8,7 @@ import 'package:share/share.dart';
 class CopyShareLinkCommand extends BaseAppCommand {
   String get baseUrl => "https://flutterfolio.com/#";
 
-  Future<void> run(String bookId, {required String pageId}) async {
+  Future<void> run(String bookId, {String? pageId}) async {
     // Form a url using an AppLink
     String url = baseUrl +
         AppLink(

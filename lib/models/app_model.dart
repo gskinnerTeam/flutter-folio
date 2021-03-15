@@ -138,10 +138,10 @@ class AppModel extends AbstractModel {
       _enableTouchMode = json["enableTouchMode"] as bool;
     }
     _windowRect = Rect.fromLTWH(
-      json["winX"] as double ?? 0.0,
-      json["winY"] as double ?? 0.0,
-      json["winWidth"] as double ?? 0.0,
-      json["winHeight"] as double ?? 0.0,
+      json["winX"] as double? ?? 0.0,
+      json["winY"] as double? ?? 0.0,
+      json["winWidth"] as double? ?? 0.0,
+      json["winHeight"] as double? ?? 0.0,
     );
     //print(json);
   }

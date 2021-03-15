@@ -7,12 +7,12 @@ class _IndexPair {
 }
 
 class DataUtils {
-  static List<T> sortListById<T extends FirebaseDoc>(List<T> pages, List<String> pageIds) {
-    if (pageIds.isEmpty) return pages;
+  static List<T> sortListById<T extends FirebaseDoc>(List<T> pages, List<String>? pageIds) {
+    if (pageIds?.isEmpty ?? true) return pages;
     List<_IndexPair> listIndices = [];
     List<T> sortedList = [];
     for (int i = 0; i < pages.length; ++i) {
-      int elementOrder = pageIds.indexWhere((pageId) => pageId == pages[i].documentId);
+      int elementOrder = pageIds!.indexWhere((pageId) => pageId == pages[i].documentId);
       listIndices.add(_IndexPair(elementOrder != -1 ? elementOrder : 1000000000, i));
     }
     listIndices.sort((a, b) => a.index1.compareTo(b.index1));

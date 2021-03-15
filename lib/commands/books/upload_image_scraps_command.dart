@@ -27,7 +27,7 @@ class UploadImageScrapsCommand extends BaseAppCommand {
             creationTime: TimeUtils.nowMillis))
         .toList();
     // Inject local scraps for loading spinners
-    booksModel.currentBookScraps = List.from(booksModel.currentBookScraps)..addAll(newScraps);
+    booksModel.currentBookScraps = List.from(booksModel.currentBookScraps ?? [])..addAll(newScraps);
     // Send all scraps to the database
     await Future.wait(
       newScraps.map((s) => firebase.addBookScrap(s)).toList(),

@@ -5,9 +5,9 @@ import 'package:flutter_folio/services/cloudinary/cloud_storage_service.dart';
 
 class RefreshCurrentPageCommand extends BaseAppCommand {
   Future<void> run() async {
-    if (booksModel.currentPage == null) return;
-    String bookId = booksModel.currentPage.bookId;
-    String pageId = booksModel.currentPage.documentId;
+    String? bookId = booksModel.currentPage?.bookId;
+    String? pageId = booksModel.currentPage?.documentId;
+    if (bookId == null || pageId == null) return;
     List<Future> futures = [
       firebase.getPage(bookId: bookId, pageId: pageId).then((value) {
         booksModel.currentPage = value;

@@ -5,7 +5,7 @@ import 'package:flutter_folio/data/book_data.dart';
 class ShiftPlacedScrapsSortOrderCommand extends BaseAppCommand {
   Future<void> run(int indexesToShift, PlacedScrapItem scrapItem) async {
     // Fetch the book and try to get the current sortIndex of this page
-    ScrapPageData page = booksModel.currentPage;
+    ScrapPageData? page = booksModel.currentPage;
     if (page == null) return;
 
     page = page.copyWith(
@@ -13,7 +13,7 @@ class ShiftPlacedScrapsSortOrderCommand extends BaseAppCommand {
     );
     showToast(indexesToShift < 0 ? "Sent back" : "Moved forward");
     booksModel.replacePage(page);
-    booksModel.currentPageScraps = List.from(booksModel.currentPageScraps);
+    booksModel.currentPageScraps = List.from(booksModel.currentPageScraps ?? []);
     // Update firebase
     firebase.setPage(page);
   }

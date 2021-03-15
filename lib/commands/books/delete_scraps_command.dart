@@ -9,7 +9,7 @@ import 'update_book_modified_command.dart';
 class DeleteScrapsCommand extends BaseAppCommand {
   Future<bool> run({required String bookId, required List<String> scrapIds}) async {
     // Guard against empty ids
-    if ((scrapIds.isEmpty ?? true)) return false;
+    if ((scrapIds.isEmpty)) return false;
 
     // Show dialog
     String pluralScraps = StringUtils.pluralize("scrap", scrapIds.length);
@@ -23,7 +23,7 @@ class DeleteScrapsCommand extends BaseAppCommand {
             }) ??
         false;
     //Delete
-    if (doDelete ?? false) {
+    if (doDelete) {
       scrapIds.forEach((id) {
         // Clear local data
         booksModel.removeBookScrapById(id);

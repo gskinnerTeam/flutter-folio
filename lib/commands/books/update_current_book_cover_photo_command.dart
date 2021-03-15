@@ -8,16 +8,18 @@ class UpdateCurrentBookCoverPhotoCommand extends BaseAppCommand {
     // Guard against non-photo content types
     if (item.contentType != ContentType.Photo) return;
     // Protect against non-changes so the views don't need to check
-    if (item.data == booksModel.currentBook.imageUrl) return;
-    ScrapBookData book = booksModel.currentBook.copyWith(
-      imageUrl: item.data,
-      lastModifiedTime: TimeUtils.nowMillis,
-    );
-    // Update local
-    booksModel.replaceBook(book);
-    // Update db
-    firebase.setBook(book);
-
-    showToast("Cover photo changed!");
+    if (item.data == booksModel.currentBook?.imageUrl) return;
+    ScrapBookData? book = booksModel.currentBook;
+    if (book != null) {
+      book = book.copyWith(
+        imageUrl: item.data,
+        lastModifiedTime: TimeUtils.nowMillis,
+      );
+      // Update local
+      booksModel.replaceBook(book);
+      // Update db
+      firebase.setBook(book);
+      showToast("Cover photo changed!");
+    }
   }
 }

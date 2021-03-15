@@ -16,7 +16,7 @@ class DeleteBookCommand extends BaseAppCommand {
                 )) ??
         false;
     //Delete
-    if (doDelete ?? false) {
+    if (doDelete) {
       // Delete locally right away
       booksModel.removeBookById(book.documentId);
       // Sent to database

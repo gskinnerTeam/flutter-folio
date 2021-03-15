@@ -25,7 +25,7 @@ class BooksModel extends EasyNotifier {
 
   void replaceBook(ScrapBookData value) {
     if (this.books == null) return;
-    bool equals(ScrapBookData? b1, ScrapBookData? b2) => b1?.documentId == b2?.documentId;
+    bool equals(ScrapBookData? b1, ScrapBookData b2) => b1?.documentId == b2.documentId;
     List<ScrapBookData> books = copyList(this.books);
     for (var i = books.length; i-- > 0;) {
       if (equals(value, books[i])) books[i] = value;
@@ -74,7 +74,7 @@ class BooksModel extends EasyNotifier {
 
   void replacePage(ScrapPageData value) {
     if (currentBookPages == null) return;
-    bool equals(ScrapPageData? p1, ScrapPageData? p2) => p1?.documentId == p2?.documentId;
+    bool equals(ScrapPageData? p1, ScrapPageData p2) => p1?.documentId == p2.documentId;
     List<ScrapPageData> pages = copyList(currentBookPages);
     for (var i = pages.length; i-- > 0;) {
       if (equals(value, pages[i])) {
@@ -82,13 +82,13 @@ class BooksModel extends EasyNotifier {
       }
     }
     currentBookPages = pages;
-    if (equals(currentPage, value)) currentPage = value;
+    if (equals(currentPage!, value)) currentPage = value;
     notify();
   }
 
   void replaceBookScrap(ScrapItem value) {
     if (currentBookScraps == null) return;
-    bool equals(ScrapItem? p1, ScrapItem? p2) => p1?.documentId == p2?.documentId;
+    bool equals(ScrapItem p1, ScrapItem p2) => p1.documentId == p2.documentId;
     List<ScrapItem> scraps = copyList(currentBookScraps);
     for (var i = scraps.length; i-- > 0;) {
       if (equals(value, scraps[i])) scraps[i] = value;
@@ -115,7 +115,7 @@ class BooksModel extends EasyNotifier {
 
   void replaceCurrentPageScrap(PlacedScrapItem value, {bool silent = false}) {
     if (currentPageScraps == null) return;
-    bool equals(PlacedScrapItem p1, PlacedScrapItem p2) => p1?.documentId == p2?.documentId;
+    bool equals(PlacedScrapItem p1, PlacedScrapItem p2) => p1.documentId == p2.documentId;
     List<PlacedScrapItem> scraps = copyList(currentPageScraps);
     for (var i = scraps.length; i-- > 0;) {
       if (equals(value, scraps[i])) scraps[i] = value;

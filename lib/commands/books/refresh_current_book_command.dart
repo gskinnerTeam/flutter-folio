@@ -5,7 +5,8 @@ import 'package:flutter_folio/services/cloudinary/cloud_storage_service.dart';
 
 class RefreshCurrentBookCommand extends BaseAppCommand {
   Future<void> run({bool book = true, bool pages = true, bool scraps = true}) async {
-    String bookId = booksModel.currentBookId;
+    String? bookId = booksModel.currentBookId;
+    if (bookId == null) return;
     List<Future> futures = [
       if (book)
         firebase.getBook(bookId: bookId).then((value) {
