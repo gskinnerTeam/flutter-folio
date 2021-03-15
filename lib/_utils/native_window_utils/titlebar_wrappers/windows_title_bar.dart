@@ -1,11 +1,11 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 /// Native TitleBar for Windows, uses BitDojo platform
 class WindowsTitleBar extends StatelessWidget {
-  const WindowsTitleBar(this.child, {Key key}) : super(key: key);
+  const WindowsTitleBar(this.child, {Key? key}) : super(key: key);
   final Widget child;
 
   @override

@@ -11,7 +11,7 @@ class InlineTextEditor extends StatefulWidget {
   const InlineTextEditor(this.text,
       {Key? key,
       required this.width,
-      this.style,
+      required this.style,
       this.maxLines = 1,
       this.alignVertical = TextAlignVertical.center,
       this.align = TextAlign.left,
@@ -29,7 +29,7 @@ class InlineTextEditor extends StatefulWidget {
   final bool autoFocus;
   final TextAlignVertical alignVertical;
   final TextAlign align;
-  final TextStyle? style;
+  final TextStyle style;
   final void Function(String value)? onChanged;
   final String? promptText;
   final void Function()? onFocusIn;

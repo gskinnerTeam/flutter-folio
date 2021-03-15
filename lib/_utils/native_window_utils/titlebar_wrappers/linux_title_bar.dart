@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 
 /// Native TitleBar for Linux, uses BitDojo platform
 class LinuxTitleBar extends StatelessWidget {
-  const LinuxTitleBar(this.child, {Key key}) : super(key: key);
+  const LinuxTitleBar(this.child, {Key? key}) : super(key: key);
   final Widget child;
 
   @override

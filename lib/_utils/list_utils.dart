@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 class ListUtils {
   static List<T> interleave<T>(List<T> listA, List<T> listB) {
     List<T> result = [];

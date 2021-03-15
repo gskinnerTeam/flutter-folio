@@ -1,11 +1,11 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter/material.dart';
 
 class ContextUtils {
   // Utility methods to get the size/pos of our render boxes in global & local space
   static Size getSize(BuildContext c) {
     try {
-      RenderBox rb = c.findRenderObject() as RenderBox;
+      RenderBox? rb = c.findRenderObject() as RenderBox;
       return rb?.size ?? Size.zero;
     } catch (e) {
       print(e);

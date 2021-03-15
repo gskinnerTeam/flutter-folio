@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -56,7 +56,7 @@ class _ExamplePopupPanelState extends State<_ExamplePopupPanel> {
   @override
   Widget build(BuildContext context) {
     AnimatedMenuPanel animatedPanel(Offset o, Size s,
-        {double openHeight, int index, Widget Function(bool isOpen) childBuilder}) {
+        {required double openHeight, required int index, required Widget Function(bool isOpen) childBuilder}) {
       // TODO: Make it so this does now rely on hard-coded sizing. Either using Overlay, or a Stack with a copy of the widget manually positioned.
       return AnimatedMenuPanel(o, s,
           openHeight: openHeight,
@@ -147,7 +147,7 @@ class _ExamplePopupPanelState extends State<_ExamplePopupPanel> {
 }
 
 class Content extends StatelessWidget {
-  const Content(this.lbl, this.color, {Key key, this.isOpen}) : super(key: key);
+  const Content(this.lbl, this.color, {Key? key, required this.isOpen}) : super(key: key);
   final bool isOpen;
   final Color color;
   final String lbl;

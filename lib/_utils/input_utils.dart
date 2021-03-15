@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -8,9 +8,9 @@ class InputUtils {
     SystemChannels.textInput.invokeMethod<String>('TextInput.hide');
   }
 
-  static bool get isMouseConnected => RendererBinding.instance.mouseTracker.mouseIsConnected;
+  static bool get isMouseConnected => RendererBinding.instance?.mouseTracker.mouseIsConnected ?? false;
 
   static void unFocus() {
-    WidgetsBinding.instance.focusManager.primaryFocus?.unfocus();
+    WidgetsBinding.instance?.focusManager.primaryFocus?.unfocus();
   }
 }

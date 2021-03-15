@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -51,7 +51,7 @@ class ContextMenuSpike extends StatelessWidget {
 }
 
 class _SomeImageWidget extends StatelessWidget {
-  const _SomeImageWidget({Key key, this.url}) : super(key: key);
+  const _SomeImageWidget({Key? key, required this.url}) : super(key: key);
   final String url;
 
   @override

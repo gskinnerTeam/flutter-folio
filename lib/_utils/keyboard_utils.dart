@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:universal_platform/universal_platform.dart';
@@ -36,7 +36,7 @@ class KeyboardUtils {
   // Determine what to do when an image is pressed. This varies depending on input mode and platform.
   // Keyboard users will support ctrl/cmd modifiers, while Touch devices are optimized for single taps
   static List<String> handleMultiSelectListClick(String clicked, List<String> selected, List<String> all,
-      {@required bool touchMode, bool allowSpanSelect = true}) {
+      {required bool touchMode, bool allowSpanSelect = true}) {
     selected = List.from(selected); // Clone list so we don't modify the original accidentally
     bool wasSelected = selected.contains(clicked);
     // Touch mode, or Keyboard w/ Multiselect behavior: Tap something to add it, tap again to remove it. Tap bg to de-select all.
@@ -46,7 +46,7 @@ class KeyboardUtils {
       if (selected.isNotEmpty) {
         // Span select. Assume the last item in the list was the most recent select. Get all items from there to the selected value
         // Note: This doesn't act exactly like the OS but that logic is non-trivial to implement precisely.
-        String mostRecent = selected.last ?? all.first;
+        String mostRecent = selected.last;
         int mostRecentIndex = all.indexWhere((i) => i == mostRecent);
         int clickedIndex = all.indexWhere((i) => i == clicked);
         int startIndex = clickedIndex > mostRecentIndex ? mostRecentIndex : clickedIndex;

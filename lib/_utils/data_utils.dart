@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter_folio/data/book_data.dart';
 
 class _IndexPair {
@@ -8,7 +8,7 @@ class _IndexPair {
 
 class DataUtils {
   static List<T> sortListById<T extends FirebaseDoc>(List<T> pages, List<String> pageIds) {
-    if (pageIds?.isEmpty ?? true) return pages;
+    if (pageIds.isEmpty) return pages;
     List<_IndexPair> listIndices = [];
     List<T> sortedList = [];
     for (int i = 0; i < pages.length; ++i) {

@@ -1,13 +1,13 @@
-// @dart=2.9
+// @dart=2.12
 import 'dart:math';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class BoxTransformData extends ChangeNotifier {
-  Offset offset = Offset.zero;
-  double scale = 1;
-  BoxTransformData({this.offset, this.scale = 0.0});
+  Offset offset;
+  double scale;
+  BoxTransformData({this.offset = Offset.zero, this.scale = 1});
 
   @override
   void notifyListeners() => super.notifyListeners();
@@ -15,12 +15,12 @@ class BoxTransformData extends ChangeNotifier {
 
 class MyMovableBox extends StatelessWidget {
   const MyMovableBox(
-      {Key key, @required this.child, @required this.data, this.onMoveStarted, this.onMoveUpdated, this.onScaleUpdated})
+      {Key? key, required this.child, required this.data, this.onMoveStarted, this.onMoveUpdated, this.onScaleUpdated})
       : super(key: key);
   final BoxTransformData data;
-  final void Function(BoxTransformData) onMoveStarted;
-  final void Function(BoxTransformData, Offset) onMoveUpdated;
-  final void Function(BoxTransformData, double) onScaleUpdated;
+  final void Function(BoxTransformData)? onMoveStarted;
+  final void Function(BoxTransformData, Offset)? onMoveUpdated;
+  final void Function(BoxTransformData, double)? onScaleUpdated;
   final Widget child;
 
   // Move dispatchers
@@ -48,9 +48,8 @@ class MyMovableBox extends StatelessWidget {
         // Rebuild the box anytime it's data changes
         child: AnimatedBuilder(
           animation: data,
-          builder: (BuildContext context, Widget _) {
-            // Position the child, using a margin to offset it
-            // TODO: Switch to Transform.translate
+          builder: (BuildContext context, _) {
+            // Position the child, using a margin to offset it (you can use Transform.translate instead to avoid squishing at the margins)
             return Container(
                 padding: EdgeInsets.only(
                   left: max(0, data.offset.dx),

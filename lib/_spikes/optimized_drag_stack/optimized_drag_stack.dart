@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'dart:math';
 
 import 'package:cached_network_image/cached_network_image.dart';
@@ -69,7 +69,7 @@ class _OptimizedDragStackState extends State<OptimizedDragStack> {
 class _SquareImage extends StatelessWidget {
   final double scale;
 
-  const _SquareImage({Key key, this.scale = 1}) : super(key: key);
+  const _SquareImage({Key? key, this.scale = 1}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return SizedBox(

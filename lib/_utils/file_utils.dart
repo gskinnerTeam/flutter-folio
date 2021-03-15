@@ -1,8 +1,8 @@
-// @dart=2.9
+// @dart=2.12
 import 'dart:io';
 
 class FileUtils {
-  Future<String> readAsString(String path) async {
+  Future<String?> readAsString(String path) async {
     try {
       return await File(path).readAsString();
     } catch (e) {

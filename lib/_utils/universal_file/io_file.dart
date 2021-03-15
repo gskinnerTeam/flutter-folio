@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'dart:io';
 
 import 'package:flutter_folio/_utils/path_utils.dart';
@@ -7,30 +7,32 @@ import 'package:path/path.dart' as p;
 import 'universal_file.dart';
 
 class IoFileWriter implements UniversalFile {
-  Directory dataPath;
+  Directory? dataDir;
 
   @override
   String fileName;
 
   IoFileWriter(this.fileName);
 
-  String get fullPath => p.join(dataPath.path, fileName);
+  String get fullPath => p.join(dataDir?.path ?? "", fileName);
 
   Future<void> getDataPath() async {
-    if (dataPath != null) return;
-    dataPath = Directory(await PathUtil.dataPath);
-    if (Platform.isWindows || Platform.isLinux) {
-      createDirIfNotExists(dataPath);
+    if (dataDir != null) return;
+    String? dataPath = await PathUtil.dataPath;
+    if (dataPath != null) {
+      dataDir = Directory(dataPath);
+      if (Platform.isWindows || Platform.isLinux) {
+        createDirIfNotExists(dataDir!);
+      }
     }
   }
 
   @override
-  Future<String> read() async {
+  Future<String?> read() async {
     await getDataPath();
     print("Loading file @ $fullPath");
     return await File("$fullPath").readAsString().catchError((Object e) {
       print(e);
-      return null;
     });
   }
 

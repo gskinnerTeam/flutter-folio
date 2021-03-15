@@ -1,11 +1,15 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:flutter/material.dart';
 
 import 'linux_title_bar_icons.dart';
 
 class _LinuxWindowButton extends WindowButton {
-  _LinuxWindowButton({Key key, WindowButtonColors colors, WindowButtonIconBuilder iconBuilder, VoidCallback onPressed})
+  _LinuxWindowButton(
+      {Key? key,
+      required WindowButtonColors colors,
+      required WindowButtonIconBuilder iconBuilder,
+      required VoidCallback onPressed})
       : super(
           key: key,
           colors: colors,
@@ -16,7 +20,7 @@ class _LinuxWindowButton extends WindowButton {
 }
 
 class LinuxMinimizeButton extends _LinuxWindowButton {
-  LinuxMinimizeButton({Key key, WindowButtonColors colors, VoidCallback onPressed})
+  LinuxMinimizeButton({Key? key, required WindowButtonColors colors, VoidCallback? onPressed})
       : super(
             key: key,
             colors: colors,
@@ -25,7 +29,7 @@ class LinuxMinimizeButton extends _LinuxWindowButton {
 }
 
 class LinuxMaximizeButton extends _LinuxWindowButton {
-  LinuxMaximizeButton({Key key, WindowButtonColors colors, VoidCallback onPressed})
+  LinuxMaximizeButton({Key? key, required WindowButtonColors colors, VoidCallback? onPressed})
       : super(
             key: key,
             colors: colors,
@@ -34,7 +38,7 @@ class LinuxMaximizeButton extends _LinuxWindowButton {
 }
 
 class LinuxUnmaximizeButton extends _LinuxWindowButton {
-  LinuxUnmaximizeButton({Key key, WindowButtonColors colors, VoidCallback onPressed})
+  LinuxUnmaximizeButton({Key? key, required WindowButtonColors colors, VoidCallback? onPressed})
       : super(
             key: key,
             colors: colors,
@@ -43,7 +47,7 @@ class LinuxUnmaximizeButton extends _LinuxWindowButton {
 }
 
 class LinuxCloseButton extends _LinuxWindowButton {
-  LinuxCloseButton({Key key, WindowButtonColors colors, VoidCallback onPressed})
+  LinuxCloseButton({Key? key, required WindowButtonColors colors, VoidCallback? onPressed})
       : super(
             key: key,
             colors: colors,
