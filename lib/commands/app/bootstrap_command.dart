@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'dart:math';
 
 import 'package:flutter/foundation.dart';
@@ -73,7 +73,7 @@ class BootstrapCommand extends Commands.BaseAppCommand {
         print(e);
       }
     }
-    imageCache.maximumSizeBytes = cacheSize;
+    imageCache?.maximumSizeBytes = cacheSize;
   }
 
   void _configureDesktop() {

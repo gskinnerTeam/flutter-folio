@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'dart:math';
 
 import 'package:flutter_folio/_utils/time_utils.dart';
@@ -7,7 +7,7 @@ import 'package:flutter_folio/commands/commands.dart';
 import 'package:flutter_folio/data/book_data.dart';
 
 class UpdatePageCountCommand extends BaseAppCommand {
-  Future<int> run(int value, {ScrapBookData book}) async {
+  Future<int> run(int value, {ScrapBookData? book}) async {
     book ??= booksModel.currentBook;
     value = max(0, value);
     ScrapBookData newBook = book.copyWith(

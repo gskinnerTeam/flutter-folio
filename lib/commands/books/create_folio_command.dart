@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter_folio/_utils/string_utils.dart';
 import 'package:flutter_folio/_utils/time_utils.dart';
 import 'package:flutter_folio/commands/books/refresh_all_books_command.dart';
@@ -9,7 +9,7 @@ import 'package:flutter_folio/styles.dart';
 import 'package:shortid/shortid.dart';
 
 class CreateFolioCommand extends BaseAppCommand {
-  Future<String> run({String title, String desc}) async {
+  Future<String> run({String? title, String? desc}) async {
     // Create an empty book
     ScrapBookData book = ScrapBookData(
       documentId: shortid.generate(),

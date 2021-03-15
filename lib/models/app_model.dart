@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -61,15 +61,15 @@ class AppModel extends AbstractModel {
 
   /// Auth
   // Current User
-  AppUser _currentUser;
-  AppUser get currentUser => _currentUser;
-  set currentUser(AppUser currentUser) => notify(() => _currentUser = currentUser);
+  AppUser? _currentUser;
+  AppUser? get currentUser => _currentUser;
+  set currentUser(AppUser? currentUser) => notify(() => _currentUser = currentUser);
 
   bool get isFirebaseSignedIn => _firebase.isSignedIn;
 
   bool get hasUser => currentUser != null;
   bool get isAuthenticated => hasUser && isFirebaseSignedIn;
-  String get currentUserEmail => currentUser?.email;
+  String? get currentUserEmail => currentUser?.email;
 
   /// Settings
   // Current Theme
@@ -112,20 +112,24 @@ class AppModel extends AbstractModel {
 
   void scheduleSave() => _saveDebouncer.call(save);
 
-  void save() {
+  Future<void> save() async {
     print("Saving: $kFileName");
     String saveJson = jsonEncode(toJson());
-    UniversalFile(kFileName).write(saveJson);
+    await UniversalFile(kFileName).write(saveJson);
   }
 
-  void load() async {
-    String saveJson = await UniversalFile(AppModel.kFileName).read();
-    try {
-      fromJson(jsonDecode(saveJson) as Map<String, dynamic>);
-    } catch (e) {
-      print("Failed to decode save file json: $e");
+  Future<void> load() async {
+    String? saveJson = await UniversalFile(AppModel.kFileName).read();
+    if (saveJson != null) {
+      try {
+        fromJson(jsonDecode(saveJson) as Map<String, dynamic>);
+        print("Save file loaded, $windowRect");
+      } catch (e) {
+        print("Failed to decode save file json: $e");
+      }
+    } else {
+      print("No save file found.");
     }
-    print("File loaded, $windowRect");
   }
 
   void fromJson(Map<String, dynamic> json) {

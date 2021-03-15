@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter_folio/commands/commands.dart';
 import 'package:flutter_folio/data/book_data.dart';
 
@@ -6,7 +6,7 @@ class ShiftPlacedScrapsSortOrderCommand extends BaseAppCommand {
   Future<void> run(int indexesToShift, PlacedScrapItem scrapItem) async {
     // Fetch the book and try to get the current sortIndex of this page
     ScrapPageData page = booksModel.currentPage;
-    if (page == null) return -1;
+    if (page == null) return;
 
     page = page.copyWith(
       boxOrder: _move(page.boxOrder, scrapItem.documentId, indexesToShift),

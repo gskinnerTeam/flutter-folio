@@ -1,18 +1,19 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter_folio/_utils/string_utils.dart';
 import 'package:flutter_folio/commands/commands.dart';
+import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/data/app_user.dart';
 
 import 'refresh_menubar_command.dart';
 
 class SetCurrentUserCommand extends BaseAppCommand {
-  Future<void> run(AppUser user) async {
+  Future<void> run(AppUser? user) async {
     safePrint("SetCurrentUserCommand: $user");
     // Update appController with new user. If user is null, this acts as a logout command.
     firebase.userId = user?.email;
     appModel.currentUser = user;
     if (StringUtils.isNotEmpty(firebase.userId)) {
-      AppUser user = await firebase.getUser();
+      AppUser? user = await firebase.getUser();
       if (user != null) {
         appModel.currentUser = user;
         safePrint("User loaded from firebase: ${user.toJson()}");

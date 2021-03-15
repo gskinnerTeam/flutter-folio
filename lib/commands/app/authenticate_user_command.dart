@@ -1,12 +1,13 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_folio/_utils/safe_print.dart';
 import 'package:flutter_folio/commands/app/set_current_user_command.dart';
 import 'package:flutter_folio/commands/commands.dart';
 import 'package:flutter_folio/data/app_user.dart';
 
 class AuthenticateUserCommand extends BaseAppCommand {
-  Future<bool> run({@required String email, @required String pass, @required bool createNew}) async {
+  Future<bool> run({required String email, required String pass, required bool createNew}) async {
     AppUser user;
     try {
       // Authenticate user
@@ -19,14 +20,13 @@ class AuthenticateUserCommand extends BaseAppCommand {
         await firebase.addUser(user);
       }
       safePrint("Authentication complete, user=$user");
+      // Login??
+      if (user != null) {
+        SetCurrentUserCommand().run(user);
+        return true;
+      }
     } on Exception catch (e) {
       safePrint(e.toString());
-    }
-    //}
-    // Login??
-    if (user != null) {
-      SetCurrentUserCommand().run(user);
-      return true;
     }
     return false;
   }

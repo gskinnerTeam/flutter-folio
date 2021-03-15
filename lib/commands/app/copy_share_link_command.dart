@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter/services.dart';
 import 'package:flutter_folio/_utils/device_info.dart';
 import 'package:flutter_folio/commands/commands.dart';
@@ -8,11 +8,11 @@ import 'package:share/share.dart';
 class CopyShareLinkCommand extends BaseAppCommand {
   String get baseUrl => "https://flutterfolio.com/#";
 
-  Future<void> run(String bookId, {String pageId}) async {
+  Future<void> run(String bookId, {required String pageId}) async {
     // Form a url using an AppLink
     String url = baseUrl +
         AppLink(
-          user: appModel.currentUser.email,
+          user: appModel.currentUserEmail,
           bookId: bookId,
           pageId: pageId,
         ).toLocation();

@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -12,15 +12,16 @@ class DeletePageCommand extends BaseAppCommand {
   Future<void> run(ScrapPageData page) async {
     // Show dialog
     bool doDelete = await showDialog(
-        context: mainContext,
-        builder: (_) {
-          String title = "${StringUtils.isNotEmpty(page.title) ? "\"${page.title}\"" : ""}";
-          if (title.length > 30) title = title.substring(0, 30) + "...";
-          return DeleteDialog(
-            title: "Delete Page $title?",
-            desc1: "Are you sure you want to permanently\ndelete this page?",
-          );
-        });
+            context: mainContext,
+            builder: (_) {
+              String title = "${StringUtils.isNotEmpty(page.title) ? "\"${page.title}\"" : ""}";
+              if (title.length > 30) title = title.substring(0, 30) + "...";
+              return DeleteDialog(
+                title: "Delete Page $title?",
+                desc1: "Are you sure you want to permanently\ndelete this page?",
+              );
+            }) ??
+        false;
     //Delete
     if (doDelete ?? false) {
       // If we're deleting the current page, we will want to select another one if we can.

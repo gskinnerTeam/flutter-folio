@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/commands/commands.dart';
 import 'package:flutter_folio/data/book_data.dart';
@@ -8,12 +8,13 @@ class DeleteBookCommand extends BaseAppCommand {
   Future<void> run(ScrapBookData book) async {
     // Show dialog
     bool doDelete = await showDialog(
-        context: mainContext,
-        builder: (_) => DeleteDialog(
-              title: "Delete Folio",
-              desc1: "Are you sure you want to permanently\ndelete the selected folio?",
-              desc2: "\"${book.title}\"",
-            ));
+            context: mainContext,
+            builder: (_) => DeleteDialog(
+                  title: "Delete Folio",
+                  desc1: "Are you sure you want to permanently\ndelete the selected folio?",
+                  desc2: "\"${book.title}\"",
+                )) ??
+        false;
     //Delete
     if (doDelete ?? false) {
       // Delete locally right away

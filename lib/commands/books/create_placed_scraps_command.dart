@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -8,7 +8,7 @@ import 'package:flutter_folio/data/book_data.dart';
 import 'package:shortid/shortid.dart';
 
 class CreatePlacedScrapCommand extends BaseAppCommand {
-  Future<void> run({@required String pageId, Size size, @required List<ScrapItem> scraps}) async {
+  Future<void> run({required String pageId, Size? size, required List<ScrapItem> scraps}) async {
     if (scraps?.isEmpty ?? false) return null;
     List<PlacedScrapItem> scrapsToPlace = scraps.map((scrap) {
       bool isText = scrap.contentType == ContentType.Text;
@@ -42,7 +42,7 @@ class CreatePlacedScrapCommand extends BaseAppCommand {
       );
     }).toList();
     // Add them to firebase
-    await scrapsToPlace.forEach((s) async {
+    scrapsToPlace.forEach((s) async {
       String documentId = await firebase.addPlacedScrap(s);
       s = s.copyWith(documentId: documentId);
       // Write documentId back to db
