@@ -21,7 +21,7 @@ class AnimatedRotation extends StatelessWidget {
     return TweenAnimationBuilder<double>(
       duration: duration,
       curve: curve,
-      tween: Tween(begin: begin ?? end, end: begin),
+      tween: Tween(begin: begin ?? end, end: end),
       builder: (context, tweenValue, _) {
         // Convert degrees to rads
         return Transform.rotate(angle: (tweenValue * pi) / 180, child: child);

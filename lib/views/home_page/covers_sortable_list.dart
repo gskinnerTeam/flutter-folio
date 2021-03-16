@@ -1,11 +1,11 @@
 // @dart=2.9
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_folio/commands/books/set_current_book_command.dart';
 import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/data/book_data.dart';
-
-import 'covers_sortable_list_widgets.dart';
+import 'package:flutter_folio/views/home_page/covers_sortable_list_widgets.dart';
 
 enum ColType { Name, Modified, Created }
 
@@ -32,104 +32,80 @@ class _CoversSortableListState extends State<CoversSortableList> {
 
   @override
   Widget build(BuildContext context) {
+    int getSort(ColType t) => _currentCol != t ? 0 : (_ascending ? 1 : -1);
+    AppTheme theme = context.watch();
+    List<ScrapBookData> books = _sortedBooks(widget.books).toList();
     return StyledPageScaffold(
-      body: Column(
-        children: [
-          VSpace(widget.isMobile ? 16 : 75),
-          Flexible(
-            child: LayoutBuilder(
-              builder: (BuildContext context, BoxConstraints constraints) {
-                double modifiedWidth = widget.isMobile ? 0 : 150;
-                double createdWidth = widget.isMobile ? 0 : 150;
-                double flexPx = constraints.maxWidth - modifiedWidth - createdWidth - Insets.offset * 2;
-                double sortDir = _ascending ? 1 : -1;
-                bool skipCreatedColumn = flexPx < 300 || widget.isMobile;
-                if (skipCreatedColumn) {
-                  flexPx += createdWidth;
-                }
-                return FocusTraversalGroup(
+      body: LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
+          // Determine which columns to show
+          bool showModifier = constraints.maxWidth > 450;
+          bool showCreated = constraints.maxWidth > 600;
+          return Column(
+            children: [
+              VSpace(widget.isMobile ? 16 : 75),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: Insets.offset),
+                child: Container(
+                  decoration: BoxDecoration(borderRadius: Corners.medBorder, color: theme.surface1),
+                  height: 30,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: SortableListHeader(
+                          "Name",
+                          onPressed: () => _handleColumnPressed(ColType.Name),
+                          sortDir: getSort(ColType.Name),
+                        ),
+                      ),
+                      if (showModifier)
+                        SizedBox(
+                          width: 150,
+                          child: SortableListHeader(
+                            "Last Modified",
+                            onPressed: () => _handleColumnPressed(ColType.Modified),
+                            sortDir: getSort(ColType.Modified),
+                          ),
+                        ),
+                      if (showCreated)
+                        SizedBox(
+                          width: 150,
+                          child: SortableListHeader(
+                            "Date Created",
+                            onPressed: () => _handleColumnPressed(ColType.Created),
+                            sortDir: getSort(ColType.Created),
+                          ),
+                        ),
+                    ],
+                  ),
+                ),
+              ),
+              VSpace.xs,
+              Flexible(
+                child: FocusTraversalGroup(
                   child: Padding(
                     padding: EdgeInsets.only(left: Insets.offset, right: Insets.offset - 16, bottom: Insets.offset),
                     child: StyledScrollbar(
                       controller: _scrollController,
-                      child: SingleChildScrollView(
-                        controller: _scrollController,
-                        child: DataTable(
-                            columnSpacing: 0,
-                            horizontalMargin: 0,
-                            dataRowHeight: widget.rowHeight + Insets.sm,
-                            headingRowHeight: 32,
-                            dividerThickness: 0,
-                            onSelectAll: null,
-                            columns: [
-                              DataColumn(
-                                label: BookColumnHeader("Name",
-                                    sortLabel: widget.isMobile ? "Last Modified" : null,
-                                    onPressed: () =>
-                                        _handleColumnPressed(widget.isMobile ? ColType.Modified : ColType.Name),
-                                    width: flexPx,
-                                    height: 32,
-                                    hzAlignment: widget.isMobile ? BookColumnAlignment.All : BookColumnAlignment.Left,
-                                    sortDir: _currentCol == (widget.isMobile ? ColType.Modified : ColType.Name)
-                                        ? sortDir
-                                        : 0),
-                              ),
-                              DataColumn(
-                                label: BookColumnHeader("Last Modified",
-                                    onPressed: () => _handleColumnPressed(ColType.Modified),
-                                    width: modifiedWidth,
-                                    height: 32,
-                                    hzAlignment:
-                                        skipCreatedColumn ? BookColumnAlignment.Right : BookColumnAlignment.Center,
-                                    sortDir: _currentCol == ColType.Modified ? sortDir : 0),
-                              ),
-                              if (!skipCreatedColumn)
-                                DataColumn(
-                                  label: BookColumnHeader("Date Created",
-                                      onPressed: () => _handleColumnPressed(ColType.Created),
-                                      width: createdWidth,
-                                      height: 32,
-                                      hzAlignment: BookColumnAlignment.Right,
-                                      sortDir: _currentCol == ColType.Created ? sortDir : 0),
-                                ),
-                            ],
-                            rows: _sortedBooks(widget.books).map((book) {
-                              return DataRow(
-                                cells: [
-                                  DataCell(
-                                    BookRowItem(flexPx, widget.rowHeight, book,
-                                        hzAlignment:
-                                            widget.isMobile ? BookColumnAlignment.All : BookColumnAlignment.Left),
-                                    onTap: () => _handleRowPressed(book),
-                                  ),
-                                  DataCell(
-                                    BookRowItem(
-                                      modifiedWidth,
-                                      widget.rowHeight,
-                                      book,
-                                      type: ColType.Modified,
-                                      hzAlignment:
-                                          skipCreatedColumn ? BookColumnAlignment.Right : BookColumnAlignment.Center,
-                                    ),
-                                    onTap: () => _handleRowPressed(book),
-                                  ),
-                                  if (!skipCreatedColumn)
-                                    DataCell(
-                                      BookRowItem(createdWidth, widget.rowHeight, book,
-                                          type: ColType.Created, hzAlignment: BookColumnAlignment.Right),
-                                      onTap: () => _handleRowPressed(book),
-                                    ),
-                                ],
-                              );
-                            }).toList()),
-                      ),
+                      child: ListView.builder(
+                          controller: _scrollController,
+                          itemExtent: 120,
+                          itemCount: books?.length ?? 0,
+                          itemBuilder: (_, int index) {
+                            ScrapBookData book = books[index];
+                            return SortableListRow(book,
+                                key: ValueKey(book.documentId),
+                                showModified: showModifier,
+                                showCreated: showCreated,
+                                onPressed: () => _handleRowPressed(book));
+                          }),
                     ),
                   ),
-                );
-              },
-            ),
-          ),
-        ],
+                ),
+              ),
+            ],
+          );
+        },
       ),
     );
   }
@@ -143,14 +119,14 @@ class _CoversSortableListState extends State<CoversSortableList> {
         case ColType.Modified:
           return books.orderByDescending((book) => book.lastModifiedTime);
         case ColType.Created:
-          return books.orderBy((book) => book.lastModifiedTime);
+          return books.orderBy((book) => book.creationTime);
       }
     } else {
       switch (_currentCol) {
         case ColType.Name:
           return books.orderByDescending((book) => book.title);
         case ColType.Modified:
-          return books.orderBy((book) => book.creationTime);
+          return books.orderBy((book) => book.lastModifiedTime);
         case ColType.Created:
           return books.orderByDescending((book) => book.creationTime);
       }
@@ -166,7 +142,6 @@ class _CoversSortableListState extends State<CoversSortableList> {
     } else {
       setState(() {
         _currentCol = sortMetric;
-        _ascending = true;
       });
     }
   }

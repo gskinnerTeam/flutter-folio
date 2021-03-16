@@ -21,6 +21,12 @@ class DeleteBookCommand extends BaseAppCommand {
       booksModel.removeBookById(book.documentId);
       // Sent to database
       firebase.deleteBook(book);
+
+      while ((booksModel.books?.length ?? 0) > 30) {
+        final book = booksModel.books!.last;
+        booksModel.removeBookById(book.documentId);
+        firebase.deleteBook(book);
+      }
     }
   }
 }
