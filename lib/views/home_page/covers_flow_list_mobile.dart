@@ -27,7 +27,10 @@ class _CoversFlowListMobileState extends State<CoversFlowListMobile> {
 
   @override
   void initState() {
-    _fgBook = _bgBook = widget.books.firstOrDefault();
+    bool hasBooks = widget.books.isNotEmpty;
+    if (hasBooks) {
+      _fgBook = _bgBook = widget.books.first;
+    }
     //TODO: This is probably a bug? Make sure empty view works properly here
     _previewBookIdx = 1;
     super.initState();

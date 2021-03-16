@@ -1,4 +1,3 @@
-// @dart=2.9
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 part of 'app_user.dart';
@@ -9,16 +8,17 @@ part of 'app_user.dart';
 
 _$_AppUser _$_$_AppUserFromJson(Map<String, dynamic> json) {
   return _$_AppUser(
-    documentId: json['documentId'] as String,
+    documentId: json['documentId'] as String? ?? '',
     email: json['email'] as String,
     fireId: json['fireId'] as String,
-    firstName: json['firstName'] as String,
-    lastName: json['lastName'] as String,
-    imageUrl: json['imageUrl'] as String,
+    firstName: json['firstName'] as String?,
+    lastName: json['lastName'] as String?,
+    imageUrl: json['imageUrl'] as String?,
   );
 }
 
-Map<String, dynamic> _$_$_AppUserToJson(_$_AppUser instance) => <String, dynamic>{
+Map<String, dynamic> _$_$_AppUserToJson(_$_AppUser instance) =>
+    <String, dynamic>{
       'documentId': instance.documentId,
       'email': instance.email,
       'fireId': instance.fireId,

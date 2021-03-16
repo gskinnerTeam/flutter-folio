@@ -149,7 +149,7 @@ class AppRouterDelegate extends RouterDelegate<AppLink> with ChangeNotifier {
           page = await firebase.getPage(bookId: newLink.bookId!, pageId: newLink.pageId!);
         }
         // Otherwise, load the first page in the book using the pageOrder value
-        else if (book.pageOrder?.isNotEmpty ?? false) {
+        else if (book.pageOrder.isNotEmpty) {
           page = await firebase.getPage(bookId: book.documentId, pageId: book.pageOrder.first);
         }
       }

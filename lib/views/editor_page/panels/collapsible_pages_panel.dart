@@ -40,7 +40,7 @@ class _CollapsiblePagesPanelState extends State<CollapsiblePagesPanel> {
             child: list.isEmpty || page == null
                 ? _EmptyView()
                 : DraggablePagesMenu(
-                    pageId: page.documentId ?? "",
+                    pageId: page.documentId,
                     pages: list,
                     onPressed: _handlePagePressed,
                   ),

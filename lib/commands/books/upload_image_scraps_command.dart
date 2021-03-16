@@ -40,7 +40,8 @@ class UploadImageScrapsCommand extends BaseAppCommand {
     // Now that we have urls, replace the newScraps with ones that have a url
     List<ScrapItem> items = uploads.map((u) {
       ScrapItem s = newScraps.removeAt(0); // Take first element from list
-      String origPath = paths.firstWhereOrDefault((element) => element.contains(u.originalFilename));
+      List<String?> p = List.from(paths);
+      String? origPath = p.firstWhere((element) => element?.contains(u.originalFilename) ?? false, orElse: () => null);
       double aspect = 1;
       // Try and calculate the aspect ratio from the file on disk
       if (origPath != null && origPath.contains("http") == false) {

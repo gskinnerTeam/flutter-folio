@@ -1,4 +1,4 @@
-// @dart=2.9
+
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
@@ -59,7 +59,7 @@ class _AppBootstrapper extends StatefulWidget {
 
 class _AppBootstrapperState extends State<_AppBootstrapper> {
   AppRouteParser routeParser = AppRouteParser();
-  AppRouterDelegate router;
+  late AppRouterDelegate router;
   @override
   void initState() {
     // Create the appRouter, and inject it with the models/services it needs

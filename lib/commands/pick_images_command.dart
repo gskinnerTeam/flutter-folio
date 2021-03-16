@@ -16,7 +16,7 @@ class PickImagesCommand extends BaseAppCommand {
     } else {
       int maxImages = 24; // Need to pick some limit
       paths = (await MultiImagePicker.pickImages(enableCamera: enableCamera, maxImages: allowMultiple ? maxImages : 1))
-          .map((asset) => asset.identifier)
+          .map((asset) => asset.identifier!)
           .toList();
     }
     paths.removeWhere((p) => StringUtils.isEmpty(p));

@@ -65,7 +65,7 @@ class NativeFirebaseService extends FirebaseService {
   @override
   Future<String> addDoc(List<String> keys, Map<String, dynamic> json,
       {String? documentId, bool addUserPath = true}) async {
-    if (documentId != null) {
+    if (documentId != null && documentId.length > 0) {
       keys.add(documentId);
       safePrint("Add Doc ${getPathFromKeys(keys)}");
       await firestore.doc(getPathFromKeys(keys, addUserPath: addUserPath)).set(json);

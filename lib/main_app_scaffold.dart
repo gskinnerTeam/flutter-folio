@@ -1,4 +1,4 @@
-// @dart=2.9
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_widgets/context_menu_overlay.dart';
@@ -11,7 +11,7 @@ import 'package:statsfl/statsfl.dart';
 
 /// Wraps the entire app, providing it with various helper classes and wrapper widgets.
 class MainAppScaffold extends StatefulWidget {
-  const MainAppScaffold({Key key, @required this.child, @required this.showAppBar}) : super(key: key);
+  const MainAppScaffold({Key? key, required this.child, required this.showAppBar}) : super(key: key);
   final Widget child;
   final bool showAppBar;
 
@@ -83,9 +83,9 @@ class _MainAppScaffoldState extends State<MainAppScaffold> {
 }
 
 class _WindowBorder extends StatelessWidget {
-  const _WindowBorder({Key key, this.child, this.color}) : super(key: key);
-  final Widget/*!*/ child;
-  final Color/*!*/ color;
+  const _WindowBorder({Key? key, required this.child, required this.color}) : super(key: key);
+  final Widget child;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {

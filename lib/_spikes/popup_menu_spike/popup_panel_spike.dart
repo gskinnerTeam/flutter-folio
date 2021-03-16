@@ -15,8 +15,12 @@ class PopupPanelSpike extends StatefulWidget {
 
 class _PopupPanelSpikeState extends State<PopupPanelSpike> {
   PlacedScrapItem _item = PlacedScrapItem(
-      rot: 30,
-      boxStyle: BoxStyle(font: BoxFonts.Caveat, align: TextAlign.center, fgColor: Colors.red, bgColor: Colors.blue));
+    rot: 30,
+    boxStyle: BoxStyle(font: BoxFonts.Caveat, align: TextAlign.center, fgColor: Colors.red, bgColor: Colors.blue),
+    scale: 1,
+    lastModifiedTime: 0,
+    dy: 0,
+  );
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

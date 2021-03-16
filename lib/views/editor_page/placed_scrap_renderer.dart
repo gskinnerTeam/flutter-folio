@@ -141,12 +141,12 @@ class _TextBoxState extends State<_TextBox> {
                     onFocusOut: _handleTextChanged,
                     // SB: Due to a bug in Flutter where we were missing focusOut events, we're saving on every keystroke for this editor.// TODO: Try and get reproduction steps for this...
                     onChanged: _handleTextChanged,
-                    style: style.copyWith(fontSize: size, fontFamily: boxFontToFamily(widget.item.boxStyle.font)),
+                    style: style.copyWith(fontSize: size, fontFamily: boxFontToFamily(widget.item.boxStyle?.font)),
                   )
                 : Container(
                     alignment: Alignment.center,
                     child: Text(StringUtils.defaultOnEmpty(widget.item.data, promptText),
-                        style: style.copyWith(fontSize: size, fontFamily: boxFontToFamily(widget.item.boxStyle.font)),
+                        style: style.copyWith(fontSize: size, fontFamily: boxFontToFamily(widget.item.boxStyle?.font)),
                         maxLines: numLines,
                         textAlign: textAlign),
                   );

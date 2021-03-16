@@ -36,7 +36,8 @@ class ScrapPopupEditor extends StatefulWidget {
 
 class _ScrapPopupEditorState extends State<ScrapPopupEditor> {
   int _btnIndex = -1;
-  BoxStyle get scrapStyle => widget.scrap.boxStyle;
+  BoxStyle _defaultStyle = BoxStyle();
+  BoxStyle get scrapStyle => widget.scrap.boxStyle ?? _defaultStyle;
 
   @override
   Widget build(BuildContext context) {

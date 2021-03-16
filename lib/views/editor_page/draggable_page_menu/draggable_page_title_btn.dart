@@ -58,7 +58,7 @@ class _DraggablePageTitleBtnState extends State<DraggablePageTitleBtn> {
     bool touchMode = context.select((AppModel m) => m.enableTouchMode);
     double tileHeight = 48;
     AppTheme theme = context.watch();
-    String label = widget.page.title ?? "Untitled Page";
+    String label = widget.page.title;
     // Create the highlight color
     Color bgColor = theme.surface1;
     if (widget.isSelected) {
