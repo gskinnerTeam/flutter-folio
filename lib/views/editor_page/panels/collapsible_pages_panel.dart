@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_utils/data_utils.dart';
 import 'package:flutter_folio/commands/books/create_page_command.dart';
@@ -9,7 +9,7 @@ import 'package:flutter_folio/models/books_model.dart';
 import 'package:flutter_folio/views/editor_page/draggable_page_menu/draggable_page_menu.dart';
 
 class CollapsiblePagesPanel extends StatefulWidget {
-  const CollapsiblePagesPanel(this.pages, {Key key, @required this.height}) : super(key: key);
+  const CollapsiblePagesPanel(this.pages, {Key? key, required this.height}) : super(key: key);
   final List<ScrapPageData> pages;
   final double height;
 
@@ -18,16 +18,16 @@ class CollapsiblePagesPanel extends StatefulWidget {
 }
 
 class _CollapsiblePagesPanelState extends State<CollapsiblePagesPanel> {
-  ScrapBookData _book;
+  ScrapBookData? _book;
 
   @override
   Widget build(BuildContext context) {
     /// State Bindings
     _book = context.select((BooksModel m) => m.currentBook);
-    ScrapPageData page = context.select((BooksModel m) => m.currentPage);
+    ScrapPageData? page = context.select((BooksModel m) => m.currentPage);
 
     /// Build
-    List<ScrapPageData> list = DataUtils.sortListById((widget.pages ?? []), _book?.pageOrder);
+    List<ScrapPageData> list = DataUtils.sortListById((widget.pages), _book?.pageOrder);
     return CollapsingCard(
       title: "Pages",
       titleClosed: page?.title,
@@ -37,10 +37,10 @@ class _CollapsiblePagesPanelState extends State<CollapsiblePagesPanel> {
         fit: StackFit.expand,
         children: [
           Container(
-            child: list.isEmpty
+            child: list.isEmpty || page == null
                 ? _EmptyView()
                 : DraggablePagesMenu(
-                    pageId: page?.documentId,
+                    pageId: page.documentId ?? "",
                     pages: list,
                     onPressed: _handlePagePressed,
                   ),
@@ -57,7 +57,7 @@ class _CollapsiblePagesPanelState extends State<CollapsiblePagesPanel> {
 }
 
 class _RoundedBtn extends StatelessWidget {
-  const _RoundedBtn({Key key, this.onPressed}) : super(key: key);
+  const _RoundedBtn({Key? key, required this.onPressed}) : super(key: key);
   final VoidCallback onPressed;
 
   @override

@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -87,19 +87,19 @@ class _BackBtn extends StatelessWidget {
 }
 
 class _AdaptiveProfileBtn extends StatelessWidget {
-  const _AdaptiveProfileBtn({Key key, this.useBottomSheet = false, this.invertRow = false, this.isVisible = true})
+  const _AdaptiveProfileBtn({Key? key, this.useBottomSheet = false, this.invertRow = false, this.isVisible = true})
       : super(key: key);
   final bool useBottomSheet;
   final bool invertRow;
   final bool isVisible;
   @override
   Widget build(BuildContext context) {
-    AppUser user = context.select((AppModel m) => m.currentUser);
+    AppUser? user = context.select((AppModel m) => m.currentUser);
     if (user == null) return Container();
     // Use a non-scaled vertical padding here
     final profileIcon = StyledCircleImage(
         padding: EdgeInsets.symmetric(horizontal: Insets.sm, vertical: 4),
-        url: user?.imageUrl ?? AppUser.kDefaultImageUrl);
+        url: user.imageUrl ?? AppUser.kDefaultImageUrl);
 
     return Visibility(
         visible: isVisible,

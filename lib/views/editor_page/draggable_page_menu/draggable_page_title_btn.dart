@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_utils/color_utils.dart';
 import 'package:flutter_folio/_utils/debouncer.dart';
@@ -12,16 +12,16 @@ import 'package:flutter_folio/models/app_model.dart';
 class DraggablePageTitleBtn extends StatefulWidget {
   const DraggablePageTitleBtn(
     this.page, {
-    Key key,
+    Key? key,
     this.onPressed,
     this.onDragCancelled,
-    @required this.height,
+    required this.height,
     this.isSelected = false,
     this.isDragFeedback = false,
   }) : super(key: key);
   final ScrapPageData page;
-  final VoidCallback onPressed;
-  final VoidCallback onDragCancelled;
+  final VoidCallback? onPressed;
+  final VoidCallback? onDragCancelled;
   final double height;
   final bool isSelected;
   final bool isDragFeedback;
@@ -135,11 +135,11 @@ class _DraggablePageTitleBtnState extends State<DraggablePageTitleBtn> {
 
 class _FadingDragHandle extends StatelessWidget {
   const _FadingDragHandle({
-    Key key,
-    @required this.height,
-    @required this.width,
-    @required this.opacity,
-    @required this.isSelected,
+    Key? key,
+    required this.height,
+    required this.width,
+    required this.opacity,
+    required this.isSelected,
   }) : super(key: key);
 
   final double height;

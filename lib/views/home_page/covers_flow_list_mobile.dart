@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -9,7 +9,7 @@ import 'package:flutter_folio/views/home_page/book_cover/book_cover.dart';
 
 /// Holds a list of [BookCover] and a Stack that features one of them in a Fullscreen format.
 class CoversFlowListMobile extends StatefulWidget {
-  const CoversFlowListMobile({Key key, this.books}) : super(key: key);
+  const CoversFlowListMobile({Key? key, required this.books}) : super(key: key);
   final List<ScrapBookData> books;
 
   @override
@@ -17,17 +17,18 @@ class CoversFlowListMobile extends StatefulWidget {
 }
 
 class _CoversFlowListMobileState extends State<CoversFlowListMobile> {
-  ScrapBookData _bgBook;
-  ScrapBookData _fgBook;
-  int _previewBookIdx;
-  Offset _currentCardPos;
-  Offset _currentCursorPos;
+  ScrapBookData? _bgBook;
+  ScrapBookData? _fgBook;
+  late int _previewBookIdx;
+  Offset? _currentCardPos;
+  Offset? _currentCursorPos;
   bool _isOpening = false;
   bool _editingText = false;
 
   @override
   void initState() {
-    _fgBook = _bgBook = widget.books[0];
+    _fgBook = _bgBook = widget.books.firstOrDefault();
+    //TODO: This is probably a bug? Make sure empty view works properly here
     _previewBookIdx = 1;
     super.initState();
   }
@@ -44,7 +45,7 @@ class _CoversFlowListMobileState extends State<CoversFlowListMobile> {
             Size boxSize = Size(isMobile ? constraints.maxWidth : 260, 141);
 
             _currentCursorPos = Offset(0, constraints.maxHeight - boxSize.width / 2);
-
+            List<ScrapBookData> books = widget.books;
             return Stack(
               children: [
                 Container(color: Colors.grey),
@@ -52,23 +53,23 @@ class _CoversFlowListMobileState extends State<CoversFlowListMobile> {
                 /// ///////////////////////////////////////////////////
                 /// BackgroundCard, this gets updated then the OpeningCard finishes opening
                 if (_bgBook != null) ...[
-                  BookCoverWidget(_bgBook, largeMode: true),
+                  BookCoverWidget(_bgBook!, largeMode: true),
                 ],
 
-                if (_currentCardPos != null) ...[
+                if (_currentCardPos != null && _fgBook != null) ...[
                   OpeningContainer(
                     key: ValueKey(_fgBook),
-                    topLeftOffset: _currentCardPos,
+                    topLeftOffset: _currentCardPos!,
                     closedSize: boxSize,
                     duration: Times.slow,
-                    child: BookCoverWidget(_fgBook, largeMode: true),
+                    child: BookCoverWidget(_fgBook!, largeMode: true),
                     onEnd: _handleCardOpened,
                   ),
                 ],
 
                 /// ///////////////////////////////////////////////////
                 /// Preview card, this shows the next card in the list
-                if (widget.books.length > 1) ...[
+                if (books.length > 1) ...[
                   Align(
                     alignment: Alignment.bottomCenter,
                     child: Padding(
@@ -81,7 +82,7 @@ class _CoversFlowListMobileState extends State<CoversFlowListMobile> {
                           children: [
                             ClipRRect(
                               borderRadius: Corners.medBorder,
-                              child: BookCoverWidget(widget.books[_previewBookIdx], largeMode: false, topTitle: true),
+                              child: BookCoverWidget(books[_previewBookIdx], largeMode: false, topTitle: true),
                             ),
                             GestureDetector(
                               onTapUp: (details) => _switchNextFolio(),
@@ -114,9 +115,9 @@ class _CoversFlowListMobileState extends State<CoversFlowListMobile> {
   }
 
   void _handleVerticalSwipe(DragEndDetails details) {
-    if (details.primaryVelocity > 10) {
+    if (details.primaryVelocity! > 10) {
       _switchPreviousFolio();
-    } else if (details.primaryVelocity < -10) {
+    } else if (details.primaryVelocity! < -10) {
       _switchNextFolio();
     }
   }
@@ -158,9 +159,11 @@ class _CoversFlowListMobileState extends State<CoversFlowListMobile> {
 
       // The _bgBook may be stale since the _fgBook was changed, update it before we start a new transition.
       // We didn't want to update it while the user was editing text, but we need to now as the _fgBook is switching to a new object.
-      widget.books.forEach((b) {
-        if (b.documentId == _bgBook.documentId) _bgBook = b;
-      });
+      if (_bgBook != null) {
+        widget.books.forEach((b) {
+          if (b.documentId == _bgBook?.documentId) _bgBook = b;
+        });
+      }
       // Start opening
       _currentCardPos = _currentCursorPos;
       _fgBook = data;

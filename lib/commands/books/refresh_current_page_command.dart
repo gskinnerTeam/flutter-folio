@@ -10,9 +10,11 @@ class RefreshCurrentPageCommand extends BaseAppCommand {
     if (bookId == null || pageId == null) return;
     List<Future> futures = [
       firebase.getPage(bookId: bookId, pageId: pageId).then((value) {
+        if (value == null) return;
         booksModel.currentPage = value;
       }),
       firebase.getAllPlacedScraps(bookId: bookId, pageId: pageId).then((value) {
+        if (value == null) return;
         CloudStorageService.addMaxSizeToUrlList<PlacedScrapItem>(
             value, (s) => s.data, (s, url) => s.copyWith(data: url));
         booksModel.currentPageScraps = value

@@ -1,18 +1,18 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:cloudinary_public/cloudinary_public.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_utils/string_utils.dart';
 import 'package:flutter_folio/app_keys.dart';
 
 class CloudStorageService {
-  CloudinaryPublic _cloudinary;
+  late CloudinaryPublic _cloudinary;
 
   void init() {
     _cloudinary = CloudinaryPublic(AppKeys.cloudinaryCloud, AppKeys.cloudinaryPreset, cache: false);
   }
 
   // The response would have any errors, but List<AppImage> would be created here.
-  Future<List<CloudinaryResponse>> multiUpload({@required List<String> urls}) async {
+  Future<List<CloudinaryResponse>> multiUpload({required List<String> urls}) async {
     List<Future<CloudinaryFile>> f = urls.map((url) async {
       return CloudinaryFile.fromFile(url, resourceType: CloudinaryResourceType.Image);
     }).toList();
@@ -21,7 +21,7 @@ class CloudStorageService {
     return await _cloudinary.multiUpload(f);
   }
 
-  Future<CloudinaryResponse> uploadImage({@required String url}) async {
+  Future<CloudinaryResponse> uploadImage({required String url}) async {
     return await _cloudinary.uploadFile(
       CloudinaryFile.fromFile(
         url,

@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'dart:io';
 import 'dart:ui';
 
@@ -15,16 +15,16 @@ import 'content_picker_emoji_panel.dart';
 import 'content_picker_scraps_panel.dart';
 
 class ContentPickerTabMenu extends StatefulWidget {
-  const ContentPickerTabMenu({Key key, @required this.pageId, @required this.bookId}) : super(key: key);
+  const ContentPickerTabMenu({Key? key, required this.pageId, required this.bookId}) : super(key: key);
   final String bookId;
-  final String pageId;
+  final String? pageId;
 
   @override
   _ContentPickerTabMenuState createState() => _ContentPickerTabMenuState();
 }
 
 class _ContentPickerTabMenuState extends State<ContentPickerTabMenu> {
-  ContentType _currentMenuType = null;
+  ContentType? _currentMenuType = null;
   @override
   Widget build(BuildContext context) {
     return NotificationListener(
@@ -77,7 +77,7 @@ class _ContentPickerTabMenuState extends State<ContentPickerTabMenu> {
     );
   }
 
-  void _handleMenuPressed(ContentType selectedContentTab) {
+  void _handleMenuPressed(ContentType? selectedContentTab) {
     if (selectedContentTab == _currentMenuType) {
       selectedContentTab = null;
     }
@@ -96,7 +96,7 @@ class _ContentPickerTabMenuState extends State<ContentPickerTabMenu> {
 
   void _addTextScrap() {
     if (widget.pageId == null) return;
-    CreatePlacedScrapCommand().run(pageId: widget.pageId, scraps: [
+    CreatePlacedScrapCommand().run(pageId: widget.pageId!, scraps: [
       ScrapItem(
         bookId: widget.bookId,
         contentType: ContentType.Text,
@@ -108,7 +108,7 @@ class _ContentPickerTabMenuState extends State<ContentPickerTabMenu> {
 }
 
 class AlignAndPad extends StatelessWidget {
-  const AlignAndPad(this.alignment, this.padding, {Key key, this.child}) : super(key: key);
+  const AlignAndPad(this.alignment, this.padding, {Key? key, required this.child}) : super(key: key);
   final Alignment alignment;
   final EdgeInsets padding;
   final Widget child;
@@ -119,9 +119,9 @@ class AlignAndPad extends StatelessWidget {
 
 class _ContentPickerTabMenu extends StatelessWidget {
   const _ContentPickerTabMenu(
-      {Key key, @required this.contentType, @required this.onPressed, this.isPageSelected = false})
+      {Key? key, required this.contentType, required this.onPressed, this.isPageSelected = false})
       : super(key: key);
-  final ContentType contentType;
+  final ContentType? contentType;
   final bool isPageSelected;
   final void Function(ContentType type) onPressed;
 
@@ -157,9 +157,9 @@ class _ContentPickerTabMenu extends StatelessWidget {
 }
 
 class _TabMenuBtn extends StatelessWidget {
-  const _TabMenuBtn({Key key, this.icon, this.onPressed, this.isSelected = false}) : super(key: key);
+  const _TabMenuBtn({Key? key, required this.icon, this.onPressed, this.isSelected = false}) : super(key: key);
   final AppIcons icon;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final bool isSelected;
 
   static double kSize = 40;

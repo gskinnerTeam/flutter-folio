@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'dart:ui';
 
 import 'package:auto_size_text/auto_size_text.dart';
@@ -17,10 +17,10 @@ import 'package:flutter_folio/views/editor_page/placed_scrap_keyboard_listener.d
 class PlacedScrapRenderer extends StatelessWidget {
   const PlacedScrapRenderer(
     this.item, {
-    Key key,
-    @required this.isSelected,
-    @required this.onEditStarted,
-    @required this.onEditEnded,
+    Key? key,
+    required this.isSelected,
+    required this.onEditStarted,
+    required this.onEditEnded,
   }) : super(key: key);
   final PlacedScrapItem item;
   final bool isSelected;
@@ -29,7 +29,7 @@ class PlacedScrapRenderer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget scrapBox;
+    Widget? scrapBox;
     // Figure out what type of renderer to use for this srap
     if (item.isPhoto) scrapBox = _PhotoBox(item);
     if (item.isEmoji) scrapBox = _EmojiBox(item);
@@ -48,7 +48,7 @@ class PlacedScrapRenderer extends StatelessWidget {
 
     return PlacedScrapKeyboardListener(
       item: item,
-      enableKeyListener: isSelected ?? false,
+      enableKeyListener: isSelected,
       child: ContextMenuRegion(
         contextMenu: ScrapContextMenu(scrap: item),
         child: Container(
@@ -61,7 +61,7 @@ class PlacedScrapRenderer extends StatelessWidget {
 }
 
 class _EmojiBox extends StatelessWidget {
-  const _EmojiBox(this.item, {Key key}) : super(key: key);
+  const _EmojiBox(this.item, {Key? key}) : super(key: key);
   final PlacedScrapItem item;
 
   @override
@@ -75,7 +75,7 @@ class _EmojiBox extends StatelessWidget {
 }
 
 class _PhotoBox extends StatelessWidget {
-  const _PhotoBox(this.item, {Key key}) : super(key: key);
+  const _PhotoBox(this.item, {Key? key}) : super(key: key);
   final PlacedScrapItem item;
 
   @override
@@ -83,11 +83,12 @@ class _PhotoBox extends StatelessWidget {
 }
 
 class _TextBox extends StatefulWidget {
-  const _TextBox(this.item, {Key key, this.isSelected = false, this.onEditStarted, this.onEditEnded}) : super(key: key);
+  const _TextBox(this.item, {Key? key, this.isSelected = false, this.onEditStarted, this.onEditEnded})
+      : super(key: key);
   final PlacedScrapItem item;
   final bool isSelected;
-  final VoidCallback onEditStarted;
-  final VoidCallback onEditEnded;
+  final VoidCallback? onEditStarted;
+  final VoidCallback? onEditEnded;
 
   @override
   _TextBoxState createState() => _TextBoxState();
@@ -95,7 +96,7 @@ class _TextBox extends StatefulWidget {
 
 class _TextBoxState extends State<_TextBox> {
   Debouncer textChangedDebounce = Debouncer(Duration(milliseconds: 150));
-  String _txtValue;
+  String? _txtValue;
 
   @override
   void initState() {
@@ -135,7 +136,7 @@ class _TextBoxState extends State<_TextBox> {
                     align: textAlign,
                     width: constraints.maxWidth,
                     promptText: promptText,
-                    maxLines: numLines,
+                    maxLines: numLines ?? 1,
                     enableContextMenu: false,
                     onFocusOut: _handleTextChanged,
                     // SB: Due to a bug in Flutter where we were missing focusOut events, we're saving on every keystroke for this editor.// TODO: Try and get reproduction steps for this...

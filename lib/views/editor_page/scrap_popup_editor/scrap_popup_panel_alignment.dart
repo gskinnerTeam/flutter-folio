@@ -1,11 +1,11 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_folio/core_packages.dart';
 
 class ScrapPopupPanelAlignment extends StatelessWidget {
-  const ScrapPopupPanelAlignment({Key key, this.onAlignmentPressed, this.value}) : super(key: key);
-  final void Function(TextAlign value) onAlignmentPressed;
+  const ScrapPopupPanelAlignment({Key? key, this.onAlignmentPressed, required this.value}) : super(key: key);
+  final void Function(TextAlign value)? onAlignmentPressed;
   final TextAlign value;
 
   @override
@@ -43,9 +43,9 @@ class ScrapPopupPanelAlignment extends StatelessWidget {
 }
 
 class _AlignmentBtn extends StatelessWidget {
-  const _AlignmentBtn(this.icon, {Key key, this.onPressed, this.isSelected = false}) : super(key: key);
+  const _AlignmentBtn(this.icon, {Key? key, this.onPressed, this.isSelected = false}) : super(key: key);
   final IconData icon;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final bool isSelected;
 
   @override

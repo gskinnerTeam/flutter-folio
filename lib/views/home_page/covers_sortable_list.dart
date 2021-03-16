@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -13,7 +13,7 @@ class CoversSortableList extends StatefulWidget {
   final List<ScrapBookData> books;
   final double rowHeight;
   final bool isMobile;
-  const CoversSortableList({Key key, @required this.books, this.rowHeight = 120, this.isMobile = false})
+  const CoversSortableList({Key? key, required this.books, this.rowHeight = 120, this.isMobile = false})
       : super(key: key);
 
   State createState() => _CoversSortableListState();
@@ -27,7 +27,7 @@ class _CoversSortableListState extends State<CoversSortableList> {
   @override
   void dispose() {
     super.dispose();
-    _scrollController?.dispose();
+    _scrollController.dispose();
   }
 
   @override
@@ -46,37 +46,40 @@ class _CoversSortableListState extends State<CoversSortableList> {
               VSpace(widget.isMobile ? 16 : 75),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: Insets.offset),
-                child: Container(
-                  decoration: BoxDecoration(borderRadius: Corners.medBorder, color: theme.surface1),
-                  height: 30,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: SortableListHeader(
-                          "Name",
-                          onPressed: () => _handleColumnPressed(ColType.Name),
-                          sortDir: getSort(ColType.Name),
-                        ),
-                      ),
-                      if (showModifier)
-                        SizedBox(
-                          width: 150,
+                child: ClipRRect(
+                  borderRadius: Corners.medBorder,
+                  child: Container(
+                    decoration: BoxDecoration(color: theme.surface1),
+                    height: 30,
+                    child: Row(
+                      children: [
+                        Expanded(
                           child: SortableListHeader(
-                            "Last Modified",
-                            onPressed: () => _handleColumnPressed(ColType.Modified),
-                            sortDir: getSort(ColType.Modified),
+                            "Name",
+                            onPressed: () => _handleColumnPressed(ColType.Name),
+                            sortDir: getSort(ColType.Name),
                           ),
                         ),
-                      if (showCreated)
-                        SizedBox(
-                          width: 150,
-                          child: SortableListHeader(
-                            "Date Created",
-                            onPressed: () => _handleColumnPressed(ColType.Created),
-                            sortDir: getSort(ColType.Created),
+                        if (showModifier)
+                          SizedBox(
+                            width: 150,
+                            child: SortableListHeader(
+                              "Last Modified",
+                              onPressed: () => _handleColumnPressed(ColType.Modified),
+                              sortDir: getSort(ColType.Modified),
+                            ),
                           ),
-                        ),
-                    ],
+                        if (showCreated)
+                          SizedBox(
+                            width: 150,
+                            child: SortableListHeader(
+                              "Date Created",
+                              onPressed: () => _handleColumnPressed(ColType.Created),
+                              sortDir: getSort(ColType.Created),
+                            ),
+                          ),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -90,7 +93,7 @@ class _CoversSortableListState extends State<CoversSortableList> {
                       child: ListView.builder(
                           controller: _scrollController,
                           itemExtent: 120,
-                          itemCount: books?.length ?? 0,
+                          itemCount: books.length,
                           itemBuilder: (_, int index) {
                             ScrapBookData book = books[index];
                             return SortableListRow(book,

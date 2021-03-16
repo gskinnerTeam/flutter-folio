@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_folio/_widgets/alignments.dart';
@@ -10,7 +10,7 @@ import 'package:flutter_folio/data/book_data.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class SortableListHeader extends StatelessWidget {
-  const SortableListHeader(this.label, {Key key, this.sortDir, this.onPressed}) : super(key: key);
+  const SortableListHeader(this.label, {Key? key, required this.sortDir, required this.onPressed}) : super(key: key);
   final String label;
   final int sortDir;
   final VoidCallback onPressed;
@@ -19,6 +19,7 @@ class SortableListHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     AppTheme theme = context.watch();
     return SimpleBtn(
+      cornerRadius: 0,
       onPressed: onPressed,
       child: Container(
         height: double.infinity,
@@ -55,7 +56,8 @@ class SortableListRow extends StatelessWidget {
   final bool showModified;
   final bool showCreated;
 
-  const SortableListRow(this.book, {Key key, this.onPressed, this.showModified = false, this.showCreated = false})
+  const SortableListRow(this.book,
+      {Key? key, required this.onPressed, this.showModified = false, this.showCreated = false})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -138,7 +140,7 @@ class SortableListRow extends StatelessWidget {
 //   const BookColumnHeader(
 //     this.label, {
 //     this.sortLabel,
-//     Key key,
+//     Key? key,
 //     this.onPressed,
 //     this.width,
 //     this.height,
@@ -221,7 +223,7 @@ class SortableListRow extends StatelessWidget {
 //
 // class BookRowItem extends StatelessWidget {
 //   const BookRowItem(this.width, this.height, this.data,
-//       {Key key, this.hzAlignment = BookColumnAlignment.Center, this.type = ColType.Name})
+//       {Key? key, this.hzAlignment = BookColumnAlignment.Center, this.type = ColType.Name})
 //       : super(key: key);
 //   final double width;
 //   final double height;
@@ -270,7 +272,7 @@ class SortableListRow extends StatelessWidget {
 // }
 //
 // class ImageAndNameContent extends StatelessWidget {
-//   const ImageAndNameContent(this.data, {Key key, @required this.width}) : super(key: key);
+//   const ImageAndNameContent(this.data, {Key? key, required this.width}) : super(key: key);
 //   final double width;
 //   final ScrapBookData data;
 //
@@ -321,7 +323,7 @@ class SortableListRow extends StatelessWidget {
 // }
 //
 // class TextContent extends StatelessWidget {
-//   const TextContent({Key key, this.text}) : super(key: key);
+//   const TextContent({Key? key, this.text}) : super(key: key);
 //   final String text;
 //
 //   @override

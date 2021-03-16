@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_widgets/gradient_container.dart';
 import 'package:flutter_folio/commands/books/create_folio_command.dart';
@@ -29,7 +29,7 @@ class BooksHomePageState extends State<BooksHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    List<ScrapBookData> books = context.select((BooksModel m) => m.books);
+    List<ScrapBookData>? books = context.select((BooksModel m) => m.books);
     bool isMobile = context.widthPx < Sizes.smallPhone;
     books?.sort((a, b) => a.lastModifiedTime > b.lastModifiedTime ? -1 : 1);
     return books == null

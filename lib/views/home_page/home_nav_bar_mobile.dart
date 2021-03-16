@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/commands/books/create_folio_command.dart';
 import 'package:flutter_folio/core_packages.dart';
@@ -7,9 +7,8 @@ import 'package:provider/provider.dart';
 class HomeNavBarMobile extends StatelessWidget {
   final bool showListView;
   final void Function(bool) onToggled;
-  final VoidCallback onNewPressed;
 
-  HomeNavBarMobile({this.showListView = true, this.onToggled, this.onNewPressed});
+  HomeNavBarMobile({this.showListView = true, required this.onToggled});
 
   Widget build(BuildContext context) {
     AppTheme theme = Provider.of(context);
@@ -97,8 +96,7 @@ class _NewFolioFab extends StatelessWidget {
 }
 
 class _NewFolioCard extends StatefulWidget {
-  const _NewFolioCard({Key key, this.onSubmit}) : super(key: key);
-  final VoidCallback onSubmit;
+  const _NewFolioCard({Key? key}) : super(key: key);
 
   @override
   _NewFolioCardState createState() => _NewFolioCardState();

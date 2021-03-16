@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_utils/data_utils.dart';
@@ -17,8 +17,8 @@ import 'package:flutter_folio/views/editor_page/scrapboard/scrapboard.dart';
 class NetworkedScrapboard extends StatefulWidget {
   const NetworkedScrapboard(
       //this.bookId, String this.pageId,
-      {Key key,
-      this.startOffset,
+      {Key? key,
+      this.startOffset = Offset.zero,
       this.readOnly = false,
       this.onSelectionChanged})
       : super(key: key);
@@ -28,12 +28,12 @@ class NetworkedScrapboard extends StatefulWidget {
   @override
   _NetworkedScrapboardState createState() => _NetworkedScrapboardState();
 
-  final void Function(List<ScrapData<PlacedScrapItem>> boxes) onSelectionChanged;
+  final void Function(List<ScrapData<PlacedScrapItem>> boxes)? onSelectionChanged;
 }
 
 class _NetworkedScrapboardState extends State<NetworkedScrapboard> {
   List<ScrapData<PlacedScrapItem>> _selectedBoxes = [];
-  ScrapPageData _currentPage;
+  ScrapPageData? _currentPage;
   bool _ignoreKeyboardEvents = false;
   bool _isTranslating = false;
   ValueNotifier<bool> isTranslatingNotifier = ValueNotifier(false);
@@ -42,13 +42,12 @@ class _NetworkedScrapboardState extends State<NetworkedScrapboard> {
   Widget build(BuildContext context) {
     BooksModel books = context.watch<BooksModel>();
     _currentPage = books.currentPage;
-    List<PlacedScrapItem> scrapsList = books.currentPageScraps;
+    List<PlacedScrapItem>? scrapsList = books.currentPageScraps;
     scrapsList = List.from(scrapsList ?? []);
-
     // Strip hidden items from the list, they are non visual.
     scrapsList.removeWhere((s) => s.contentType == ContentType.Hidden);
     // Apply sorting to remaining items
-    scrapsList = DataUtils.sortListById((scrapsList ?? []), _currentPage?.boxOrder ?? []);
+    scrapsList = DataUtils.sortListById((scrapsList), _currentPage?.boxOrder ?? []);
     // Create ScrapBoxData from our PlacedScraps, that the Scrapboard can work with.
     List<ScrapData<PlacedScrapItem>> boxes = scrapsList.map((item) => item.toBoxData()).toList();
     // Main Stack
@@ -61,7 +60,7 @@ class _NetworkedScrapboardState extends State<NetworkedScrapboard> {
           onTranslated: _handleBoxTranslated,
           onTranslateEnded: _handleBoxTranslateEnded,
           onOrderChanged: (_, List<ScrapData<PlacedScrapItem>> boxes) {
-            _handleBoxReorder(_currentPage, boxes);
+            if (_currentPage != null) _handleBoxReorder(_currentPage!, boxes);
           },
           onBoxDeleted: _handleBoxDeleted,
           onSelectionChanged: _handleSelectionChanged,
@@ -80,7 +79,7 @@ class _NetworkedScrapboardState extends State<NetworkedScrapboard> {
                 ),
                 builder: (_, bool isTranslating, cachedChild) {
                   if (isTranslating) return Container();
-                  return cachedChild;
+                  return cachedChild!;
                 });
           },
           itemBuilder: (item) {
@@ -129,7 +128,7 @@ class _NetworkedScrapboardState extends State<NetworkedScrapboard> {
     UpdatePageCommand().run(scrapPageData.copyWith(boxOrder: boxOrder));
   }
 
-  void _handleSelectionChanged(ScrapData<PlacedScrapItem> box, List<ScrapData<PlacedScrapItem>> boxes) {
+  void _handleSelectionChanged(ScrapData<PlacedScrapItem>? box, List<ScrapData<PlacedScrapItem>> boxes) {
     setState(() => _selectedBoxes = boxes);
     widget.onSelectionChanged?.call(boxes);
   }

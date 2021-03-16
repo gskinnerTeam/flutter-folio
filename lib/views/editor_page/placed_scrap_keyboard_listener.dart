@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_folio/_utils/keyboard_utils.dart';
@@ -11,7 +11,8 @@ import 'package:flutter_folio/data/book_data.dart';
 
 // Listens to common keyboard shortcuts for all scraps.
 class PlacedScrapKeyboardListener extends StatefulWidget {
-  const PlacedScrapKeyboardListener({Key key, @required this.child, this.enableKeyListener, @required this.item})
+  const PlacedScrapKeyboardListener(
+      {Key? key, required this.child, required this.enableKeyListener, required this.item})
       : super(key: key);
   final Widget child;
   final bool enableKeyListener;

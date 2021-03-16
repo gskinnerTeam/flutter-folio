@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -16,7 +16,7 @@ import 'panels/content_picker_tab_menu.dart';
 import 'panels/simple_pages_menu.dart';
 
 class EditorPage extends StatefulWidget {
-  const EditorPage({Key key, @required this.bookId, this.readOnly = false}) : super(key: key);
+  const EditorPage({Key? key, required this.bookId, this.readOnly = false}) : super(key: key);
   final String bookId;
   final bool readOnly;
 
@@ -29,8 +29,8 @@ class _EditorPageState extends State<EditorPage> {
 
   @override
   Widget build(BuildContext context) {
-    String pageId = context.select((BooksModel m) => m.currentPage?.documentId);
-    List<ScrapPageData> pageList = context.select((BooksModel m) => m.currentBookPages);
+    String? pageId = context.select((BooksModel m) => m.currentPage?.documentId);
+    List<ScrapPageData>? pageList = context.select((BooksModel m) => m.currentBookPages);
     if (pageList == null) return LoadingIndicator();
 
     double leftMenuWidth = 212;
@@ -101,7 +101,7 @@ class _EditorPageState extends State<EditorPage> {
 
 /// Floating FAB style btn
 class _MobileScrapPileBtn extends StatelessWidget {
-  const _MobileScrapPileBtn({Key key, this.onPressed}) : super(key: key);
+  const _MobileScrapPileBtn({Key? key, required this.onPressed}) : super(key: key);
   final VoidCallback onPressed;
 
   @override

@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -26,8 +26,8 @@ class _AuthPageState extends State<AuthPage> with LoadingStateMixin {
   String get errorText => _errorText;
   set errorText(String errorText) => setState(() => _errorText = errorText);
 
-  TextEditingController _emailController;
-  TextEditingController _passController;
+  late TextEditingController _emailController;
+  late TextEditingController _passController;
 
   // Provided quick login for devs
   bool enableDebugLogin = kDebugMode && true;
@@ -42,6 +42,13 @@ class _AuthPageState extends State<AuthPage> with LoadingStateMixin {
     super.initState();
     _emailController = TextEditingController(text: _defaultEmail);
     _passController = TextEditingController(text: _defaultPass);
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passController.dispose();
+    super.dispose();
   }
 
   @override

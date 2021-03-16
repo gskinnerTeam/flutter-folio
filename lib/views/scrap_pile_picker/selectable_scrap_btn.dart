@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_utils/string_utils.dart';
 import 'package:flutter_folio/_widgets/app_image.dart';
@@ -8,7 +8,7 @@ import 'package:flutter_folio/styled_widgets/styled_load_spinner.dart';
 import 'scrap_pile_picker.dart';
 
 class ScrapPickerBtn extends StatelessWidget {
-  ScrapPickerBtn({Key key, this.img, this.onPressed, this.isSelected = false});
+  ScrapPickerBtn({Key? key, required this.img, required this.onPressed, this.isSelected = false});
 
   final VoidCallback onPressed;
   final String img;

@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/core_packages.dart';
@@ -6,7 +6,7 @@ import 'package:flutter_folio/data/book_data.dart';
 import 'package:provider/provider.dart';
 
 class SmallBookCover extends StatefulWidget {
-  const SmallBookCover(this.book, {Key key, this.topTitle}) : super(key: key);
+  const SmallBookCover(this.book, {Key? key, this.topTitle = false}) : super(key: key);
   final ScrapBookData book;
   final bool topTitle;
 

@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/commands/app/copy_share_link_command.dart';
 import 'package:flutter_folio/commands/books/update_book_command.dart';
@@ -7,7 +7,7 @@ import 'package:flutter_folio/data/book_data.dart';
 import 'package:flutter_folio/models/books_model.dart';
 
 class CollapsibleInfoPanel extends StatefulWidget {
-  const CollapsibleInfoPanel({Key key, @required this.width, @required this.height}) : super(key: key);
+  const CollapsibleInfoPanel({Key? key, required this.width, required this.height}) : super(key: key);
   final double width;
   final double height;
 
@@ -16,7 +16,7 @@ class CollapsibleInfoPanel extends StatefulWidget {
 }
 
 class _CollapsibleInfoPanelState extends State<CollapsibleInfoPanel> {
-  ScrapBookData _book;
+  ScrapBookData? _book;
   @override
   Widget build(BuildContext context) {
     AppTheme theme = context.watch();
@@ -24,7 +24,7 @@ class _CollapsibleInfoPanelState extends State<CollapsibleInfoPanel> {
     return CollapsingCard(
       height: widget.height,
       title: "Folio Information",
-      titleClosed: _book.title,
+      titleClosed: _book?.title ?? "",
       icon: IconBtn(Icons.share,
           padding: EdgeInsets.all(Insets.sm + 1), color: theme.greyStrong, onPressed: _handleSharePressed),
       child: Padding(
@@ -36,7 +36,7 @@ class _CollapsibleInfoPanelState extends State<CollapsibleInfoPanel> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               InlineTextEditor(
-                _book.title,
+                _book?.title ?? "",
                 width: widget.width * Insets.med * 2,
                 style: TextStyles.body3.copyWith(color: theme.greyStrong),
                 onFocusOut: _handleTitleChanged,
@@ -45,7 +45,7 @@ class _CollapsibleInfoPanelState extends State<CollapsibleInfoPanel> {
               VSpace.xs,
               Expanded(
                 child: InlineTextEditor(
-                  _book.desc,
+                  _book?.desc ?? "",
                   width: widget.width * Insets.med * 2,
                   style: TextStyles.caption.copyWith(color: theme.greyMedium),
                   alignVertical: TextAlignVertical.top,
@@ -61,11 +61,21 @@ class _CollapsibleInfoPanelState extends State<CollapsibleInfoPanel> {
     );
   }
 
-  void _handleTitleChanged(String value) => UpdateBookCommand().run(_book.copyWith(title: value));
-  void _handleDescChanged(String value) => UpdateBookCommand().run(_book.copyWith(desc: value));
+  void _handleTitleChanged(String value) {
+    if (_book == null) return;
+    UpdateBookCommand().run(_book!.copyWith(title: value));
+  }
 
-  void _handleSharePressed() => CopyShareLinkCommand().run(
-        _book.documentId,
-        pageId: context.read<BooksModel>().currentPageId,
-      );
+  void _handleDescChanged(String value) {
+    if (_book == null) return;
+    UpdateBookCommand().run(_book!.copyWith(desc: value));
+  }
+
+  void _handleSharePressed() {
+    if (_book == null) return;
+    CopyShareLinkCommand().run(
+      _book!.documentId,
+      pageId: context.read<BooksModel>().currentPageId,
+    );
+  }
 }

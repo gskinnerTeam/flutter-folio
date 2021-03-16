@@ -9,9 +9,13 @@ class UpdateBookModifiedCommand extends BaseAppCommand {
     assert(
         StringUtils.isNotEmpty(bookId) || book != null, "You must pass either an id or an instance to this Command.");
     // fetch a book, or use the one passed in
-    book ??= await firebase.getBook(bookId: bookId);
-    book = book.copyWith(lastModifiedTime: TimeUtils.nowMillis);
-    booksModel.replaceBook(book);
-    firebase.setBook(book);
+    if (bookId != null) {
+      book ??= await firebase.getBook(bookId: bookId);
+    }
+    if (book != null) {
+      book = book.copyWith(lastModifiedTime: TimeUtils.nowMillis);
+      booksModel.replaceBook(book);
+      firebase.setBook(book);
+    }
   }
 }

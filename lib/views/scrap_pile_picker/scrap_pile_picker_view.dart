@@ -1,10 +1,10 @@
-// @dart=2.9
+// @dart=2.12
 part of 'scrap_pile_picker.dart';
 
 /// Stateless view that is uses [ScrapPilePickerState] as it's controller
 /// It couples directly to ScrapPileGridState to reduce boilerplate, rather than exposing a ton of params and callbacks.
 class ScrapPilePickerView extends StatelessWidget {
-  const ScrapPilePickerView({Key key, @required this.state, @required this.bookScraps}) : super(key: key);
+  const ScrapPilePickerView({Key? key, required this.state, required this.bookScraps}) : super(key: key);
   final ScrapPilePickerState state;
   final List<ScrapItem> bookScraps;
 
@@ -93,8 +93,8 @@ class ScrapPilePickerView extends StatelessWidget {
                                         ScrapItem scrap = bookScraps[scrapIndex];
                                         return ContextMenuRegion(
                                           contextMenu: GenericContextMenu(
-                                              labels: state.widget.contextMenuLabels?.call(scrap),
-                                              actions: state.widget.contextMenuActions?.call(scrap)),
+                                              labels: state.widget.contextMenuLabels?.call(scrap) ?? [],
+                                              actions: state.widget.contextMenuActions?.call(scrap) ?? []),
                                           child: ScrapPickerBtn(
                                               key: ValueKey(scrap.documentId),
                                               img: scrap.data,
@@ -121,9 +121,9 @@ class ScrapPilePickerView extends StatelessWidget {
 }
 
 class GridBtn extends StatelessWidget {
-  const GridBtn({Key key, this.onPressed, this.bgColor, this.child}) : super(key: key);
+  const GridBtn({Key? key, required this.onPressed, this.bgColor, required this.child}) : super(key: key);
   final VoidCallback onPressed;
-  final Color bgColor;
+  final Color? bgColor;
   final Widget child;
 
   @override
@@ -145,7 +145,7 @@ class GridBtn extends StatelessWidget {
 }
 
 class _TileBtn extends StatelessWidget {
-  const _TileBtn(this.label, this.icon, this.onPressed, {Key key}) : super(key: key);
+  const _TileBtn(this.label, this.icon, this.onPressed, {Key? key}) : super(key: key);
   final String label;
   final AppIcons icon;
   final VoidCallback onPressed;

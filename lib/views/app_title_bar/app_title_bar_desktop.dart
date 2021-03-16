@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 part of 'app_title_bar.dart';
 
 class _AppTitleBarDesktop extends StatelessWidget {
@@ -42,7 +42,7 @@ class _AppTitleBarDesktop extends StatelessWidget {
 }
 
 class _TouchModeToggleBtn extends StatelessWidget {
-  const _TouchModeToggleBtn({Key key, @required this.invertPopupAlign}) : super(key: key);
+  const _TouchModeToggleBtn({Key? key, required this.invertPopupAlign}) : super(key: key);
   final bool invertPopupAlign;
 
   @override

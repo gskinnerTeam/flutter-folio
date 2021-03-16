@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -14,7 +14,7 @@ import 'book_cover/book_cover.dart';
 
 /// Holds a list of [BookCover] and a Stack that features one of them in a Fullscreen format.
 class CoversFlowList extends StatefulWidget {
-  const CoversFlowList({Key key, this.books}) : super(key: key);
+  const CoversFlowList({Key? key, required this.books}) : super(key: key);
   final List<ScrapBookData> books;
 
   @override
@@ -22,9 +22,9 @@ class CoversFlowList extends StatefulWidget {
 }
 
 class _CoversFlowListState extends State<CoversFlowList> {
-  ScrapBookData _bgBook;
-  ScrapBookData _fgBook;
-  Offset _currentCardPos;
+  ScrapBookData? _bgBook;
+  ScrapBookData? _fgBook;
+  Offset? _currentCardPos;
   bool _isOpening = false;
   ScrollController _scrollController = ScrollController();
   Map<int, GlobalKey<_CollapsingListCardState>> keysByIndex = {};
@@ -40,9 +40,9 @@ class _CoversFlowListState extends State<CoversFlowList> {
   @override
   void didUpdateWidget(covariant CoversFlowList oldWidget) {
     if (oldWidget.books != widget.books) {
-      ScrapBookData prevBook = _bgBook;
-      _bgBook = widget.books.firstWhereOrDefault((b) => b.documentId == _bgBook.documentId);
-      _fgBook = widget.books.firstWhereOrDefault((b) => b.documentId == _fgBook.documentId);
+      ScrapBookData? prevBook = _bgBook;
+      _bgBook = widget.books.firstWhereOrDefault((b) => b.documentId == _bgBook?.documentId);
+      _fgBook = widget.books.firstWhereOrDefault((b) => b.documentId == _fgBook?.documentId);
       // If the current book is missing, fallback to the first item in the list
       if (_bgBook == null && widget.books.length > 0) {
         _bgBook = prevBook; // use the deleted object as the bg for a nice transition
@@ -72,7 +72,7 @@ class _CoversFlowListState extends State<CoversFlowList> {
                 if (_bgBook != null) ...[
                   ContextMenuRegion(
                     contextMenu: AppContextMenu(),
-                    child: BookCoverWidget(_bgBook, largeMode: true),
+                    child: BookCoverWidget(_bgBook!, largeMode: true),
                   ),
                 ],
 
@@ -94,14 +94,16 @@ class _CoversFlowListState extends State<CoversFlowList> {
                   /// OpeningContainer, Each time the key is changed, opens from a topLeftOffset + boxSize,
                   /// Tweens to fills it's parent.
                   /// Gives the impression that a list item is travelling out of the list into the parent view
-                  OpeningContainer(
-                    key: ValueKey(_fgBook.documentId),
-                    topLeftOffset: _currentCardPos,
-                    closedSize: cardSize,
-                    duration: Times.slow,
-                    child: BookCoverWidget(_fgBook, largeMode: true),
-                    onEnd: _handleCardOpened,
-                  ),
+                  if (_fgBook != null && _currentCardPos != null) ...[
+                    OpeningContainer(
+                      key: ValueKey(_fgBook!.documentId),
+                      topLeftOffset: _currentCardPos!,
+                      closedSize: cardSize,
+                      duration: Times.slow,
+                      child: BookCoverWidget(_fgBook!, largeMode: true),
+                      onEnd: _handleCardOpened,
+                    ),
+                  ]
                 ],
 
                 /// ///////////////////////////////////////////////////
@@ -121,7 +123,7 @@ class _CoversFlowListState extends State<CoversFlowList> {
                         // Build  a collapsing card, closes when it is the selected item
                         itemBuilder: (_, index) {
                           ScrapBookData data = widget.books[index];
-                          bool isSelected = data.documentId == _fgBook.documentId;
+                          bool isSelected = data.documentId == _fgBook?.documentId;
                           return _CollapsingListCard(data,
                               key: ValueKey(data.documentId),
                               isSelected: isSelected,
@@ -145,19 +147,19 @@ class _CoversFlowListState extends State<CoversFlowList> {
     if (keysByIndex.containsKey(index) == false) {
       keysByIndex[index] = GlobalKey<_CollapsingListCardState>();
     }
-    return keysByIndex[index];
+    return keysByIndex[index]!;
   }
 
   void _selectNextIndex({bool goBack = false}) {
     if (_isOpening) return;
     int scrollDir = goBack ? -1 : 1;
-    int currentIndex = widget.books.indexWhere((element) => element.documentId == _fgBook.documentId);
+    int currentIndex = widget.books.indexWhere((element) => element.documentId == _fgBook?.documentId);
     int newIndex = currentIndex + scrollDir;
     // This list doesn't support looping, do nothing if they try and scroll out of bounds
     if (newIndex < 0 || newIndex > widget.books.length - 1) return;
     // Get a key for the nextCard, and trigger it's pressed event
     GlobalKey<_CollapsingListCardState> nextCard = _getKey(newIndex);
-    nextCard.currentState._handlePressed();
+    nextCard.currentState?._handlePressed();
     // Scroll the list in the appropriate amt
     // Some aesthetic polish, we want to skip scrolling on the first card
     if (currentIndex == 0 && scrollDir > 0) return;
@@ -175,9 +177,11 @@ class _CoversFlowListState extends State<CoversFlowList> {
     setState(() {
       // The _bgBook may be stale since the _fgBook was changed, update it before we start a new transition.
       // We didn't want to update it while the user was editing text, but we need to now as the _fgBook is switching to a new object.
-      widget.books.forEach((b) {
-        if (b.documentId == _bgBook.documentId) _bgBook = b;
-      });
+      if (_bgBook != null) {
+        widget.books.forEach((b) {
+          if (b.documentId == _bgBook?.documentId) _bgBook = b;
+        });
+      }
       // Start opening
       _currentCardPos = localPos;
       _fgBook = data;
@@ -200,14 +204,14 @@ class _CoversFlowListState extends State<CoversFlowList> {
 
 class _CollapsingListCard extends StatefulWidget {
   _CollapsingListCard(this.data,
-      {this.openWidth,
-      this.openHeight,
-      @required this.onPressed,
-      @required this.isSelected,
-      this.vertical = false,
+      {required this.openWidth,
+      required this.openHeight,
       this.closedWidth,
       this.closedHeight,
-      Key key})
+      required this.onPressed,
+      required this.isSelected,
+      this.vertical = false,
+      Key? key})
       : assert(openWidth != null || openHeight != null),
         super(key: key);
 
@@ -217,8 +221,8 @@ class _CollapsingListCard extends StatefulWidget {
   final void Function(Offset pos, ScrapBookData data) onPressed;
   final bool isSelected;
   final bool vertical;
-  final double closedWidth;
-  final double closedHeight;
+  final double? closedWidth;
+  final double? closedHeight;
 
   @override
   _CollapsingListCardState createState() => _CollapsingListCardState();
@@ -233,8 +237,8 @@ class _CollapsingListCardState extends State<_CollapsingListCard> {
       duration: Times.slow,
       curve: Curves.easeOut,
       // Close the card when it is selected
-      width: widget.isSelected ? widget.closedWidth ?? 0 : widget.openWidth ?? 0 + gap,
-      height: widget.isSelected ? widget.closedHeight ?? 0 : widget.openHeight ?? 0 + gap,
+      width: widget.isSelected ? widget.closedWidth ?? 0 : widget.openWidth,
+      height: widget.isSelected ? widget.closedHeight ?? 0 : widget.openHeight,
       padding: !widget.vertical ? EdgeInsets.only(right: gap) : EdgeInsets.only(bottom: gap),
       // Mask the rounded corners
       child: SimpleBtn(

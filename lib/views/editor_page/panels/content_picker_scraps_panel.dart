@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_folio/_utils/notifications/close_notification.dart';
@@ -12,10 +12,10 @@ import 'package:flutter_folio/models/app_model.dart';
 import 'package:flutter_folio/views/scrap_pile_picker/scrap_pile_picker.dart';
 
 class ContentPickerScrapsPanel extends StatefulWidget {
-  const ContentPickerScrapsPanel({Key key, @required this.bookId, this.isVisible = false, @required this.pageId})
+  const ContentPickerScrapsPanel({Key? key, required this.bookId, this.isVisible = false, required this.pageId})
       : super(key: key);
   final String bookId;
-  final String pageId;
+  final String? pageId;
   final bool isVisible;
 
   @override
@@ -92,19 +92,24 @@ class _ContentPickerScrapsPanelState extends State<ContentPickerScrapsPanel> wit
     }
   }
 
-  void _handleAddPressed([ScrapItem hoverTarget]) {
-    List<ScrapItem> scraps = _selectedItems.isEmpty ? [hoverTarget] : _selectedItems;
-    CreatePlacedScrapCommand().run(pageId: widget.pageId, scraps: scraps);
-    _scrapPileGridKey.currentState.clearSelection();
+  void _handleAddPressed([ScrapItem? hoverTarget]) {
+    if (widget.pageId == null) return;
+    List<ScrapItem> scraps = _selectedItems;
+    bool useHoverTarget = _selectedItems.isEmpty && hoverTarget != null;
+    if (useHoverTarget) scraps = [hoverTarget];
+    CreatePlacedScrapCommand().run(pageId: widget.pageId!, scraps: scraps);
+    _scrapPileGridKey.currentState?.clearSelection();
     CloseNotification().dispatch(context);
   }
 
-  void _handleDeletePressed([ScrapItem hoverTarget]) async {
-    List<ScrapItem> scraps = _selectedItems.isEmpty ? [hoverTarget] : _selectedItems;
+  void _handleDeletePressed([ScrapItem? hoverTarget]) async {
+    List<ScrapItem> scraps = _selectedItems;
+    bool useHoverTarget = _selectedItems.isEmpty && hoverTarget != null;
+    if (useHoverTarget) scraps = [hoverTarget];
     List<String> idList = scraps.map((e) => e.documentId).toList();
     bool didDelete = await DeleteScrapsCommand().run(bookId: widget.bookId, scrapIds: idList);
     if (didDelete) {
-      _scrapPileGridKey.currentState.clearSelection();
+      _scrapPileGridKey.currentState?.clearSelection();
     }
   }
 
@@ -112,10 +117,10 @@ class _ContentPickerScrapsPanelState extends State<ContentPickerScrapsPanel> wit
 }
 
 class _PanelBottomBar extends StatelessWidget {
-  const _PanelBottomBar({Key key, this.onAddPressed, this.onDeletePressed, @required this.selectionCount})
+  const _PanelBottomBar({Key? key, this.onAddPressed, this.onDeletePressed, required this.selectionCount})
       : super(key: key);
-  final VoidCallback onAddPressed;
-  final VoidCallback onDeletePressed;
+  final VoidCallback? onAddPressed;
+  final VoidCallback? onDeletePressed;
   final int selectionCount;
 
   @override

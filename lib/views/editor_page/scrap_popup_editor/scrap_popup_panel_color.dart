@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -8,12 +8,12 @@ import 'scrap_popup_editor.dart';
 
 class ScrapPopupPanelColor extends StatelessWidget {
   const ScrapPopupPanelColor({
-    Key key,
-    @required this.label,
-    @required this.value,
-    @required this.onColorPicked,
-    @required this.isOpen,
-    @required this.swatchColors,
+    Key? key,
+    required this.label,
+    required this.value,
+    required this.onColorPicked,
+    required this.isOpen,
+    required this.swatchColors,
   }) : super(key: key);
   final String label;
   final Color value;
@@ -73,19 +73,20 @@ class ScrapPopupPanelColor extends StatelessWidget {
 }
 
 class _ColorSwatch extends StatelessWidget {
-  const _ColorSwatch(this.color, {Key key, this.size, @required this.isSelected}) : super(key: key);
+  const _ColorSwatch(this.color, {Key? key, this.size, required this.isSelected}) : super(key: key);
   final Color color;
-  final double size;
+  final double? size;
   final bool isSelected;
 
   @override
   Widget build(BuildContext context) {
     AppTheme theme = context.watch();
+    double finalSize = size ?? 16;
     return Stack(
       children: [
         Container(
-          width: size ?? 16,
-          height: size ?? 16,
+          width: finalSize,
+          height: finalSize,
           decoration: BoxDecoration(
             color: color,
             border: Border.all(color: isSelected ? theme.focus : theme.greyMedium, width: isSelected ? 2 : 1),

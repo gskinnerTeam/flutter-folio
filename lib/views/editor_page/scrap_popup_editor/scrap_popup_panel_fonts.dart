@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/core_packages.dart';
@@ -10,7 +10,8 @@ class ScrapPopupPanelFonts extends StatelessWidget {
   final bool isOpen;
   final BoxFonts value;
   final void Function(BoxFonts value) onFamilyChanged;
-  const ScrapPopupPanelFonts({Key key, this.isOpen, this.value = BoxFonts.AlfaSlabOne, @required this.onFamilyChanged})
+  const ScrapPopupPanelFonts(
+      {Key? key, required this.isOpen, this.value = BoxFonts.AlfaSlabOne, required this.onFamilyChanged})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -83,7 +84,7 @@ class ScrapPopupPanelFonts extends StatelessWidget {
 }
 
 class _FontBtn extends StatelessWidget {
-  const _FontBtn(this.currentValue, {Key key, this.font, this.onPressed}) : super(key: key);
+  const _FontBtn(this.currentValue, {Key? key, required this.font, required this.onPressed}) : super(key: key);
   final BoxFonts font;
   final void Function(BoxFonts) onPressed;
   final BoxFonts currentValue;

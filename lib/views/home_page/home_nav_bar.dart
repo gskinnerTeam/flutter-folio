@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/commands/books/create_folio_command.dart';
 import 'package:flutter_folio/core_packages.dart';
@@ -7,7 +7,8 @@ import 'package:flutter_folio/models/app_model.dart';
 import 'package:flutter_folio/models/books_model.dart';
 
 class HomeNavBar extends StatelessWidget {
-  const HomeNavBar({Key key, this.invertText, this.onToggled, this.showListView}) : super(key: key);
+  const HomeNavBar({Key? key, this.invertText = false, required this.onToggled, required this.showListView})
+      : super(key: key);
   final void Function(bool value) onToggled;
   final bool showListView;
   final bool invertText;
@@ -15,9 +16,9 @@ class HomeNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AppTheme theme = Provider.of(context);
-    AppUser user = context.select((AppModel m) => m.currentUser);
+    AppUser? user = context.select((AppModel m) => m.currentUser);
     int bookCount = context.select((BooksModel m) => m.books?.length ?? 0);
-    String name = user.getDisplayName();
+    String? name = user?.getDisplayName();
     return LayoutBuilder(
       builder: (_, constraints) {
         bool breakText = (constraints.maxWidth < 700);

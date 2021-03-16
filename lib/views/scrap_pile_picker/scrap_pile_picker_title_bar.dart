@@ -1,15 +1,15 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/models/app_model.dart';
 
 class ScrapPilePickerTitleBar extends StatelessWidget {
   const ScrapPilePickerTitleBar(
-      {Key key,
-      @required this.onSelectAllPressed,
-      @required this.onClosePressed,
-      @required this.title,
-      @required this.isAllSelected,
+      {Key? key,
+      required this.onSelectAllPressed,
+      required this.onClosePressed,
+      required this.title,
+      required this.isAllSelected,
       this.mobileMode = false})
       : super(key: key);
   final VoidCallback onSelectAllPressed;

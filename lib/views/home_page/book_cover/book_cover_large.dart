@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +13,7 @@ import 'package:timeago/timeago.dart' as timeago;
 
 /// Represents the Widget in "Large Mode"
 class LargeBookCover extends StatefulWidget {
-  const LargeBookCover(this.book, {Key key}) : super(key: key);
+  const LargeBookCover(this.book, {Key? key}) : super(key: key);
   final ScrapBookData book;
 
   @override

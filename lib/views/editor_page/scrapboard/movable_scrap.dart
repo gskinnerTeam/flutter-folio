@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'dart:math';
 
 import 'package:flutter/foundation.dart';
@@ -15,18 +15,18 @@ import 'package:flutter_folio/views/editor_page/scrapboard/scrap_data.dart';
 // Provides basic support for translation, selection and scale events
 class MovableScrap<T> extends StatefulWidget {
   const MovableScrap({
-    Key key,
-    @required this.data,
-    @required this.child,
-    @required this.onMoved,
-    @required this.onMoveComplete,
-    @required this.onCornerDragged,
-    @required this.onRotateDragged,
-    @required this.onCornerDragComplete,
-    @required this.onZoomed,
+    Key? key,
+    required this.data,
+    required this.child,
+    required this.onMoved,
+    required this.onMoveComplete,
+    required this.onCornerDragged,
+    required this.onRotateDragged,
+    required this.onCornerDragComplete,
+    required this.onZoomed,
     this.onPressed,
     this.onOutTweenComplete,
-    this.onMouseOverChanged,
+    required this.onMouseOverChanged,
     this.isSelected = false,
     this.showControls = false,
   }) : super(key: key);
@@ -40,8 +40,8 @@ class MovableScrap<T> extends StatefulWidget {
   final void Function(ScrapData<T> data, Offset delta) onCornerDragged;
   final void Function(ScrapData<T> data, Offset delta) onRotateDragged;
   final void Function(ScrapData<T> data) onCornerDragComplete;
-  final void Function(ScrapData<T> data) onPressed;
-  final void Function(ScrapData<T> data) onOutTweenComplete;
+  final void Function(ScrapData<T> data)? onPressed;
+  final void Function(ScrapData<T> data)? onOutTweenComplete;
   final void Function(bool) onMouseOverChanged;
 
   @override
@@ -51,7 +51,7 @@ class MovableScrap<T> extends StatefulWidget {
 class MovableScrapState extends State<MovableScrap> {
   final GlobalKey<MovableScrapSelectionBoxState> _uiKey = GlobalKey();
 
-  Offset _lastPanPos;
+  Offset? _lastPanPos;
   //double get scale => widget.data.scale;
   Offset get offset => widget.data.offset;
   double get width => widget.data.size.width;
@@ -62,7 +62,7 @@ class MovableScrapState extends State<MovableScrap> {
     double btnSize = Insets.xl;
     return ListenableBuilder(
       listenable: widget.data, // rebuild whenever our data changes
-      builder: (BuildContext context, Widget child) {
+      builder: (BuildContext context, Widget? child) {
         // Position Content
         return SizedAndTranslated(
           size: Size(max(width, 0), max(height, 0)),
@@ -99,7 +99,7 @@ class MovableScrapState extends State<MovableScrap> {
     // Send move complete if we were moved
     if (_lastPanPos != null) {
       _lastPanPos = null;
-      widget.onMoveComplete?.call(widget.data);
+      widget.onMoveComplete.call(widget.data);
     } else {
       widget.onPressed?.call(widget.data);
     }
@@ -110,13 +110,14 @@ class MovableScrapState extends State<MovableScrap> {
   }
 
   void _handleScaleUpdate(ScaleUpdateDetails details) {
-    widget.onMoved?.call(widget.data, (details.focalPoint - _lastPanPos));
+    if (_lastPanPos == null) return;
+    widget.onMoved.call(widget.data, (details.focalPoint - _lastPanPos!));
     _lastPanPos = details.focalPoint;
   }
 }
 
 class _DraggableHitArea extends StatelessWidget {
-  const _DraggableHitArea(this.state, {Key key, this.child, this.isEnabled}) : super(key: key);
+  const _DraggableHitArea(this.state, {Key? key, required this.child, this.isEnabled = true}) : super(key: key);
   final MovableScrapState state;
   final Widget child;
   final bool isEnabled;
@@ -126,8 +127,8 @@ class _DraggableHitArea extends StatelessWidget {
     if (isEnabled == false) return child;
     return MouseRegion(
       cursor: SystemMouseCursors.click,
-      onEnter: (_) => state.widget.onMouseOverChanged?.call(true),
-      onExit: (_) => state.widget.onMouseOverChanged?.call(false),
+      onEnter: (_) => state.widget.onMouseOverChanged.call(true),
+      onExit: (_) => state.widget.onMouseOverChanged.call(false),
       child: GestureDetector(
         onScaleStart: state._handleScaleStart,
         onScaleUpdate: state._handleScaleUpdate,

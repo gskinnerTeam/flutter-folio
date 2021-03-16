@@ -84,8 +84,8 @@ class _MainAppScaffoldState extends State<MainAppScaffold> {
 
 class _WindowBorder extends StatelessWidget {
   const _WindowBorder({Key key, this.child, this.color}) : super(key: key);
-  final Widget child;
-  final Color color;
+  final Widget/*!*/ child;
+  final Color/*!*/ color;
 
   @override
   Widget build(BuildContext context) {

@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_widgets/flexibles/seperated_flexibles.dart';
 import 'package:flutter_folio/_widgets/mixins/loading_state_mixin.dart';
@@ -10,7 +10,7 @@ import 'package:flutter_folio/data/book_data.dart';
 import 'package:flutter_folio/models/books_model.dart';
 
 class ScrapPopupPanelButtonStrip extends StatefulWidget {
-  const ScrapPopupPanelButtonStrip({Key key, @required this.scrap}) : super(key: key);
+  const ScrapPopupPanelButtonStrip({Key? key, required this.scrap}) : super(key: key);
   final PlacedScrapItem scrap;
 
   @override
@@ -23,7 +23,7 @@ class _ScrapPopupPanelButtonStripState extends State<ScrapPopupPanelButtonStrip>
     // Bind to page for rebuilds because our re-order might trigger it
     context.select((BooksModel m) => m.currentPage);
     // Bind to current book cover photo
-    String currentCoverPhoto = context.select((BooksModel m) => m.currentBook?.imageUrl);
+    String? currentCoverPhoto = context.select((BooksModel m) => m.currentBook?.imageUrl);
     bool isCoverPhoto = widget.scrap.isPhoto && currentCoverPhoto == widget.scrap.data;
     bool disableCoverPhotoBtn = isCoverPhoto || widget.scrap.isPhoto == false;
     return GestureDetector(
@@ -68,8 +68,8 @@ class _ScrapPopupPanelButtonStripState extends State<ScrapPopupPanelButtonStrip>
 }
 
 class _IconBtn extends StatelessWidget {
-  const _IconBtn({Key key, this.onPressed, this.icon, this.isSelected = false}) : super(key: key);
-  final VoidCallback onPressed;
+  const _IconBtn({Key? key, this.onPressed, required this.icon, this.isSelected = false}) : super(key: key);
+  final VoidCallback? onPressed;
   final AppIcons icon;
   final bool isSelected;
 

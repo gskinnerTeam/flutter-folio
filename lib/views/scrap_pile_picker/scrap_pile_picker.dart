@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -27,8 +27,8 @@ part 'scrap_pile_picker_view.dart';
 /// [ScrapPilePickerState] acts as a controller for [ScrapPilePickerView]
 class ScrapPilePicker extends StatefulWidget {
   const ScrapPilePicker({
-    Key key,
-    @required this.bookId,
+    Key? key,
+    required this.bookId,
     this.contextMenuLabels,
     this.contextMenuActions,
     this.onSelectionChanged,
@@ -37,10 +37,10 @@ class ScrapPilePicker extends StatefulWidget {
   }) : super(key: key);
 
   final String bookId;
-  final List<String> Function(ScrapItem item) contextMenuLabels;
-  final List<VoidCallback> Function(ScrapItem item) contextMenuActions;
-  final void Function(List<ScrapItem> items) onSelectionChanged;
-  final VoidCallback onDeletePressed;
+  final List<String> Function(ScrapItem item)? contextMenuLabels;
+  final List<VoidCallback?> Function(ScrapItem item)? contextMenuActions;
+  final void Function(List<ScrapItem> items)? onSelectionChanged;
+  final VoidCallback? onDeletePressed;
   final bool mobileMode;
 
   @override
@@ -63,7 +63,7 @@ class ScrapPilePickerState extends State<ScrapPilePicker> with RawKeyboardListen
   @override
   Widget build(BuildContext context) {
     /// Bind to book scraps and inject into the view
-    _bookScraps = context.select((BooksModel m) => m.currentBookScraps);
+    _bookScraps = context.select((BooksModel m) => m.currentBookScraps) ?? [];
     return ScrapPilePickerView(state: this, bookScraps: _bookScraps);
   }
 

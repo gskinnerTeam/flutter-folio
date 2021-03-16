@@ -10,14 +10,17 @@ class RefreshCurrentBookCommand extends BaseAppCommand {
     List<Future> futures = [
       if (book)
         firebase.getBook(bookId: bookId).then((value) {
+          if (value == null) return;
           booksModel.currentBook = value;
         }),
       if (pages)
         firebase.getAllPages(bookId: bookId).then((value) {
+          if (value == null) return;
           booksModel.currentBookPages = value..removeWhere((p) => p.documentId == null);
         }),
       if (scraps)
         firebase.getAllBookScraps(bookId: bookId).then((value) {
+          if (value == null) return;
           CloudStorageService.addMaxSizeToUrlList<ScrapItem>(
             value,
             (s) => s.data,

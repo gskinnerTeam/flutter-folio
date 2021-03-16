@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -9,18 +9,18 @@ class AnimatedMenuPanel extends StatefulWidget {
   const AnimatedMenuPanel(
     this.closedPos,
     this.closedSize, {
-    Key key,
-    @required this.openHeight,
-    @required this.isOpen,
+    Key? key,
+    required this.openHeight,
+    required this.isOpen,
     this.isVisible = true,
     this.onPressed,
-    @required this.childBuilder,
+    required this.childBuilder,
   }) : super(key: key);
   final Offset closedPos;
   final Size closedSize;
   final double openHeight;
   final bool isOpen;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final bool isVisible;
   final Widget Function(bool isOpen) childBuilder;
 
@@ -63,7 +63,7 @@ class _AnimatedMenuPanelState extends State<AnimatedMenuPanel> {
                   onTap: widget.onPressed,
 
                   /// Content
-                  child: widget.childBuilder?.call(widget.isOpen)),
+                  child: widget.childBuilder.call(widget.isOpen)),
             ),
           ),
         );

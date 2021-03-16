@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 // Extends SelectableText, providing default web-like behavior of a non-focuseable but selectable text region
 class UiText extends StatelessWidget {
   const UiText(this.data, {Key? key, this.style}) : super(key: key);
-  final String data;
+  final String? data;
   final TextStyle? style;
 
   static Widget rich(TextSpan span, {TextStyle? style}) {
@@ -16,6 +16,6 @@ class UiText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ExcludeFocus(excluding: true, child: SelectableText(data, style: style));
+    return ExcludeFocus(excluding: true, child: SelectableText(data ?? "", style: style));
   }
 }

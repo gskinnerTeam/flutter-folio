@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'dart:io';
 
 import 'package:enum_to_string/enum_to_string.dart';
@@ -12,10 +12,10 @@ import 'package:flutter_folio/data/book_data.dart';
 import 'package:flutter_folio/styled_widgets/emoji.dart';
 
 class ContentPickerEmojiPanel extends StatefulWidget {
-  const ContentPickerEmojiPanel({Key key, @required this.isVisible, @required this.bookId, @required this.pageId})
+  const ContentPickerEmojiPanel({Key? key, required this.isVisible, required this.bookId, required this.pageId})
       : super(key: key);
   final bool isVisible;
-  final String pageId;
+  final String? pageId;
   final String bookId;
 
   @override
@@ -85,14 +85,16 @@ class _ContentPickerEmojiPanelState extends State<ContentPickerEmojiPanel> {
   }
 
   void _handleAddPressed(Emojis emoji) {
-    CreatePlacedScrapCommand().run(pageId: widget.pageId, scraps: [
-      ScrapItem(
-        bookId: widget.bookId,
-        aspect: 1,
-        contentType: ContentType.Emoji,
-        data: EnumToString.convertToString(emoji),
-      )
-    ]);
+    if (widget.pageId != null) {
+      CreatePlacedScrapCommand().run(pageId: widget.pageId!, scraps: [
+        ScrapItem(
+          bookId: widget.bookId,
+          aspect: 1,
+          contentType: ContentType.Emoji,
+          data: EnumToString.convertToString(emoji),
+        )
+      ]);
+    }
     CloseNotification().dispatch(context);
   }
 }

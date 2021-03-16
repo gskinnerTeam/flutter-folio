@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -7,7 +7,7 @@ import 'package:flutter_folio/data/app_user.dart';
 import 'package:flutter_folio/services/firebase/firebase_service.dart';
 
 class NativeFirebaseService extends FirebaseService {
-  String userId;
+  String? userId;
   FirebaseFirestore get firestore => FirebaseFirestore.instance;
   FirebaseAuth get auth => FirebaseAuth.instance;
 
@@ -16,8 +16,8 @@ class NativeFirebaseService extends FirebaseService {
   @override
   Future<void> init() async {
     await auth.setPersistence(Persistence.LOCAL);
-    FirebaseAuth.instance.userChanges().listen((User user) {
-      return _isSignedIn = user != null;
+    FirebaseAuth.instance.userChanges().listen((User? user) {
+      _isSignedIn = user != null;
     });
     await Firebase.initializeApp().catchError((Object e) {
       print("$e");
@@ -28,7 +28,7 @@ class NativeFirebaseService extends FirebaseService {
 
   // Auth
   @override
-  Future<AppUser> signIn({String email, String password, bool createAccount = false}) async {
+  Future<AppUser?> signIn({required String email, required String password, bool createAccount = false}) async {
     UserCredential userCreds;
     if (createAccount) {
       userCreds = await auth.createUserWithEmailAndPassword(email: email, password: password);
@@ -44,17 +44,17 @@ class NativeFirebaseService extends FirebaseService {
     super.signOut();
   }
 
-  @override
   bool _isSignedIn = false;
+  @override
   bool get isSignedIn => _isSignedIn;
 
   // Streams
-  Stream<Map<String, dynamic>> getDocStream(List<String> keys) {
-    return _getDoc(keys).snapshots().map((doc) => doc.data()..['documentId'] = doc.id);
+  Stream<Map<String, dynamic>>? getDocStream(List<String> keys) {
+    return _getDoc(keys)?.snapshots().map((doc) => doc.data()..['documentId'] = doc.id);
   }
 
-  Stream<List<Map<String, dynamic>>> getListStream(List<String> keys) {
-    return _getCollection(keys).snapshots().map(
+  Stream<List<Map<String, dynamic>>>? getListStream(List<String> keys) {
+    return _getCollection(keys)?.snapshots().map(
       (QuerySnapshot snapshot) {
         return snapshot.docs.map((d) => d.data()..['documentId'] = d.id).toList();
       },
@@ -64,7 +64,7 @@ class NativeFirebaseService extends FirebaseService {
   // CRUD
   @override
   Future<String> addDoc(List<String> keys, Map<String, dynamic> json,
-      {String documentId, bool addUserPath = true}) async {
+      {String? documentId, bool addUserPath = true}) async {
     if (documentId != null) {
       keys.add(documentId);
       safePrint("Add Doc ${getPathFromKeys(keys)}");
@@ -85,31 +85,33 @@ class NativeFirebaseService extends FirebaseService {
     await firestore.doc(getPathFromKeys(keys)).update(json);
   }
 
-  Future<Map<String, dynamic>> getDoc(List<String> keys) async {
+  Future<Map<String, dynamic>?> getDoc(List<String> keys) async {
     try {
-      DocumentSnapshot d = (await _getDoc(keys).get());
-      return d.data()..['documentId'] = d.id;
+      DocumentSnapshot? d = (await _getDoc(keys)?.get());
+      if (d != null) {
+        return d.data()..['documentId'] = d.id;
+      }
     } catch (e) {
       print(e);
     }
     return null;
   }
 
-  Future<List<Map<String, dynamic>>> getCollection(List<String> keys) async {
+  Future<List<Map<String, dynamic>>?> getCollection(List<String> keys) async {
     //print("getDocStream: ${keys.toString()}");
-    QuerySnapshot snapshot = (await _getCollection(keys).get());
-    snapshot.docs.forEach((d) {
+    QuerySnapshot? snapshot = (await _getCollection(keys)?.get());
+    snapshot?.docs.forEach((d) {
       d.data()..['documentId'] = d.id;
     });
-    return snapshot.docs.map((d) => d.data()).toList();
+    return snapshot?.docs.map((d) => d.data()).toList();
   }
 
-  DocumentReference _getDoc(List<String> keys) {
+  DocumentReference? _getDoc(List<String> keys) {
     if (checkKeysForNull(keys) == false) return null;
     return firestore.doc(getPathFromKeys(keys));
   }
 
-  CollectionReference _getCollection(List<String> keys) {
+  CollectionReference? _getCollection(List<String> keys) {
     if (checkKeysForNull(keys) == false) return null;
     return firestore.collection(getPathFromKeys(keys));
   }

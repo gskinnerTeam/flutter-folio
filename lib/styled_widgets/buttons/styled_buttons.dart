@@ -59,7 +59,7 @@ class SecondaryBtn extends StatelessWidget {
   final bool leadingIcon;
   final bool isCompact;
   final double? cornerRadius;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {

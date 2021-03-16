@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_spikes/firebase_realtime_db.dart';
@@ -50,11 +50,11 @@ class AppRouterDelegate extends RouterDelegate<AppLink> with ChangeNotifier {
     bool hasSetInitialRoute = appModel.hasSetInitialRoute;
     bool isGuestUser = appModel.isGuestUser;
     bool isAuthenticated = appModel.isAuthenticated;
-    String currentBookId = booksModel.currentBook?.documentId;
+    String? currentBookId = booksModel.currentBook?.documentId;
     // Hold splash in place until our bootstrap cmd and any route parsing is done.
     bool showSplash = hasBootstrapped == false || hasSetInitialRoute == false;
     // See if we want to show a dev spike instead of the main app
-    Widget devSpike = _getDevSpike();
+    Widget? devSpike = _getDevSpike();
     // Wrap
     return MainAppScaffold(
       showAppBar: showSplash == false,
@@ -68,7 +68,7 @@ class AppRouterDelegate extends RouterDelegate<AppLink> with ChangeNotifier {
             SplashPage(),
           ]
           // Guest users can only see the EditView in read-only mode
-          else if (isGuestUser) ...[
+          else if (isGuestUser && currentBookId != null) ...[
             EditorPage(bookId: currentBookId, readOnly: true),
           ]
           // Regular users
@@ -137,16 +137,16 @@ class AppRouterDelegate extends RouterDelegate<AppLink> with ChangeNotifier {
 
     // Validate the ids that were passed in. At this point we're using either our existing authenticated user,
     // Or the guest user provided by the app link. In either case, we need to call firebase and validate the ids.
-    ScrapBookData book;
-    ScrapPageData page;
+    ScrapBookData? book;
+    ScrapPageData? page;
     if (newLink.bookId != null) {
       // Check if the bookId can be found
-      book = await firebase.getBook(bookId: newLink.bookId);
+      book = await firebase.getBook(bookId: newLink.bookId!);
       if (book != null) {
         // If the link has a pageId use that
         if (newLink.pageId != null) {
           // Check if the pageId can be found
-          page = await firebase.getPage(bookId: newLink.bookId, pageId: newLink.pageId);
+          page = await firebase.getPage(bookId: newLink.bookId!, pageId: newLink.pageId!);
         }
         // Otherwise, load the first page in the book using the pageOrder value
         else if (book.pageOrder?.isNotEmpty ?? false) {
@@ -185,7 +185,7 @@ class AppRouterDelegate extends RouterDelegate<AppLink> with ChangeNotifier {
   // endregion
 }
 
-Widget _getDevSpike() {
+Widget? _getDevSpike() {
   if (kReleaseMode) return null;
   //return FirebaseRealtimeDbSpike();
   //return NativeFirebaseAuthSpike();

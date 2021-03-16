@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_folio/_widgets/alignments.dart';
@@ -19,10 +19,10 @@ import 'scrap_popup_panel_fonts.dart';
 
 class ScrapPopupEditor extends StatefulWidget {
   const ScrapPopupEditor({
-    Key key,
-    @required this.scrap,
-    @required this.onStyleChanged,
-    @required this.onRotChanged,
+    Key? key,
+    required this.scrap,
+    required this.onStyleChanged,
+    required this.onRotChanged,
   }) : super(key: key);
   final PlacedScrapItem scrap;
   final void Function(BoxStyle boxStyle) onStyleChanged;
@@ -188,7 +188,10 @@ class _ScrapPopupEditorState extends State<ScrapPopupEditor> {
   }
 
   AnimatedMenuPanel animatedPanel(Offset o, Size s,
-      {double openHeight, int index, Widget Function(bool isOpen) childBuilder, bool enableBgTap = true}) {
+      {required double openHeight,
+      required int index,
+      required Widget Function(bool isOpen) childBuilder,
+      bool enableBgTap = true}) {
     return AnimatedMenuPanel(o, s,
         openHeight: openHeight,
         key: ValueKey(index),
@@ -211,26 +214,26 @@ class _ScrapPopupEditorState extends State<ScrapPopupEditor> {
     return list..add(panel);
   }
 
-  void _handleAlignChanged(TextAlign value) => widget?.onStyleChanged(scrapStyle.copyWith(align: value));
+  void _handleAlignChanged(TextAlign value) => widget.onStyleChanged(scrapStyle.copyWith(align: value));
 
   void _handleBgColorChanged(Color value) {
     _btnIndex = -1;
-    widget?.onStyleChanged(scrapStyle.copyWith(bgColor: value));
+    widget.onStyleChanged(scrapStyle.copyWith(bgColor: value));
   }
 
   void _handleFgColorChanged(Color value) {
     _btnIndex = -1;
-    widget?.onStyleChanged(scrapStyle.copyWith(fgColor: value));
+    widget.onStyleChanged(scrapStyle.copyWith(fgColor: value));
   }
 
   void _handleFamilyChanged(BoxFonts value) {
     _btnIndex = -1;
-    widget?.onStyleChanged(scrapStyle.copyWith(font: value));
+    widget.onStyleChanged(scrapStyle.copyWith(font: value));
   }
 }
 
 class _MenuItem extends StatelessWidget {
-  const _MenuItem({Key key, this.isOpen = false, @required this.child}) : super(key: key);
+  const _MenuItem({Key? key, this.isOpen = false, required this.child}) : super(key: key);
   final bool isOpen;
   final Widget child;
 
@@ -257,7 +260,7 @@ class _MenuItem extends StatelessWidget {
 }
 
 class PanelHeader extends StatelessWidget {
-  const PanelHeader({Key key, this.label, this.showBackArrow = true}) : super(key: key);
+  const PanelHeader({Key? key, required this.label, this.showBackArrow = true}) : super(key: key);
   final String label;
   final bool showBackArrow;
 

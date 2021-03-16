@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/commands/books/update_book_command.dart';
 import 'package:flutter_folio/core_packages.dart';
@@ -7,7 +7,7 @@ import 'package:flutter_folio/models/books_model.dart';
 import 'package:flutter_folio/views/editor_page/draggable_page_menu/draggable_page_title_btn.dart';
 
 class DraggablePagesMenu extends StatefulWidget {
-  const DraggablePagesMenu({Key key, @required this.pages, @required this.pageId, @required this.onPressed})
+  const DraggablePagesMenu({Key? key, required this.pages, required this.pageId, required this.onPressed})
       : super(key: key);
   final List<ScrapPageData> pages;
   final String pageId;
@@ -26,7 +26,7 @@ class DraggablePagesMenuState extends State<DraggablePagesMenu> {
   List<ScrapPageData> get pages => widget.pages;
   String get currentPageId => widget.pageId;
 
-  ScrollController _scrollController;
+  late ScrollController _scrollController;
 
   @override
   void initState() {
@@ -36,7 +36,7 @@ class DraggablePagesMenuState extends State<DraggablePagesMenu> {
 
   @override
   void dispose() {
-    _scrollController?.dispose();
+    _scrollController.dispose();
     super.dispose();
   }
 
@@ -66,7 +66,7 @@ class DraggablePagesMenuState extends State<DraggablePagesMenu> {
                             page,
                             key: ValueKey(page.documentId),
                             isSelected: isSelected,
-                            onPressed: () => widget.onPressed?.call(page),
+                            onPressed: () => widget.onPressed(page),
                             onDragCancelled: _handleDragCancelled,
                             height: menuItemHeight,
                           );
@@ -99,13 +99,12 @@ class DraggablePagesMenuState extends State<DraggablePagesMenu> {
     int newIndex = hoverIndex;
     pages.removeAt(oldIndex);
     pages.insert(newIndex, details.data);
-    ScrapBookData currentBook = context.read<BooksModel>().currentBook;
-    // pages.forEach((element) {
-    //   print(element);
-    // });
-    UpdateBookCommand().run(currentBook.copyWith(
-      pageOrder: pages.map((e) => e.documentId).toList(),
-    ));
+    ScrapBookData? currentBook = context.read<BooksModel>().currentBook;
+    if (currentBook != null) {
+      UpdateBookCommand().run(currentBook.copyWith(
+        pageOrder: pages.map((e) => e.documentId).toList(),
+      ));
+    }
     _hoverIndexNotifier.value = -1;
     return false;
   }
@@ -126,7 +125,7 @@ class DraggablePagesMenuState extends State<DraggablePagesMenu> {
 }
 
 class _SelectedPageOutline extends StatelessWidget {
-  const _SelectedPageOutline({Key key, @required this.top, @required this.height}) : super(key: key);
+  const _SelectedPageOutline({Key? key, required this.top, required this.height}) : super(key: key);
   final double top;
   final double height;
 

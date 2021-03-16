@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -6,6 +6,7 @@ import 'package:flutter/src/gestures/events.dart';
 import 'package:flutter_folio/_utils/input_utils.dart';
 import 'package:flutter_folio/_utils/keyboard_utils.dart';
 import 'package:flutter_folio/_widgets/mixins/raw_keyboard_listener_mixin.dart';
+import 'package:flutter_folio/core_packages.dart';
 import 'package:vector_math/vector_math_64.dart' as math64;
 
 import 'movable_scrap.dart';
@@ -13,16 +14,16 @@ import 'scrap_data.dart';
 
 class Scrapboard<T> extends StatefulWidget {
   const Scrapboard(
-      {Key key,
-      @required this.boxes,
-      @required this.itemBuilder,
+      {Key? key,
+      required this.boxes,
+      required this.itemBuilder,
       this.onTranslated,
       this.onTranslateEnded,
       this.onBoxDeleted,
       this.onOrderChanged,
-      this.idBuilder,
-      this.lockAspectForItem,
-      this.startOffset,
+      required this.idBuilder,
+      required this.lockAspectForItem,
+      this.startOffset = Offset.zero,
       this.readOnly = false,
       this.onSelectionChanged,
       this.itemControlsBuilder})
@@ -30,16 +31,16 @@ class Scrapboard<T> extends StatefulWidget {
 
   final List<ScrapData<T>> boxes;
   final Widget Function(T data) itemBuilder;
-  final Widget Function(T data) itemControlsBuilder;
+  final Widget Function(T data)? itemControlsBuilder;
   final String Function(ScrapData<T>) idBuilder;
   final bool Function(ScrapData<T>) lockAspectForItem;
   final Offset startOffset;
 
-  final void Function(ScrapData<T>) onTranslated;
-  final void Function(ScrapData<T>) onTranslateEnded;
-  final void Function(ScrapData<T>) onBoxDeleted;
-  final void Function(ScrapData<T>, List<ScrapData<T>> boxes) onOrderChanged;
-  final void Function(ScrapData<T>, List<ScrapData<T>> boxes) onSelectionChanged;
+  final void Function(ScrapData<T>)? onTranslated;
+  final void Function(ScrapData<T>)? onTranslateEnded;
+  final void Function(ScrapData<T>)? onBoxDeleted;
+  final void Function(ScrapData<T> selected, List<ScrapData<T>> all)? onOrderChanged;
+  final void Function(ScrapData<T>? selected, List<ScrapData<T>> all)? onSelectionChanged;
 
   final bool readOnly;
 
@@ -58,7 +59,7 @@ class ScrapboardState<T> extends State<Scrapboard<T>> with RawKeyboardListenerMi
   double _scale = 1;
   List<String> _selectedBoxIds = [];
   bool _isSpaceBarDown = false;
-  Size _viewSize;
+  Size? _viewSize;
 
   // We create a copy of the assigned boxList, so we can work on it internally
   List<ScrapData<T>> get _tmpBoxes => widget.boxes;
@@ -84,14 +85,17 @@ class ScrapboardState<T> extends State<Scrapboard<T>> with RawKeyboardListenerMi
   Widget build(BuildContext context) {
     final _selected = _getSelectedBoxInstances();
     // If a singe item is selected, use the itemControlsBuilder to show any item controls provided by the parent widget.
-    bool showItemControls = _selected.length == 1 && widget.itemControlsBuilder != null;
+    Widget? itemControls;
+    if ((_selected.length) > 0) {
+      itemControls = widget.itemControlsBuilder?.call(_selected.first.data);
+    }
     return Scaffold(
       body: Stack(
         children: [
           ValueListenableBuilder(
             // When a card is highlighted, we want to disable pan/scale on the InteractiveViewer
             valueListenable: isCardHovered,
-            builder: (BuildContext context, bool value, Widget cachedChild) {
+            builder: (BuildContext context, bool value, Widget? cachedChild) {
               return GestureDetector(
                 onTap: _handleBgPressed,
                 child: InteractiveViewer(
@@ -102,7 +106,7 @@ class ScrapboardState<T> extends State<Scrapboard<T>> with RawKeyboardListenerMi
                     constrained: false,
                     scaleEnabled: !value,
                     panEnabled: !value,
-                    child: cachedChild),
+                    child: cachedChild!),
               );
             },
             // Cache the Stack of Scraps so we can control panEnabled/scaleEnabled without rebuilding every card
@@ -144,8 +148,8 @@ class ScrapboardState<T> extends State<Scrapboard<T>> with RawKeyboardListenerMi
                       );
                     }).toList(),
 
-                    if (showItemControls) ...[
-                      widget.itemControlsBuilder?.call(_selected.first?.data),
+                    if (itemControls != null) ...[
+                      itemControls,
                     ],
 
                     /// Use a transparent layer to block any interaction when we're in read-only mode
@@ -154,7 +158,7 @@ class ScrapboardState<T> extends State<Scrapboard<T>> with RawKeyboardListenerMi
                         cursor: SystemMouseCursors.move,
                         child: Container(color: Colors.transparent),
                       )
-                    ]
+                    ],
                   ],
                 ),
               ),
@@ -176,7 +180,7 @@ class ScrapboardState<T> extends State<Scrapboard<T>> with RawKeyboardListenerMi
       _boxKeysById[id] = GlobalKey<MovableScrapState>();
       //print("CreateKey: $id");
     }
-    return _boxKeysById[id];
+    return _boxKeysById[id]!;
   }
 
   List<ScrapData<T>> _getSelectedBoxInstances() =>
@@ -214,7 +218,7 @@ class ScrapboardState<T> extends State<Scrapboard<T>> with RawKeyboardListenerMi
   }
 
   void _handleCornerDragged(ScrapData<T> boxData, Offset delta) {
-    bool isLockForced = widget.lockAspectForItem?.call(boxData) ?? false;
+    bool isLockForced = widget.lockAspectForItem.call(boxData);
     if (_lockAspectOnResize || isLockForced) {
       bool useHz = (delta.dx).abs() > (delta.dy).abs();
       delta = Offset(useHz ? delta.dx : delta.dy * boxData.aspect, useHz ? delta.dx / boxData.aspect : delta.dy);
@@ -256,7 +260,7 @@ class ScrapboardState<T> extends State<Scrapboard<T>> with RawKeyboardListenerMi
 
   void _handleBoxDeleteTriggered(ScrapData<T> data) {
     setState(() => _tmpBoxes.remove(data));
-    widget.onBoxDeleted(data);
+    widget.onBoxDeleted?.call(data);
   }
 
   // Each box will handle it's own movement but we need to disable InteractiveViewer when one is moused over.

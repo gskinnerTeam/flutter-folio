@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_utils/string_utils.dart';
 import 'package:flutter_folio/_widgets/rounded_card.dart';
@@ -8,9 +8,9 @@ import 'package:flutter_folio/data/book_data.dart';
 import 'package:flutter_folio/models/app_model.dart';
 
 class SimplePagesMenu extends StatelessWidget {
-  SimplePagesMenu(this.pages, {this.selectedPageId});
+  SimplePagesMenu(this.pages, {required this.selectedPageId});
 
-  final String selectedPageId;
+  final String? selectedPageId;
   final List<ScrapPageData> pages;
 
   @override
@@ -44,7 +44,7 @@ class SimplePagesMenu extends StatelessWidget {
 }
 
 class _PageBtn extends StatelessWidget {
-  _PageBtn({@required this.label, this.isSelected = false, this.onPressed});
+  _PageBtn({required this.label, this.isSelected = false, required this.onPressed});
 
   final String label;
   final bool isSelected;

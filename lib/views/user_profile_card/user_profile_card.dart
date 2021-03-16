@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'dart:async';
 
 import 'package:cloudinary_public/cloudinary_public.dart';
@@ -67,7 +67,7 @@ class _ProfileEditorCardContent extends StatefulWidget {
 }
 
 class _ProfileEditorCardContentState extends State<_ProfileEditorCardContent> {
-  AppUser _user;
+  AppUser? _user;
 
   @override
   void dispose() {
@@ -75,9 +75,11 @@ class _ProfileEditorCardContentState extends State<_ProfileEditorCardContent> {
     // When we're closed, submit any changes to the user.
     // Use a microtask cause this will trigger some builds.
     // TODO: remove this after AppRouter re-write
-    scheduleMicrotask(() {
-      UpdateUserCommand().run(_user);
-    });
+    if (_user != null) {
+      scheduleMicrotask(() {
+        UpdateUserCommand().run(_user!);
+      });
+    }
   }
 
   @override
@@ -101,7 +103,7 @@ class _ProfileEditorCardContentState extends State<_ProfileEditorCardContent> {
                   height: 80 + Insets.xs * 2,
                   child: Padding(
                     padding: EdgeInsets.all(Insets.xs),
-                    child: StyledCircleImage(url: _user.imageUrl ?? AppUser.kDefaultImageUrl),
+                    child: StyledCircleImage(url: _user?.imageUrl ?? AppUser.kDefaultImageUrl),
                   ),
                 ),
               ),
@@ -122,16 +124,16 @@ class _ProfileEditorCardContentState extends State<_ProfileEditorCardContent> {
 
               /// TextInputs
               LabeledTextInput(
-                  autoFocus: true, label: "First Name", text: _user.firstName, onChanged: _handleFirstNameChanged),
+                  autoFocus: true, label: "First Name", text: _user?.firstName, onChanged: _handleFirstNameChanged),
               VSpace.lg,
-              LabeledTextInput(label: "Last Name", text: _user.lastName, onChanged: _handleLastNameChanged),
+              LabeledTextInput(label: "Last Name", text: _user?.lastName, onChanged: _handleLastNameChanged),
               VSpace.lg,
 
               /// Account
               Container(width: double.infinity, child: UiText("Account", style: TextStyles.caption)),
               Row(
                 children: [
-                  Expanded(child: UiText(_user.email, style: TextStyles.body3)),
+                  Expanded(child: UiText(_user?.email, style: TextStyles.body3)),
                   PrimaryBtn(
                       icon: Icons.logout,
                       leadingIcon: false,
@@ -153,15 +155,22 @@ class _ProfileEditorCardContentState extends State<_ProfileEditorCardContent> {
     List<CloudinaryResponse> uploads = await cloudStorage.multiUpload(urls: paths);
     uploads.forEach((u) => safePrint(u.secureUrl));
     // Update firebase
-    if (uploads?.isNotEmpty ?? false) {
+    if (uploads.isNotEmpty) {
       AppModel m = context.read();
-      UpdateUserCommand().run(m.currentUser.copyWith(imageUrl: uploads[0].secureUrl));
+      if (m.currentUser != null) {
+        UpdateUserCommand().run(m.currentUser!.copyWith(imageUrl: uploads[0].secureUrl));
+      }
       m.scheduleSave();
     }
   }
 
-  void _handleFirstNameChanged(String value) => _user = _user.copyWith(firstName: value);
-  void _handleLastNameChanged(String value) => _user = _user.copyWith(lastName: value);
+  void _handleFirstNameChanged(String value) {
+    _user = _user?.copyWith(firstName: value) ?? _user;
+  }
+
+  void _handleLastNameChanged(String value) {
+    _user = _user?.copyWith(lastName: value) ?? _user;
+  }
 
   void _handleLogoutPressed() {
     if (widget.bottomSheet) {

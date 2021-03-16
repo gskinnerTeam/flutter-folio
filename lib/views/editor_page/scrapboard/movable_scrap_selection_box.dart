@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 // Provides btns (rotate, scale etc) and a border around the movable box.
 import 'dart:math';
 
@@ -10,23 +10,21 @@ import 'package:flutter_folio/core_packages.dart';
 
 class MovableScrapSelectionBox extends StatefulWidget {
   const MovableScrapSelectionBox(
-      {Key key,
-      @required this.child,
-      @required this.onZoomed,
-      @required this.onCornerDrag,
-      @required this.onDragEnded,
-      @required this.onRotateDrag,
-      @required this.btnSize,
+      {Key? key,
+      required this.child,
+      required this.onZoomed,
+      required this.onCornerDrag,
+      required this.onDragEnded,
+      required this.onRotateDrag,
+      required this.btnSize,
       this.isVisible = false,
-      this.onDeletePressed,
-      @required this.showControls})
+      required this.showControls})
       : super(key: key);
   final Widget child;
   final void Function(double delta) onZoomed;
   final void Function(Offset delta) onCornerDrag;
   final void Function(Offset delta) onRotateDrag;
   final void Function() onDragEnded;
-  final void Function() onDeletePressed;
   final bool isVisible;
   final double btnSize;
   final bool showControls;
@@ -104,16 +102,16 @@ class MovableScrapSelectionBoxState extends State<MovableScrapSelectionBox> {
     //print("${signal.scrollDelta.dy} @ ${TimeUtils.nowMillis}");
     double dir = signal.scrollDelta.dy > 0 ? -1 : 1;
     widget.onZoomed(dir * .1);
-    _zoomDebounce.call(() => widget.onDragEnded?.call());
+    _zoomDebounce.call(() => widget.onDragEnded.call());
   }
 }
 
 class _Handle extends StatelessWidget {
   const _Handle(this.widget,
-      {Key key, this.icon, @required this.onPanUpdate, @required this.onPanEnd, this.isCircular = false})
+      {Key? key, this.icon, required this.onPanUpdate, required this.onPanEnd, this.isCircular = false})
       : super(key: key);
   final MovableScrapSelectionBox widget;
-  final IconData icon;
+  final IconData? icon;
   final void Function(Offset delta) onPanUpdate;
   final void Function() onPanEnd;
   final bool isCircular;
@@ -122,6 +120,7 @@ class _Handle extends StatelessWidget {
   Widget build(BuildContext context) {
     AppTheme theme = context.watch();
     double btnScale = 1;
+    bool hasIcon = icon != null;
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
       onPanUpdate: (d) => onPanUpdate(d.delta),
@@ -144,7 +143,9 @@ class _Handle extends StatelessWidget {
                 offset: Offset(-1.5, 0),
                 child: Transform.rotate(
                   angle: -pi / 4,
-                  child: MaterialIcon(icon, color: theme.accent1, size: widget.btnSize / 2 * btnScale),
+                  child: hasIcon
+                      ? MaterialIcon(icon!, color: theme.accent1, size: widget.btnSize / 2 * btnScale)
+                      : Container(),
                 ),
               ),
             ),

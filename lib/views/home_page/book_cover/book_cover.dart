@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -19,7 +19,7 @@ import 'package:provider/provider.dart';
 class BookCoverWidget extends StatefulWidget {
   const BookCoverWidget(
     this.data, {
-    Key key,
+    Key? key,
     this.isSelected = false,
     this.onPressed,
     this.largeMode = false,
@@ -29,7 +29,7 @@ class BookCoverWidget extends StatefulWidget {
   final bool isSelected;
   final bool largeMode;
   final bool topTitle;
-  final void Function(Offset globalPos) onPressed;
+  final void Function(Offset globalPos)? onPressed;
 
   @override
   _BookCoverWidgetState createState() => _BookCoverWidgetState();
@@ -127,7 +127,7 @@ class _BookCoverWidgetState extends State<BookCoverWidget> {
 }
 
 class _SideGradient extends StatelessWidget {
-  const _SideGradient(this.color, {Key key}) : super(key: key);
+  const _SideGradient(this.color, {Key? key}) : super(key: key);
   final Color color;
 
   @override
@@ -138,7 +138,7 @@ class _SideGradient extends StatelessWidget {
 }
 
 class _BottomGradientLg extends StatelessWidget {
-  const _BottomGradientLg(this.color, {Key key}) : super(key: key);
+  const _BottomGradientLg(this.color, {Key? key}) : super(key: key);
   final Color color;
   @override
   Widget build(BuildContext context) {
@@ -156,7 +156,7 @@ class _BottomGradientLg extends StatelessWidget {
 }
 
 class _BottomGradientSm extends StatelessWidget {
-  const _BottomGradientSm(this.color, {Key key}) : super(key: key);
+  const _BottomGradientSm(this.color, {Key? key}) : super(key: key);
   final Color color;
   @override
   Widget build(BuildContext context) {
