@@ -22,6 +22,12 @@
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Used to pick images for scrapboards.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Used to capture audio for scrapboards.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Used to pick images for scrapboards.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -41,11 +47,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>NSCameraUsageDescription</key>
-    <string>Used to pick images for scrapboards.</string>
-    <key>NSMicrophoneUsageDescription</key>
-    <string>Used to capture audio for scrapboards.</string>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>Used to pick images for scrapboards.</string>
 </dict>
 </plist>
