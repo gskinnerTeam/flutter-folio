@@ -1,6 +1,7 @@
 // @dart=2.12
 import 'dart:math';
 
+import 'package:desktop_window/desktop_window.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_utils/device_info.dart';
@@ -12,7 +13,7 @@ import 'package:flutter_folio/commands/commands.dart' as Commands;
 import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/models/app_model.dart';
 import 'package:system_info/system_info.dart';
-import 'package:desktop_window/desktop_window.dart';
+
 import 'set_current_user_command.dart';
 
 class BootstrapCommand extends Commands.BaseAppCommand {

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_widgets/popover/popover_notifications.dart';
 import 'package:flutter_folio/_widgets/popover/popover_region.dart';
+import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/models/app_model.dart';
 import 'package:flutter_folio/themes.dart';
-import 'package:flutter_folio/core_packages.dart';
 
 class TouchModeToggleBtn extends StatelessWidget {
   const TouchModeToggleBtn({Key? key, required this.invertPopupAlign}) : super(key: key);

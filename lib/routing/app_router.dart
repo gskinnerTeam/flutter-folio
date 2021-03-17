@@ -1,7 +1,6 @@
 // @dart=2.12
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/_spikes/firebase_realtime_db.dart';
 import 'package:flutter_folio/commands/books/set_current_book_command.dart';
 import 'package:flutter_folio/commands/books/set_current_page_command.dart';
 import 'package:flutter_folio/core_packages.dart';
@@ -12,8 +11,8 @@ import 'package:flutter_folio/models/books_model.dart';
 import 'package:flutter_folio/routing/app_link.dart';
 import 'package:flutter_folio/services/firebase/firebase_service.dart';
 import 'package:flutter_folio/views/auth_page/auth_page.dart';
-import 'package:flutter_folio/views/home_page/home_page.dart';
 import 'package:flutter_folio/views/editor_page/editor_page.dart';
+import 'package:flutter_folio/views/home_page/home_page.dart';
 import 'package:flutter_folio/views/splash_page.dart';
 
 class AppRouterDelegate extends RouterDelegate<AppLink> with ChangeNotifier {

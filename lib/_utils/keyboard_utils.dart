@@ -1,5 +1,4 @@
 // @dart=2.12
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:universal_platform/universal_platform.dart';
 

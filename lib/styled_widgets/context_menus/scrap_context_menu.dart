@@ -1,10 +1,9 @@
 // @dart=2.12
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/_utils/device_info.dart';
+import 'package:flutter_folio/commands/app/save_image_to_disk_command.dart';
 import 'package:flutter_folio/commands/books/delete_page_scrap_command.dart';
 import 'package:flutter_folio/commands/books/shift_placed_scraps_sort_order_command.dart';
 import 'package:flutter_folio/commands/books/update_current_book_cover_photo_command.dart';
-import 'package:flutter_folio/commands/app/save_image_to_disk_command.dart';
 import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/data/book_data.dart';
 import 'package:flutter_folio/models/books_model.dart';

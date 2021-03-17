@@ -1,7 +1,6 @@
 // @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_folio/_utils/device_info.dart';
 import 'package:flutter_folio/_utils/notifications/close_notification.dart';
 import 'package:flutter_folio/_utils/string_utils.dart';
 import 'package:flutter_folio/_widgets/mixins/raw_keyboard_listener_mixin.dart';

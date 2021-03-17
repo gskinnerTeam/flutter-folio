@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_folio/_utils/input_utils.dart';
 import 'package:flutter_folio/_utils/string_utils.dart';
 import 'package:flutter_folio/_widgets/gradient_container.dart';
-import 'package:flutter_folio/_widgets/mixins/animated_state_mixins.dart';
 import 'package:flutter_folio/core_packages.dart';
 
 class GlassCard extends StatelessWidget {

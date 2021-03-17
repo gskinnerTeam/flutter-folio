@@ -6,7 +6,6 @@ import 'package:flutter_folio/_utils/device_info.dart';
 import 'package:flutter_folio/_utils/input_utils.dart';
 import 'package:flutter_folio/_utils/native_window_utils/window_utils.dart';
 import 'package:flutter_folio/_widgets/alignments.dart';
-import 'package:flutter_folio/_widgets/popover/popover_notifications.dart';
 import 'package:flutter_folio/_widgets/popover/popover_region.dart';
 import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/data/app_user.dart';

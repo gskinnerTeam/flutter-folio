@@ -1,7 +1,6 @@
 // @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_folio/_widgets/context_menu_overlay.dart';
 
 import 'core/base_context_menu.dart';
 import 'core/context_menu_button.dart';
