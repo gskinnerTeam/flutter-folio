@@ -70,10 +70,11 @@ class ScrapboardState<T> extends State<Scrapboard<T>> with RawKeyboardListenerMi
   @override
   void initState() {
     super.initState();
-    // Respect a startOffset so parent widgets can control the initial positition of the InteractiveViewer
+    // Respect a startOffset so parent widgets can control the initial position of the InteractiveViewer
     _transformController.value = Matrix4.translation(
       math64.Vector3(widget.startOffset.dx, widget.startOffset.dy, 0),
     );
+    _transformController.addListener(_handleViewerTransformed);
   }
 
   @override
@@ -270,4 +271,8 @@ class ScrapboardState<T> extends State<Scrapboard<T>> with RawKeyboardListenerMi
       widget.onSelectionChanged?.call(null, []);
     });
   }
+
+  // scale the movement with the viewer scale, so we always get 1:1 movement with the mouse
+  // ie, if the viewer is zoomed to 0.5x scale, we will 2x the mouseDelta, which feels correct.
+  void _handleViewerTransformed() => _scale = _transformController.value.row0[0];
 }
