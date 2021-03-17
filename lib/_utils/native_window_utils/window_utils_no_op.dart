@@ -10,4 +10,7 @@ class IoUtilsNoOp implements IoUtils {
   void showWindowWhenReady() {}
   Widget wrapNativeTitleBarIfRequired(Widget child) => child;
   void setMinSize(Size size) {}
+
+  @override
+  void setTitle(String title) {}
 }

@@ -12,8 +12,7 @@ import 'package:flutter_folio/commands/commands.dart' as Commands;
 import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/models/app_model.dart';
 import 'package:system_info/system_info.dart';
-import 'package:window_size/window_size.dart';
-
+import 'package:desktop_window/desktop_window.dart';
 import 'set_current_user_command.dart';
 
 class BootstrapCommand extends Commands.BaseAppCommand {
@@ -79,20 +78,12 @@ class BootstrapCommand extends Commands.BaseAppCommand {
   void _configureDesktop() {
     // /// Polish (for Windows OS), to hide any movement of the window on startup.
     IoUtils.instance.showWindowWhenReady();
-
-    setWindowTitle("Flutter Folio");
+    IoUtils.instance.setTitle("Flutter Folio");
     Size minSize = Size(600, 700);
-    setWindowMinSize(minSize);
-    setWindowMaxSize(Size(8192, 8192)); // maxSize is needed for Linux to allow scaling, TODO: log an issue for this
-
-    // Restore the previous window settings on load
-    if (appModel.hasValidWindowRect) {
-      setWindowFrame(appModel.windowRect);
-      safePrint("Restoring window with frame: ${appModel.windowRect}");
-    } else {
-      setWindowFrame(Rect.fromLTRB(50, 50, 800, 700));
+    DesktopWindow.setMinWindowSize(minSize);
+    if (appModel.windowSize.shortestSide > 0) {
+      DesktopWindow.setWindowSize(appModel.windowSize);
     }
-
     // Update the native fileMenu to the initial values
     RefreshMenuBarCommand().run();
   }

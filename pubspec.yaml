@@ -11,66 +11,57 @@ dependencies:
   flutter:
     sdk: flutter
 
-  animate_do: ^1.7.5
+  animate_do: ^2.0.0
   async: ^2.4.2
+  #todo: land this patch
   auto_size_text:
     git:
       url: git://github.com/gskinnerTeam/auto_size_text.git
       ref: 8800276218b053265ffc796a24e84820bebaaeac
-  bitsdojo_window: ^0.0.5
-  cached_network_image: ^2.5.0
-  cloudinary_public: ^0.7.0
+  bitsdojo_window: ^0.0.9
+  cached_network_image: ^3.0.0-nullsafety
+  cloudinary_public: ^0.8.0
   darq: ^1.0.0-dev.3
-  dotted_border: ^1.0.7
-  email_validator: ^1.0.6
-  enum_to_string: ^1.0.14
+  dotted_border: ^2.0.0-nullsafety.0
+  email_validator: ^2.0.1
+  enum_to_string: ^2.0.0-nullsafety.1
+  flutter_lorem: ^2.0.0
   file_selector: ^0.8.2
   file_selector_windows: ^0.0.2
   file_selector_macos: ^0.0.4
   file_selector_linux: ^0.0.2
   file_selector_web: ^0.8.1
   flutter_state_notifier:
-  flutter_svg: ^0.19.3
-  fluttertoast: ^7.1.8
+  flutter_svg: ^0.21.0-nullsafety.0
+  fluttertoast: ^8.0.1-nullsafety.0
   image_picker: ^0.7.2
   image_size_getter: ^0.2.1
-  lorem_ipsum: any
-  multi_image_picker: ^4.7.14
+  multi_image_picker: ^4.8.00
   menubar:
     git:
       url: git://github.com/google/flutter-desktop-embedding.git
       path: plugins/menubar
       ref: 040f36c82b63e8764ec2fd97066767503a667b6d
-  path_provider: ^1.6.24
-  xdg_directories: ^0.1.2
-  provider:
-  random_color: ^1.0.5
-  sized_context: ^1.0.0-nullsafety
-  shortid: ^0.1.1
-  shared_preferences: ^0.5.12+4
-  share: ^0.6.5+4
-  system_info: ^0.1.3
-  statsfl:
-  timeago:
+  path_provider: ^2.0.1
+  provider: ^5.0.0
+  random_color: ^1.0.6-nullsafety
+  sized_context: 1.0.0-nullsafety
+  shared_preferences: ^2.0.4
+  share: ^2.0.1
+  system_info: ^1.0.0
+  statsfl: 2.0.0-nullsafety
+  timeago: ^3.0.2
   universal_platform: ^1.0.0-nullsafety
-  url_launcher: ^5.7.10
-  visibility_detector: ^0.1.5
-  window_size:
-    git:
-      url: git://github.com/google/flutter-desktop-embedding.git
-      path: plugins/window_size
-      ref: 040f36c82b63e8764ec2fd97066767503a667b6d
+  url_launcher: ^6.0.2
+  uuid: ^3.0.1
+  visibility_detector: ^0.2.0-nullsafety.1
+  desktop_window: ^0.4.0
+  xdg_directories: ^0.2.0
   # FIREBASE
-  firedart:
-    git:
-      url: git://github.com/cenomla/firedart.git
-      ref: f89b0d98929fd19b79f4fa05efb4a1c84a3562a9
-  firebase_core: ^0.7.0
-  firebase_auth: ^0.20.1
-  cloud_firestore: ^0.16.0
-
-  firebase_auth_rest: ^2.0.0
-  firebase_database_rest: ^1.0.0
+  firedart: ^0.8.3
+  firebase_core: ^1.0.1
+  firebase_auth: ^1.0.1
+  cloud_firestore: ^1.0.1
 
 dependency_overrides:
   http: ^0.12.0
@@ -78,6 +69,8 @@ dependency_overrides:
   freezed: ^0.14.1
   freezed_annotation: ^0.14.1
   json_annotation: ^4.0.0
+  plugin_platform_interface: ^2.0.0
+  crypto: ^3.0.0
 
 dev_dependencies:
   # sample build cmd
@@ -88,7 +81,7 @@ dev_dependencies:
   freezed: ^0.14.1
   freezed_annotation: ^0.14.1
   json_serializable:
-  flutter_launcher_icons: ^0.8.0
+  flutter_launcher_icons: ^0.9.0
 flutter_icons:
   android: true
   ios: true

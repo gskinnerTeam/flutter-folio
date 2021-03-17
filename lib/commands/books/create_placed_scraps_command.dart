@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_folio/commands/books/update_book_modified_command.dart';
 import 'package:flutter_folio/commands/commands.dart';
 import 'package:flutter_folio/data/book_data.dart';
-import 'package:shortid/shortid.dart';
+import 'package:uuid/uuid.dart';
 
 class CreatePlacedScrapCommand extends BaseAppCommand {
   Future<void> run({required String pageId, Size? size, required List<ScrapItem> scraps}) async {
@@ -17,7 +17,7 @@ class CreatePlacedScrapCommand extends BaseAppCommand {
       if (isText) contentWidth = 500;
 
       return PlacedScrapItem(
-        documentId: shortid.generate(),
+        documentId: Uuid().v1(),
         bookId: scrap.bookId,
         pageId: pageId,
         aspect: scrap.aspect,

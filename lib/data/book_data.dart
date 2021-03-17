@@ -5,8 +5,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_utils/time_utils.dart';
 import 'package:flutter_folio/views/editor_page/scrapboard/scrap_data.dart';
+import 'package:flutter_lorem/flutter_lorem.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:lorem_ipsum/lorem_ipsum.dart';
 
 part 'book_data.freezed.dart';
 part 'book_data.g.dart';
@@ -44,9 +44,9 @@ class ScrapBookData with _$ScrapBookData implements FirebaseDoc {
     final created = modified.subtract(Duration(days: r.nextInt(30)));
     return ScrapBookData(
         documentId: "${Random().nextInt(999999)}",
-        title: loremIpsum(words: 1 + r.nextInt(2)),
+        title: lorem(words: 1 + r.nextInt(2)),
         imageUrl: getRandomUnsplashImg(),
-        desc: loremIpsum(),
+        desc: lorem(paragraphs: 1, words: 50 + Random().nextInt(50)),
         pageCount: 1 + r.nextInt(5),
         creationTime: created.millisecondsSinceEpoch,
         lastModifiedTime: modified.millisecondsSinceEpoch);

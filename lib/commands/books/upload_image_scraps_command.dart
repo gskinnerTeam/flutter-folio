@@ -8,7 +8,7 @@ import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/data/book_data.dart';
 import 'package:image_size_getter/file_input.dart';
 import 'package:image_size_getter/image_size_getter.dart' as image_size;
-import 'package:shortid/shortid.dart';
+import 'package:uuid/uuid.dart';
 
 import 'update_book_modified_command.dart';
 
@@ -21,8 +21,9 @@ class UploadImageScrapsCommand extends BaseAppCommand {
     // Create scraps without images to start
     List<ScrapItem> newScraps = paths
         .map((e) => ScrapItem(
-            documentId: shortid.generate(),
+            documentId: Uuid().v1(),
             bookId: bookId,
+            data: e,
             contentType: ContentType.Photo,
             creationTime: TimeUtils.nowMillis))
         .toList();
@@ -35,20 +36,27 @@ class UploadImageScrapsCommand extends BaseAppCommand {
 
     // Upload images and get a public Url
     List<CloudinaryResponse> uploads = await cloudStorage.multiUpload(urls: paths);
-    uploads.forEach((u) => safePrint(u.secureUrl));
+    uploads.forEach((upload) => safePrint(upload.secureUrl!));
 
     // Now that we have urls, replace the newScraps with ones that have a url
-    List<ScrapItem> items = uploads.map((u) {
+    List<ScrapItem> items = uploads.map((upload) {
       ScrapItem s = newScraps.removeAt(0); // Take first element from list
-      List<String?> p = List.from(paths);
-      String? origPath = p.firstWhere((element) => element?.contains(u.originalFilename) ?? false, orElse: () => null);
-      double aspect = 1;
+      String? originalFilename = upload.originalFilename;
       // Try and calculate the aspect ratio from the file on disk
-      if (origPath != null && origPath.contains("http") == false) {
-        final size = image_size.ImageSizeGetter.getSize(FileInput(File(origPath)));
-        aspect = size.width / size.height;
+      double aspect = 1;
+      if (originalFilename != null) {
+        String origPath = paths.firstWhereOrDefault((element) => element.contains(originalFilename), defaultValue: "");
+        if (origPath.length > 0 && origPath.contains("http") == false) {
+          final size = image_size.ImageSizeGetter.getSize(FileInput(File(origPath)));
+          aspect = size.width / size.height;
+        }
       }
-      return s.copyWith(data: u.secureUrl, aspect: aspect); // Inject url
+      // Prefer the https url if we have one
+      String? url = upload.secureUrl ?? upload.url;
+      if (url != null) {
+        return s.copyWith(data: url, aspect: aspect); // Inject url
+      }
+      return s;
     }).toList();
 
     // Update locally with finished urls

@@ -35,7 +35,7 @@ class NativeFirebaseService extends FirebaseService {
     } else {
       userCreds = await auth.signInWithEmailAndPassword(email: email, password: password);
     }
-    return userCreds == null ? null : AppUser(email: userCreds.user.email, fireId: userCreds.user.uid);
+    return userCreds == null ? null : AppUser(email: userCreds.user?.email ?? "", fireId: userCreds.user?.uid ?? "");
   }
 
   @override
@@ -50,13 +50,19 @@ class NativeFirebaseService extends FirebaseService {
 
   // Streams
   Stream<Map<String, dynamic>>? getDocStream(List<String> keys) {
-    return _getDoc(keys)?.snapshots().map((doc) => doc.data()..['documentId'] = doc.id);
+    return _getDoc(keys)?.snapshots().map((doc) {
+      final data = doc.data() ?? {};
+      return data..['documentId'] = doc.id;
+    });
   }
 
   Stream<List<Map<String, dynamic>>>? getListStream(List<String> keys) {
     return _getCollection(keys)?.snapshots().map(
       (QuerySnapshot snapshot) {
-        return snapshot.docs.map((d) => d.data()..['documentId'] = d.id).toList();
+        return snapshot.docs.map((d) {
+          final data = d.data() ?? {};
+          return data..['documentId'] = d.id;
+        }).toList();
       },
     );
   }
@@ -65,7 +71,7 @@ class NativeFirebaseService extends FirebaseService {
   @override
   Future<String> addDoc(List<String> keys, Map<String, dynamic> json,
       {String? documentId, bool addUserPath = true}) async {
-    if (documentId != null && documentId.length > 0) {
+    if (documentId != null) {
       keys.add(documentId);
       safePrint("Add Doc ${getPathFromKeys(keys)}");
       await firestore.doc(getPathFromKeys(keys, addUserPath: addUserPath)).set(json);
@@ -89,7 +95,7 @@ class NativeFirebaseService extends FirebaseService {
     try {
       DocumentSnapshot? d = (await _getDoc(keys)?.get());
       if (d != null) {
-        return d.data()..['documentId'] = d.id;
+        return (d.data() ?? {})..['documentId'] = d.id;
       }
     } catch (e) {
       print(e);
@@ -101,9 +107,9 @@ class NativeFirebaseService extends FirebaseService {
     //print("getDocStream: ${keys.toString()}");
     QuerySnapshot? snapshot = (await _getCollection(keys)?.get());
     snapshot?.docs.forEach((d) {
-      d.data()..['documentId'] = d.id;
+      (d.data() ?? {})..['documentId'] = d.id;
     });
-    return snapshot?.docs.map((d) => d.data()).toList();
+    return snapshot?.docs.map((d) => (d.data() ?? {})).toList();
   }
 
   DocumentReference? _getDoc(List<String> keys) {

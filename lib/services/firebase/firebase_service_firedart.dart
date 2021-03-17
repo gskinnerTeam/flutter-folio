@@ -4,7 +4,6 @@ import 'dart:convert';
 import 'package:firedart/auth/user_gateway.dart';
 import 'package:firedart/firedart.dart';
 import 'package:firedart/firestore/models.dart';
-import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/data/app_user.dart';
 import 'package:flutter_folio/services/firebase/firebase_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -38,7 +37,7 @@ class DartFirebaseService extends FirebaseService {
     }
     if (user != null) {
       _isSignedIn = true;
-      return AppUser(email: user.email, fireId: user.id);
+      return AppUser(documentId: user.id, email: user.email, fireId: user.id);
     }
     return null;
   }
@@ -54,7 +53,7 @@ class DartFirebaseService extends FirebaseService {
   /// ///////////////////////////////
   /// CRUD
   Future<Map<String, dynamic>?> getDoc(List<String> keys) async {
-    //print("getDocData: ${keys.toString()}");
+    // print("getDocData: ${keys.toString()}");
     try {
       Document? d = (await _getDoc(keys)?.get());
       if (d != null) return d.map..['documentId'] = d.id;
@@ -65,7 +64,7 @@ class DartFirebaseService extends FirebaseService {
   }
 
   Future<List<Map<String, dynamic>>?> getCollection(List<String> keys) async {
-    //print("getDocStream: ${keys.toString()}");
+    // print("getDocStream: ${keys.toString()}");
     Page<Document>? docs = (await _getCollection(keys)?.get());
     docs?.forEach((d) {
       d.map..['documentId'] = d.id;
@@ -75,12 +74,12 @@ class DartFirebaseService extends FirebaseService {
 
   // Streams
   Stream<Map<String, dynamic>>? getDocStream(List<String> keys) {
-    //print("getDocStream: ${keys.toString()}");
+    // print("getDocStream: ${keys.toString()}");
     return _getDoc(keys)?.stream.map((d) => d.map..['documentId'] = d.id);
   }
 
   Stream<List<Map<String, dynamic>>>? getListStream(List<String> keys) {
-    //print("getListStream: ${keys.toString()}");
+    // print("getListStream: ${keys.toString()}");
     return _getCollection(keys)?.stream.map(
       (List<Document> docs) {
         return docs.map((d) => d.map..['documentId'] = d.id).toList();
@@ -91,7 +90,7 @@ class DartFirebaseService extends FirebaseService {
   @override
   Future<String> addDoc(List<String> keys, Map<String, dynamic> json,
       {String? documentId, bool addUserPath = true}) async {
-    if (documentId != null && documentId.length > 0) {
+    if (documentId != null) {
       keys.add(documentId);
       //safePrint("Add Doc ${getPathFromKeys(keys)}");
       await firestore.document(getPathFromKeys(keys, addUserPath: addUserPath)).update(json);

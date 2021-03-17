@@ -30,9 +30,10 @@ class _CoversFlowListMobileState extends State<CoversFlowListMobile> {
     bool hasBooks = widget.books.isNotEmpty;
     if (hasBooks) {
       _fgBook = _bgBook = widget.books.first;
+      _previewBookIdx = 1;
+    } else {
+      _previewBookIdx = 0;
     }
-    //TODO: This is probably a bug? Make sure empty view works properly here
-    _previewBookIdx = 1;
     super.initState();
   }
 
@@ -125,11 +126,6 @@ class _CoversFlowListMobileState extends State<CoversFlowListMobile> {
     }
   }
 
-  // void _handleHorizontalSwipe(DragEndDetails details) {
-  //   if (details.primaryVelocity > 0) _switchNextFolio();
-  //   if (details.primaryVelocity < 0) _switchPreviousFolio();
-  // }
-
   void _handlePointerSignal(PointerSignalEvent event) {
     if (event is PointerScrollEvent) {
       if (event.scrollDelta.dy < 0) _switchPreviousFolio();
@@ -172,12 +168,5 @@ class _CoversFlowListMobileState extends State<CoversFlowListMobile> {
       _fgBook = data;
       _isOpening = true;
     });
-  }
-
-  bool _handleTextEditNotifications(Notification e) {
-    if (e is InlineTextEditorFocusNotification) {
-      setState(() => _editingText = e.hasFocus);
-    }
-    return false;
   }
 }

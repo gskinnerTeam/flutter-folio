@@ -18,7 +18,7 @@ void setContext(BuildContext c) {
   _mainContext = c;
   if (_fToast == null) {
     _fToast = FToast();
-    _fToast?.init(_mainContext);
+    _fToast?.init(_mainContext!);
   }
 }
 

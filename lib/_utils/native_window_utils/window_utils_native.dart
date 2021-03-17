@@ -34,4 +34,9 @@ class IoUtilsNative implements IoUtils {
     }
     return child;
   }
+
+  @override
+  void setTitle(String title) {
+    appWindow.title = title;
+  }
 }

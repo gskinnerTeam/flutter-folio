@@ -83,20 +83,7 @@ class AppModel extends AbstractModel {
   set textDirection(TextDirection value) => notify(() => _textDirection = value);
 
   // Window Position
-  Rect _windowRect = Rect.zero;
-  Rect get windowRect => _windowRect;
-  set windowRect(Rect value) {
-    safePrint("Set windowRect $value");
-    notify(() => _windowRect = value);
-  }
-
-  bool get hasValidWindowRect {
-    return !windowRect.isEmpty &&
-        windowRect.size.width > 0 &&
-        windowRect.size.height > 0 &&
-        windowRect.left > 0 &&
-        windowRect.right > 0;
-  }
+  Size windowSize = Size.zero;
 
   /// Public Api
 
@@ -123,7 +110,7 @@ class AppModel extends AbstractModel {
     if (saveJson != null) {
       try {
         fromJson(jsonDecode(saveJson) as Map<String, dynamic>);
-        print("Save file loaded, $windowRect");
+        print("Save file loaded, $windowSize");
       } catch (e) {
         print("Failed to decode save file json: $e");
       }
@@ -137,9 +124,7 @@ class AppModel extends AbstractModel {
     if (json["enableTouchMode"] != null) {
       _enableTouchMode = json["enableTouchMode"] as bool;
     }
-    _windowRect = Rect.fromLTWH(
-      json["winX"] as double? ?? 0.0,
-      json["winY"] as double? ?? 0.0,
+    windowSize = Size(
       json["winWidth"] as double? ?? 0.0,
       json["winHeight"] as double? ?? 0.0,
     );
@@ -149,10 +134,8 @@ class AppModel extends AbstractModel {
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
       "currentUser": _currentUser?.toJson(),
-      "winX": _windowRect.left,
-      "winY": _windowRect.top,
-      "winWidth": _windowRect.width,
-      "winHeight": _windowRect.height,
+      "winWidth": windowSize.width,
+      "winHeight": windowSize.height,
       "enableTouchMode": enableTouchMode,
     };
   }
