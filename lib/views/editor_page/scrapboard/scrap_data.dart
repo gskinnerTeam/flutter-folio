@@ -1,4 +1,3 @@
-// @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_utils/easy_notifier.dart';
 

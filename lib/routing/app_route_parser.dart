@@ -1,4 +1,3 @@
-// @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/routing/app_link.dart';

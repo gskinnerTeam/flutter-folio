@@ -1,4 +1,3 @@
-// @dart=2.12
 // Wraps a CachedNetworkImage + a fallback placeholder if no image is set.
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_utils/string_utils.dart';

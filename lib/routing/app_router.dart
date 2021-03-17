@@ -1,4 +1,3 @@
-// @dart=2.12
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/commands/books/set_current_book_command.dart';
@@ -136,20 +135,21 @@ class AppRouterDelegate extends RouterDelegate<AppLink> with ChangeNotifier {
 
     // Validate the ids that were passed in. At this point we're using either our existing authenticated user,
     // Or the guest user provided by the app link. In either case, we need to call firebase and validate the ids.
+    String? bookId = newLink.bookId;
+    String? pageId = newLink.pageId;
     ScrapBookData? book;
     ScrapPageData? page;
-    if (newLink.bookId != null) {
+    if (bookId != null) {
       // Check if the bookId can be found
       book = await firebase.getBook(bookId: newLink.bookId!);
+      // We found a book for this id, it's a valid link
       if (book != null) {
         // If the link has a pageId use that
-        if (newLink.pageId != null) {
-          // Check if the pageId can be found
-          page = await firebase.getPage(bookId: newLink.bookId!, pageId: newLink.pageId!);
+        if (pageId == null && book.pageOrder.isNotEmpty) {
+          pageId = book.pageOrder.first;
         }
-        // Otherwise, load the first page in the book using the pageOrder value
-        else if (book.pageOrder.isNotEmpty) {
-          page = await firebase.getPage(bookId: book.documentId, pageId: book.pageOrder.first);
+        if (pageId != null) {
+          page = await firebase.getPage(bookId: bookId, pageId: pageId);
         }
       }
     }

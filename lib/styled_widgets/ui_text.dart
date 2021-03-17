@@ -1,4 +1,3 @@
-// @dart=2.12
 import 'package:flutter/material.dart';
 
 // Extends SelectableText, providing default web-like behavior of a non-focuseable but selectable text region

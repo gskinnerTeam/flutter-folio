@@ -1,4 +1,3 @@
-// @dart=2.12
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_folio/app_keys.dart';

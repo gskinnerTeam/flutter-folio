@@ -1,4 +1,3 @@
-// @dart=2.12
 import 'dart:math';
 
 import 'package:desktop_window/desktop_window.dart';
@@ -21,7 +20,7 @@ class BootstrapCommand extends Commands.BaseAppCommand {
 
   Future<void> run(BuildContext context) async {
     int startTime = TimeUtils.nowMillis;
-    if (Commands.mainContext == null) {
+    if (Commands.hasContext == false) {
       Commands.setContext(context);
     }
     print("Bootstrap Started, v${AppModel.kVersion}");

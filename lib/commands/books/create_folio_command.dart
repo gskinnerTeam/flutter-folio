@@ -1,4 +1,3 @@
-// @dart=2.12
 import 'package:flutter_folio/_utils/string_utils.dart';
 import 'package:flutter_folio/_utils/time_utils.dart';
 import 'package:flutter_folio/commands/books/refresh_all_books_command.dart';

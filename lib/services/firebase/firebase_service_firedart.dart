@@ -1,4 +1,3 @@
-// @dart=2.12
 import 'dart:convert';
 
 import 'package:firedart/auth/user_gateway.dart';
@@ -31,15 +30,15 @@ class DartFirebaseService extends FirebaseService {
   @override
   Future<AppUser?> signIn({required String email, required String password, bool createAccount = false}) async {
     User? user;
-    if (createAccount) {
-      user = await fireauth.signUp(email, password);
-    } else {
-      user = await fireauth.signIn(email, password);
-    }
-    if (user != null) {
+    try {
+      if (createAccount) {
+        user = await fireauth.signUp(email, password);
+      } else {
+        user = await fireauth.signIn(email, password);
+      }
       _isSignedIn = true;
       return AppUser(email: user.email ?? "", fireId: user.id ?? "");
-    }
+    } catch (e) {}
     return null;
   }
 

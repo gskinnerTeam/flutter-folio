@@ -1,4 +1,3 @@
-// @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_widgets/flexibles/seperated_flexibles.dart';
 import 'package:flutter_folio/_widgets/mixins/loading_state_mixin.dart';

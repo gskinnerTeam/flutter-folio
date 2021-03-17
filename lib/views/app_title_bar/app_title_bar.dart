@@ -1,11 +1,9 @@
-// @dart=2.12
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_utils/device_info.dart';
 import 'package:flutter_folio/_utils/input_utils.dart';
 import 'package:flutter_folio/_utils/native_window_utils/window_utils.dart';
-import 'package:flutter_folio/_widgets/alignments.dart';
 import 'package:flutter_folio/_widgets/popover/popover_region.dart';
 import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/data/app_user.dart';
@@ -44,18 +42,8 @@ class AppTitleBar extends StatelessWidget {
 class _TitleText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    bool enableVersion = false;
     return IgnorePointer(
-      child: Stack(
-        children: [
-          Center(child: AppLogoText(constraints: BoxConstraints(maxHeight: 12))),
-          if (enableVersion) ...[
-            BottomCenter(
-                child:
-                    Text("v" + AppModel.kVersion, style: TextStyles.body3.copyWith(fontSize: 10, color: Colors.grey))),
-          ]
-        ],
-      ),
+      child: Center(child: AppLogoText(constraints: BoxConstraints(maxHeight: 12))),
     );
   }
 }

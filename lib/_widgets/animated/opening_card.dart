@@ -1,4 +1,3 @@
-// @dart=2.12
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -10,7 +9,7 @@ class OpeningContainer extends StatefulWidget {
     Key? key,
     required this.onEnd,
     required this.child,
-    required this.topLeftOffset,
+    this.topLeftOffset,
     required this.closedSize,
     this.duration = const Duration(milliseconds: 350),
     this.curve = Curves.easeOut,
@@ -21,7 +20,7 @@ class OpeningContainer extends StatefulWidget {
   final Widget child;
   final Duration duration;
   final Curve curve;
-  final Offset topLeftOffset;
+  final Offset? topLeftOffset;
   final Size closedSize;
   final bool isOpen;
 
@@ -30,7 +29,7 @@ class OpeningContainer extends StatefulWidget {
 }
 
 class _OpeningContainerState extends State<OpeningContainer> with SingleTickerProviderStateMixin {
-  Offset get offset => widget.topLeftOffset;
+  Offset? get offset => widget.topLeftOffset;
   Size get closedSize => widget.closedSize;
 
   @override
@@ -52,10 +51,10 @@ class _OpeningContainerState extends State<OpeningContainer> with SingleTickerPr
           if (!skipAnims) {
             // Figure out what our closed rect is based on viewWidth, offset and cardSize
             rect = Rect.fromLTRB(
-              offset.dx, //Left
-              offset.dy, //Top
-              viewSize.width - (offset.dx + closedSize.width), // Right
-              viewSize.height - (offset.dy + closedSize.height), // Bottom
+              offset!.dx, //Left
+              offset!.dy, //Top
+              viewSize.width - (offset!.dx + closedSize.width), // Right
+              viewSize.height - (offset!.dy + closedSize.height), // Bottom
             );
           }
           // Translate the box up and to the left, while expanding it's width and height.

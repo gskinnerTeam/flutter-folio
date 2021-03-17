@@ -1,4 +1,3 @@
-// @dart=2.12
 part of 'scrap_pile_picker.dart';
 
 /// Stateless view that is uses [ScrapPilePickerState] as it's controller
@@ -6,7 +5,7 @@ part of 'scrap_pile_picker.dart';
 class ScrapPilePickerView extends StatelessWidget {
   const ScrapPilePickerView({Key? key, required this.state, required this.bookScraps}) : super(key: key);
   final ScrapPilePickerState state;
-  final List<ScrapItem> bookScraps;
+  final List<ScrapItem>? bookScraps;
 
   ScrollController get _scrollController => state._scrollController;
   List<String> get _selectedIds => state._selectedIds;
@@ -14,7 +13,8 @@ class ScrapPilePickerView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (bookScraps == null) return LoadingIndicator();
+    final scraps = bookScraps;
+    if (scraps == null) return LoadingIndicator();
     //TODO: Feature this code snippet
     // Depending on the mode, we'll have different btns for adding images
     List<Widget> btns = [
@@ -37,9 +37,9 @@ class ScrapPilePickerView extends StatelessWidget {
               int colCount = (constraints.maxWidth / 250).ceil();
 
               /// TODO: All sorting should be moved into the RefreshCommands
-              bookScraps.sort((itemA, itemB) => itemA.creationTime < itemB.creationTime ? 1 : -1);
-              state._bookScraps = bookScraps;
-              int imgCount = bookScraps.length;
+              scraps.sort((itemA, itemB) => itemA.creationTime < itemB.creationTime ? 1 : -1);
+              state._bookScraps = scraps;
+              int imgCount = scraps.length;
               int selectedCount = _selectedIds.length;
               String titleText = "Scraps ($imgCount ${StringUtils.pluralize("image", imgCount)})";
 
@@ -85,12 +85,12 @@ class ScrapPilePickerView extends StatelessWidget {
                                       childAspectRatio: 1.5,
                                       controller: _scrollController,
                                       // Length of list is our btns + allScraps
-                                      children: List.generate(bookScraps.length + btns.length, (index) {
+                                      children: List.generate(scraps.length + btns.length, (index) {
                                         // Offset the index back, to account for the extra btns
                                         int scrapIndex = index - btns.length;
                                         // If index is not valid, it must be a btn
                                         if (scrapIndex < 0) return btns[index];
-                                        ScrapItem scrap = bookScraps[scrapIndex];
+                                        ScrapItem scrap = scraps[scrapIndex];
                                         return ContextMenuRegion(
                                           contextMenu: GenericContextMenu(
                                               labels: state.widget.contextMenuLabels?.call(scrap) ?? [],

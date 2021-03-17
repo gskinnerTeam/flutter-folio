@@ -1,4 +1,3 @@
-// @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_widgets/popover/popover_notifications.dart';
 import 'package:flutter_folio/_widgets/popover/popover_region.dart';

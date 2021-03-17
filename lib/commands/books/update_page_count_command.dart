@@ -1,4 +1,3 @@
-// @dart=2.12
 import 'dart:math';
 
 import 'package:flutter_folio/_utils/time_utils.dart';

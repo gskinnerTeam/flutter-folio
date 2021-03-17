@@ -12,6 +12,7 @@ import 'package:provider/provider.dart';
 FToast? _fToast;
 BuildContext? _mainContext;
 BuildContext get mainContext => _mainContext!;
+bool get hasContext => _mainContext != null;
 
 /// Someone needs to call this so our Commands can access models and services. Usually main_view.dart
 void setContext(BuildContext c) {

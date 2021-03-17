@@ -1,4 +1,3 @@
-// @dart=2.12
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -139,7 +138,7 @@ class PopOverRegionState extends State<PopOverRegion> {
   }
 
   void show() {
-    if (widget.popChild == null || mounted == false) return;
+    if (mounted == false) return;
     ShowPopOverNotification(
             // Send context with the notification, so the Overlay can use it to send more messages in the future.
             context,

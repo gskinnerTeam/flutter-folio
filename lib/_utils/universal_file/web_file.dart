@@ -1,4 +1,3 @@
-// @dart=2.12
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'universal_file.dart';
@@ -28,7 +27,7 @@ class WebFileWriter implements UniversalFile {
   @override
   Future<void> write(String value, [bool append = false]) async {
     await initPrefs();
-    if (append && _lastWrite == null) {
+    if (append) {
       _lastWrite = await read() ?? "";
       value = _lastWrite + value;
     }

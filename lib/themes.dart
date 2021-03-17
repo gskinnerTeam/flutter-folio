@@ -59,8 +59,9 @@ class AppTheme {
           greyStrong: const Color(0xff333333),
           focus: const Color(0xffd81e1e),
         );
+      default:
+        return AppTheme.fromType(defaultTheme);
     }
-    return AppTheme.fromType(defaultTheme);
   }
 
   // Converts AppTheme into a Material Theme Data, using whatever mappings we like

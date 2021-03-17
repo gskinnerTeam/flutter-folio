@@ -1,4 +1,3 @@
-// @dart=2.12
 import 'dart:async';
 
 import 'package:cloudinary_public/cloudinary_public.dart';

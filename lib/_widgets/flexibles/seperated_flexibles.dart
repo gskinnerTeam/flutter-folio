@@ -1,4 +1,3 @@
-// @dart=2.12
 import 'package:flutter/material.dart';
 
 // Extra Flexible
@@ -74,7 +73,7 @@ class SeparatedColumn extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Widget> c = children.toList();
     for (var i = c.length; i-- > 0;) {
-      if (i > 0 && separatorBuilder != null) c.insert(i, separatorBuilder());
+      if (i > 0) c.insert(i, separatorBuilder());
     }
     Widget col = Column(
       children: c,

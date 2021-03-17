@@ -1,5 +1,3 @@
-// @dart=2.12
-
 import 'package:flutter_folio/commands/commands.dart';
 
 //TODO: Should we pull this feature completely since it's not supported on Windows?

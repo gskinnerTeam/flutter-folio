@@ -1,4 +1,3 @@
-// @dart=2.12
 //Takes a x,y or z rotation, in degrees, and rotates. Good for spins & 3d flip effects
 import 'dart:math';
 

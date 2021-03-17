@@ -1,4 +1,3 @@
-// @dart=2.12
 import 'dart:math';
 
 import 'package:flutter/material.dart';

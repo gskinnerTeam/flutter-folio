@@ -1,4 +1,3 @@
-// @dart=2.12
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -134,9 +133,6 @@ class _CoversSortableListState extends State<CoversSortableList> {
           return books.orderByDescending((book) => book.creationTime);
       }
     }
-
-    print("Error: Sort metric unsupported: $_currentCol");
-    return Iterable<ScrapBookData>.empty();
   }
 
   void _handleColumnPressed(ColType sortMetric) {

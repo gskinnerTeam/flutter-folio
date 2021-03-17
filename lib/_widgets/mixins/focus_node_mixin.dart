@@ -1,4 +1,3 @@
-// @dart=2.12
 import 'package:flutter/material.dart';
 
 mixin SingleFocusNodeMixin<T extends StatefulWidget> on State<T> {

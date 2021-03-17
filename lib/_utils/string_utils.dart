@@ -1,4 +1,3 @@
-// @dart=2.12
 import 'dart:ui';
 
 import 'package:flutter/material.dart';

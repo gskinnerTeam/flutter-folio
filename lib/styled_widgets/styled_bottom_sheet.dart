@@ -1,4 +1,3 @@
-// @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/core_packages.dart';
 import 'package:provider/provider.dart';
@@ -25,9 +24,7 @@ class StyledBottomSheet extends StatelessWidget {
         ),
 
         /// Content
-        if (child != null) ...[
-          child,
-        ],
+        child
       ]),
     );
   }

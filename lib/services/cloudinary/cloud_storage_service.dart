@@ -1,4 +1,3 @@
-// @dart=2.12
 import 'package:cloudinary_public/cloudinary_public.dart';
 import 'package:flutter_folio/_utils/string_utils.dart';
 import 'package:flutter_folio/app_keys.dart';

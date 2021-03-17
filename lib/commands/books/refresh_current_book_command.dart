@@ -1,4 +1,3 @@
-// @dart=2.12
 import 'package:flutter_folio/commands/commands.dart';
 import 'package:flutter_folio/data/book_data.dart';
 import 'package:flutter_folio/services/cloudinary/cloud_storage_service.dart';
@@ -16,7 +15,7 @@ class RefreshCurrentBookCommand extends BaseAppCommand {
       if (pages)
         firebase.getAllPages(bookId: bookId).then((value) {
           if (value == null) return;
-          booksModel.currentBookPages = value..removeWhere((p) => p.documentId == null);
+          booksModel.currentBookPages = value..removeWhere((p) => p.documentId == "");
         }),
       if (scraps)
         firebase.getAllBookScraps(bookId: bookId).then((value) {

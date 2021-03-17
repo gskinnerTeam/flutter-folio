@@ -1,4 +1,3 @@
-// @dart=2.12
 import 'package:flutter_folio/commands/commands.dart';
 import 'package:flutter_folio/data/book_data.dart';
 import 'package:flutter_folio/services/cloudinary/cloud_storage_service.dart';
@@ -19,7 +18,7 @@ class RefreshCurrentPageCommand extends BaseAppCommand {
             value, (s) => s.data, (s, url) => s.copyWith(data: url));
         booksModel.currentPageScraps = value
           ..removeWhere((element) {
-            return element.documentId == null;
+            return element.documentId == "";
           });
       }),
     ];

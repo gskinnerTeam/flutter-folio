@@ -1,4 +1,3 @@
-// @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_widgets/app_image.dart';
 import 'package:flutter_folio/core_packages.dart';

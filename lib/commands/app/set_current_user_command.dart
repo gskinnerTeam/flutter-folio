@@ -1,4 +1,3 @@
-// @dart=2.12
 import 'package:flutter_folio/_utils/string_utils.dart';
 import 'package:flutter_folio/commands/commands.dart';
 import 'package:flutter_folio/core_packages.dart';

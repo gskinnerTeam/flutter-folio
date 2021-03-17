@@ -1,4 +1,3 @@
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_widgets/context_menu_overlay.dart';
@@ -28,7 +27,7 @@ class _MainAppScaffoldState extends State<MainAppScaffold> {
     return Provider.value(
       value: appTheme,
       child: StatsFl(
-        isEnabled: false && (kProfileMode || kDebugMode),
+        isEnabled: kProfileMode || kDebugMode,
         align: Alignment.bottomCenter,
         child: Directionality(
           textDirection: textDirection,

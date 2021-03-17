@@ -1,4 +1,3 @@
-// @dart=2.12
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -37,7 +36,8 @@ class NativeFirebaseService extends FirebaseService {
     } else {
       userCreds = await auth.signInWithEmailAndPassword(email: email, password: password);
     }
-    return userCreds == null ? null : AppUser(email: userCreds.user?.email ?? "", fireId: userCreds.user?.uid ?? "");
+    User? user = userCreds.user;
+    return user == null ? null : AppUser(email: user.email ?? "", fireId: user.uid);
   }
 
   @override

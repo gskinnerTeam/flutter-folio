@@ -1,4 +1,3 @@
-// @dart=2.12
 // A data object that represents a link inside our app
 // Can serialize itself to and from a location string like /book/23/ or ?book=23
 import 'dart:convert';

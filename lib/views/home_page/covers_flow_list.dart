@@ -213,8 +213,7 @@ class _CollapsingListCard extends StatefulWidget {
       required this.isSelected,
       this.vertical = false,
       Key? key})
-      : assert(openWidth != null || openHeight != null),
-        super(key: key);
+      : super(key: key);
 
   final ScrapBookData data;
   final double openWidth;

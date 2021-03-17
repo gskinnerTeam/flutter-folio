@@ -1,4 +1,3 @@
-// @dart=2.12
 // Provides btns (rotate, scale etc) and a border around the movable box.
 import 'dart:math';
 

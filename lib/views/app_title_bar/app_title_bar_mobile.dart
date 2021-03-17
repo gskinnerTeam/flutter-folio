@@ -1,4 +1,3 @@
-// @dart=2.12
 part of 'app_title_bar.dart';
 
 class _AppTitleBarMobile extends StatelessWidget {

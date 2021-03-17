@@ -1,4 +1,3 @@
-// @dart=2.12
 import 'package:flutter/material.dart';
 
 Widget _build(Alignment value, Widget child) => Align(alignment: value, child: child);

@@ -1,4 +1,3 @@
-// @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -58,7 +57,6 @@ class ScrapboardState<T> extends State<Scrapboard<T>> with RawKeyboardListenerMi
   double _scale = 1;
   List<String> _selectedBoxIds = [];
   bool _isSpaceBarDown = false;
-  Size? _viewSize;
 
   // We create a copy of the assigned boxList, so we can work on it internally
   List<ScrapData<T>> get _tmpBoxes => widget.boxes;
@@ -73,11 +71,9 @@ class ScrapboardState<T> extends State<Scrapboard<T>> with RawKeyboardListenerMi
   void initState() {
     super.initState();
     // Respect a startOffset so parent widgets can control the initial positition of the InteractiveViewer
-    if (widget.startOffset != null) {
-      _transformController.value = Matrix4.translation(
-        math64.Vector3(widget.startOffset.dx, widget.startOffset.dy, 0),
-      );
-    }
+    _transformController.value = Matrix4.translation(
+      math64.Vector3(widget.startOffset.dx, widget.startOffset.dy, 0),
+    );
   }
 
   @override
@@ -237,7 +233,7 @@ class ScrapboardState<T> extends State<Scrapboard<T>> with RawKeyboardListenerMi
   void _handleRotateDragged(ScrapData<T> boxData, Offset delta) {
     double d = delta.dx.abs() > delta.dy.abs() ? delta.dx : delta.dy;
     double rot = d > 0 ? .5 : -.5;
-    rot = (boxData.rot + rot).clamp(-30.0, 30.0) as double;
+    rot = (boxData.rot + rot).clamp(-30.0, 30.0);
     boxData.rot = rot;
     widget.onTranslated?.call(boxData);
   }

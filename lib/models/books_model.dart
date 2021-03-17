@@ -1,4 +1,3 @@
-// @dart=2.12
 import 'package:flutter_folio/_utils/easy_notifier.dart';
 import 'package:flutter_folio/_utils/string_utils.dart';
 import 'package:flutter_folio/data/book_data.dart';
@@ -81,7 +80,7 @@ class BooksModel extends EasyNotifier {
       }
     }
     currentBookPages = pages;
-    if (equals(currentPage!, value)) currentPage = value;
+    if (equals(currentPage, value)) currentPage = value;
     notify();
   }
 

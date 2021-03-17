@@ -1,4 +1,3 @@
-// @dart=2.12
 import 'package:flutter/services.dart';
 import 'package:flutter_folio/_utils/cooldown.dart';
 import 'package:flutter_folio/_utils/device_info.dart';

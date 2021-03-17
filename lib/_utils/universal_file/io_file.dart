@@ -1,4 +1,3 @@
-// @dart=2.12
 import 'dart:io';
 
 import 'package:flutter_folio/_utils/path_utils.dart';
@@ -54,7 +53,7 @@ class IoFileWriter implements UniversalFile {
 
   static void createDirIfNotExists(Directory dir) async {
     // Create directory if it doesn't exist
-    if (dir != null && !await dir.exists()) {
+    if (!await dir.exists()) {
       // Catch error since disk io can always fail.
       try {
         await dir.create(recursive: true);
