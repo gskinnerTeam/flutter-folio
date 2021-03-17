@@ -10,6 +10,7 @@ class _AppTitleBarMobile extends StatelessWidget {
         children: [
           if (showBackBtn) _BackBtn(),
           Spacer(),
+          TouchModeToggleBtn(invertPopupAlign: true),
           _AdaptiveProfileBtn(invertRow: true, useBottomSheet: true),
         ],
       ),

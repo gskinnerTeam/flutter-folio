@@ -2,6 +2,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_folio/_utils/safe_print.dart';
 import 'package:flutter_folio/data/app_user.dart';
 import 'package:flutter_folio/services/firebase/firebase_service.dart';
@@ -15,14 +17,15 @@ class NativeFirebaseService extends FirebaseService {
 
   @override
   Future<void> init() async {
-    await auth.setPersistence(Persistence.LOCAL);
-    FirebaseAuth.instance.userChanges().listen((User? user) {
-      _isSignedIn = user != null;
-    });
     await Firebase.initializeApp().catchError((Object e) {
       print("$e");
-    }).then((value) {
-      print("InitComplete");
+    });
+    if (kIsWeb) {
+      await auth.setPersistence(Persistence.LOCAL);
+    }
+    print("InitComplete");
+    FirebaseAuth.instance.userChanges().listen((User? user) {
+      _isSignedIn = user != null;
     });
   }
 

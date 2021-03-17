@@ -30,5 +30,7 @@
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:150221469863:ios:67573e189598eff0d6c382</string>
+	<key>DATABASE_URL</key>
+	<string>https://flutter-folio-demo-default-rtdb.firebaseio.com</string>
 </dict>
 </plist>

@@ -3,10 +3,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_widgets/context_menu_overlay.dart';
 import 'package:flutter_folio/_widgets/popover/popover_controller.dart';
+import 'package:flutter_folio/commands/commands.dart' as Commands;
 import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/models/app_model.dart';
 import 'package:flutter_folio/views/app_title_bar/app_title_bar.dart';
-import 'package:flutter_folio/commands/commands.dart' as Commands;
 import 'package:statsfl/statsfl.dart';
 
 /// Wraps the entire app, providing it with various helper classes and wrapper widgets.
@@ -52,7 +52,7 @@ class _MainAppScaffoldState extends State<MainAppScaffold> {
                         color: appTheme.greyStrong,
                         // Supply a top-level scaffold and SafeArea for all views
                         child: Scaffold(
-                          backgroundColor: appTheme.bg1,
+                          backgroundColor: appTheme.surface1,
                           body: SafeArea(
                             // AppBar + Content
                             // This column has a reversed vertical direction, because we want the TitleBar to cast a shadow on the content below it.

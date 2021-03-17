@@ -1,4 +1,3 @@
-// @dart=2.12
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -35,7 +34,7 @@ class _EditorPageState extends State<EditorPage> {
 
     double leftMenuWidth = 212;
     bool isPhone = context.widthPx < Sizes.largePhone;
-    bool showSimpleView = widget.readOnly || isPhone;
+    bool disableEditing = widget.readOnly || isPhone;
 
     return StyledPageScaffold(
       body: Stack(
@@ -49,21 +48,21 @@ class _EditorPageState extends State<EditorPage> {
                   //bookId, pageId,
                   // tweak the start-offset of the scrap-board depending on form factor
                   startOffset: Offset(
-                    showSimpleView ? Insets.offset : 300, // More left padding when the full-menus are present
-                    showSimpleView ? 120 : 60, // More top padding when the simple menu is present
+                    disableEditing ? Insets.offset : 300, // More left padding when the full-menus are present
+                    disableEditing ? 120 : 60, // More top padding when the simple menu is present
                   ),
-                  readOnly: widget.readOnly),
+                  readOnly: disableEditing),
             ),
           ] else ...[
             // Empty placeholder view
             Padding(
-              padding: EdgeInsets.only(left: showSimpleView ? 0 : 240, right: showSimpleView ? 0 : 80),
+              padding: EdgeInsets.only(left: disableEditing ? 0 : 240, right: disableEditing ? 0 : 80),
               child: EmptyEditorView(readOnly: widget.readOnly),
             ),
           ],
 
           /// Mobile or Read-Only mode share the same simple menu...
-          if (showSimpleView) ...[
+          if (disableEditing) ...[
             FocusTraversalGroup(
               child: TopLeft(child: SimplePagesMenu(pageList, selectedPageId: pageId)),
             ),
@@ -95,7 +94,11 @@ class _EditorPageState extends State<EditorPage> {
 
   void _handleScrapPilePressed(BuildContext context, String bookId) {
     showStyledBottomSheet(context,
-        child: SizedBox(height: context.heightPx * .6, child: ScrapPilePicker(bookId: bookId, mobileMode: true)));
+        child: SizedBox(
+          height: context.heightPx * .6,
+          // Show scrap-pile picker in a bottom-sheet
+          child: ScrapPilePicker(bookId: bookId, mobileMode: true),
+        ));
   }
 }
 

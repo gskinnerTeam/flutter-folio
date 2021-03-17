@@ -12,6 +12,7 @@ import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/data/app_user.dart';
 import 'package:flutter_folio/models/app_model.dart';
 import 'package:flutter_folio/models/books_model.dart';
+import 'package:flutter_folio/views/app_title_bar/touch_mode_toggle_btn.dart';
 import 'package:flutter_folio/views/user_profile_card/user_profile_card.dart';
 import 'package:universal_platform/universal_platform.dart';
 

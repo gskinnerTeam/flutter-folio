@@ -23,7 +23,7 @@ class WindowsTitleBar extends StatelessWidget {
           MoveWindow(),
           child,
           Align(
-            alignment: Alignment.centerRight,
+            alignment: Alignment.topRight,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [

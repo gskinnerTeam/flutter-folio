@@ -1,9 +1,11 @@
 // @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_folio/_utils/device_info.dart';
 import 'package:flutter_folio/_utils/notifications/close_notification.dart';
 import 'package:flutter_folio/_utils/string_utils.dart';
 import 'package:flutter_folio/_widgets/mixins/raw_keyboard_listener_mixin.dart';
+import 'package:flutter_folio/commands/app/save_image_to_disk_command.dart';
 import 'package:flutter_folio/commands/books/create_placed_scraps_command.dart';
 import 'package:flutter_folio/commands/books/delete_scraps_command.dart';
 import 'package:flutter_folio/core_packages.dart';
@@ -29,6 +31,7 @@ class _ContentPickerScrapsPanelState extends State<ContentPickerScrapsPanel> wit
   Widget build(BuildContext context) {
     bool touchMode = context.select((AppModel m) => m.enableTouchMode);
     bool isPageSelected = StringUtils.isNotEmpty(widget.pageId);
+    bool enableSaveImageAsBtn = SaveImageToDiskCommand.canUse;
     return Visibility(
       visible: widget.isVisible,
       maintainState: true,
@@ -49,10 +52,14 @@ class _ContentPickerScrapsPanelState extends State<ContentPickerScrapsPanel> wit
                     contextMenuLabels: (ScrapItem scrap) => [
                       "Delete ...",
                       "Add To Page",
+                      "Copy Image Address",
+                      if (enableSaveImageAsBtn) "Save Image As...",
                     ],
                     contextMenuActions: (ScrapItem scrap) => [
                       () => _handleDeletePressed(scrap),
                       isPageSelected ? () => _handleAddPressed(scrap) : null,
+                      () => Clipboard.setData(ClipboardData(text: scrap.data)),
+                      if (enableSaveImageAsBtn) () => SaveImageToDiskCommand().run(scrap.data)
                     ],
                   ),
                 ),

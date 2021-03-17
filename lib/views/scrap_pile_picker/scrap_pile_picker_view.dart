@@ -120,25 +120,44 @@ class ScrapPilePickerView extends StatelessWidget {
   }
 }
 
-class GridBtn extends StatelessWidget {
+class GridBtn extends StatefulWidget {
   const GridBtn({Key? key, required this.onPressed, this.bgColor, required this.child}) : super(key: key);
+
   final VoidCallback onPressed;
   final Color? bgColor;
   final Widget child;
 
   @override
+  _GridBtnState createState() => _GridBtnState();
+}
+
+class _GridBtnState extends State<GridBtn> {
+  bool _isMouseOver = false;
+
+  void setMouseOver(bool value) => setState(() => _isMouseOver = value);
+
+  @override
   Widget build(BuildContext context) {
-    return SimpleBtn(
-      onPressed: onPressed,
-      cornerRadius: Corners.med,
-      child: ClipRRect(
-        borderRadius: Corners.medBorder,
-        child: Container(
-          width: double.infinity,
-          height: double.infinity,
-          color: bgColor ?? Colors.transparent,
-          child: child,
-        ),
+    return MouseRegion(
+      onEnter: (_) => setMouseOver(true),
+      onExit: (_) => setMouseOver(false),
+      child: Stack(
+        children: [
+          SimpleBtn(
+            onPressed: widget.onPressed,
+            cornerRadius: Corners.med,
+            child: ClipRRect(
+              borderRadius: Corners.medBorder,
+              child: Container(
+                width: double.infinity,
+                height: double.infinity,
+                color: widget.bgColor ?? Colors.transparent,
+                child: widget.child,
+              ),
+            ),
+          ),
+          if (_isMouseOver) IgnorePointer(child: Container(color: Colors.white.withOpacity(.1))),
+        ],
       ),
     );
   }

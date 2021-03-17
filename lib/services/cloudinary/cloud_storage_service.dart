@@ -3,6 +3,7 @@ import 'package:cloudinary_public/cloudinary_public.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_utils/string_utils.dart';
 import 'package:flutter_folio/app_keys.dart';
+import 'package:flutter_folio/commands/pick_images_command.dart';
 
 class CloudStorageService {
   late CloudinaryPublic _cloudinary;
@@ -12,13 +13,23 @@ class CloudStorageService {
   }
 
   // The response would have any errors, but List<AppImage> would be created here.
-  Future<List<CloudinaryResponse>> multiUpload({required List<String> urls}) async {
-    List<Future<CloudinaryFile>> f = urls.map((url) async {
-      return CloudinaryFile.fromFile(url, resourceType: CloudinaryResourceType.Image);
-    }).toList();
-    //List<CloudinaryFile> files = await Future.wait(f);
-
-    return await _cloudinary.multiUpload(f);
+  Future<List<CloudinaryResponse>> multiUpload({required List<PickedImage> images}) async {
+    if (images.isEmpty) return [];
+    List<Future<CloudinaryFile>> futures = [];
+    // Handle images as paths (desktop/web)
+    if (images.first.path != null) {
+      futures = images.map((img) async {
+        return CloudinaryFile.fromFile(img.path!, resourceType: CloudinaryResourceType.Image);
+      }).toList();
+    }
+    // Handle images as "asset" files ios/android
+    else if (images.first.asset != null) {
+      print("Uploade from future bytes... ");
+      futures = images.map((image) {
+        return CloudinaryFile.fromFutureByteData(image.asset!.getByteData(), identifier: image.asset!.identifier);
+      }).toList();
+    }
+    return await _cloudinary.multiUpload(futures);
   }
 
   Future<CloudinaryResponse> uploadImage({required String url}) async {

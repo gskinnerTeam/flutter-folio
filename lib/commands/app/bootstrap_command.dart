@@ -64,12 +64,12 @@ class BootstrapCommand extends Commands.BaseAppCommand {
   void _configureMemoryCache() {
     int cacheSize = (DeviceInfo.isDesktop ? 2048 : 512) << 20;
     // If we're on a native platform, reserve some reasonable amt of RAM
-    if (kIsWeb == false) {
+    if (DeviceInfo.isDesktop) {
       try {
         // Use some percentage of system ram, but don't fall below the default, in case this returns 0 or some other invalid value.
         cacheSize = max(cacheSize, (SysInfo.getTotalPhysicalMemory() / 4).round());
       } on Exception catch (e) {
-        print(e);
+        safePrint(e.toString());
       }
     }
     imageCache?.maximumSizeBytes = cacheSize;

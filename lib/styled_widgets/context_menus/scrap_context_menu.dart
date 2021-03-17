@@ -1,8 +1,10 @@
 // @dart=2.12
 import 'package:flutter/material.dart';
+import 'package:flutter_folio/_utils/device_info.dart';
 import 'package:flutter_folio/commands/books/delete_page_scrap_command.dart';
 import 'package:flutter_folio/commands/books/shift_placed_scraps_sort_order_command.dart';
 import 'package:flutter_folio/commands/books/update_current_book_cover_photo_command.dart';
+import 'package:flutter_folio/commands/app/save_image_to_disk_command.dart';
 import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/data/book_data.dart';
 import 'package:flutter_folio/models/books_model.dart';
@@ -21,6 +23,7 @@ class ScrapContextMenu extends BaseContextMenu {
     void _handleForwardPressed() => ShiftPlacedScrapsSortOrderCommand().run(1, scrap);
     void _handleBackPressed() => ShiftPlacedScrapsSortOrderCommand().run(-1, scrap);
     void _handleCoverPhotoPressed() async => UpdateCurrentBookCoverPhotoCommand().run(scrap);
+    void _handleSaveImagePressed() async => SaveImageToDiskCommand().run(scrap.data);
 
     void _handleDeletePressed() => DeletePageScrapCommand().run(scrap);
 
@@ -39,11 +42,21 @@ class ScrapContextMenu extends BaseContextMenu {
             icon: AppIcons.send_backward,
             onPressed: () => handlePressed(context, _handleBackPressed)),
         ContextDivider(),
-        ContextMenuBtn("Set as cover photo",
-            shortcutLabel: "ctrl + k",
-            icon: AppIcons.star,
-            iconColor: isCoverPhoto ? theme.accent1 : null,
-            onPressed: disableCoverPhotoBtn ? null : () => handlePressed(context, _handleCoverPhotoPressed)),
+        if (scrap.isPhoto) ...{
+          if (SaveImageToDiskCommand.canUse) ...{
+            ContextMenuBtn("Save Image As...",
+                icon: AppIcons.image,
+                iconColor: isCoverPhoto ? theme.accent1 : null,
+                onPressed: () => handlePressed(context, _handleSaveImagePressed)),
+            ContextDivider(),
+          },
+          ContextMenuBtn("Set as cover photo",
+              shortcutLabel: "ctrl + k",
+              icon: AppIcons.star,
+              iconColor: isCoverPhoto ? theme.accent1 : null,
+              onPressed: disableCoverPhotoBtn ? null : () => handlePressed(context, _handleCoverPhotoPressed)),
+          ContextDivider(),
+        },
         ContextMenuBtn("Delete",
             hoverBgColor: theme.greyStrong,
             icon: AppIcons.trashcan,

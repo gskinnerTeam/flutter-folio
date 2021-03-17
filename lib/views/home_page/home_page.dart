@@ -7,11 +7,11 @@ import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/data/book_data.dart';
 import 'package:flutter_folio/models/books_model.dart';
 
-import 'home_nav_bar_mobile.dart';
-import 'home_nav_bar.dart';
 import 'covers_flow_list.dart';
 import 'covers_flow_list_mobile.dart';
 import 'covers_sortable_list.dart';
+import 'home_nav_bar.dart';
+import 'home_nav_bar_mobile.dart';
 
 class BooksHomePage extends StatefulWidget {
   @override
