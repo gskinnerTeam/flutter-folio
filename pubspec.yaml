@@ -31,11 +31,13 @@ dependencies:
   file_selector_macos: ^0.0.4
   file_selector_linux: ^0.0.2
   file_selector_web: ^0.8.1
-  flutter_state_notifier:
   flutter_svg: ^0.21.0-nullsafety.0
   fluttertoast: ^8.0.1-nullsafety.0
   image_picker: ^0.7.2
-  image_size_getter: ^0.2.1
+  image_size_getter:
+    git:
+      url: git://github.com/gskinnerTeam/dart_image_size_getter.git
+      path: library
   multi_image_picker: ^4.8.00
   menubar:
     git:
@@ -58,7 +60,9 @@ dependencies:
   desktop_window: ^0.4.0
   xdg_directories: ^0.2.0
   # FIREBASE
-  firedart: ^0.8.3
+  firedart:
+    git:
+      url: git://github.com/gskinnerTeam/firedart.git
   firebase_core: ^1.0.1
   firebase_auth: ^1.0.1
   cloud_firestore: ^1.0.1

@@ -142,14 +142,14 @@ packages:
       name: built_collection
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.3.2"
+    version: "5.0.0"
   built_value:
     dependency: transitive
     description:
       name: built_value
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "7.1.0"
+    version: "8.0.2"
   cached_network_image:
     dependency: "direct main"
     description:
@@ -412,17 +412,19 @@ packages:
   firedart:
     dependency: "direct main"
     description:
-      name: firedart
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.8.3"
+      path: "."
+      ref: HEAD
+      resolved-ref: "82a0ffb90c49bd62d6835ec4a385117a01ab5f2f"
+      url: "git://github.com/gskinnerTeam/firedart.git"
+    source: git
+    version: "1.0.0-nullsafety"
   fixnum:
     dependency: transitive
     description:
       name: fixnum
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.10.11"
+    version: "1.0.0"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -463,13 +465,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
-  flutter_state_notifier:
-    dependency: "direct main"
-    description:
-      name: flutter_state_notifier
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.7.0"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -528,7 +523,7 @@ packages:
       name: googleapis_auth
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.12+1"
+    version: "1.1.0"
   graphs:
     dependency: transitive
     description:
@@ -542,14 +537,16 @@ packages:
       name: grpc
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.8.0"
+    version: "3.0.0"
   hashcodes:
     dependency: transitive
     description:
-      name: hashcodes
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.0"
+      path: "."
+      ref: HEAD
+      resolved-ref: f610f8318bce845b2b76bf49a9beb45d44972d22
+      url: "git://github.com/gskinnerTeam/dart_hashcodes.git"
+    source: git
+    version: "2.0.0-nullsafety"
   http:
     dependency: "direct overridden"
     description:
@@ -563,7 +560,7 @@ packages:
       name: http2
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.1"
+    version: "2.0.0"
   http_multi_server:
     dependency: transitive
     description:
@@ -602,10 +599,12 @@ packages:
   image_size_getter:
     dependency: "direct main"
     description:
-      name: image_size_getter
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.2.1"
+      path: library
+      ref: HEAD
+      resolved-ref: "50a70a0a325fde5ef58a31e28836ae6960f5a00c"
+      url: "git://github.com/gskinnerTeam/dart_image_size_getter.git"
+    source: git
+    version: "1.0.0-nullsafety"
   intl:
     dependency: transitive
     description:
@@ -810,7 +809,7 @@ packages:
       name: protobuf
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.3"
+    version: "2.0.0"
   provider:
     dependency: "direct main"
     description:
@@ -832,13 +831,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.8"
-  quiver:
-    dependency: transitive
-    description:
-      name: quiver
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.1.5"
   random_color:
     dependency: "direct main"
     description:
@@ -963,13 +955,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.10.0"
-  state_notifier:
-    dependency: transitive
-    description:
-      name: state_notifier
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.7.0"
   statsfl:
     dependency: "direct main"
     description:

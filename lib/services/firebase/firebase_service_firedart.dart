@@ -14,7 +14,8 @@ class DartFirebaseService extends FirebaseService {
   final String projectId;
   bool _isSignedIn = false;
 
-  Firestore get firestore => Firestore.instance;
+  Firestore get firestore => Firestore.instance!;
+  FirebaseAuth get fireauth => FirebaseAuth.instance!;
 
   DocumentReference get userDoc => firestore.document(userPath.join("/"));
 
@@ -22,7 +23,7 @@ class DartFirebaseService extends FirebaseService {
     final prefsStore = await PreferencesStore.create();
     FirebaseAuth.initialize(apiKey, prefsStore);
     Firestore.initialize(projectId);
-    _isSignedIn = FirebaseAuth.instance.isSignedIn;
+    _isSignedIn = fireauth.isSignedIn;
   }
 
   /// //////////////////////////////
@@ -31,13 +32,13 @@ class DartFirebaseService extends FirebaseService {
   Future<AppUser?> signIn({required String email, required String password, bool createAccount = false}) async {
     User? user;
     if (createAccount) {
-      user = await FirebaseAuth.instance.signUp(email, password);
+      user = await fireauth.signUp(email, password);
     } else {
-      user = await FirebaseAuth.instance.signIn(email, password);
+      user = await fireauth.signIn(email, password);
     }
     if (user != null) {
       _isSignedIn = true;
-      return AppUser(documentId: user.id, email: user.email, fireId: user.id);
+      return AppUser(email: user.email ?? "", fireId: user.id ?? "");
     }
     return null;
   }
@@ -75,7 +76,10 @@ class DartFirebaseService extends FirebaseService {
   // Streams
   Stream<Map<String, dynamic>>? getDocStream(List<String> keys) {
     // print("getDocStream: ${keys.toString()}");
-    return _getDoc(keys)?.stream.map((d) => d.map..['documentId'] = d.id);
+    return _getDoc(keys)?.stream.map((d) {
+      final map = d?.map ?? {};
+      return map..['documentId'] = d?.id;
+    });
   }
 
   Stream<List<Map<String, dynamic>>>? getListStream(List<String> keys) {
@@ -144,7 +148,8 @@ class PreferencesStore extends TokenStore {
       : null;
 
   @override
-  void write(Token token) {
+  void write(Token? token) {
+    if (token == null) return;
     _prefs.setString(keyToken, json.encode(token.toMap()));
   }
 
