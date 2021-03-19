@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_folio/_utils/device_info.dart';
 import 'package:flutter_folio/_utils/native_window_utils/titlebar_wrappers/linux_title_bar.dart';
 import 'package:flutter_folio/_utils/native_window_utils/titlebar_wrappers/macos_title_bar.dart';
 import 'package:flutter_folio/_utils/native_window_utils/titlebar_wrappers/windows_title_bar.dart';
@@ -24,11 +25,11 @@ class IoUtilsNative implements IoUtils {
   }
 
   Widget wrapNativeTitleBarIfRequired(Widget child) {
-    if (Platform.isWindows) {
+    if (DeviceOS.isWindows) {
       return WindowsTitleBar(child);
-    } else if (Platform.isLinux) {
+    } else if (DeviceOS.isLinux) {
       return LinuxTitleBar(child);
-    } else if (Platform.isMacOS) {
+    } else if (DeviceOS.isMacOS) {
       return MacosTitleBar(child);
     }
     return child;

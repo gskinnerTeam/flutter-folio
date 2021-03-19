@@ -20,20 +20,17 @@ class AppTitleBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final AppTheme theme = context.watch();
     // Optionally wrap the content in a Native title bar. This may be a no-op depending on platform.
-    return IoUtils.instance.wrapNativeTitleBarIfRequired(SizedBox(
-      height: DeviceOS.isMac ? 28 : 40,
-      child: Stack(
-        children: [
-          // All titlebars share a bg
-          ShadowedBg(theme.surface1),
-          // Switch between mobile and desktop title bars
-          if (DeviceOS.isDesktopOrWeb) ...[
-            _AppTitleBarDesktop(),
-          ] else ...[
-            _AppTitleBarMobile(),
-          ]
-        ],
-      ),
+    return IoUtils.instance.wrapNativeTitleBarIfRequired(Stack(
+      children: [
+        // All titlebars share a bg
+        ShadowedBg(theme.surface1),
+        // Switch between mobile and desktop title bars
+        if (DeviceOS.isDesktopOrWeb) ...[
+          _AppTitleBarDesktop(),
+        ] else ...[
+          _AppTitleBarMobile(),
+        ]
+      ],
     ));
   }
 }

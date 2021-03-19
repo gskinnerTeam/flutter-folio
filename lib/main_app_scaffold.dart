@@ -10,8 +10,8 @@ import 'package:statsfl/statsfl.dart';
 
 /// Wraps the entire app, providing it with various helper classes and wrapper widgets.
 class MainAppScaffold extends StatefulWidget {
-  const MainAppScaffold({Key? key, required this.child, required this.showAppBar}) : super(key: key);
-  final Widget child;
+  const MainAppScaffold({Key? key, required this.pageNavigator, required this.showAppBar}) : super(key: key);
+  final Widget pageNavigator;
   final bool showAppBar;
 
   @override
@@ -24,69 +24,55 @@ class _MainAppScaffoldState extends State<MainAppScaffold> with TickerProviderSt
     TextDirection textDirection = context.select((AppModel app) => app.textDirection);
     // Provide the appTheme directly to the tree, so views don't need to look it up on the model (less boilerplate for views)
     AppTheme appTheme = context.select((AppModel app) => app.theme);
-    // Define the main "density" setting that drives all components in the app. Bind it it to the enableTouchMode
-    // setting in the appModel which can also be used for behavioral changes.
-    bool touchMode = context.select((AppModel m) => m.enableTouchMode);
-    double density = (touchMode ? VisualDensity.standard : VisualDensity.comfortable).horizontal;
-    return TweenAnimationBuilder<double>(
-      duration: Times.fast,
-      curve: Curves.easeOut,
-      // Tween the density value so it animates nicely across the app
-      tween: Tween(begin: density, end: density),
-      builder: (_, densityValue, ___) => Theme(
-        data: ThemeData(
-          visualDensity: VisualDensity(horizontal: densityValue, vertical: densityValue),
-        ),
-        child: Provider.value(
-          value: appTheme,
-          child: Directionality(
-            textDirection: textDirection,
-            // Right-click support
-            child: ContextMenuOverlay(
-              child: Navigator(
-                onPopPage: (Route route, result) {
-                  if (route.didPop(result)) return true;
-                  return false;
-                },
-                pages: [
-                  MaterialPage(
-                      // Pop-over (tooltip) support
-                      child: Builder(
-                    builder: (BuildContext builderContext) {
-                      /// User a builder to provide a context to the Command layer that can safely use Navigator, Overlay etc
-                      Commands.setContext(builderContext);
-                      // Wrap our views in a controller for custom tooltips and popover controls
-                      return PopOverController(
-                        // Draw a border around the entire window, because we're classy :)
-                        child: _WindowBorder(
-                          color: appTheme.greyStrong,
-                          // Supply a top-level scaffold and SafeArea for all views
-                          child: StatsFl(
-                            isEnabled: false,
-                            child: Scaffold(
-                              backgroundColor: appTheme.surface1,
-                              body: SafeArea(
-                                // AppBar + Content
-                                child: Column(
-                                  // This column has a reversed vertical direction, because we want the TitleBar to cast a shadow on the content below it.
-                                  verticalDirection: VerticalDirection.up,
-                                  children: [
-                                    // Bottom content area
-                                    Expanded(child: widget.child),
-                                    // Top-aligned TitleBar
-                                    if (widget.showAppBar) AppTitleBar(),
-                                  ],
-                                ),
-                              ),
+    return Provider.value(
+      value: appTheme,
+      child: Directionality(
+        textDirection: textDirection,
+        // Right-click support
+        child: ContextMenuOverlay(
+          // This navigator sits above the main navigator (pageNavigator). It exists to provide an overlay to the TitleBar which is a sibling of the pageNavigator.
+          child: Navigator(
+            onPopPage: (Route route, result) {
+              if (route.didPop(result)) return true;
+              return false;
+            },
+            pages: [
+              MaterialPage(
+                  // Pop-over (tooltip) support
+                  child: Builder(
+                builder: (BuildContext builderContext) {
+                  /// User a builder to provide a context to the Command layer that can safely use Navigator, Overlay etc
+                  Commands.setContext(builderContext);
+                  // Wrap our views in a controller for custom tooltips and popover controls
+                  return PopOverController(
+                    // Draw a border around the entire window, because we're classy :)
+                    child: _WindowBorder(
+                      color: appTheme.greyStrong,
+                      // Supply a top-level scaffold and SafeArea for all views
+                      child: StatsFl(
+                        isEnabled: false,
+                        child: Scaffold(
+                          backgroundColor: appTheme.surface1,
+                          body: SafeArea(
+                            // AppBar + Content
+                            child: Column(
+                              // This column has a reversed vertical direction, because we want the TitleBar to cast a shadow on the content below it.
+                              verticalDirection: VerticalDirection.up,
+                              children: [
+                                // Bottom content area
+                                Expanded(child: widget.pageNavigator),
+                                // Top-aligned TitleBar
+                                if (widget.showAppBar) AppTitleBar(),
+                              ],
                             ),
                           ),
                         ),
-                      );
-                    },
-                  ))
-                ],
-              ),
-            ),
+                      ),
+                    ),
+                  );
+                },
+              ))
+            ],
           ),
         ),
       ),

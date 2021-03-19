@@ -9,7 +9,7 @@ class _AppTitleBarDesktop extends StatelessWidget {
     bool showBackBtn = isGuestUser == false && canGoBack;
     double appWidth = context.widthPx;
     // Mac title bar has a different layout as it's window btns are left aligned
-    bool isMac = DeviceOS.isMac;
+    bool isMac = DeviceOS.isMacOS;
     bool isMobile = DeviceOS.isMobile;
     bool showTouchToggle = true; //context.select((AppModel m) => m.hasUser) == true;
     return Stack(children: [

@@ -21,7 +21,7 @@ class KeyboardUtils {
   static bool get isCommandOrControlDown {
     bool isDown = false;
     // Command on MacOS, and Control on Windows/Linux are generally analogous
-    if (DeviceOS.isMac) {
+    if (DeviceOS.isMacOS) {
       isDown = KeyboardUtils.isCommandDown;
     } else {
       isDown = KeyboardUtils.isControlDown;
@@ -66,7 +66,7 @@ class KeyboardUtils {
     // Keyboard mode, without the modifier key, is a simple single-select tap
     else {
       // On Mac, tapping a selected thing in Finder does nothing
-      if ((DeviceOS.isMac) && wasSelected) {
+      if ((DeviceOS.isMacOS) && wasSelected) {
         return selected;
       }
       // On Linux/Win clicking a thing will select it and de-select any others

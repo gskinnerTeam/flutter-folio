@@ -56,7 +56,7 @@ class AppRouterDelegate extends RouterDelegate<AppLink> with ChangeNotifier {
     // Wrap
     return MainAppScaffold(
       showAppBar: showSplash == false,
-      child: Navigator(
+      pageNavigator: Navigator(
         onPopPage: _handleNavigatorPop,
         pages: [
           // Dev spike takes precedence
