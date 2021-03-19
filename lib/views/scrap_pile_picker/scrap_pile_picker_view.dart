@@ -18,7 +18,7 @@ class ScrapPilePickerView extends StatelessWidget {
     //TODO: Feature this code snippet
     // Depending on the mode, we'll have different btns for adding images
     List<Widget> btns = [
-      if (_mobileMode && DeviceInfo.isDesktop == false) ...[
+      if (_mobileMode && DeviceOS.isDesktop == false) ...[
         _TileBtn("Take photo", AppIcons.camera, () => state._handlePickImagesPressed(true)),
         _TileBtn("Choose from library", AppIcons.image, () => state._handlePickImagesPressed(false))
       ] else ...[
@@ -79,8 +79,8 @@ class ScrapPilePickerView extends StatelessWidget {
                                   controller: _scrollController,
                                   child: GridView.count(
                                       crossAxisCount: colCount,
-                                      crossAxisSpacing: Insets.sm,
-                                      mainAxisSpacing: Insets.sm,
+                                      crossAxisSpacing: Insets.xs,
+                                      mainAxisSpacing: Insets.xs,
                                       padding: EdgeInsets.only(bottom: Insets.lg),
                                       childAspectRatio: 1.5,
                                       controller: _scrollController,

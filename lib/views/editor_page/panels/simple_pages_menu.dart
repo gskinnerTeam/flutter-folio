@@ -24,7 +24,7 @@ class SimplePagesMenu extends StatelessWidget {
         duration: Times.fast,
         curve: Curves.easeOut,
         height: pageScrollerHeight,
-        padding: EdgeInsets.symmetric(horizontal: Insets.xs, vertical: Insets.lg),
+        padding: EdgeInsets.symmetric(horizontal: Insets.xs, vertical: Insets.med),
         color: Colors.white.withOpacity(.7),
         child: ListView(
           scrollDirection: Axis.horizontal,

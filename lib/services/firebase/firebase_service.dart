@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_folio/_utils/device_info.dart';
 import 'package:flutter_folio/app_keys.dart';
 import 'package:flutter_folio/data/app_user.dart';
 import 'package:flutter_folio/data/book_data.dart';
 import 'package:flutter_folio/services/firebase/firebase_service_firedart.dart';
 import 'package:flutter_folio/services/firebase/firebase_service_native.dart';
-import 'package:universal_platform/universal_platform.dart';
 
 // CollectionKeys
 class FireIds {
@@ -19,8 +19,9 @@ class FireIds {
 // Returns the correct Firebase instance depending on platform
 class FirebaseFactory {
   static bool _initComplete = false;
-  static bool get useNative =>
-      kIsWeb || UniversalPlatform.isAndroid || UniversalPlatform.isIOS; // || UniversalPlatform.isMacOS;
+
+  // Determine which platforms we can use the native sdk on
+  static bool get useNative => DeviceOS.isMobileOrWeb; // || UniversalPlatform.isMacOS;
 
   static FirebaseService create() {
     FirebaseService service = useNative

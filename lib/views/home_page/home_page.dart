@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_folio/_utils/device_info.dart';
 import 'package:flutter_folio/_widgets/gradient_container.dart';
 import 'package:flutter_folio/commands/books/create_folio_command.dart';
 import 'package:flutter_folio/commands/books/refresh_all_books_command.dart';
@@ -29,7 +30,7 @@ class BooksHomePageState extends State<BooksHomePage> {
   @override
   Widget build(BuildContext context) {
     List<ScrapBookData>? books = context.select((BooksModel m) => m.books);
-    bool isMobile = context.widthPx < Sizes.smallPhone;
+    bool showPhoneView = DeviceScreen.isPhone(context);
     books?.sort((a, b) => a.lastModifiedTime > b.lastModifiedTime ? -1 : 1);
     return books == null
         ? LoadingIndicator()
@@ -53,14 +54,14 @@ class BooksHomePageState extends State<BooksHomePage> {
                   _EmptyHomeView(),
                 ] else ...[
                   _showListView
-                      ? CoversSortableList(books: books, isMobile: isMobile)
-                      : isMobile
+                      ? CoversSortableList(books: books, isMobile: showPhoneView)
+                      : showPhoneView
                           ? CoversFlowListMobile(books: books)
                           : CoversFlowList(books: books),
                 ],
 
                 /// Top bar and bottom bar, has welcome message and view switcher
-                if (isMobile) ...[
+                if (showPhoneView) ...[
                   Align(
                     alignment: Alignment.bottomCenter,
                     child: HomeNavBarMobile(onToggled: _handleViewToggled, showListView: _showListView),

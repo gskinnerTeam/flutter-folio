@@ -1,5 +1,5 @@
 import 'package:flutter/services.dart';
-import 'package:universal_platform/universal_platform.dart';
+import 'package:flutter_folio/_utils/device_info.dart';
 
 class KeyboardUtils {
   static bool get isShiftDown => isKeyDown([LogicalKeyboardKey.shiftLeft, LogicalKeyboardKey.shiftRight]);
@@ -18,11 +18,10 @@ class KeyboardUtils {
     return false;
   }
 
-  //TODO: Feature this snippet
   static bool get isCommandOrControlDown {
     bool isDown = false;
-    // If shift is not down, look for Command on Mac, and Control on Windows/Linux
-    if (UniversalPlatform.isMacOS) {
+    // Command on MacOS, and Control on Windows/Linux are generally analogous
+    if (DeviceOS.isMac) {
       isDown = KeyboardUtils.isCommandDown;
     } else {
       isDown = KeyboardUtils.isControlDown;
@@ -67,7 +66,7 @@ class KeyboardUtils {
     // Keyboard mode, without the modifier key, is a simple single-select tap
     else {
       // On Mac, tapping a selected thing in Finder does nothing
-      if ((UniversalPlatform.isMacOS) && wasSelected) {
+      if ((DeviceOS.isMac) && wasSelected) {
         return selected;
       }
       // On Linux/Win clicking a thing will select it and de-select any others

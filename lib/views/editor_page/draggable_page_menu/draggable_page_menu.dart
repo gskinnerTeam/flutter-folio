@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_folio/commands/books/update_book_command.dart';
 import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/data/book_data.dart';
+import 'package:flutter_folio/models/app_model.dart';
 import 'package:flutter_folio/models/books_model.dart';
 import 'package:flutter_folio/views/editor_page/draggable_page_menu/draggable_page_title_btn.dart';
 
@@ -16,15 +17,13 @@ class DraggablePagesMenu extends StatefulWidget {
 }
 
 class DraggablePagesMenuState extends State<DraggablePagesMenu> {
-  static const double menuItemHeight = 48;
-
   ValueNotifier<int> _hoverIndexNotifier = ValueNotifier(-1);
-
   bool get isDragging => hoverIndex != -1;
   int get hoverIndex => _hoverIndexNotifier.value;
   List<ScrapPageData> get pages => widget.pages;
   String get currentPageId => widget.pageId;
 
+  late double _tileHeight;
   late ScrollController _scrollController;
 
   @override
@@ -41,6 +40,8 @@ class DraggablePagesMenuState extends State<DraggablePagesMenu> {
 
   @override
   Widget build(BuildContext context) {
+    bool touchMode = context.select((AppModel m) => m.enableTouchMode);
+    _tileHeight = touchMode ? 56 : 42;
     return DragTarget<ScrapPageData>(
       onMove: _handleItemMoved,
       onAcceptWithDetails: _handleItemDropped,
@@ -67,7 +68,7 @@ class DraggablePagesMenuState extends State<DraggablePagesMenu> {
                             isSelected: isSelected,
                             onPressed: () => widget.onPressed(page),
                             onDragCancelled: _handleDragCancelled,
-                            height: menuItemHeight,
+                            height: _tileHeight,
                           );
                         }).toList();
                         return menuItems;
@@ -77,8 +78,8 @@ class DraggablePagesMenuState extends State<DraggablePagesMenu> {
                     /// Show an outline for the selected index
                     if (hoverIndex != -1)
                       _SelectedPageOutline(
-                        top: hoverIndex * menuItemHeight,
-                        height: menuItemHeight,
+                        top: hoverIndex * _tileHeight,
+                        height: _tileHeight,
                       ),
                   ],
                 ),
@@ -113,8 +114,8 @@ class DraggablePagesMenuState extends State<DraggablePagesMenu> {
   void _handleItemMoved(DragTargetDetails<dynamic> details) {
     // Convert globalOffset to local
     RenderBox rb = context.findRenderObject() as RenderBox;
-    Offset localPos = rb.globalToLocal(details.offset + Offset(0, menuItemHeight / 2));
-    int newIndex = (localPos.dy / menuItemHeight).clamp(0, pages.length - 1).floor();
+    Offset localPos = rb.globalToLocal(details.offset + Offset(0, _tileHeight / 2));
+    int newIndex = (localPos.dy / _tileHeight).clamp(0, pages.length - 1).floor();
     if (newIndex != hoverIndex) {
       _hoverIndexNotifier.value = newIndex;
     }

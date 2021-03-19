@@ -22,6 +22,7 @@ class ContextMenuRegion extends StatelessWidget {
   Widget build(BuildContext context) {
     void showMenu() => ShowContextMenuNotification(child: contextMenu).dispatch(context);
     if (isEnabled == false) return child;
+    // Enable context menus on long press when we're in touch mode
     bool touchMode = context.select((AppModel m) => m.enableTouchMode);
     return GestureDetector(
       behavior: HitTestBehavior.translucent,

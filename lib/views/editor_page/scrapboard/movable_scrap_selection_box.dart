@@ -4,7 +4,7 @@ import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/_utils/debouncer.dart';
+import 'package:flutter_folio/_utils/timed/debouncer.dart';
 import 'package:flutter_folio/core_packages.dart';
 
 class MovableScrapSelectionBox extends StatefulWidget {
@@ -101,7 +101,7 @@ class MovableScrapSelectionBoxState extends State<MovableScrapSelectionBox> {
     //print("${signal.scrollDelta.dy} @ ${TimeUtils.nowMillis}");
     double dir = signal.scrollDelta.dy > 0 ? -1 : 1;
     widget.onZoomed(dir * .1);
-    _zoomDebounce.call(() => widget.onDragEnded.call());
+    _zoomDebounce.run(() => widget.onDragEnded.call());
   }
 }
 

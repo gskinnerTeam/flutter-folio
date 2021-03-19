@@ -8,8 +8,9 @@ class _AppTitleBarDesktop extends StatelessWidget {
     bool canGoBack = context.select((AppModel m) => m.canPopNav);
     bool showBackBtn = isGuestUser == false && canGoBack;
     double appWidth = context.widthPx;
-    bool isMac = UniversalPlatform.isMacOS;
-    bool isMobile = context.widthPx < Sizes.smallPhone;
+    // Mac title bar has a different layout as it's window btns are left aligned
+    bool isMac = DeviceOS.isMac;
+    bool isMobile = DeviceOS.isMobile;
     bool showTouchToggle = true; //context.select((AppModel m) => m.hasUser) == true;
     return Stack(children: [
       // Centered TitleText
@@ -19,7 +20,6 @@ class _AppTitleBarDesktop extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           if (isMac) ...[
-            // Mac title bar has a different layout as it's window btns are left aligned
             HSpace(80), // Reserve some space for the native btns
             if (showBackBtn) _BackBtn(),
             Spacer(),

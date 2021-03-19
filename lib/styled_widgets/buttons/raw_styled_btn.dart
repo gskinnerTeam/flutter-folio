@@ -4,7 +4,6 @@ import 'package:flutter_folio/_utils/string_utils.dart';
 import 'package:flutter_folio/_widgets/positioned_all.dart';
 import 'package:flutter_folio/_widgets/rounded_card.dart';
 import 'package:flutter_folio/core_packages.dart';
-import 'package:flutter_folio/models/app_model.dart';
 import 'package:provider/provider.dart';
 
 class BtnColors {
@@ -30,6 +29,7 @@ class RawBtn extends StatefulWidget {
       this.focusMargin,
       this.enableShadow = true,
       this.enableFocus = true,
+      this.ignoreDensity = false,
       this.cornerRadius})
       : super(key: key);
   final Widget child;
@@ -41,6 +41,7 @@ class RawBtn extends StatefulWidget {
   final bool enableShadow;
   final bool enableFocus;
   final double? cornerRadius;
+  final bool ignoreDensity;
 
   @override
   _RawBtnState createState() => _RawBtnState();
@@ -77,6 +78,9 @@ class _RawBtnState extends State<RawBtn> {
           return normal;
         });
     AppTheme theme = Provider.of(context);
+    VisualDensity density = Theme.of(context).visualDensity;
+    if (widget.ignoreDensity) density = VisualDensity.compact;
+
     List<BoxShadow> shadows = (widget.enableShadow) ? Shadows.universal : [];
     BtnColors normalColors = widget.normalColors ?? BtnColors(fg: theme.greyMedium, bg: Colors.transparent);
     BtnColors hoverColors = widget.hoverColors ?? BtnColors(fg: theme.focus, bg: theme.focus.withOpacity(.1));
@@ -95,9 +99,12 @@ class _RawBtnState extends State<RawBtn> {
             child: TextButton(
               focusNode: _focusNode,
               onPressed: widget.onPressed,
-              style: ElevatedButton.styleFrom(disabledMouseCursor: SystemMouseCursors.basic).copyWith(
+              style: ElevatedButton.styleFrom(
+                visualDensity: density,
+                disabledMouseCursor: SystemMouseCursors.basic,
+              ).copyWith(
                 minimumSize: MaterialStateProperty.all(Size.zero),
-                padding: MaterialStateProperty.all(EdgeInsets.zero),
+                //padding: MaterialStateProperty.all(EdgeInsets.zero),
                 shape: MaterialStateProperty.all(RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(widget.cornerRadius ?? Corners.med),
                 )),
@@ -144,16 +151,8 @@ class BtnContent extends StatelessWidget {
   Widget build(BuildContext context) {
     bool hasIcon = icon != null;
     bool hasLbl = StringUtils.isNotEmpty(label);
-    // Add a touch of extra padding for touch users
-    bool enableTouchMode = context.select((AppModel m) => m.enableTouchMode);
-    int extraPadding = enableTouchMode ? 4 : 0;
-    return AnimatedPadding(
-      duration: Times.fast,
-      curve: Curves.easeOut,
-      padding: EdgeInsets.symmetric(
-        horizontal: (isCompact ? Insets.lg : Insets.med) + extraPadding,
-        vertical: Insets.med - (isCompact ? 1 : 0) + extraPadding,
-      ),
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: Insets.med, vertical: Insets.sm),
       child: child ??
           Row(
             mainAxisSize: MainAxisSize.min,

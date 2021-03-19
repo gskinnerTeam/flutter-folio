@@ -32,8 +32,13 @@ class ScrapPopupPanelFonts extends StatelessWidget {
                 child: Center(
                   child: AutoSizeText("${boxFontToDisplay(value)}",
                       minFontSize: 10,
-                      maxFontSize: 32,
-                      style: TextStyles.body3.copyWith(fontSize: 32, fontFamily: "${boxFontToFamily(value)}")),
+                      maxFontSize: 28,
+                      maxLines: 1,
+                      style: TextStyles.body3.copyWith(
+                        fontSize: 32,
+                        fontFamily: "${boxFontToFamily(value)}",
+                        height: 1,
+                      )),
                 ),
               )
             ],

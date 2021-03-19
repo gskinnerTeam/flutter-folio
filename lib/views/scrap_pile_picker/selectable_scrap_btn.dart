@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_utils/string_utils.dart';
 import 'package:flutter_folio/_widgets/app_image.dart';
+import 'package:flutter_folio/_widgets/decorated_container.dart';
 import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/styled_widgets/styled_load_spinner.dart';
 
@@ -21,18 +22,8 @@ class ScrapPickerBtn extends StatelessWidget {
     }
     return Stack(
       children: [
-        if (isSelected) ...[
-          //TODO: Need to get rid of all these containers... do a pass across the app.
-          // Better: RoundedBorder(borderColor: theme.focus, width: 2, radius: Corners.lg),
-          Container(
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.red, width: 2),
-              borderRadius: Corners.lgBorder,
-            ),
-          )
-        ],
         Padding(
-          padding: EdgeInsets.all(Insets.xs * 1.25),
+          padding: EdgeInsets.all(Insets.xs),
           child: GridBtn(
               onPressed: onPressed,
               bgColor: theme.greyStrong,
@@ -41,6 +32,10 @@ class ScrapPickerBtn extends StatelessWidget {
                 fit: BoxFit.contain,
               )),
         ),
+        if (isSelected) ...[
+          //TODO: Replace most boxBorders with DecoratedContainer
+          DecoratedContainer(borderWidth: 2, borderColor: theme.focus, borderRadius: Corners.lg)
+        ],
       ],
     );
   }

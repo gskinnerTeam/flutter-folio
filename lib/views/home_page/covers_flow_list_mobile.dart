@@ -1,7 +1,7 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_folio/_widgets/animated/opening_card.dart';
 import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/data/book_data.dart';
 import 'package:flutter_folio/views/home_page/book_cover/book_cover.dart';
@@ -16,156 +16,53 @@ class CoversFlowListMobile extends StatefulWidget {
 }
 
 class _CoversFlowListMobileState extends State<CoversFlowListMobile> {
-  ScrapBookData? _bgBook;
-  ScrapBookData? _fgBook;
-  late int _previewBookIdx;
-  Offset? _currentCardPos;
-  Offset? _currentCursorPos;
-  bool _isOpening = false;
-  bool _editingText = false;
+  bool _isResting = true;
+  int _currentPage = 0;
+  PageController _pageController = PageController();
 
   @override
   void initState() {
-    bool hasBooks = widget.books.isNotEmpty;
-    if (hasBooks) {
-      _fgBook = _bgBook = widget.books.first;
-      _previewBookIdx = 1;
-    } else {
-      _previewBookIdx = 0;
-    }
     super.initState();
+    _pageController.addListener(_handlePageChange);
   }
 
   @override
   Widget build(BuildContext context) {
+    int nextPage = (_currentPage + 2).clamp(0, widget.books.length - 1);
+    ScrapBookData? nextBook = nextPage == _currentPage ? null : widget.books[nextPage];
     return StyledPageScaffold(
-      body: Listener(
-        onPointerSignal: _handlePointerSignal,
-        behavior: HitTestBehavior.translucent,
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            bool isMobile = context.widthPx < Sizes.smallPhone;
-            Size boxSize = Size(isMobile ? constraints.maxWidth : 260, 141);
-
-            _currentCursorPos = Offset(0, constraints.maxHeight - boxSize.width / 2);
-            List<ScrapBookData> books = widget.books;
-            return Stack(
-              children: [
-                Container(color: Colors.grey),
-
-                /// ///////////////////////////////////////////////////
-                /// BackgroundCard, this gets updated then the OpeningCard finishes opening
-                if (_bgBook != null) ...[
-                  BookCoverWidget(_bgBook!, largeMode: true),
-                ],
-
-                if (_currentCardPos != null && _fgBook != null) ...[
-                  OpeningContainer(
-                    key: ValueKey(_fgBook),
-                    topLeftOffset: _currentCardPos!,
-                    closedSize: boxSize,
-                    duration: Times.slow,
-                    child: BookCoverWidget(_fgBook!, largeMode: true),
-                    onEnd: _handleCardOpened,
-                  ),
-                ],
-
-                /// ///////////////////////////////////////////////////
-                /// Preview card, this shows the next card in the list
-                if (books.length > 1) ...[
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Padding(
-                      padding: EdgeInsets.only(bottom: 51),
-                      child: Container(
-                        padding: EdgeInsets.symmetric(horizontal: Insets.xl),
-                        width: boxSize.width,
-                        height: boxSize.height,
-                        child: Stack(
-                          children: [
-                            ClipRRect(
-                              borderRadius: Corners.medBorder,
-                              child: BookCoverWidget(books[_previewBookIdx], largeMode: false, topTitle: true),
-                            ),
-                            GestureDetector(
-                              onTapUp: (details) => _switchNextFolio(),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-
-                GestureDetector(
-                  onVerticalDragEnd: _handleVerticalSwipe,
-                  //onHorizontalDragEnd: _handleHorizontalSwipe,
+      body: Stack(
+        children: [
+          PageView.builder(
+            controller: _pageController,
+            itemCount: widget.books.length,
+            scrollDirection: Axis.vertical,
+            itemBuilder: (_, index) => BookCoverWidget(widget.books[index], largeMode: true),
+          ),
+          if (_isResting)
+            Positioned.fill(
+              child: FadeInUp(
+                child: FractionalTranslation(
+                  translation: Offset(0, 1),
+                  child: Transform.translate(
+                      offset: Offset(0, -150),
+                      child: Transform.scale(
+                        scale: .9,
+                        child: BookCoverWidget(nextBook!, topTitle: true),
+                      )),
                 ),
-              ],
-            );
-          },
-        ),
+              ),
+            ),
+        ],
       ),
     );
   }
 
-  // When card finishes opening, swap a new bgLayer into place, and set isOpening flag
-  void _handleCardOpened() {
-    setState(() {
-      _isOpening = false;
-      _bgBook = _fgBook;
-    });
-  }
-
-  void _handleVerticalSwipe(DragEndDetails details) {
-    if (details.primaryVelocity! > 10) {
-      _switchPreviousFolio();
-    } else if (details.primaryVelocity! < -10) {
-      _switchNextFolio();
+  void _handlePageChange() {
+    bool isResting = _pageController.page?.roundToDouble() == _pageController.page;
+    if (_isResting) {
+      _currentPage = _pageController.page?.round() ?? 0;
     }
-  }
-
-  void _handlePointerSignal(PointerSignalEvent event) {
-    if (event is PointerScrollEvent) {
-      if (event.scrollDelta.dy < 0) _switchPreviousFolio();
-      if (event.scrollDelta.dy > 0) _switchNextFolio();
-    }
-  }
-
-  void _switchPreviousFolio() {
-    int previousIdx = (_previewBookIdx - 2) % widget.books.length;
-    _switchFolio(widget.books[previousIdx], false);
-  }
-
-  void _switchNextFolio() {
-    _switchFolio(widget.books[_previewBookIdx]);
-  }
-
-  // When card is clicked, change selectedData and set isOpening flag
-  void _switchFolio(ScrapBookData data, [bool next = true]) {
-    if (_editingText) return;
-    if (_fgBook == data) return;
-    if (_isOpening) return;
-    setState(() {
-      if (next)
-        ++_previewBookIdx;
-      else
-        --_previewBookIdx;
-
-      // Clamp book index to books list length
-      _previewBookIdx %= widget.books.length;
-
-      // The _bgBook may be stale since the _fgBook was changed, update it before we start a new transition.
-      // We didn't want to update it while the user was editing text, but we need to now as the _fgBook is switching to a new object.
-      if (_bgBook != null) {
-        widget.books.forEach((b) {
-          if (b.documentId == _bgBook?.documentId) _bgBook = b;
-        });
-      }
-      // Start opening
-      _currentCardPos = _currentCursorPos;
-      _fgBook = data;
-      _isOpening = true;
-    });
+    if (isResting != _isResting) setState(() => _isResting = isResting);
   }
 }

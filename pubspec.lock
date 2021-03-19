@@ -58,35 +58,35 @@ packages:
       name: bitsdojo_window
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.9"
+    version: "0.1.0"
   bitsdojo_window_linux:
     dependency: transitive
     description:
       name: bitsdojo_window_linux
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.1"
+    version: "0.1.0"
   bitsdojo_window_macos:
     dependency: transitive
     description:
       name: bitsdojo_window_macos
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.3"
+    version: "0.1.0"
   bitsdojo_window_platform_interface:
     dependency: transitive
     description:
       name: bitsdojo_window_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.2"
+    version: "0.1.0"
   bitsdojo_window_windows:
     dependency: transitive
     description:
       name: bitsdojo_window_windows
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.3"
+    version: "0.1.0"
   boolean_selector:
     dependency: transitive
     description:
@@ -249,7 +249,7 @@ packages:
     source: hosted
     version: "0.3.1+1"
   crypto:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
       name: crypto
       url: "https://pub.dartlang.org"
@@ -548,12 +548,12 @@ packages:
     source: git
     version: "2.0.0-nullsafety"
   http:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
       name: http
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.12.2"
+    version: "0.13.0"
   http2:
     dependency: transitive
     description:
@@ -569,12 +569,12 @@ packages:
     source: hosted
     version: "2.2.0"
   http_parser:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
       name: http_parser
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.1.4"
+    version: "4.0.0"
   image:
     dependency: transitive
     description:
@@ -627,7 +627,7 @@ packages:
     source: hosted
     version: "0.6.3"
   json_annotation:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
       name: json_annotation
       url: "https://pub.dartlang.org"
@@ -961,7 +961,7 @@ packages:
       name: statsfl
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0-nullsafety"
+    version: "2.0.1-nullsafety"
   stream_channel:
     dependency: transitive
     description:

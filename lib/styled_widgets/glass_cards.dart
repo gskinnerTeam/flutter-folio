@@ -6,6 +6,7 @@ import 'package:flutter_folio/_utils/input_utils.dart';
 import 'package:flutter_folio/_utils/string_utils.dart';
 import 'package:flutter_folio/_widgets/gradient_container.dart';
 import 'package:flutter_folio/core_packages.dart';
+import 'package:flutter_folio/models/app_model.dart';
 
 class GlassCard extends StatelessWidget {
   const GlassCard({Key? key, required this.child, this.alpha = .6, this.radius}) : super(key: key);
@@ -47,7 +48,6 @@ class CollapsingCard extends StatefulWidget {
 
 class _CollapsingCardState extends State<CollapsingCard> with TickerProviderStateMixin {
   late AnimationController anim1;
-  static const double kHeaderHeight = 40;
   bool _isOpen = true;
   double animatedHeightValue(double headerHeight) {
     return headerHeight + (widget.height - headerHeight) * CurveTween(curve: Curves.easeOut).evaluate(anim1);
@@ -66,8 +66,9 @@ class _CollapsingCardState extends State<CollapsingCard> with TickerProviderStat
     if (_isOpen == false && StringUtils.isNotEmpty(widget.titleClosed)) {
       title = widget.titleClosed!;
     }
+    double headerHeight = context.select((AppModel m) => m.enableTouchMode) ? 50 : 40;
     return Container(
-      height: animatedHeightValue(kHeaderHeight),
+      height: animatedHeightValue(headerHeight),
       child: Stack(
         children: [
           // Content
@@ -75,14 +76,14 @@ class _CollapsingCardState extends State<CollapsingCard> with TickerProviderStat
             child: AnimatedPadding(
               duration: Times.fast,
               curve: Curves.easeOut,
-              padding: EdgeInsets.only(top: kHeaderHeight),
+              padding: EdgeInsets.only(top: headerHeight),
               child: FadeTransition(opacity: anim1, child: widget.child),
             ),
           ),
           // Clickable Header
           TweenAnimationBuilder<double>(
             duration: Times.fast,
-            tween: Tween(begin: kHeaderHeight, end: kHeaderHeight),
+            tween: Tween(begin: headerHeight, end: headerHeight),
             builder: (_, value, __) => _CollapsableCardHeader(
               onPressed: _handlePressed,
               height: value,
@@ -159,8 +160,9 @@ class _CollapsableCardHeader extends StatelessWidget {
                   HSpace.sm,
                   Transform.rotate(angle: pi * animation.value, child: Icon(Icons.keyboard_arrow_down)),
                   HSpace.xs,
-                  Text(title.toUpperCase(), style: TextStyles.callout2.copyWith(color: theme.greyStrong)),
-                  Flexible(child: Container()),
+                  Expanded(
+                      child: Text(title.toUpperCase(),
+                          maxLines: 1, style: TextStyles.callout2.copyWith(color: theme.greyStrong))),
                   if (icon != null) icon!,
                 ],
               ),

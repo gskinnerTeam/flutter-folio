@@ -5,7 +5,7 @@ import 'package:flutter_folio/commands/commands.dart';
 
 class SaveImageToDiskCommand extends BaseAppCommand {
   //TODO: Add support for web https://github.com/flutter/flutter/issues/78142
-  static bool get canUse => DeviceInfo.isDesktop;
+  static bool get canUse => DeviceOS.isDesktop;
 
   Future<void> run(String url) async {
     if (canUse == false) return;

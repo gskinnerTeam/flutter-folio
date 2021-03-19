@@ -42,7 +42,7 @@ class BootstrapCommand extends Commands.BaseAppCommand {
     _configureMemoryCache();
 
     // Once model is loaded, we can configure the desktop.
-    if (DeviceInfo.isDesktop) {
+    if (DeviceOS.isDesktop) {
       _configureDesktop();
     }
     // Login?
@@ -62,9 +62,10 @@ class BootstrapCommand extends Commands.BaseAppCommand {
   }
 
   void _configureMemoryCache() {
-    int cacheSize = (DeviceInfo.isDesktop ? 2048 : 512) << 20;
+    // Use more memory by default on desktop
+    int cacheSize = (DeviceOS.isDesktop ? 2048 : 512) << 20;
     // If we're on a native platform, reserve some reasonable amt of RAM
-    if (DeviceInfo.isDesktop) {
+    if (DeviceOS.isDesktop) {
       try {
         // Use some percentage of system ram, but don't fall below the default, in case this returns 0 or some other invalid value.
         cacheSize = max(cacheSize, (SysInfo.getTotalPhysicalMemory() / 4).round());
@@ -80,6 +81,7 @@ class BootstrapCommand extends Commands.BaseAppCommand {
     IoUtils.instance.showWindowWhenReady();
     IoUtils.instance.setTitle("Flutter Folio");
     Size minSize = Size(600, 700);
+    if (kDebugMode) minSize = Size(400, 400);
     DesktopWindow.setMinWindowSize(minSize);
     if (appModel.windowSize.shortestSide > 0) {
       DesktopWindow.setWindowSize(appModel.windowSize);

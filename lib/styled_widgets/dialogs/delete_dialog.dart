@@ -12,6 +12,7 @@ class DeleteDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AppTheme theme = context.watch();
+    // MacOS dialog btns run a different direction than Windows/Linux
     TextDirection btnDirection = UniversalPlatform.isMacOS ? TextDirection.ltr : TextDirection.rtl;
     return BaseStyledDialog(
       child: Column(

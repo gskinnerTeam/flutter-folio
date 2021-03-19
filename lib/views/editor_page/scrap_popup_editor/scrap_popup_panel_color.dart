@@ -53,16 +53,19 @@ class ScrapPopupPanelColor extends StatelessWidget {
             ],
           )
         ] else ...[
-          Padding(
-            padding: EdgeInsets.only(bottom: 6),
-            child: Row(
-              children: [
-                Text(label, style: TextStyles.caption.copyWith(color: theme.grey)),
-                MaterialIcon(Icons.chevron_right, size: 16),
-                Spacer(),
-                _ColorSwatch(value, isSelected: false)
-              ],
-              crossAxisAlignment: CrossAxisAlignment.center,
+          Container(
+            height: double.infinity,
+            child: Padding(
+              padding: EdgeInsets.only(bottom: 6),
+              child: Row(
+                children: [
+                  Text(label, style: TextStyles.caption.copyWith(color: theme.grey)),
+                  MaterialIcon(Icons.chevron_right, size: 16),
+                  Spacer(),
+                  _ColorSwatch(value, isSelected: false)
+                ],
+                crossAxisAlignment: CrossAxisAlignment.center,
+              ),
             ),
           )
         ]

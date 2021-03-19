@@ -7,7 +7,7 @@ class Debouncer {
   Duration duration;
   Timer? _timer;
 
-  void call(VoidCallback action) {
+  void run(VoidCallback action) {
     _timer?.cancel();
     _timer = Timer(duration, action);
   }

@@ -91,7 +91,8 @@ class SimpleBtn extends StatelessWidget {
       this.focusMargin,
       this.normalColors,
       this.hoverColors,
-      this.cornerRadius})
+      this.cornerRadius,
+      this.ignoreDensity})
       : super(key: key);
   final Widget child;
   final VoidCallback? onPressed;
@@ -99,17 +100,20 @@ class SimpleBtn extends StatelessWidget {
   final BtnColors? normalColors;
   final BtnColors? hoverColors;
   final double? cornerRadius;
+  final bool? ignoreDensity;
 
   @override
   Widget build(BuildContext context) {
     return RawBtn(
-        cornerRadius: cornerRadius,
-        normalColors: normalColors,
-        hoverColors: hoverColors,
-        focusMargin: focusMargin ?? 0,
-        child: child,
-        enableShadow: false,
-        onPressed: onPressed);
+      cornerRadius: cornerRadius,
+      normalColors: normalColors,
+      hoverColors: hoverColors,
+      focusMargin: focusMargin ?? 0,
+      child: child,
+      enableShadow: false,
+      onPressed: onPressed,
+      ignoreDensity: ignoreDensity ?? true,
+    );
   }
 }
 
@@ -129,34 +133,29 @@ class TextBtn extends StatelessWidget {
     TextStyle finalStyle = style ??
         TextStyles.caption.copyWith(
             decoration: showUnderline ? TextDecoration.underline : TextDecoration.none, fontWeight: FontWeight.w500);
-    bool enableTouchMode = context.select((AppModel m) => m.enableTouchMode);
-    int extraPadding = enableTouchMode ? 3 : 0;
     return SimpleBtn(
+      ignoreDensity: false,
       onPressed: onPressed,
-      child: AnimatedPadding(
-          duration: Times.fast,
-          curve: Curves.easeOut,
-          padding: EdgeInsets.symmetric(
-            horizontal: isCompact ? 0 : Insets.sm + extraPadding,
-            vertical: Insets.xs + extraPadding,
-          ),
-          child: Text(label, style: finalStyle)),
+      child: Text(label, style: finalStyle),
     );
   }
 }
 
 /// Icon Btn - wraps a [SimpleBtn]
 class IconBtn extends StatelessWidget {
-  const IconBtn(this.icon, {Key? key, required this.onPressed, this.color, this.padding}) : super(key: key);
+  const IconBtn(this.icon, {Key? key, required this.onPressed, this.color, this.padding, this.ignoreDensity})
+      : super(key: key);
   final IconData icon;
   final VoidCallback? onPressed;
   final Color? color;
   final EdgeInsets? padding;
+  final bool? ignoreDensity;
   @override
   Widget build(BuildContext context) {
     bool enableTouchMode = context.select((AppModel m) => m.enableTouchMode);
     int extraPadding = enableTouchMode ? 3 : 0;
     return SimpleBtn(
+        ignoreDensity: ignoreDensity,
         child: AnimatedPadding(
           duration: Times.fast,
           curve: Curves.easeOut,

@@ -1,10 +1,10 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_folio/_utils/device_info.dart';
 import 'package:flutter_folio/_widgets/alignments.dart';
 import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/data/book_data.dart';
-import 'package:flutter_folio/models/app_model.dart';
 import 'package:flutter_folio/models/books_model.dart';
 import 'package:flutter_folio/views/scrap_pile_picker/scrap_pile_picker.dart';
 
@@ -31,11 +31,11 @@ class _EditorPageState extends State<EditorPage> {
     String? pageId = context.select((BooksModel m) => m.currentPage?.documentId);
     List<ScrapPageData>? pageList = context.select((BooksModel m) => m.currentBookPages);
     if (pageList == null) return LoadingIndicator();
-
     double leftMenuWidth = 212;
-    bool isPhone = context.widthPx < Sizes.largePhone;
+    // Check form factor of device to see if we want to allow them to edit
+    // Disable editing for phone users, or when in read-only mode
+    bool isPhone = DeviceScreen.isPhone(context) && DeviceOS.isMobile;
     bool disableEditing = widget.readOnly || isPhone;
-
     return StyledPageScaffold(
       body: Stack(
         fit: StackFit.expand,
@@ -110,21 +110,14 @@ class _MobileScrapPileBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AppTheme theme = context.watch();
-    bool touchMode = context.select((AppModel m) => m.enableTouchMode);
-    double size = touchMode ? 60 : 50;
     return BottomRight(
       child: Padding(
         padding: EdgeInsets.all(Insets.offset),
-        child: AnimatedContainer(
-            duration: Times.fast,
-            curve: Curves.easeOut,
-            width: size,
-            height: size,
-            child: PrimaryBtn(
-              cornerRadius: 99,
-              onPressed: onPressed,
-              child: AppIcon(AppIcons.image, color: theme.surface1, size: 20),
-            )),
+        child: PrimaryBtn(
+          cornerRadius: 99,
+          onPressed: onPressed,
+          child: AppIcon(AppIcons.image, color: theme.surface1, size: 20),
+        ),
       ),
     );
   }

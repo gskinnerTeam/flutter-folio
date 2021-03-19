@@ -76,9 +76,10 @@ class _IconBtn extends StatelessWidget {
   Widget build(BuildContext context) {
     AppTheme theme = context.watch();
     return Flexible(
-      child: SecondaryBtn(
+      child: SimpleBtn(
         child: SizedBox(
             width: double.infinity,
+            height: double.infinity,
             child: AppIcon(icon, color: isSelected ? theme.accent1 : theme.greyStrong, size: 16)),
         onPressed: onPressed,
       ),

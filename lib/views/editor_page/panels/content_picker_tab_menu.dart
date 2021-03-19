@@ -8,7 +8,6 @@ import 'package:flutter_folio/_utils/string_utils.dart';
 import 'package:flutter_folio/commands/books/create_placed_scraps_command.dart';
 import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/data/book_data.dart';
-import 'package:flutter_folio/models/app_model.dart';
 
 import 'content_picker_emoji_panel.dart';
 import 'content_picker_scraps_panel.dart';
@@ -166,32 +165,18 @@ class _TabMenuBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AppTheme theme = context.watch();
-    bool touchMode = context.select((AppModel m) => m.enableTouchMode);
-    // Add some extra size for touch users
-    double extraSize = touchMode ? 8 : 0;
     return SimpleBtn(
       onPressed: onPressed,
       cornerRadius: 99,
-      child: AnimatedContainer(
-        duration: Times.fast,
-        curve: Curves.easeOut,
-        width: kSize + extraSize,
-        height: kSize + extraSize,
+      ignoreDensity: false,
+      child: Container(
+        width: kSize,
+        height: kSize,
         decoration: BoxDecoration(
           color: isSelected ? theme.accent1.withOpacity(.15) : Colors.transparent,
           borderRadius: BorderRadius.circular(99),
         ),
-        child: TweenAnimationBuilder<double>(
-          duration: Times.fast,
-          curve: Curves.easeOut,
-          tween: Tween(begin: 22, end: 22 + extraSize),
-          builder: (_, value, __) => AppIcon(
-            icon,
-            color: isSelected ? theme.accent1 : theme.greyStrong,
-            size: value,
-          ),
-        ),
-        //child: Icon(icon, color: isSelected ? theme.accent1 : theme.greyStrong),
+        child: AppIcon(icon, color: isSelected ? theme.accent1 : theme.greyStrong, size: 22),
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_utils/data_utils.dart';
+import 'package:flutter_folio/_widgets/decorated_container.dart';
 import 'package:flutter_folio/commands/books/create_page_command.dart';
 import 'package:flutter_folio/commands/books/set_current_page_command.dart';
 import 'package:flutter_folio/core_packages.dart';
@@ -65,16 +66,15 @@ class _RoundedBtn extends StatelessWidget {
     //TODO: Can this be served by an existing btn preset? If not, consider creating one?
     return SimpleBtn(
         onPressed: onPressed,
+        ignoreDensity: false,
         child: Container(
-          padding: EdgeInsets.all(6),
-          width: 40,
-          height: 40,
-          child: Container(
-              decoration: BoxDecoration(
-                color: theme.accent1,
-                borderRadius: BorderRadius.circular(99),
-              ),
-              child: MaterialIcon(Icons.add, color: theme.bg1, size: 16)),
+          width: 30,
+          height: 30,
+          child: DecoratedContainer(
+            color: theme.accent1,
+            borderRadius: 99,
+            child: MaterialIcon(Icons.add, color: theme.bg1, size: 16),
+          ),
         ));
   }
 }

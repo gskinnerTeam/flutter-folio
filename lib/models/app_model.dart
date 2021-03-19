@@ -1,14 +1,15 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/_utils/debouncer.dart';
+import 'package:flutter_folio/_utils/device_info.dart';
 import 'package:flutter_folio/_utils/easy_notifier.dart';
 import 'package:flutter_folio/_utils/universal_file/universal_file.dart';
 import 'package:flutter_folio/data/app_user.dart';
 import 'package:flutter_folio/models/books_model.dart';
 import 'package:flutter_folio/services/firebase/firebase_service.dart';
 import 'package:flutter_folio/themes.dart';
-import 'package:universal_platform/universal_platform.dart';
+
+import '../_utils/timed/debouncer.dart';
 
 abstract class AbstractModel extends EasyNotifier {}
 
@@ -17,11 +18,9 @@ class AppModel extends AbstractModel {
   static const kFileName = "app-model";
   static const kVersion = "1.1.4";
 
-  // Enable "isGuestUser" if we have no current user, but firebase has been assigned a userId, and we have a current book.
-  // This should cause the app to show a single scrap-board view, with read-only functionality.
-  bool get isGuestUser => hasUser == false && _firebase.userId != null && _booksModel.currentBook != null;
+  // Determines what the start value should be for touchMode, bases on the current device os
+  static bool defaultToTouchMode() => DeviceOS.isMobile;
 
-  static bool get _defaultTouchMode => UniversalPlatform.isIOS || UniversalPlatform.isAndroid;
   static AppTheme get _defaultTheme => AppTheme.fromType(ThemeType.Orange_Light);
 
   AppModel(this._booksModel, this._firebase) {
@@ -34,7 +33,7 @@ class AppModel extends AbstractModel {
   FirebaseService _firebase;
 
   /// Touch Mode (show btns instead of using right-click, use larger paddings)
-  bool _enableTouchMode = _defaultTouchMode;
+  bool _enableTouchMode = defaultToTouchMode();
   bool get enableTouchMode => _enableTouchMode;
   set enableTouchMode(bool value) {
     if (value == _enableTouchMode) return;
@@ -45,7 +44,7 @@ class AppModel extends AbstractModel {
   void reset() {
     _currentUser = null;
     _theme = _defaultTheme;
-    enableTouchMode = _defaultTouchMode;
+    enableTouchMode = defaultToTouchMode();
   }
 
   /// Startup
@@ -68,6 +67,10 @@ class AppModel extends AbstractModel {
   bool get hasUser => currentUser != null;
   bool get isAuthenticated => hasUser && isFirebaseSignedIn;
   String? get currentUserEmail => currentUser?.email;
+
+  // Enable "isGuestUser" if we have no current user, but firebase has been assigned a userId, and we have a current book.
+  // This should cause the app to show a single scrap-board view, with read-only functionality.
+  bool get isGuestUser => hasUser == false && _firebase.userId != null && _booksModel.currentBook != null;
 
   /// Settings
   // Current Theme
@@ -95,7 +98,7 @@ class AppModel extends AbstractModel {
 
   bool get canPopNav => _booksModel.currentBook != null;
 
-  void scheduleSave() => _saveDebouncer.call(save);
+  void scheduleSave() => _saveDebouncer.run(save);
 
   Future<void> save() async {
     print("Saving: $kFileName");

@@ -93,6 +93,7 @@ class ScrapPilePickerState extends State<ScrapPilePicker> with RawKeyboardListen
     if (scraps == null) return;
     // Mobile mode does not allow deletion, or insertion of images. So no need to select them.
     if (widget.mobileMode) return;
+    // Touch mode will handle multi-select differently
     bool touchMode = context.read<AppModel>().enableTouchMode;
     String id = scraps[index].documentId;
     // Use a utility method to handle the click, and return us a new set of ids

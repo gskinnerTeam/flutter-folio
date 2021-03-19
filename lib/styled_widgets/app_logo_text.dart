@@ -11,7 +11,7 @@ class AppLogoText extends StatelessWidget {
   Widget build(BuildContext context) {
     AppTheme theme = context.watch();
     Widget img = Image.asset(
-      "assets/images/logo-flutter-folio.png",
+      "assets/images/logos/flutterfolio-logo.png",
       fit: BoxFit.contain,
       color: color ?? theme.accent1,
       //TODO: Log bug for blurry image filtering on windows

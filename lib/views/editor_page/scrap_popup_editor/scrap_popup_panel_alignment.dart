@@ -53,13 +53,13 @@ class _AlignmentBtn extends StatelessWidget {
     return Expanded(
         child: SimpleBtn(
             onPressed: onPressed,
-            child: Container(
-                width: double.infinity,
-                height: 40,
-                child: MaterialIcon(
-                  icon,
-                  color: isSelected ? theme.greyStrong : theme.grey,
-                  size: 26,
-                ))));
+            ignoreDensity: false,
+            child: Center(
+              child: MaterialIcon(
+                icon,
+                color: isSelected ? theme.greyStrong : theme.grey,
+                size: 22,
+              ),
+            )));
   }
 }

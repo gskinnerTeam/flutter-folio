@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -18,8 +17,6 @@ class Times {
 class Sizes {
   static double hitScale = 1;
   static double get hit => 40 * hitScale;
-  static const double smallPhone = 500;
-  static const double largePhone = 700;
 }
 
 class IconSizes {

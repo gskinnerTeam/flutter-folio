@@ -1,10 +1,42 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_folio/core_packages.dart';
 import 'package:universal_platform/universal_platform.dart';
 
-class DeviceInfo {
-  static bool get isDesktop => UniversalPlatform.isWindows || UniversalPlatform.isMacOS || UniversalPlatform.isLinux;
+enum FormFactorType { Monitor, SmallPhone, LargePhone, Tablet }
 
-  static bool get isDesktopOrWeb => isDesktop || kIsWeb == true;
+class DeviceOS {
+  // Syntax sugar, proxy the UniversalPlatform methods so our views can reference a single class
+  static bool isIOS = UniversalPlatform.isIOS;
+  static bool isAndroid = UniversalPlatform.isAndroid;
+  static bool isMac = UniversalPlatform.isMacOS;
+  static bool isLinux = UniversalPlatform.isLinux;
+  static bool isWindows = UniversalPlatform.isWindows;
 
-  static bool get isMobile => !isDesktopOrWeb;
+  // Higher level device class abstractions (more syntax sugar for the views)
+  static bool isWeb = kIsWeb;
+  static bool get isDesktop => isWindows || isMac || isLinux;
+  static bool get isMobile => isAndroid || isIOS;
+  static bool get isDesktopOrWeb => isDesktop || isWeb;
+  static bool get isMobileOrWeb => isMobile || isWeb;
+}
+
+class DeviceScreen {
+  // Get the device form factor as best we can.
+  // Otherwise we will use the screen size to determine which class we fall into.
+  static FormFactorType get(BuildContext context) {
+    double size = context.widthPx;
+    print(size);
+    if (context.widthPx <= 400) return FormFactorType.SmallPhone;
+    if (context.widthPx <= 600) return FormFactorType.LargePhone;
+    if (context.widthPx <= 1200) return FormFactorType.Tablet;
+    return FormFactorType.Monitor;
+  }
+
+  // Shortcuts for various mobile device types
+  static bool isPhone(BuildContext context) => isSmallPhone(context) || isLargePhone(context);
+  static bool isTablet(BuildContext context) => get(context) == FormFactorType.Tablet;
+  static bool isMonitor(BuildContext context) => get(context) == FormFactorType.Monitor;
+  static bool isSmallPhone(BuildContext context) => get(context) == FormFactorType.SmallPhone;
+  static bool isLargePhone(BuildContext context) => get(context) == FormFactorType.LargePhone;
 }

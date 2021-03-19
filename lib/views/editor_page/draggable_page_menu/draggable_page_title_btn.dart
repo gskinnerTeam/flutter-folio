@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_utils/color_utils.dart';
-import 'package:flutter_folio/_utils/debouncer.dart';
 import 'package:flutter_folio/_widgets/context_menu_overlay.dart';
 import 'package:flutter_folio/commands/books/delete_page_command.dart';
 import 'package:flutter_folio/commands/books/update_page_command.dart';
 import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/data/book_data.dart';
 import 'package:flutter_folio/models/app_model.dart';
+
+import '../../../_utils/timed/debouncer.dart';
 
 class DraggablePageTitleBtn extends StatefulWidget {
   const DraggablePageTitleBtn(
@@ -36,7 +37,7 @@ class _DraggablePageTitleBtnState extends State<DraggablePageTitleBtn> {
   @override
   Widget build(BuildContext context) {
     void _handleTitleChanged(String value) {
-      _textDebounce.call(() {
+      _textDebounce.run(() {
         UpdatePageCommand().run(widget.page.copyWith(title: value));
       });
     }
@@ -55,7 +56,7 @@ class _DraggablePageTitleBtnState extends State<DraggablePageTitleBtn> {
     }
 
     bool touchMode = context.select((AppModel m) => m.enableTouchMode);
-    double tileHeight = 48;
+
     AppTheme theme = context.watch();
     String label = widget.page.title;
     // Create the highlight color
@@ -64,7 +65,7 @@ class _DraggablePageTitleBtnState extends State<DraggablePageTitleBtn> {
       // Blend some accent color onto our bg color
       bgColor = ColorUtils.blend(bgColor, theme.accent1, .15);
     }
-    Widget bgWidget = Container(color: bgColor, width: 250, height: tileHeight);
+    Widget bgWidget = Container(color: bgColor, width: 250, height: widget.height);
 
     Widget innerContent = Stack(children: [
       /// In mouse mode, our background is draggable, in touch mode its not because we want the list itself to be scrollable.

@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/_utils/debouncer.dart';
 import 'package:flutter_folio/_utils/string_utils.dart';
 import 'package:flutter_folio/_widgets/app_image.dart';
 import 'package:flutter_folio/_widgets/context_menu_overlay.dart';
@@ -12,6 +11,8 @@ import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/data/book_data.dart';
 import 'package:flutter_folio/styled_widgets/emoji.dart';
 import 'package:flutter_folio/views/editor_page/placed_scrap_keyboard_listener.dart';
+
+import '../../_utils/timed/debouncer.dart';
 
 class PlacedScrapRenderer extends StatelessWidget {
   const PlacedScrapRenderer(
@@ -111,7 +112,7 @@ class _TextBoxState extends State<_TextBox> {
       PlacedScrapItem newItem = widget.item.copyWith(data: value);
       UpdatePageScrapCommand().run(newItem, localOnly: true);
       // Debounce db update
-      textChangedDebounce.call(() => UpdatePageScrapCommand().run(newItem));
+      textChangedDebounce.run(() => UpdatePageScrapCommand().run(newItem));
       setState(() => _txtValue = value);
     }
 
@@ -135,7 +136,7 @@ class _TextBoxState extends State<_TextBox> {
                     align: textAlign,
                     width: constraints.maxWidth,
                     promptText: promptText,
-                    maxLines: numLines ?? 1,
+                    maxLines: 99,
                     enableContextMenu: false,
                     onFocusOut: _handleTextChanged,
                     // SB: Due to a bug in Flutter where we were missing focusOut events, we're saving on every keystroke for this editor.// TODO: Try and get reproduction steps for this...
@@ -144,10 +145,14 @@ class _TextBoxState extends State<_TextBox> {
                   )
                 : Container(
                     alignment: Alignment.center,
-                    child: Text(StringUtils.defaultOnEmpty(widget.item.data, promptText),
-                        style: style.copyWith(fontSize: size, fontFamily: boxFontToFamily(widget.item.boxStyle?.font)),
-                        maxLines: numLines,
-                        textAlign: textAlign),
+                    child: Container(
+                      width: double.infinity,
+                      child: Text(StringUtils.defaultOnEmpty(widget.item.data, promptText),
+                          style:
+                              style.copyWith(fontSize: size, fontFamily: boxFontToFamily(widget.item.boxStyle?.font)),
+                          maxLines: 99,
+                          textAlign: textAlign),
+                    ),
                   );
           },
           style: TextStyle(fontSize: 999, letterSpacing: 0, height: 1.25),

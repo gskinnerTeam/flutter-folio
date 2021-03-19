@@ -41,14 +41,11 @@ class _ScrapPopupEditorState extends State<ScrapPopupEditor> {
   @override
   Widget build(BuildContext context) {
     AppTheme theme = context.watch();
-    timeDilation = 1;
-    double row1Height = 70;
-    double row2Height = 40;
-    double row3Height = 50;
     bool isTouchMode = context.select((AppModel m) => m.enableTouchMode);
-    if (isTouchMode == false) {
-      row3Height = 0;
-    }
+    timeDilation = 1;
+    double row1Height = isTouchMode ? 70 : 60;
+    double row2Height = isTouchMode ? 50 : 40;
+    double row3Height = isTouchMode ? 40 : 25;
     bool isImage = widget.scrap.contentType == ContentType.Emoji || widget.scrap.contentType == ContentType.Photo;
     if (isImage) {
       row1Height = 0;

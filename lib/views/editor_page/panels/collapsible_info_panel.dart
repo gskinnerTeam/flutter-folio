@@ -25,8 +25,7 @@ class _CollapsibleInfoPanelState extends State<CollapsibleInfoPanel> {
       height: widget.height,
       title: "Folio Information",
       titleClosed: _book?.title ?? "",
-      icon: IconBtn(Icons.share,
-          padding: EdgeInsets.all(Insets.sm + 1), color: theme.greyStrong, onPressed: _handleSharePressed),
+      icon: IconBtn(Icons.share, ignoreDensity: false, color: theme.greyStrong, onPressed: _handleSharePressed),
       child: Padding(
         padding: EdgeInsets.all(Insets.lg).copyWith(top: Insets.med),
         child: Container(

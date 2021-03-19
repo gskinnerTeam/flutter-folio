@@ -23,7 +23,7 @@ class ScrapPilePickerTitleBar extends StatelessWidget {
     return AnimatedPadding(
       curve: Curves.easeOut,
       duration: Times.fast,
-      padding: EdgeInsets.symmetric(horizontal: Insets.med, vertical: touchMode ? Insets.sm : Insets.lg),
+      padding: EdgeInsets.symmetric(horizontal: Insets.med, vertical: Insets.lg),
       child: Stack(
         children: [
           if (mobileMode == false)
@@ -41,7 +41,9 @@ class ScrapPilePickerTitleBar extends StatelessWidget {
                     onPressed: onClosePressed)
               ],
             ),
-          Center(child: UiText(title, style: TextStyles.title1))
+          Positioned.fill(
+            child: Center(child: UiText(title, style: TextStyles.title1)),
+          )
         ],
       ),
     );

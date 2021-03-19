@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_folio/core_packages.dart';
 
 import 'popover_notifications.dart';
 
@@ -33,7 +34,7 @@ class PopOverControllerState extends State<PopOverController> {
 
   bool get isBarrierOpen => barrierOverlay != null;
 
-  void _closeOverlay() {
+  void closeCurrent() {
     _sizeNotifier.value = null;
     barrierOverlay?.remove();
     mainContentOverlay?.remove();
@@ -43,7 +44,8 @@ class PopOverControllerState extends State<PopOverController> {
   bool _handleNotification(Notification n) {
     // Close any open popovers
     if (n is ClosePopoverNotification) {
-      _closeOverlay();
+      safePrint("PopoverController: _closeOverlay");
+      closeCurrent();
       return true;
     }
     // Show a new popover
@@ -52,15 +54,15 @@ class PopOverControllerState extends State<PopOverController> {
       n.onContextHandled?.call(this);
 
       //Close existing popOver if one is open
-      _closeOverlay();
+      closeCurrent();
 
       // Use Barrier? Hovers and Toasts don't user barriers, ClickOvers do
       if (n.useBarrier) {
         OverlayEntry b = OverlayEntry(
           builder: (_) {
             return GestureDetector(
-              onTap: n.dismissOnBarrierClick ? _closeOverlay : null,
-              onPanStart: n.dismissOnBarrierClick ? (_) => _closeOverlay() : null,
+              onTap: n.dismissOnBarrierClick ? closeCurrent : null,
+              onPanStart: n.dismissOnBarrierClick ? (_) => closeCurrent() : null,
               child: Container(color: n.barrierColor),
             );
           },
@@ -80,12 +82,12 @@ class PopOverControllerState extends State<PopOverController> {
             child: ValueListenableBuilder<Size?>(
                 valueListenable: _sizeNotifier,
                 builder: (_, size, __) {
+                  // Guard against null size
+                  size ??= Size(0, 0);
                   // Calculate the normalized offset, from a top-left starting point
                   // This means a top-left align is 0,0, and bottom-right is -1,-1 as we shift left and up
                   double ox = -(n.popAnchor.x + 1) / 2; // Normalize from 0-1
                   double oy = -(n.popAnchor.y + 1) / 2; // Normalize from 0-1
-                  // Guard against null size
-                  size ??= Size.zero;
                   print("BUILD OVERLAY: $size");
                   return CompositedTransformFollower(
                     offset: Offset(ox * size.width, oy * size.height),
@@ -106,6 +108,7 @@ class PopOverControllerState extends State<PopOverController> {
           ),
         );
       });
+      safePrint("PopoverController: insert overlay");
       Overlay.of(n.context)?.insert(content);
       mainContentOverlay = content;
       return true;

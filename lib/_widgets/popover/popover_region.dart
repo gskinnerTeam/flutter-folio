@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_folio/_utils/safe_print.dart';
 import 'package:flutter_folio/styled_widgets/buttons/styled_buttons.dart';
 
 import 'popover_controller.dart';
@@ -116,19 +117,13 @@ class PopOverRegionState extends State<PopOverRegion> {
         opaque: true,
         onEnter: (_) {
           _timer?.cancel();
-          _timer = Timer.periodic(Duration(milliseconds: 400), (timer) {
+          _timer = Timer.periodic(Duration(milliseconds: 400), (_) {
+            safePrint("PopoverRegion: Show!");
             show();
-            timer.cancel();
+            _timer?.cancel();
           });
         },
-        onExit: (_) {
-          _timer?.cancel();
-          // Don't close if the overlay is open, it means we've been replaced by a Click action.
-          if (_popContext?.isBarrierOpen == false) {
-            ClosePopoverNotification().dispatch(context);
-            _popContext = null;
-          }
-        },
+        onExit: (_) => hide(),
         child: widget.child,
       );
     } else {
@@ -137,8 +132,18 @@ class PopOverRegionState extends State<PopOverRegion> {
     return CompositedTransformTarget(link: _link, child: content);
   }
 
+  @override
+  void dispose() {
+    hide();
+    super.dispose();
+  }
+
   void show() {
-    if (mounted == false) return;
+    if (mounted == false) {
+      safePrint("PopoverRegion: Exiting early not mounted anymore");
+      return;
+    }
+    safePrint("PopoverRegion: Sending notification...");
     ShowPopOverNotification(
             // Send context with the notification, so the Overlay can use it to send more messages in the future.
             context,
@@ -158,4 +163,15 @@ class PopOverRegionState extends State<PopOverRegion> {
   }
 
   void _handleContextHandled(PopOverControllerState value) => _popContext = value;
+
+  void hide() {
+    _timer?.cancel();
+    // Don't close if the overlay is open, it means we've been replaced by a Click action.
+    if (_popContext != null && _popContext!.isBarrierOpen == false) {
+      _popContext?.closeCurrent();
+    } else {
+      // safePrint(
+      //     "PopoverRegion: Hide on exit was skipped, context: $_popContext, isOpen: ${_popContext?.isBarrierOpen}");
+    }
+  }
 }

@@ -8,7 +8,6 @@ import 'package:flutter_folio/commands/books/create_placed_scraps_command.dart';
 import 'package:flutter_folio/commands/books/delete_scraps_command.dart';
 import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/data/book_data.dart';
-import 'package:flutter_folio/models/app_model.dart';
 import 'package:flutter_folio/views/scrap_pile_picker/scrap_pile_picker.dart';
 
 class ContentPickerScrapsPanel extends StatefulWidget {
@@ -27,7 +26,6 @@ class _ContentPickerScrapsPanelState extends State<ContentPickerScrapsPanel> wit
   GlobalKey<ScrapPilePickerState> _scrapPileGridKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
-    bool touchMode = context.select((AppModel m) => m.enableTouchMode);
     bool isPageSelected = StringUtils.isNotEmpty(widget.pageId);
     bool enableSaveImageAsBtn = SaveImageToDiskCommand.canUse;
     return Visibility(
@@ -67,7 +65,7 @@ class _ContentPickerScrapsPanelState extends State<ContentPickerScrapsPanel> wit
                   child: AnimatedContainer(
                     duration: Times.fast,
                     curve: Curves.easeOut,
-                    padding: EdgeInsets.all(touchMode ? Insets.med : Insets.lg),
+                    padding: EdgeInsets.all(Insets.med),
                     child: _PanelBottomBar(
                       selectionCount: _selectedItems.length,
                       onAddPressed: isPageSelected ? _handleAddPressed : null,
