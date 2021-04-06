@@ -1,165 +1,128 @@
 // @dart=2.12
-import 'package:email_validator/email_validator.dart';
+import 'dart:math';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/_utils/input_utils.dart';
-import 'package:flutter_folio/_widgets/context_menu_overlay.dart';
-import 'package:flutter_folio/_widgets/flexibles/seperated_flexibles.dart';
-import 'package:flutter_folio/_widgets/mixins/loading_state_mixin.dart';
-import 'package:flutter_folio/commands/app/authenticate_user_command.dart';
+import 'package:flutter_folio/_widgets/animated/animated_scale.dart';
 import 'package:flutter_folio/core_packages.dart';
-import 'package:flutter_folio/styled_widgets/styled_load_spinner.dart';
 
-class AuthPage extends StatefulWidget {
-  @override
-  _AuthPageState createState() => _AuthPageState();
-}
+import 'auth_form.dart';
 
-enum _AuthFormMode { CreateAccount, SignIn }
-
-class _AuthPageState extends State<AuthPage> with LoadingStateMixin {
-  _AuthFormMode _formMode = _AuthFormMode.SignIn;
-  _AuthFormMode get formMode => _formMode;
-  set formMode(_AuthFormMode formMode) => setState(() => _formMode = formMode);
-
-  String _errorText = "";
-  String get errorText => _errorText;
-  set errorText(String errorText) => setState(() => _errorText = errorText);
-
-  late TextEditingController _emailController;
-  late TextEditingController _passController;
-
-  // Provided quick login for devs
-  bool enableDebugLogin = kDebugMode && true;
-  String get _defaultEmail => enableDebugLogin ? "shawn@test.com" : "";
-  String get _defaultPass => enableDebugLogin ? "password" : "";
-  bool get enableSubmit {
-    return EmailValidator.validate(_emailController.text) && _passController.text.length >= 6;
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _emailController = TextEditingController(text: _defaultEmail);
-    _passController = TextEditingController(text: _defaultPass);
-  }
-
-  @override
-  void dispose() {
-    _emailController.dispose();
-    _passController.dispose();
-    super.dispose();
-  }
-
+class AuthPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    AppTheme theme = context.watch();
-    bool isCreatingAccount = formMode == _AuthFormMode.CreateAccount;
-    String submitLabel = isCreatingAccount ? "Create Account" : "Sign In";
-    String switchLabel = isCreatingAccount ? "Already have an account?" : "Create an account?";
-    return Stack(
+    bool portraitMode = context.widthPx < 800;
+    // Calculate how wide or tall we want the form to be. Use golden ratio for nice aesthetics.
+    double formWidth = max(500, context.widthPx - context.widthPx / 1.618);
+    double formHeight = max(500, context.heightPx - context.heightPx / 1.618);
+    return Flex(
+      // Switch from row to column when in portrait mode
+      direction: portraitMode ? Axis.vertical : Axis.horizontal,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        ContextMenuRegion(isEnabled: kIsWeb == false, contextMenu: AppContextMenu(), child: Container()),
-        Center(
-          child: IntrinsicHeight(
-            child: Container(
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  border: Border(
-                    top: BorderSide(color: theme.grey, width: 1),
-                    bottom: BorderSide(color: theme.grey, width: 1),
-                  )),
-              width: double.infinity,
-              height: 400,
-              padding: EdgeInsets.symmetric(vertical: Insets.lg, horizontal: Insets.med),
-              child: AnimatedSwitcher(
-                duration: Times.fast,
-                child: AutofillGroup(
-                  key: ValueKey(formMode),
-                  child: Form(
-                    child: ConstrainedBox(
-                      constraints: BoxConstraints(maxWidth: 300),
-                      child: SeparatedColumn(
-                        separatorBuilder: () => VSpace.med,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          UiText(submitLabel.toUpperCase(), style: TextStyles.title1),
-                          if (isCreatingAccount) ...[
-                            UiText(
-                              "Please enter a valid email and a  password that is at least 6 characters.",
-                              style: TextStyles.body2,
-                            ),
-                          ],
-                          // Email
-                          LabeledTextInput(
-                            onSubmit: (_) => _handleSubmitPressed(),
-                            controller: _emailController,
-                            autoFocus: true,
-                            style: TextStyles.body1,
-                            hintText: "Email",
-                            autofillHints: [AutofillHints.email, AutofillHints.username],
-                            onChanged: (value) => setState(() {}),
-                          ),
-                          // PASS
-                          LabeledTextInput(
-                            onSubmit: (_) => _handleSubmitPressed(),
-                            controller: _passController,
-                            style: TextStyles.body1,
-                            hintText: "Password",
-                            autofillHints: [AutofillHints.password],
-                            onChanged: (value) => setState(() {}),
-                            obscureText: true,
-                          ),
-                          // ERROR MSG
-                          if (_errorText.isNotEmpty) ...[
-                            UiText(errorText, style: TextStyle(color: Colors.red.shade800)),
-                          ],
-                          // SUBMIT BTN
-                          isLoading
-                              ? StyledLoadSpinner()
-                              : PrimaryBtn(
-                                  onPressed: enableSubmit ? _handleSubmitPressed : null,
-                                  child: Container(
-                                      alignment: Alignment.center,
-                                      width: 200,
-                                      child: Text(submitLabel.toUpperCase(), style: TextStyles.callout1)),
-                                ),
-                          // SWITCH MODE BTN
-                          TextBtn(switchLabel, onPressed: _handleSwitchViewPressed),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
+        // Let the device screen be flexible
+        Flexible(
+          child: _DeviceScreens(portraitMode && false),
+        ),
+        // Control the size of the form with a SizedBox
+        SizedBox(
+          width: formWidth,
+          height: formHeight,
+          child: AuthForm(),
         ),
       ],
     );
   }
+}
 
-  void _handleSubmitPressed() async {
-    if (enableSubmit == false) return;
-    errorText = "";
-    bool success = await load(() async => await AuthenticateUserCommand().run(
-          email: _emailController.text,
-          pass: _passController.text,
-          createNew: formMode == _AuthFormMode.CreateAccount,
-        ));
-    if (!success) {
-      errorText = formMode == _AuthFormMode.SignIn
-          ? "Sign in failed. Double check your email and password."
-          : "Unable to create an account, that email is already in use.";
-    }
+class _DeviceScreens extends StatelessWidget {
+  const _DeviceScreens(this.portraitMode, {Key? key}) : super(key: key);
+  final bool portraitMode;
+
+  @override
+  Widget build(BuildContext context) {
+    AppTheme theme = context.watch();
+    return ClipRRect(
+      child: Container(
+        color: theme.greyWeak,
+        width: double.infinity,
+        alignment: Alignment.center,
+        child: LayoutBuilder(
+          builder: (_, constraints) {
+            double offsetX = 0, offsetY = 0;
+            double width = portraitMode ? 500 : 1200;
+            double height = 1000;
+            List<Widget> images;
+            // if (portraitMode) {
+            //   images = [
+            //     _LandingPageImage("dashedLine-mobile.png", Offset(0, 0), height: 250, scaleOnHover: false),
+            //     // _LandingPageImage("tablet.png", Offset(0, 50), height: 350),
+            //     // _LandingPageImage("phone.png", Offset(50, 500), height: 650),
+            //     // _LandingPageImage("web.png", Offset(440, 600), height: 500),
+            //     // _LandingPageImage("laptop.png", Offset(550, 100), height: 400),
+            //   ];
+            // } else {
+            if (constraints.maxWidth < width) {
+              offsetX = -(width - constraints.maxWidth) / 2;
+            }
+            images = [
+              _LandingPageImage("dashedLine-desktop.png", Offset(180, -400), height: 1300, scaleOnHover: false),
+              _LandingPageImage("tablet.png", Offset(0, 50), height: 350),
+              _LandingPageImage("phone.png", Offset(50, 500), height: 650),
+              _LandingPageImage("web.png", Offset(440, 600), height: 500),
+              _LandingPageImage("laptop.png", Offset(550, 100), height: 400),
+            ];
+            // }
+            return Transform.translate(
+              offset: Offset(offsetX, offsetY),
+              child: SizedBox(
+                width: width,
+                height: height,
+                child: Stack(clipBehavior: Clip.none, children: images),
+              ),
+            );
+          },
+        ),
+      ),
+    );
   }
+}
 
-  void _handleSwitchViewPressed() {
-    errorText = "";
-    bool isCreatingAccount = formMode == _AuthFormMode.CreateAccount;
-    formMode = isCreatingAccount ? _AuthFormMode.SignIn : _AuthFormMode.CreateAccount;
-    _emailController.text = "";
-    _passController.text = "";
-    InputUtils.unFocus();
+class _LandingPageImage extends StatelessWidget {
+  _LandingPageImage(this.imagePath, this.offset, {Key? key, required this.height, this.scaleOnHover = true})
+      : super(key: key);
+  final Offset offset;
+  final String imagePath;
+  final double height;
+  final bool scaleOnHover;
+  final ValueNotifier<bool> _isMouseOverNotifier = ValueNotifier(false);
+
+  @override
+  Widget build(BuildContext context) {
+    return ValueListenableBuilder(
+      valueListenable: _isMouseOverNotifier,
+      builder: (_, bool isMouseOver, __) {
+        double scale = isMouseOver ? 1.05 : 1;
+        return Positioned(
+          left: offset.dx,
+          top: offset.dy,
+          height: height,
+          child: AnimatedScale(
+            begin: 1,
+            end: scale,
+            duration: Times.fast,
+            curve: Curves.easeOut,
+            child: MouseRegion(
+              onEnter: (_) => _isMouseOverNotifier.value = true && scaleOnHover,
+              onExit: (_) => _isMouseOverNotifier.value = false,
+              child: Image.asset(
+                "assets/images/landing_page/$imagePath",
+                fit: BoxFit.fitHeight,
+              ),
+            ),
+          ),
+        );
+      },
+    );
   }
 }
