@@ -6,10 +6,8 @@ import 'package:flutter_folio/services/cloudinary/cloud_storage_service.dart';
 import 'package:flutter_folio/services/firebase/firebase_service.dart';
 import 'package:flutter_folio/styles.dart';
 import 'package:flutter_folio/themes.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
-FToast? _fToast;
 BuildContext? _mainContext;
 BuildContext get mainContext => _mainContext!;
 bool get hasContext => _mainContext != null;
@@ -17,10 +15,6 @@ bool get hasContext => _mainContext != null;
 /// Someone needs to call this so our Commands can access models and services. Usually main_view.dart
 void setContext(BuildContext c) {
   _mainContext = c;
-  if (_fToast == null) {
-    _fToast = FToast();
-    _fToast?.init(_mainContext!);
-  }
 }
 
 class BaseAppCommand {
@@ -38,22 +32,12 @@ class BaseAppCommand {
   AppModel get appModel => getProvided();
   BooksModel get booksModel => getProvided();
 
-  void showToast(String content, {bool allowQueue = false}) {
-    TextStyle textStyle = TextStyles.caption.copyWith(color: appModel.theme.inverseTextColor);
-    if (allowQueue == false) _fToast?.removeQueuedCustomToasts();
-    _fToast?.showToast(
-      toastDuration: Duration(milliseconds: 1500),
-      gravity: ToastGravity.TOP,
-      child: Container(
-          padding: EdgeInsets.only(top: Insets.offset),
-          child: Container(
-            decoration: BoxDecoration(
-              color: appModel.theme.greyStrong,
-              borderRadius: Corners.medBorder,
-            ),
-            padding: EdgeInsets.all(Insets.sm),
-            child: Text(content, style: textStyle),
-          )),
-    );
+  void showToast(String content) {
+    TextStyle textStyle = TextStyles.body2.copyWith(color: appModel.theme.inverseTextColor);
+    ScaffoldMessenger.of(mainContext).clearSnackBars();
+    ScaffoldMessenger.of(mainContext).showSnackBar(SnackBar(
+        behavior: SnackBarBehavior.floating,
+        duration: Duration(milliseconds: 1700),
+        content: Container(padding: EdgeInsets.all(Insets.sm), child: Text(content, style: textStyle))));
   }
 }

@@ -26,13 +26,13 @@ dependencies:
   email_validator: ^2.0.1
   enum_to_string: ^2.0.0-nullsafety.1
   flutter_lorem: ^2.0.0
+  flextras: ^0.0.1
   file_selector: ^0.8.2
   file_selector_windows: ^0.0.2
   file_selector_macos: ^0.0.4
   file_selector_linux: ^0.0.2
   file_selector_web: ^0.8.1
   flutter_svg: ^0.21.0-nullsafety.0
-  fluttertoast: ^8.0.1-nullsafety.0
   image_picker: ^0.7.2
   image_size_getter:
     git:
@@ -87,14 +87,13 @@ flutter_icons:
   image_path: source-assets/app-flutter-folio.png
 
 flutter:
-
+  uses-material-design: true
   assets:
     - assets/images/
     - assets/images/icons/
     - assets/images/emoji/
     - assets/images/logos/
-
-  uses-material-design: true
+    - assets/images/landing_page/
 
   fonts:
     - family: Fraunces
