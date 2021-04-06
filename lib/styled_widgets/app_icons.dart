@@ -16,7 +16,9 @@ enum AppIcons {
   toggle_carousel,
   toggle_list,
   trashcan,
-  view
+  view,
+  github,
+  website
 }
 
 class AppIcon extends StatelessWidget {
@@ -27,11 +29,13 @@ class AppIcon extends StatelessWidget {
   const AppIcon(this.icon, {Key? key, required this.size, required this.color}) : super(key: key);
   Widget build(BuildContext c) {
     String i = describeEnum(icon).toLowerCase().replaceAll("_", "-");
+    String path = 'assets/images/icons/' + i + '.png';
+    print(path);
     return Container(
       width: size,
       height: size,
       child: Center(
-        child: Image.asset('assets/images/icons/' + i + '.png', width: size, height: size, color: color),
+        child: Image.asset(path, width: size, height: size, color: color, filterQuality: FilterQuality.high),
       ),
     );
   }
