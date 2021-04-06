@@ -53,8 +53,10 @@ class _LabeledTextInputState extends State<LabeledTextInput> {
           ],
           // TextField
           TextFormField(
+            controller: widget.controller,
             autofillHints: widget.autofillHints,
             onFieldSubmitted: widget.onSubmit,
+            onChanged: widget.onChanged,
             initialValue: widget.text,
             style: widget.style ?? TextStyles.body2,
             autofocus: widget.autoFocus,
