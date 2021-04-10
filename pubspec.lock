@@ -539,12 +539,10 @@ packages:
   hashcodes:
     dependency: transitive
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: f610f8318bce845b2b76bf49a9beb45d44972d22
-      url: "git://github.com/gskinnerTeam/dart_hashcodes.git"
-    source: git
-    version: "2.0.0-nullsafety"
+      name: hashcodes
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
   http:
     dependency: transitive
     description:
@@ -597,12 +595,10 @@ packages:
   image_size_getter:
     dependency: "direct main"
     description:
-      path: library
-      ref: HEAD
-      resolved-ref: "50a70a0a325fde5ef58a31e28836ae6960f5a00c"
-      url: "git://github.com/gskinnerTeam/dart_image_size_getter.git"
-    source: git
-    version: "1.0.0-nullsafety"
+      name: image_size_getter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   intl:
     dependency: transitive
     description:
@@ -652,15 +648,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.12.10"
-  menubar:
-    dependency: "direct main"
-    description:
-      path: "plugins/menubar"
-      ref: "040f36c82b63e8764ec2fd97066767503a667b6d"
-      resolved-ref: "040f36c82b63e8764ec2fd97066767503a667b6d"
-      url: "git://github.com/google/flutter-desktop-embedding.git"
-    source: git
-    version: "0.1.0"
   meta:
     dependency: transitive
     description:
@@ -781,7 +768,7 @@ packages:
     source: hosted
     version: "3.0.0"
   plugin_platform_interface:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
       name: plugin_platform_interface
       url: "https://pub.dartlang.org"
@@ -931,7 +918,7 @@ packages:
       name: source_span
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.8.0"
+    version: "1.8.1"
   sqflite:
     dependency: transitive
     description:

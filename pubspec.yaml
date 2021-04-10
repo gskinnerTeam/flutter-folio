@@ -34,16 +34,8 @@ dependencies:
   file_selector_web: ^0.8.1
   flutter_svg: ^0.21.0-nullsafety.0
   image_picker: ^0.7.2
-  image_size_getter:
-    git:
-      url: git://github.com/gskinnerTeam/dart_image_size_getter.git
-      path: library
+  image_size_getter: ^1.0.0
   multi_image_picker: ^4.8.00
-  menubar:
-    git:
-      url: git://github.com/google/flutter-desktop-embedding.git
-      path: plugins/menubar
-      ref: 040f36c82b63e8764ec2fd97066767503a667b6d
   path_provider: ^2.0.1
   provider: ^5.0.0
   random_color: ^1.0.6-nullsafety
@@ -64,9 +56,6 @@ dependencies:
   firebase_core: ^1.0.1
   firebase_auth: ^1.0.1
   cloud_firestore: ^1.0.1
-
-dependency_overrides:
-  plugin_platform_interface: ^2.0.0
 
 dev_dependencies:
   # sample build cmd

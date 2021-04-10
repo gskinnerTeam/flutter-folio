@@ -6,7 +6,6 @@ list(APPEND FLUTTER_PLUGIN_LIST
   bitsdojo_window_linux
   desktop_window
   file_selector_linux
-  menubar
   url_launcher_linux
 )
 
