@@ -94,9 +94,10 @@ class _AuthFormState extends State<AuthForm> with LoadingStateMixin {
                             Spacer(),
 
                             /// Title
-                            UiText(headerText,
-                                style:
-                                    TextStyles.h2.copyWith(color: theme.accent1, fontSize: reduceTextSize ? 36 : 46)),
+                            UiText(
+                              headerText,
+                              style: TextStyles.h2.copyWith(color: theme.accent1, fontSize: reduceTextSize ? 36 : 46),
+                            ),
                             VSpace.med,
 
                             /// Desc
@@ -162,13 +163,21 @@ class _AuthFormState extends State<AuthForm> with LoadingStateMixin {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 UiText("Learn more about Flutter Folio"),
-                                SimpleBtn(
-                                  child: AppIcon(AppIcons.website, color: theme.greyStrong, size: 24),
-                                  onPressed: _handleWebsitePressed,
+                                ContextMenuRegion(
+                                  contextMenu: LinkContextMenu(
+                                    url: 'https://github.com/gskinnerTeam/flutter-folio',
+                                  ),
+                                  child: SimpleBtn(
+                                    child: AppIcon(AppIcons.website, color: theme.greyStrong, size: 24),
+                                    onPressed: _handleWebsitePressed,
+                                  ),
                                 ),
-                                SimpleBtn(
-                                  child: AppIcon(AppIcons.github, color: theme.greyStrong, size: 24),
-                                  onPressed: _handleGitPressed,
+                                ContextMenuRegion(
+                                  contextMenu: LinkContextMenu(url: "https://flutter.gskinner.com"),
+                                  child: SimpleBtn(
+                                    child: AppIcon(AppIcons.github, color: theme.greyStrong, size: 24),
+                                    onPressed: _handleGitPressed,
+                                  ),
                                 ),
                               ],
                             ),
