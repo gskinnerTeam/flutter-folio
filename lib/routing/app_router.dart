@@ -42,7 +42,7 @@ class AppRouterDelegate extends RouterDelegate<AppLink> with ChangeNotifier {
 
   // Return a navigator, configured to match the current app state
   Widget build(BuildContext context) {
-    safePrint("RouterDelegate.build()");
+    //safePrint("RouterDelegate.build()");
     // Bind to the app state we care about
     bool hasBootstrapped = appModel.hasBootstrapped;
     bool hasSetInitialRoute = appModel.hasSetInitialRoute;
@@ -118,7 +118,7 @@ class AppRouterDelegate extends RouterDelegate<AppLink> with ChangeNotifier {
   // The OS is asking us to change our location.
   // If we choose, we can update the app state to match the request from the OS.
   Future<void> setNewRoutePath(AppLink newLink) async {
-    safePrint("setNewRoutePath: ${newLink.toLocation()}");
+    //safePrint("setNewRoutePath: ${newLink.toLocation()}");
 
     // If we've been passed a .user that is not us, then logout, we'll enter guest mode for another user...
     if (newLink.user != null && newLink.user != appModel.currentUserEmail) {

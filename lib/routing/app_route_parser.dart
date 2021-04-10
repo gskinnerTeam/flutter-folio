@@ -9,8 +9,8 @@ class AppRouteParser extends RouteInformationParser<AppLink> {
   // Take a url bar location, and create an AppLink from it
   Future<AppLink> parseRouteInformation(RouteInformation routeInformation) async {
     AppLink link = AppLink.fromLocation(routeInformation.location);
-    safePrint("parseRouteInfo: ${routeInformation.location} == ${link.toLocation()}");
-    safePrint("link.user=${link.user},link.pageId=${link.pageId},link.bookId=${link.bookId},");
+    //safePrint("parseRouteInfo: ${routeInformation.location} == ${link.toLocation()}");
+    //safePrint("link.user=${link.user},link.pageId=${link.pageId},link.bookId=${link.bookId},");
     return link;
   }
 
@@ -19,7 +19,7 @@ class AppRouteParser extends RouteInformationParser<AppLink> {
   RouteInformation restoreRouteInformation(AppLink appLink) {
     // Ask the applink to give us a string
     String location = appLink.toLocation();
-    safePrint("restoreRouteInfo: $location");
+    //safePrint("restoreRouteInfo: $location");
     // Pass that string back to the OS so it can update the url bar
     return RouteInformation(location: location);
   }

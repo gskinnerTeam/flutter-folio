@@ -60,9 +60,7 @@ dependencies:
   desktop_window: ^0.4.0
   xdg_directories: ^0.2.0
   # FIREBASE
-  firedart:
-    git:
-      url: git://github.com/gskinnerTeam/firedart.git
+  firedart: ^0.9.0+1
   firebase_core: ^1.0.1
   firebase_auth: ^1.0.1
   cloud_firestore: ^1.0.1

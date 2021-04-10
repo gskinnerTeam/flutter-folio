@@ -13,8 +13,8 @@ class DartFirebaseService extends FirebaseService {
   final String projectId;
   bool _isSignedIn = false;
 
-  Firestore get firestore => Firestore.instance!;
-  FirebaseAuth get fireauth => FirebaseAuth.instance!;
+  Firestore get firestore => Firestore.instance;
+  FirebaseAuth get fireauth => FirebaseAuth.instance;
 
   DocumentReference get userDoc => firestore.document(userPath.join("/"));
 
@@ -37,7 +37,7 @@ class DartFirebaseService extends FirebaseService {
         user = await fireauth.signIn(email, password);
       }
       _isSignedIn = true;
-      return AppUser(email: user.email ?? "", fireId: user.id ?? "");
+      return AppUser(email: user.email ?? "", fireId: user.id);
     } catch (e) {}
     return null;
   }

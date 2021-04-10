@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -35,4 +37,11 @@ class LinkContextMenu extends BaseContextMenu {
       ],
     );
   }
+}
+
+void foo() {
+  var f = [
+    "",
+    for (var i = 10; i-- > 0;) {if (Random().nextDouble() > .5) "" else ""},
+  ];
 }

@@ -35,9 +35,15 @@ class BaseAppCommand {
   void showToast(String content) {
     TextStyle textStyle = TextStyles.body2.copyWith(color: appModel.theme.inverseTextColor);
     ScaffoldMessenger.of(mainContext).clearSnackBars();
-    ScaffoldMessenger.of(mainContext).showSnackBar(SnackBar(
+    ScaffoldMessenger.of(mainContext).showSnackBar(
+      SnackBar(
         behavior: SnackBarBehavior.floating,
         duration: Duration(milliseconds: 1700),
-        content: Container(padding: EdgeInsets.all(Insets.sm), child: Text(content, style: textStyle))));
+        content: Container(
+          padding: EdgeInsets.all(Insets.sm),
+          child: Text(content, style: textStyle),
+        ),
+      ),
+    );
   }
 }

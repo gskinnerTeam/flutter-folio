@@ -97,18 +97,3 @@ class TextContextMenu extends BaseContextMenu {
     );
   }
 }
-
-class Foo extends StatelessWidget {
-  const Foo({Key? key, this.value}) : super(key: key);
-  final String? value;
-
-  @override
-  Widget build(BuildContext context) {
-    return (value == null) ? Container() : Text(value!);
-  }
-}
-
-class Bar extends Foo {
-  @override
-  String? get value => null;
-}

@@ -30,7 +30,7 @@ class AppIcon extends StatelessWidget {
   Widget build(BuildContext c) {
     String i = describeEnum(icon).toLowerCase().replaceAll("_", "-");
     String path = 'assets/images/icons/' + i + '.png';
-    print(path);
+    //print(path);
     return Container(
       width: size,
       height: size,
