@@ -78,18 +78,23 @@ class _AppBootstrapperState extends State<_AppBootstrapper> {
 
   @override
   Widget build(BuildContext context) {
+    // Get the current AppTheme so we can generate a ThemeData for the MaterialApp
     AppTheme theme = context.select((AppModel m) => m.theme);
+    // TODO-SNIPPET: Using visual density
+    // Generate ThemeData from our own custom AppTheme object
+    ThemeData materialTheme = theme.toThemeData();
+    // Determine the density we want, based on AppModel.enableTouchMode
     bool enableTouchMode = context.select((AppModel m) => m.enableTouchMode);
+    double density = enableTouchMode ? 0 : -1;
+    print("enableTouchMode: $enableTouchMode");
+    // Inject desired density into MaterialTheme for free animation when values change
+    materialTheme = ThemeData(visualDensity: VisualDensity(horizontal: density, vertical: density));
     return MaterialApp.router(
-      // Convert appState to (and from) a string "location"
-      routeInformationParser: routeParser,
-      // Builds a stack that represents your appState.
-      routerDelegate: router,
-      // Disable debug banner
       debugShowCheckedModeBanner: false,
-      theme: theme.themeData.copyWith(
-        visualDensity: enableTouchMode ? VisualDensity.standard : VisualDensity.comfortable,
-      ),
+      theme: materialTheme,
+      // Use a custom route/delegate to change navigation // TODO: Replace with VRouter/NavStack
+      routeInformationParser: routeParser,
+      routerDelegate: router,
     );
   }
 }

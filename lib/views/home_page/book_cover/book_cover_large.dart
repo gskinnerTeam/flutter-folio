@@ -12,16 +12,9 @@ import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 /// Represents the Widget in "Large Mode"
-class LargeBookCover extends StatefulWidget {
+class LargeBookCover extends StatelessWidget {
   const LargeBookCover(this.book, {Key? key}) : super(key: key);
   final ScrapBookData book;
-
-  @override
-  _LargeBookCoverState createState() => _LargeBookCoverState();
-}
-
-class _LargeBookCoverState extends State<LargeBookCover> {
-  ScrapBookData get book => widget.book;
 
   @override
   Widget build(BuildContext context) {
@@ -80,9 +73,10 @@ class _LargeBookCoverState extends State<LargeBookCover> {
               Row(
                 children: [
                   ContextMenuRegion(
-                      contextMenu: BookContextMenu(book),
-                      child: PrimaryBtn(
-                          label: "VIEW FOLIO", icon: Icons.chevron_right, onPressed: _handleViewFolioPressed)),
+                    contextMenu: BookContextMenu(book),
+                    child:
+                        PrimaryBtn(label: "VIEW FOLIO", icon: Icons.chevron_right, onPressed: _handleViewFolioPressed),
+                  ),
                   HSpace.sm,
                   StyledSharedBtn(book: book),
                 ],

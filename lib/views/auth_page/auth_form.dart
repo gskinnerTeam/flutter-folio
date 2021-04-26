@@ -56,142 +56,154 @@ class _AuthFormState extends State<AuthForm> with LoadingStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (_, constraints) {
-        AppTheme theme = context.watch();
-        bool isCreatingAccount = formMode == _AuthFormMode.CreateAccount;
-        String headerText = isCreatingAccount ? "Welcome to flutter folio" : "Welcome back!";
-        String descText = isCreatingAccount
-            ? "Create an account to start your scrapbook!"
-            : "Log into your account to view your existing scrapbooks or start a new one.";
-        String submitBtnText = isCreatingAccount ? "Sign Up" : "Log In";
-        String switchFormText = isCreatingAccount ? "Already have an account?" : "Don't have an account?";
-        String switchFormBtnText = isCreatingAccount ? "Log In" : "Sign Up";
-        bool reduceTextSize = constraints.maxHeight < 500;
-        return Stack(
-          children: [
-            ContextMenuRegion(isEnabled: kIsWeb == false, contextMenu: AppContextMenu(), child: Container()),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 60, vertical: Insets.xl),
+    return Column(
+      children: [
+        Expanded(
+          child: LayoutBuilder(
+            builder: (_, constraints) {
+              AppTheme theme = context.watch();
+              bool isCreatingAccount = formMode == _AuthFormMode.CreateAccount;
+              String headerText = isCreatingAccount ? "Welcome to flutter folio." : "Welcome back!";
+              String descText = isCreatingAccount
+                  ? "Create an account to start your scrapbook!"
+                  : "Log into your account to view your existing scrapbooks or start a new one.";
+              String submitBtnText = isCreatingAccount ? "Sign Up" : "Log In";
+              String switchFormText = isCreatingAccount ? "Already have an account?" : "Don't have an account?";
+              String switchFormBtnText = isCreatingAccount ? "Log In" : "Sign Up";
+              bool compactVerticalSpace = constraints.maxHeight < 460;
+              double bodyTextSize = compactVerticalSpace ? 12 : 14;
+              double paddingFactor = compactVerticalSpace ? .5 : 1;
+              return Stack(
+                children: [
+                  ContextMenuRegion(isEnabled: kIsWeb == false, contextMenu: AppContextMenu(), child: Container()),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 60, vertical: Insets.xl),
 
-              /// Use animated switch to fade between the forms
-              child: AnimatedSwitcher(
-                duration: Times.fast,
+                    /// Use animated switch to fade between the forms
+                    child: AnimatedSwitcher(
+                      duration: Times.fast,
 
-                /// Wrap in AutoFillGroup + Form for auto-complete on web
-                child: AutofillGroup(
-                  key: ValueKey(formMode),
-                  child: Form(
-                    child: Center(
-                      child: ConstrainedBox(
-                        constraints: BoxConstraints(maxWidth: 500, maxHeight: 500),
+                      /// Wrap in AutoFillGroup + Form for auto-complete on web
+                      child: AutofillGroup(
+                        key: ValueKey(formMode),
+                        child: Form(
+                          child: Center(
+                            child: ConstrainedBox(
+                              constraints: BoxConstraints(maxWidth: 500, maxHeight: 500),
 
-                        /// Use an expanded scrolling column so our form will scroll vertically when it has to
-                        child: ExpandedScrollingColumn(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Spacer(),
+                              /// Use an expanded scrolling column so our form will scroll vertically when it has to
+                              child: ExpandedScrollingColumn(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Spacer(),
 
-                            /// Title
-                            UiText(
-                              headerText,
-                              style: TextStyles.h2.copyWith(color: theme.accent1, fontSize: reduceTextSize ? 36 : 46),
-                            ),
-                            VSpace.med,
-
-                            /// Desc
-                            UiText(descText, style: TextStyles.title2.copyWith(color: theme.greyStrong, fontSize: 16)),
-                            VSpace.med,
-
-                            /// Email
-                            LabeledTextInput(
-                              onSubmit: (_) => _handleSubmitPressed(),
-                              controller: _emailController,
-                              autoFocus: true,
-                              style: TextStyles.body1,
-                              hintText: "Email",
-                              autofillHints: [AutofillHints.email, AutofillHints.username],
-                              onChanged: (_) => setState(() {}),
-                            ),
-                            VSpace.med,
-
-                            /// PASS
-                            LabeledTextInput(
-                              onSubmit: (_) => _handleSubmitPressed(),
-                              controller: _passController,
-                              style: TextStyles.body1,
-                              hintText: "Password",
-                              autofillHints: [AutofillHints.password],
-                              onChanged: (_) => setState(() {}),
-                              obscureText: true,
-                            ),
-                            VSpace.med,
-
-                            /// ERROR MSG
-                            if (_errorText.isNotEmpty) ...[
-                              VSpace(Insets.xs),
-                              UiText(errorText, style: TextStyles.title2.copyWith(color: theme.accent1)),
-                            ],
-                            VSpace(Insets.xs),
-
-                            /// SUBMIT BTN
-                            isLoading
-                                ? StyledLoadSpinner()
-                                : PrimaryBtn(
-                                    onPressed: enableSubmit ? _handleSubmitPressed : null,
-                                    child: Container(
-                                        alignment: Alignment.center,
-                                        child: Text(submitBtnText.toUpperCase(), style: TextStyles.callout1)),
+                                  /// Title
+                                  UiText(
+                                    headerText,
+                                    style: TextStyles.h2
+                                        .copyWith(color: theme.accent1, fontSize: compactVerticalSpace ? 36 : 46),
                                   ),
+                                  VSpace(Insets.med * paddingFactor),
 
-                            /// SWITCH MODE BTN
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                UiText(switchFormText, style: TextStyles.title2),
-                                TextBtn(switchFormBtnText,
-                                    onPressed: _handleSwitchViewPressed,
-                                    style: TextStyles.title1.copyWith(fontSize: 14, color: theme.accent1)),
-                              ],
-                            ),
-                            Spacer(flex: 3),
+                                  /// Desc
+                                  UiText(descText,
+                                      style: TextStyles.title2
+                                          .copyWith(color: theme.greyStrong, fontSize: bodyTextSize, height: 2)),
+                                  VSpace(Insets.xl * paddingFactor),
 
-                            /// Bottom Content (learn more)
-                            SeparatedRow(
-                              separatorBuilder: () => HSpace.sm,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                UiText("Learn more about Flutter Folio"),
-                                ContextMenuRegion(
-                                  contextMenu: LinkContextMenu(
-                                    url: 'https://github.com/gskinnerTeam/flutter-folio',
+                                  /// Email
+                                  LabeledTextInput(
+                                    onSubmit: (_) => _handleSubmitPressed(),
+                                    controller: _emailController,
+                                    autoFocus: true,
+                                    style: TextStyles.body1,
+                                    hintText: "Email",
+                                    autofillHints: [AutofillHints.email, AutofillHints.username],
+                                    onChanged: (_) => setState(() {}),
                                   ),
-                                  child: SimpleBtn(
-                                    child: AppIcon(AppIcons.website, color: theme.greyStrong, size: 24),
-                                    onPressed: _handleWebsitePressed,
+                                  VSpace(Insets.med * paddingFactor),
+
+                                  /// PASS
+                                  LabeledTextInput(
+                                    onSubmit: (_) => _handleSubmitPressed(),
+                                    controller: _passController,
+                                    style: TextStyles.body1,
+                                    hintText: "Password",
+                                    autofillHints: [AutofillHints.password],
+                                    onChanged: (_) => setState(() {}),
+                                    obscureText: true,
                                   ),
-                                ),
-                                ContextMenuRegion(
-                                  contextMenu: LinkContextMenu(url: "https://flutter.gskinner.com"),
-                                  child: SimpleBtn(
-                                    child: AppIcon(AppIcons.github, color: theme.greyStrong, size: 24),
-                                    onPressed: _handleGitPressed,
+                                  VSpace(Insets.med * paddingFactor),
+
+                                  /// ERROR MSG
+                                  if (_errorText.isNotEmpty) ...[
+                                    VSpace(Insets.xs),
+                                    UiText(errorText, style: TextStyles.title2.copyWith(color: theme.focus)),
+                                    VSpace(Insets.xs),
+                                  ],
+                                  VSpace(Insets.xs),
+
+                                  /// SUBMIT BTN
+                                  isLoading
+                                      ? Center(child: StyledLoadSpinner())
+                                      : PrimaryBtn(
+                                          onPressed: enableSubmit ? _handleSubmitPressed : null,
+                                          child: Container(
+                                              alignment: Alignment.center,
+                                              child: Text(submitBtnText.toUpperCase(), style: TextStyles.callout1)),
+                                        ),
+                                  VSpace(Insets.med * paddingFactor),
+
+                                  /// SWITCH MODE BTN
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      UiText(switchFormText, style: TextStyles.title2.copyWith(fontSize: bodyTextSize)),
+                                      TextBtn(switchFormBtnText,
+                                          onPressed: _handleSwitchViewPressed,
+                                          style:
+                                              TextStyles.title1.copyWith(fontSize: bodyTextSize, color: theme.accent1)),
+                                    ],
                                   ),
-                                ),
-                              ],
+                                  VSpace.xl,
+                                  SeparatedRow(
+                                    separatorBuilder: () => HSpace.sm,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      UiText("Learn more about Flutter Folio?"),
+                                      ContextMenuRegion(
+                                        contextMenu:
+                                            LinkContextMenu(url: 'https://github.com/gskinnerTeam/flutter-folio'),
+                                        child: SimpleBtn(
+                                          child: AppIcon(AppIcons.website, color: theme.greyStrong, size: 24),
+                                          onPressed: _handleWebsitePressed,
+                                        ),
+                                      ),
+                                      ContextMenuRegion(
+                                        contextMenu: LinkContextMenu(url: "https://flutter.gskinner.com"),
+                                        child: SimpleBtn(
+                                          child: AppIcon(AppIcons.github, color: theme.greyStrong, size: 24),
+                                          onPressed: _handleGitPressed,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Spacer(),
+                                ],
+                              ),
                             ),
-                          ],
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ),
-            ),
-          ],
-        );
-      },
+                ],
+              );
+            },
+          ),
+        ),
+      ],
     );
   }
 

@@ -42,8 +42,6 @@ class AppRouterDelegate extends RouterDelegate<AppLink> with ChangeNotifier {
 
   // Return a navigator, configured to match the current app state
   Widget build(BuildContext context) {
-    //safePrint("RouterDelegate.build()");
-    // Bind to the app state we care about
     bool hasBootstrapped = appModel.hasBootstrapped;
     bool hasSetInitialRoute = appModel.hasSetInitialRoute;
     bool isGuestUser = appModel.isGuestUser;

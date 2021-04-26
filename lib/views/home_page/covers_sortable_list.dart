@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -37,6 +39,7 @@ class _CoversSortableListState extends State<CoversSortableList> {
   Widget build(BuildContext context) {
     int getSort(ColType t) => _currentCol != t ? 0 : (_ascending ? 1 : -1);
     AppTheme theme = context.watch();
+    double headerHeight = max(28, 36 + Theme.of(context).visualDensity.vertical * 6);
     List<ScrapBookData> books = _sortedBooks(widget.books).toList();
     return StyledPageScaffold(
       body: LayoutBuilder(
@@ -53,7 +56,7 @@ class _CoversSortableListState extends State<CoversSortableList> {
                   borderRadius: Corners.medBorder,
                   child: Container(
                     decoration: BoxDecoration(color: theme.surface1),
-                    height: 30,
+                    height: headerHeight,
                     child: Row(
                       children: [
                         Expanded(

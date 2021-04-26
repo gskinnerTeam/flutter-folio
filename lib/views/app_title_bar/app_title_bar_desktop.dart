@@ -11,7 +11,6 @@ class _AppTitleBarDesktop extends StatelessWidget {
     // Mac title bar has a different layout as it's window btns are left aligned
     bool isMac = DeviceOS.isMacOS;
     bool isMobile = DeviceOS.isMobile;
-    bool showTouchToggle = true; //context.select((AppModel m) => m.hasUser) == true;
     return Stack(children: [
       // Centered TitleText
       if (appWidth > 400) Center(child: _TitleText()),
@@ -23,13 +22,13 @@ class _AppTitleBarDesktop extends StatelessWidget {
             HSpace(80), // Reserve some space for the native btns
             if (showBackBtn) _BackBtn(),
             Spacer(),
-            if (showTouchToggle) TouchModeToggleBtn(invertPopupAlign: isMac),
+            TouchModeToggleBtn(invertPopupAlign: isMac),
             HSpace.sm,
             _AdaptiveProfileBtn(invertRow: true, useBottomSheet: isMobile),
           ] else ...[
             // Linux and Windows are left aligned and simple
             _AdaptiveProfileBtn(useBottomSheet: isMobile),
-            if (showTouchToggle) TouchModeToggleBtn(invertPopupAlign: isMac),
+            TouchModeToggleBtn(invertPopupAlign: isMac),
             HSpace.sm,
             if (showBackBtn) _BackBtn(),
           ]

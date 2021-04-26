@@ -25,9 +25,9 @@ class DeviceScreen {
   // Get the device form factor as best we can.
   // Otherwise we will use the screen size to determine which class we fall into.
   static FormFactorType get(BuildContext context) {
-    if (context.widthPx <= 400) return FormFactorType.SmallPhone;
-    if (context.widthPx <= 600) return FormFactorType.LargePhone;
-    if (context.widthPx <= 1200) return FormFactorType.Tablet;
+    if (context.diagonalPx <= 550) return FormFactorType.SmallPhone;
+    if (context.diagonalPx <= 900) return FormFactorType.LargePhone;
+    if (context.diagonalPx <= 1500) return FormFactorType.Tablet;
     return FormFactorType.Monitor;
   }
 

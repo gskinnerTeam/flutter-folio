@@ -10,7 +10,7 @@ import 'package:flutter_folio/data/app_user.dart';
 import 'package:flutter_folio/models/app_model.dart';
 import 'package:flutter_folio/models/books_model.dart';
 import 'package:flutter_folio/views/app_title_bar/touch_mode_toggle_btn.dart';
-import 'package:flutter_folio/views/user_profile_card/user_profile_card.dart';
+import 'package:flutter_folio/views/user_profile_card/user_profile_dropdown_card.dart';
 
 part 'app_title_bar_desktop.dart';
 part 'app_title_bar_mobile.dart';
@@ -97,6 +97,10 @@ class _AdaptiveProfileBtn extends StatelessWidget {
   }
 
   void _showProfileSheet(BuildContext context) {
-    showStyledBottomSheet(context, child: BottomSheetProfileEditorCard());
+    showStyledBottomSheet(context,
+        child: Container(
+          padding: EdgeInsets.all(Insets.xl),
+          child: UserProfileForm(bottomSheet: true),
+        ));
   }
 }

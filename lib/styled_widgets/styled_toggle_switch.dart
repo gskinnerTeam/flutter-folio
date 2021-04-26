@@ -34,10 +34,10 @@ class _StyledToggleSwitchState extends State<StyledToggleSwitch> {
   Widget build(BuildContext context) {
     AppTheme theme = context.watch();
     BoxDecoration dec(Color c, double b) => BoxDecoration(color: c, borderRadius: BorderRadius.circular(b));
-    double btnWidth = 32;
+    double btnSize = 36 + Theme.of(context).visualDensity.vertical * 4;
     return SizedBox(
-      width: btnWidth * 2,
-      height: btnWidth,
+      width: btnSize * 2,
+      height: btnSize,
       child: Stack(
         children: [
           // Dual-color bg
@@ -72,8 +72,8 @@ class _StyledToggleSwitchState extends State<StyledToggleSwitch> {
             /// Top icon should block clicks
             child: IgnorePointer(
               child: Container(
-                width: 32,
-                height: 32,
+                width: btnSize,
+                height: btnSize,
                 decoration: dec(theme.surface1, Corners.sm).copyWith(boxShadow: Shadows.universal),
 
                 /// Add an animated switcher around the icons, so we get a nice fade effect when they change

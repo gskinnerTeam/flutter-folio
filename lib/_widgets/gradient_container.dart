@@ -14,17 +14,19 @@ class GradientContainer extends StatelessWidget {
   final Alignment? alignment;
 
   @override
-  Widget build(BuildContext context) => Container(
-        child: child,
-        width: width,
-        height: height,
-        alignment: alignment ?? null,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: begin ?? Alignment.centerLeft,
-            end: end ?? Alignment.centerRight,
-            colors: colors,
-            stops: stops,
+  Widget build(BuildContext context) => IgnorePointer(
+        child: Container(
+          child: child,
+          width: width,
+          height: height,
+          alignment: alignment ?? null,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: begin ?? Alignment.centerLeft,
+              end: end ?? Alignment.centerRight,
+              colors: colors,
+              stops: stops,
+            ),
           ),
         ),
       );

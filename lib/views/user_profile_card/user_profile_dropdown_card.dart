@@ -17,11 +17,13 @@ class UserProfileCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AppTheme theme = context.watch();
+    VisualDensity density = Theme.of(context).visualDensity;
     return GestureDetector(
       onTap: InputUtils.unFocus,
+      //TODO-SNIPPET: Using visual density
       child: Container(
           width: 280,
-          height: 380,
+          height: 400 + density.vertical * 24,
           child: Stack(
             children: [
               Positioned.fill(
@@ -33,10 +35,8 @@ class UserProfileCard extends StatelessWidget {
                 child: Container(
                   padding: EdgeInsets.only(left: Insets.lg, right: Insets.lg, top: Insets.med),
                   decoration: BoxDecoration(
-                    color: theme.surface1,
-                    borderRadius: BorderRadius.vertical(bottom: Corners.smRadius),
-                  ),
-                  child: _ProfileEditorCardContent(),
+                      color: theme.surface1, borderRadius: BorderRadius.vertical(bottom: Corners.smRadius)),
+                  child: UserProfileForm(),
                 ),
               )),
               _TopShadow(),
@@ -46,26 +46,16 @@ class UserProfileCard extends StatelessWidget {
   }
 }
 
-class BottomSheetProfileEditorCard extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(Insets.xl),
-      child: _ProfileEditorCardContent(bottomSheet: true),
-    );
-  }
-}
-
-class _ProfileEditorCardContent extends StatefulWidget {
-  _ProfileEditorCardContent({this.bottomSheet = false});
+class UserProfileForm extends StatefulWidget {
+  UserProfileForm({this.bottomSheet = false});
 
   final bool bottomSheet;
 
   @override
-  State createState() => _ProfileEditorCardContentState();
+  State createState() => _UserProfileFormState();
 }
 
-class _ProfileEditorCardContentState extends State<_ProfileEditorCardContent> {
+class _UserProfileFormState extends State<UserProfileForm> {
   AppUser? _user;
 
   @override
@@ -88,63 +78,61 @@ class _ProfileEditorCardContentState extends State<_ProfileEditorCardContent> {
 
     if (_user == null) return Container();
 
-    return SingleChildScrollView(
-      child: Stack(
-        children: [
-          Align(alignment: Alignment.centerLeft, child: UiText("v" + AppModel.kVersion, style: TextStyles.caption)),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SimpleBtn(
-                cornerRadius: 99,
-                onPressed: _handleProfileImgPressed,
-                child: SizedBox(
-                  height: 80 + Insets.xs * 2,
-                  child: Padding(
-                    padding: EdgeInsets.all(Insets.xs),
-                    child: StyledCircleImage(url: _user?.imageUrl ?? AppUser.kDefaultImageUrl),
-                  ),
-                ),
-              ),
-
-              /// Upload PhotoBtn
-              SimpleBtn(
-                onPressed: _handleProfileImgPressed,
+    return Stack(
+      children: [
+        Align(alignment: Alignment.topLeft, child: UiText("v" + AppModel.kVersion, style: TextStyles.caption)),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SimpleBtn(
+              cornerRadius: 99,
+              onPressed: _handleProfileImgPressed,
+              child: SizedBox(
+                height: 80 + Insets.xs * 2,
                 child: Padding(
-                  padding: EdgeInsets.all(Insets.sm),
-                  child: Text(
-                    "Update Photo",
-                    style:
-                        TextStyles.caption.copyWith(color: theme.mainTextColor, decoration: TextDecoration.underline),
-                  ),
+                  padding: EdgeInsets.all(Insets.xs),
+                  child: StyledCircleImage(url: _user?.imageUrl ?? AppUser.kDefaultImageUrl),
                 ),
               ),
-              VSpace.lg,
+            ),
 
-              /// TextInputs
-              LabeledTextInput(
-                  autoFocus: true, label: "First Name", text: _user?.firstName, onChanged: _handleFirstNameChanged),
-              VSpace.lg,
-              LabeledTextInput(label: "Last Name", text: _user?.lastName, onChanged: _handleLastNameChanged),
-              VSpace.lg,
-
-              /// Account
-              Container(width: double.infinity, child: UiText("Account", style: TextStyles.caption)),
-              Row(
-                children: [
-                  Expanded(child: UiText(_user?.email, style: TextStyles.body3)),
-                  PrimaryBtn(
-                      icon: Icons.logout,
-                      leadingIcon: false,
-                      label: "LOGOUT",
-                      isCompact: true,
-                      onPressed: _handleLogoutPressed)
-                ],
+            /// Upload PhotoBtn
+            SimpleBtn(
+              onPressed: _handleProfileImgPressed,
+              child: Padding(
+                padding: EdgeInsets.all(Insets.sm),
+                child: Text(
+                  "Update Photo",
+                  style: TextStyles.caption.copyWith(color: theme.mainTextColor, decoration: TextDecoration.underline),
+                ),
               ),
-            ],
-          ),
-        ],
-      ),
+            ),
+            VSpace.lg,
+
+            /// TextInputs
+            LabeledTextInput(
+                autoFocus: true, label: "First Name", text: _user?.firstName, onChanged: _handleFirstNameChanged),
+            VSpace.lg,
+            LabeledTextInput(label: "Last Name", text: _user?.lastName, onChanged: _handleLastNameChanged),
+            VSpace.lg,
+
+            /// Account
+            Container(width: double.infinity, child: UiText("Account", style: TextStyles.caption)),
+            Row(
+              children: [
+                Expanded(child: UiText(_user?.email, style: TextStyles.body3)),
+                PrimaryBtn(
+                    icon: Icons.logout,
+                    leadingIcon: false,
+                    label: "LOGOUT",
+                    isCompact: true,
+                    onPressed: _handleLogoutPressed)
+              ],
+            ),
+            VSpace.lg
+          ],
+        ),
+      ],
     );
   }
 

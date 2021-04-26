@@ -16,6 +16,7 @@ class AppTheme {
   final bool isDark;
   final Color bg1;
   final Color surface1;
+  final Color surface2;
   final Color accent1;
   final Color greyWeak;
   final Color grey;
@@ -32,6 +33,7 @@ class AppTheme {
       {required this.type,
       required this.bg1,
       required this.surface1,
+      required this.surface2,
       required this.accent1,
       required this.greyWeak,
       required this.grey,
@@ -52,6 +54,7 @@ class AppTheme {
           type: t,
           bg1: const Color(0xfff3f3f3),
           surface1: Colors.white,
+          surface2: const Color(0xffebf0f3),
           accent1: const Color(0xffff392b),
           greyWeak: const Color(0xffcccccc),
           grey: const Color(0xff999999),
@@ -65,7 +68,7 @@ class AppTheme {
   }
 
   // Converts AppTheme into a Material Theme Data, using whatever mappings we like
-  ThemeData get themeData {
+  ThemeData toThemeData() {
     var t = ThemeData.from(
       // Use the .dark() and .light() constructors to handle the text themes
       textTheme: (isDark ? ThemeData.dark() : ThemeData.light()).textTheme,
@@ -87,7 +90,6 @@ class AppTheme {
     );
     // Apply additional styling that is missed by ColorScheme
     t.copyWith(
-        visualDensity: VisualDensity.compact,
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
         textSelectionTheme: TextSelectionThemeData(
           cursorColor: surface1,

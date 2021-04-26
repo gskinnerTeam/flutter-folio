@@ -30,7 +30,7 @@ class BooksHomePageState extends State<BooksHomePage> {
   @override
   Widget build(BuildContext context) {
     List<ScrapBookData>? books = context.select((BooksModel m) => m.books);
-    bool showPhoneView = DeviceScreen.isPhone(context);
+    bool showSmallScreenView = context.widthPx < 600;
     books?.sort((a, b) => a.lastModifiedTime > b.lastModifiedTime ? -1 : 1);
     return books == null
         ? LoadingIndicator()
@@ -54,21 +54,24 @@ class BooksHomePageState extends State<BooksHomePage> {
                   _EmptyHomeView(),
                 ] else ...[
                   _showListView
-                      ? CoversSortableList(books: books, isMobile: showPhoneView)
-                      : showPhoneView
+                      ? CoversSortableList(books: books, isMobile: showSmallScreenView)
+                      : showSmallScreenView
                           ? CoversFlowListMobile(books: books)
                           : CoversFlowList(books: books),
                 ],
 
                 /// Top bar and bottom bar, has welcome message and view switcher
-                if (showPhoneView) ...[
+                if (showSmallScreenView) ...[
                   Align(
                     alignment: Alignment.bottomCenter,
                     child: HomeNavBarMobile(onToggled: _handleViewToggled, showListView: _showListView),
                   ),
-                ] else ...[
-                  HomeNavBar(onToggled: _handleViewToggled, showListView: _showListView),
                 ],
+                HomeNavBar(
+                  onToggled: _handleViewToggled,
+                  showListView: _showListView,
+                  hideButtons: showSmallScreenView,
+                ),
               ],
             ),
           );

@@ -6,11 +6,17 @@ import 'package:flutter_folio/models/app_model.dart';
 import 'package:flutter_folio/models/books_model.dart';
 
 class HomeNavBar extends StatelessWidget {
-  const HomeNavBar({Key? key, this.invertText = false, required this.onToggled, required this.showListView})
+  const HomeNavBar(
+      {Key? key,
+      this.invertText = false,
+      required this.onToggled,
+      required this.showListView,
+      this.hideButtons = false})
       : super(key: key);
   final void Function(bool value) onToggled;
   final bool showListView;
   final bool invertText;
+  final bool hideButtons;
 
   @override
   Widget build(BuildContext context) {
@@ -41,19 +47,21 @@ class HomeNavBar extends StatelessWidget {
                 ),
               ),
               Spacer(),
-              SecondaryBtn(
-                  label: "NEW FOLIO",
-                  icon: Icons.add,
-                  onPressed: () => _handleAddBookPressed(context),
-                  leadingIcon: true),
-              HSpace.med,
-              StyledToggleSwitch(
-                  value: showListView,
-                  icon1: AppIcons.toggle_carousel,
-                  tooltip1: "Grid View",
-                  icon2: AppIcons.toggle_list,
-                  tooltip2: "List View",
-                  onToggled: onToggled),
+              if (hideButtons == false) ...[
+                SecondaryBtn(
+                    label: "NEW FOLIO",
+                    icon: Icons.add,
+                    onPressed: () => _handleAddBookPressed(context),
+                    leadingIcon: true),
+                HSpace.med,
+                StyledToggleSwitch(
+                    value: showListView,
+                    icon1: AppIcons.toggle_carousel,
+                    tooltip1: "Grid View",
+                    icon2: AppIcons.toggle_list,
+                    tooltip2: "List View",
+                    onToggled: onToggled),
+              ],
             ],
           ),
         );

@@ -42,7 +42,7 @@ class _LabeledTextInputState extends State<LabeledTextInput> {
     AppTheme theme = context.watch();
     VisualDensity visualDensity = Theme.of(context).visualDensity;
     return Theme(
-      data: theme.themeData,
+      data: theme.toThemeData(),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
