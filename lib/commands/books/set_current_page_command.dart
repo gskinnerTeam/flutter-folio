@@ -1,4 +1,3 @@
-// @dart=2.12
 import 'package:flutter_folio/_utils/input_utils.dart';
 import 'package:flutter_folio/commands/books/refresh_current_page_command.dart';
 import 'package:flutter_folio/commands/commands.dart';

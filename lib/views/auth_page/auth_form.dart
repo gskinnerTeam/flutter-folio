@@ -1,4 +1,3 @@
-// @dart=2.12
 import 'package:email_validator/email_validator.dart';
 import 'package:flextras/flextras.dart';
 import 'package:flutter/foundation.dart';

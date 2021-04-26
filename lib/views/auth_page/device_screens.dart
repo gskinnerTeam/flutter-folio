@@ -1,5 +1,3 @@
-// @dart=2.12
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_widgets/animated/animated_scale.dart';

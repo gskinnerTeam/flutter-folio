@@ -1,4 +1,3 @@
-// @dart=2.12
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

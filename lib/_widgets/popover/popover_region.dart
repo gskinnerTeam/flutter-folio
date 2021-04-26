@@ -110,10 +110,6 @@ class PopOverRegionState extends State<PopOverRegion> {
   PopOverControllerState? _popContext;
   @override
   Widget build(BuildContext context) {
-    return SelectableText.rich(TextSpan(children: [
-      TextSpan(text: "Hello"),
-      TextSpan(text: "Bold", style: TextStyle(fontWeight: FontWeight.bold)),
-    ]));
     Widget content;
     // If Hover, add a MouseRegion
     if (widget.mode == PopOverRegionMode.Hover) {

@@ -1,4 +1,3 @@
-// @dart=2.12
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/models/app_model.dart';
 import 'package:flutter_folio/models/books_model.dart';

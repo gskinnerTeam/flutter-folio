@@ -1,4 +1,3 @@
-// @dart=2.12
 import 'package:file_selector/file_selector.dart';
 import 'package:flutter_folio/_utils/device_info.dart';
 import 'package:flutter_folio/commands/commands.dart';
