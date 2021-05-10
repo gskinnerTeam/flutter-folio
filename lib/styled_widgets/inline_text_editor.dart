@@ -1,3 +1,4 @@
+import 'package:context_menus/context_menus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_folio/_utils/string_utils.dart';
@@ -89,7 +90,12 @@ class _InlineTextEditorState extends State<InlineTextEditor> {
             // Show a right-click menu to copy the text just because we can :D
             ContextMenuRegion(
               isEnabled: widget.enableContextMenu,
-              contextMenu: GenericContextMenu(labels: ["Edit...", "Copy"], actions: [_handleTextPressed, _handleCopy]),
+              contextMenu: GenericContextMenu(
+                buttonConfigs: [
+                  ContextMenuButtonConfig("Edit...", onPressed: _handleTextPressed),
+                  ContextMenuButtonConfig("Copy", onPressed: _handleCopy),
+                ],
+              ),
               // Wrap the text in a button, so we can switch to editing mode when they click.
               child: SimpleBtn(
                 onPressed: _handleTextPressed,

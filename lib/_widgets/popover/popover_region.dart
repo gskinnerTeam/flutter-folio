@@ -107,7 +107,7 @@ class PopOverRegionState extends State<PopOverRegion> {
   Timer? _timer;
   LayerLink _link = LayerLink();
 
-  PopOverControllerState? _popContext;
+  PopUpOverlayState? _popContext;
   @override
   Widget build(BuildContext context) {
     Widget content;
@@ -162,7 +162,7 @@ class PopOverRegionState extends State<PopOverRegion> {
         .dispatch(context);
   }
 
-  void _handleContextHandled(PopOverControllerState value) => _popContext = value;
+  void _handleContextHandled(PopUpOverlayState value) => _popContext = value;
 
   void hide() {
     _timer?.cancel();

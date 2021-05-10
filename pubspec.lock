@@ -234,6 +234,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.15.0"
+  context_menus:
+    dependency: "direct main"
+    description:
+      name: context_menus
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.0+5"
   convert:
     dependency: transitive
     description:
@@ -1030,7 +1037,7 @@ packages:
       name: url_launcher
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.0.2"
+    version: "6.0.3"
   url_launcher_linux:
     dependency: transitive
     description:

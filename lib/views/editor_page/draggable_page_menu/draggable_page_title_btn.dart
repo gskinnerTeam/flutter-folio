@@ -1,3 +1,4 @@
+import 'package:context_menus/context_menus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_utils/color_utils.dart';
 import 'package:flutter_folio/_widgets/context_menu_overlay.dart';
@@ -115,8 +116,10 @@ class _DraggablePageTitleBtnState extends State<DraggablePageTitleBtn> {
 
     return ContextMenuRegion(
       contextMenu: GenericContextMenu(
-        labels: ["View", "Delete"],
-        actions: [widget.isSelected ? null : widget.onPressed, _handleDeletePressed],
+        buttonConfigs: [
+          ContextMenuButtonConfig("View", onPressed: widget.isSelected ? null : widget.onPressed),
+          ContextMenuButtonConfig("Delete", onPressed: _handleDeletePressed),
+        ],
       ),
       child: innerContent,
     );

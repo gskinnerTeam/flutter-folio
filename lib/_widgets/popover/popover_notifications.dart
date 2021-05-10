@@ -25,7 +25,7 @@ class ShowPopOverNotification extends Notification {
   final bool useBarrier;
   final Color barrierColor;
   final bool dismissOnBarrierClick;
-  final void Function(PopOverControllerState)? onContextHandled;
+  final void Function(PopUpOverlayState)? onContextHandled;
 }
 
 // Dispatched from the PopOver Widget, so the PopOverContext can get the size of an arbitrary child Widget

@@ -1,3 +1,4 @@
+import 'package:context_menus/context_menus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_folio/_utils/notifications/close_notification.dart';
@@ -45,17 +46,24 @@ class _ContentPickerScrapsPanelState extends State<ContentPickerScrapsPanel> wit
                     key: _scrapPileGridKey,
                     bookId: widget.bookId,
                     onSelectionChanged: _handleScrapPickerChanged,
-                    contextMenuLabels: (ScrapItem scrap) => [
-                      "Delete ...",
-                      "Add To Page",
-                      "Copy Image Address",
-                      if (enableSaveImageAsBtn) "Save Image As...",
-                    ],
-                    contextMenuActions: (ScrapItem scrap) => [
-                      () => _handleDeletePressed(scrap),
-                      isPageSelected ? () => _handleAddPressed(scrap) : null,
-                      () => Clipboard.setData(ClipboardData(text: scrap.data)),
-                      if (enableSaveImageAsBtn) () => SaveImageToDiskCommand().run(scrap.data)
+                    contextMenuButtons: (ScrapItem scrap) => [
+                      ContextMenuButtonConfig(
+                        "Delete ...",
+                        onPressed: () => _handleDeletePressed(scrap),
+                      ),
+                      ContextMenuButtonConfig(
+                        "Add To Page",
+                        onPressed: isPageSelected ? () => _handleAddPressed(scrap) : null,
+                      ),
+                      ContextMenuButtonConfig(
+                        "Copy Image Address",
+                        onPressed: () => Clipboard.setData(ClipboardData(text: scrap.data)),
+                      ),
+                      if (enableSaveImageAsBtn)
+                        ContextMenuButtonConfig(
+                          "Save Image As...",
+                          onPressed: () => SaveImageToDiskCommand().run(scrap.data),
+                        ),
                     ],
                   ),
                 ),

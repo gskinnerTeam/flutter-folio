@@ -11,24 +11,30 @@ import 'popover_notifications.dart';
 /// POPOVER CONTEXT (ROOT)
 /// Context listens for Notifications, and inserts/removes layers from the Overlay stack in response.
 /// The context wraps the content in a
-class PopOverController extends StatefulWidget {
-  const PopOverController({Key? key, required this.child}) : super(key: key);
+class PopUpOverlay extends StatefulWidget {
+  const PopUpOverlay({Key? key, required this.child}) : super(key: key);
   final Widget child;
 
   @override
-  PopOverControllerState createState() => PopOverControllerState();
+  PopUpOverlayState createState() => PopUpOverlayState();
+
+  static PopUpOverlayState of(BuildContext context) =>
+      (context.dependOnInheritedWidgetOfExactType<_InheritedPopupOverlay>() as _InheritedPopupOverlay).state;
 }
 
-class PopOverControllerState extends State<PopOverController> {
+class PopUpOverlayState extends State<PopUpOverlay> {
   OverlayEntry? barrierOverlay;
   OverlayEntry? mainContentOverlay;
   ValueNotifier<Size?> _sizeNotifier = ValueNotifier(Size.zero);
 
   @override
   Widget build(BuildContext context) {
-    return NotificationListener(
-      onNotification: _handleNotification,
-      child: widget.child,
+    return _InheritedPopupOverlay(
+      state: this,
+      child: NotificationListener(
+        onNotification: _handleNotification,
+        child: widget.child,
+      ),
     );
   }
 
@@ -140,4 +146,14 @@ class MeasureSize extends SingleChildRenderObjectWidget {
   final void Function(Size size) onChange;
   @override
   RenderObject createRenderObject(BuildContext context) => MeasureSizeRenderObject(onChange);
+}
+
+/// InheritedWidget boilerplate
+class _InheritedPopupOverlay extends InheritedWidget {
+  _InheritedPopupOverlay({Key? key, required Widget child, required this.state}) : super(key: key, child: child);
+
+  final PopUpOverlayState state;
+
+  @override
+  bool updateShouldNotify(covariant InheritedWidget oldWidget) => true;
 }

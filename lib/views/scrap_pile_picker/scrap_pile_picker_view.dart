@@ -93,8 +93,8 @@ class ScrapPilePickerView extends StatelessWidget {
                                         ScrapItem scrap = scraps[scrapIndex];
                                         return ContextMenuRegion(
                                           contextMenu: GenericContextMenu(
-                                              labels: state.widget.contextMenuLabels?.call(scrap) ?? [],
-                                              actions: state.widget.contextMenuActions?.call(scrap) ?? []),
+                                            buttonConfigs: state.widget.contextMenuButtons?.call(scrap) ?? [],
+                                          ),
                                           child: ScrapPickerBtn(
                                               key: ValueKey(scrap.documentId),
                                               img: scrap.data,

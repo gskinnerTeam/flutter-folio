@@ -1,3 +1,4 @@
+import 'package:context_menus/context_menus.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -28,16 +29,14 @@ class ScrapPilePicker extends StatefulWidget {
   const ScrapPilePicker({
     Key? key,
     required this.bookId,
-    this.contextMenuLabels,
-    this.contextMenuActions,
+    this.contextMenuButtons,
     this.onSelectionChanged,
     this.onDeletePressed,
     this.mobileMode = false,
   }) : super(key: key);
 
   final String bookId;
-  final List<String> Function(ScrapItem item)? contextMenuLabels;
-  final List<VoidCallback?> Function(ScrapItem item)? contextMenuActions;
+  final List<ContextMenuButtonConfig> Function(ScrapItem item)? contextMenuButtons;
   final void Function(List<ScrapItem> items)? onSelectionChanged;
   final VoidCallback? onDeletePressed;
   final bool mobileMode;
