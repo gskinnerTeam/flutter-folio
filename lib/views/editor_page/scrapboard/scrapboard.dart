@@ -47,7 +47,7 @@ class Scrapboard<T> extends StatefulWidget {
 }
 
 class ScrapboardState<T> extends State<Scrapboard<T>> with RawKeyboardListenerMixin {
-  bool get _lockAspectOnResize => KeyboardUtils.isShiftDown;
+  bool get _lockAspectOnResize => KeyboardUtils.isSpanSelectModifierDown;
   double kBoardHeight = 1200;
   double kBoardWidth = 1200 * 1.33;
 

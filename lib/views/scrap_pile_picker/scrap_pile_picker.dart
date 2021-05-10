@@ -76,7 +76,7 @@ class ScrapPilePickerState extends State<ScrapPilePicker> with RawKeyboardListen
 
   @override
   void handleKeyDown(RawKeyDownEvent value) {
-    if (KeyboardUtils.isCommandOrControlDown && value.logicalKey == LogicalKeyboardKey.keyA) {
+    if (KeyboardUtils.isMultiSelectModifierDown && value.logicalKey == LogicalKeyboardKey.keyA) {
       _handleSelectAllPressed();
     }
   }
@@ -98,9 +98,9 @@ class ScrapPilePickerState extends State<ScrapPilePicker> with RawKeyboardListen
     String id = scraps[index].documentId;
     // Use a utility method to handle the click, and return us a new set of ids
     _selectedIds = KeyboardUtils.handleMultiSelectListClick(
-      id,
-      _selectedIds,
-      scraps.map((e) => e.documentId).toList(),
+      clicked: id,
+      selected: _selectedIds,
+      all: scraps.map((e) => e.documentId).toList(),
       touchMode: touchMode,
       allowSpanSelect: true,
     );

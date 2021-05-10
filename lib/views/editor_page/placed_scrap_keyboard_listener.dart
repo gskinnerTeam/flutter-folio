@@ -48,7 +48,7 @@ class _PlacedScrapKeyboardListenerState extends State<PlacedScrapKeyboardListene
 
   @override
   void handleKeyDown(RawKeyDownEvent value) {
-    if (KeyboardUtils.isCommandOrControlDown) {
+    if (KeyboardUtils.isMultiSelectModifierDown) {
       if (value.logicalKey == LogicalKeyboardKey.bracketLeft) {
         ShiftPlacedScrapsSortOrderCommand().run(-1, widget.item);
       }
