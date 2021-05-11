@@ -1,5 +1,7 @@
 import 'dart:ui';
 
+import 'package:anchored_popups/anchored_popup_region.dart';
+import 'package:anchored_popups/anchored_popups.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_utils/input_utils.dart';
 import 'package:flutter_folio/_utils/notifications/close_notification.dart';
@@ -115,7 +117,7 @@ class AlignAndPad extends StatelessWidget {
   Widget build(BuildContext context) => Align(alignment: alignment, child: Padding(padding: padding, child: child));
 }
 
-class _ContentPickerTabMenu extends StatelessWidget {
+class _ContentPickerTabMenu extends StatefulWidget {
   const _ContentPickerTabMenu(
       {Key? key, required this.contentType, required this.onPressed, this.isPageSelected = false})
       : super(key: key);
@@ -123,6 +125,11 @@ class _ContentPickerTabMenu extends StatelessWidget {
   final bool isPageSelected;
   final void Function(ContentType type) onPressed;
 
+  @override
+  __ContentPickerTabMenuState createState() => __ContentPickerTabMenuState();
+}
+
+class __ContentPickerTabMenuState extends State<_ContentPickerTabMenu> {
   @override
   Widget build(BuildContext context) {
     return GlassCard(
@@ -132,49 +139,65 @@ class _ContentPickerTabMenu extends StatelessWidget {
           child: Column(children: [
             _TabMenuBtn(
               icon: AppIcons.scraps,
-              isSelected: contentType == ContentType.Photo,
-              onPressed: () => onPressed(ContentType.Photo),
+              tooltip: "Add photos",
+              isSelected: widget.contentType == ContentType.Photo,
+              onPressed: () => _handlePressed(ContentType.Photo),
             ),
             VSpace.med,
             _TabMenuBtn(
               icon: AppIcons.text,
-              isSelected: contentType == ContentType.Text,
-              onPressed: isPageSelected ? () => onPressed(ContentType.Text) : null,
+              tooltip: "Create new textfield",
+              isSelected: widget.contentType == ContentType.Text,
+              onPressed: widget.isPageSelected ? () => _handlePressed(ContentType.Text) : null,
             ),
             VSpace.med,
             _TabMenuBtn(
               icon: AppIcons.emoji,
-              isSelected: contentType == ContentType.Emoji,
-              onPressed: isPageSelected ? () => onPressed(ContentType.Emoji) : null,
+              tooltip: "Add emoji",
+              isSelected: widget.contentType == ContentType.Emoji,
+              onPressed: widget.isPageSelected ? () => _handlePressed(ContentType.Emoji) : null,
             ),
           ]),
         ),
       ),
     );
   }
+
+  void _handlePressed(ContentType type) {
+    AnchoredPopups.of(context)?.hide();
+    widget.onPressed.call(type);
+  }
 }
 
 class _TabMenuBtn extends StatelessWidget {
-  const _TabMenuBtn({Key? key, required this.icon, this.onPressed, this.isSelected = false}) : super(key: key);
+  const _TabMenuBtn({Key? key, required this.icon, this.onPressed, this.isSelected = false, this.tooltip})
+      : super(key: key);
   final AppIcons icon;
   final VoidCallback? onPressed;
   final bool isSelected;
+  final String? tooltip;
 
   static double kSize = 40;
 
   @override
   Widget build(BuildContext context) {
     AppTheme theme = context.watch();
-    return SimpleBtn(
-      onPressed: onPressed,
-      cornerRadius: 99,
-      ignoreDensity: false,
-      child: DecoratedContainer(
-        width: kSize,
-        height: kSize,
-        borderColor: isSelected ? theme.accent1.withOpacity(.15) : Colors.transparent,
-        borderRadius: 99,
-        child: AppIcon(icon, color: isSelected ? theme.accent1 : theme.greyStrong, size: 22),
+    return AnchoredPopUpRegion(
+      popChild: StyledTooltip(tooltip ?? "", arrowAlignment: Alignment.centerRight),
+      anchor: Alignment.centerLeft,
+      popAnchor: Alignment.centerRight,
+      delay: Duration.zero,
+      child: SimpleBtn(
+        onPressed: onPressed,
+        cornerRadius: 99,
+        ignoreDensity: false,
+        child: DecoratedContainer(
+          width: kSize,
+          height: kSize,
+          borderColor: isSelected ? theme.accent1.withOpacity(.15) : Colors.transparent,
+          borderRadius: 99,
+          child: AppIcon(icon, color: isSelected ? theme.accent1 : theme.greyStrong, size: 22),
+        ),
       ),
     );
   }
