@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:cloudinary_public/cloudinary_public.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/_widgets/popover/popover_notifications.dart';
+import 'package:flutter_folio/_widgets/popover/anchored_popups.dart';
 import 'package:flutter_folio/commands/app/set_current_user_command.dart';
 import 'package:flutter_folio/commands/app/update_user_command.dart';
 import 'package:flutter_folio/commands/pick_images_command.dart';
@@ -11,6 +11,8 @@ import 'package:flutter_folio/data/app_user.dart';
 import 'package:flutter_folio/models/app_model.dart';
 import 'package:flutter_folio/services/cloudinary/cloud_storage_service.dart';
 
+/// A form to edit the current users details or logout. It is shown in a pop up panel on desktop,
+/// and a bottom sheet on mobile.
 class UserProfileForm extends StatefulWidget {
   UserProfileForm({this.bottomSheet = false});
 
@@ -42,7 +44,6 @@ class _UserProfileFormState extends State<UserProfileForm> {
     AppTheme theme = context.watch();
 
     if (_user == null) return Container();
-    ScrollController scrollController;
 
     return Stack(
       children: [
@@ -132,21 +133,8 @@ class _UserProfileFormState extends State<UserProfileForm> {
     if (widget.bottomSheet) {
       Navigator.pop(context);
     } else {
-      ClosePopoverNotification().dispatch(context);
+      AnchoredPopups.of(context)?.hide();
     }
     SetCurrentUserCommand().run(null);
-  }
-}
-
-class _TopShadow extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Positioned.fill(
-      child: ClipRect(
-        child: FractionalTranslation(
-            translation: Offset(0, -1),
-            child: Container(decoration: BoxDecoration(color: Colors.red, boxShadow: Shadows.universal))),
-      ),
-    );
   }
 }
