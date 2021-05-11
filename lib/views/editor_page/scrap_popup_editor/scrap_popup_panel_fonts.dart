@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_folio/_widgets/decorated_container.dart';
 import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/data/book_data.dart';
 
@@ -98,16 +99,13 @@ class _FontBtn extends StatelessWidget {
     AppTheme theme = context.watch();
     return SimpleBtn(
       onPressed: () => onPressed(font),
-      child: Container(
+      child: DecoratedContainer(
           width: double.infinity,
           height: 40,
           alignment: Alignment.center,
-          decoration: BoxDecoration(
-              color: isSelected ? theme.accent1.withOpacity(.15) : Colors.transparent,
-              border: Border.all(
-                color: isSelected ? theme.accent1 : theme.grey,
-              ),
-              borderRadius: Corners.medBorder),
+          color: isSelected ? theme.accent1.withOpacity(.15) : Colors.transparent,
+          borderColor: isSelected ? theme.accent1 : theme.grey,
+          borderRadius: Corners.med,
           child: Text(
             boxFontToDisplay(font),
             textAlign: TextAlign.center,

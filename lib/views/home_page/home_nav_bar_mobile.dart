@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_folio/_widgets/decorated_container.dart';
 import 'package:flutter_folio/commands/books/create_folio_command.dart';
 import 'package:flutter_folio/core_packages.dart';
 import 'package:provider/provider.dart';
@@ -20,9 +21,10 @@ class HomeNavBarMobile extends StatelessWidget {
         /// White Bg with shadow
         Align(
           alignment: Alignment.bottomCenter,
-          child: Container(
+          child: DecoratedContainer(
             height: menuHeight,
-            decoration: BoxDecoration(color: theme.surface1, boxShadow: Shadows.universal),
+            color: theme.surface1,
+            shadows: Shadows.universal,
           ),
         ),
         // Flow view button

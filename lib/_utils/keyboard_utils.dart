@@ -30,7 +30,6 @@ class KeyboardUtils {
     return isDown;
   }
 
-  //TODO: Feature this snippet
   // Determine what to do when an image is pressed. This varies depending on input mode and platform.
   // Keyboard users will support ctrl/cmd modifiers, while Touch devices are optimized for single taps
   static List<String> handleMultiSelectListClick(

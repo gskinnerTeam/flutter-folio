@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_folio/_widgets/decorated_container.dart';
 import 'package:flutter_folio/commands/books/update_book_command.dart';
 import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/data/book_data.dart';
@@ -133,12 +134,11 @@ class _SelectedPageOutline extends StatelessWidget {
   Widget build(BuildContext context) {
     AppTheme theme = context.read();
     return Positioned(
-        left: 0,
-        right: 0,
-        top: top,
-        child: Container(
-          decoration: BoxDecoration(border: Border.all(color: theme.accent1.withOpacity(.6), width: 2)),
-        ),
-        height: height);
+      left: 0,
+      right: 0,
+      top: top,
+      height: height,
+      child: DecoratedContainer(borderColor: theme.accent1.withOpacity(.6), borderWidth: 2),
+    );
   }
 }

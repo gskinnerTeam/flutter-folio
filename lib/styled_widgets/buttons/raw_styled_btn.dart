@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_folio/_utils/string_utils.dart';
+import 'package:flutter_folio/_widgets/decorated_container.dart';
 import 'package:flutter_folio/_widgets/positioned_all.dart';
 import 'package:flutter_folio/_widgets/rounded_card.dart';
 import 'package:flutter_folio/core_packages.dart';
@@ -92,10 +93,9 @@ class _RawBtnState extends State<RawBtn> {
         clipBehavior: Clip.none,
         children: [
           /// Core Btn
-          Container(
-            // Add custom shadow
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(widget.cornerRadius ?? Corners.med), boxShadow: shadows),
+          DecoratedContainer(
+            borderRadius: widget.cornerRadius ?? Corners.med,
+            shadows: shadows,
             child: TextButton(
               focusNode: _focusNode,
               onPressed: widget.onPressed,

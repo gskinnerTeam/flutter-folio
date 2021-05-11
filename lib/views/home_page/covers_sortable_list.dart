@@ -56,7 +56,7 @@ class _CoversSortableListState extends State<CoversSortableList> {
                 child: ClipRRect(
                   borderRadius: Corners.medBorder,
                   child: Container(
-                    decoration: BoxDecoration(color: theme.surface1),
+                    color: theme.surface1,
                     height: headerHeight,
                     child: Row(
                       children: [

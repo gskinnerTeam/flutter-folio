@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_folio/_widgets/decorated_container.dart';
 import 'package:flutter_folio/core_packages.dart';
 import 'package:provider/provider.dart';
 
@@ -17,10 +18,11 @@ class StyledBottomSheet extends StatelessWidget {
         VSpace.sm,
 
         /// Drag Handle
-        Container(
+        DecoratedContainer(
           width: 96,
           height: 4,
-          decoration: BoxDecoration(borderRadius: Corners.medBorder, color: theme.greyWeak),
+          borderRadius: Corners.med,
+          color: theme.greyWeak,
         ),
 
         /// Content

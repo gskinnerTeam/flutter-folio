@@ -26,7 +26,9 @@ class UserProfileCard extends StatelessWidget {
                 child: Container(
                   padding: EdgeInsets.only(left: Insets.lg, right: Insets.lg, top: Insets.med),
                   decoration: BoxDecoration(
-                      color: theme.surface1, borderRadius: BorderRadius.vertical(bottom: Corners.smRadius)),
+                    color: theme.surface1,
+                    borderRadius: BorderRadius.vertical(bottom: Corners.smRadius),
+                  ),
                   child: UserProfileForm(),
                 ),
               )),

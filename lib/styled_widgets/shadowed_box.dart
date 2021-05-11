@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_folio/_widgets/decorated_container.dart';
 import 'package:flutter_folio/core_packages.dart';
 
 class ShadowedBg extends StatelessWidget {
@@ -10,9 +11,7 @@ class ShadowedBg extends StatelessWidget {
   Widget build(BuildContext context) {
     return IgnorePointer(
       ignoring: ignorePointer,
-      child: Container(
-        decoration: BoxDecoration(color: color, boxShadow: Shadows.universal),
-      ),
+      child: DecoratedContainer(color: color, shadows: Shadows.universal),
     );
   }
 }

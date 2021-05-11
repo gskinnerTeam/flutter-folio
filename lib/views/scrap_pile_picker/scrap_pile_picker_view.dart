@@ -95,11 +95,13 @@ class ScrapPilePickerView extends StatelessWidget {
                                           contextMenu: GenericContextMenu(
                                             buttonConfigs: state.widget.contextMenuButtons?.call(scrap) ?? [],
                                           ),
-                                          child: ScrapPickerBtn(
+                                          child: SelectableScrapBtn(
                                               key: ValueKey(scrap.documentId),
                                               img: scrap.data,
                                               isSelected: _selectedIds.contains(scrap.documentId),
-                                              onPressed: () => state._handleScrapPressed(scrapIndex)),
+                                              onPressed: () {
+                                                state._handleScrapPressed(scrapIndex);
+                                              }),
                                         );
                                       })),
                                 ),

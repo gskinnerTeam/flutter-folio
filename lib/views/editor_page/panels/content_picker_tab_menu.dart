@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_folio/_utils/input_utils.dart';
 import 'package:flutter_folio/_utils/notifications/close_notification.dart';
 import 'package:flutter_folio/_utils/string_utils.dart';
+import 'package:flutter_folio/_widgets/decorated_container.dart';
 import 'package:flutter_folio/commands/books/create_placed_scraps_command.dart';
 import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/data/book_data.dart';
@@ -168,13 +169,11 @@ class _TabMenuBtn extends StatelessWidget {
       onPressed: onPressed,
       cornerRadius: 99,
       ignoreDensity: false,
-      child: Container(
+      child: DecoratedContainer(
         width: kSize,
         height: kSize,
-        decoration: BoxDecoration(
-          color: isSelected ? theme.accent1.withOpacity(.15) : Colors.transparent,
-          borderRadius: BorderRadius.circular(99),
-        ),
+        borderColor: isSelected ? theme.accent1.withOpacity(.15) : Colors.transparent,
+        borderRadius: 99,
         child: AppIcon(icon, color: isSelected ? theme.accent1 : theme.greyStrong, size: 22),
       ),
     );

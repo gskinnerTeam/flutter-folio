@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_folio/_widgets/decorated_container.dart';
 import 'package:flutter_folio/styles.dart';
 
 class RoundedCard extends StatelessWidget {
@@ -26,11 +27,10 @@ class RoundedBorder extends StatelessWidget {
   Widget build(BuildContext context) {
     return IgnorePointer(
       ignoring: ignorePointer,
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(radius ?? Corners.med),
-          border: Border.all(color: color ?? Colors.white, width: width ?? Strokes.thin),
-        ),
+      child: DecoratedContainer(
+        borderRadius: radius ?? Corners.med,
+        borderColor: color ?? Colors.white,
+        borderWidth: width ?? Strokes.thin,
         child: child ?? Container(),
       ),
     );

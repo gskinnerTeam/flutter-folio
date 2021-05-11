@@ -1,13 +1,11 @@
 import 'package:anchored_popups/anchored_popups.dart';
-import 'package:context_menus/context_menus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_folio/_widgets/decorated_container.dart';
 import 'package:flutter_folio/commands/commands.dart' as Commands;
 import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/models/app_model.dart';
-import 'package:flutter_folio/styled_widgets/context_menus/context_menu_widgets.dart';
 import 'package:flutter_folio/views/app_title_bar/app_title_bar.dart';
-import 'package:statsfl/statsfl.dart';
 
 /// Wraps the entire app, providing it with various helper classes and wrapper widgets.
 class MainAppScaffold extends StatefulWidget {
@@ -86,13 +84,7 @@ class _WindowBorder extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(children: [
       child,
-      IgnorePointer(
-        child: Container(
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.white.withOpacity(.1), width: 1),
-          ),
-        ),
-      ),
+      DecoratedContainer(ignorePointer: true, borderColor: Colors.white.withOpacity(.1), borderWidth: 1),
     ]);
   }
 }

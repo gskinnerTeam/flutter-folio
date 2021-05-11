@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_folio/_widgets/decorated_container.dart';
 import 'package:flutter_folio/core_packages.dart';
 
 class StyledTooltip extends StatelessWidget {
@@ -27,8 +28,9 @@ class StyledTooltip extends StatelessWidget {
               ),
             ),
           ),
-          Container(
-            decoration: BoxDecoration(color: theme.greyStrong, borderRadius: Corners.smBorder),
+          DecoratedContainer(
+            color: theme.greyStrong,
+            borderRadius: Corners.sm,
             padding: EdgeInsets.all(Insets.sm),
             child: Text(label, style: TextStyles.caption.copyWith(color: Colors.white)),
           ),

@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_folio/_widgets/decorated_container.dart';
 import 'package:flutter_folio/core_packages.dart';
 
 import 'scrap_popup_editor.dart';
@@ -86,13 +87,12 @@ class _ColorSwatch extends StatelessWidget {
     double finalSize = size ?? 16;
     return Stack(
       children: [
-        Container(
+        DecoratedContainer(
           width: finalSize,
           height: finalSize,
-          decoration: BoxDecoration(
-            color: color,
-            border: Border.all(color: isSelected ? theme.focus : theme.greyMedium, width: isSelected ? 2 : 1),
-          ),
+          color: color,
+          borderColor: isSelected ? theme.focus : theme.greyMedium,
+          borderWidth: isSelected ? 2 : 1,
         ),
         if (color == Colors.transparent) ...[
           Positioned.fill(

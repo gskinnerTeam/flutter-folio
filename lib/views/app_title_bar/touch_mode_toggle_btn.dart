@@ -1,6 +1,7 @@
 import 'package:anchored_popups/anchored_popup_region.dart';
 import 'package:anchored_popups/anchored_popups.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_folio/_widgets/decorated_container.dart';
 import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/models/app_model.dart';
 import 'package:flutter_folio/themes.dart';
@@ -41,11 +42,9 @@ class _TouchModeToggleBtnState extends State<TouchModeToggleBtn> {
                 duration: Times.fast,
                 curve: Curves.easeOut,
                 padding: EdgeInsets.all(touchMode ? Insets.sm : Insets.xs),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(99),
-                    color: theme.grey.withOpacity(.3),
-                  ),
+                child: DecoratedContainer(
+                  borderRadius: 99,
+                  color: theme.grey.withOpacity(.3),
                   child: AnchoredPopUpRegion.hover(
                     key: ValueKey(touchMode),
                     popAnchor: widget.invertPopupAlign ? Alignment.topRight : Alignment.topLeft,

@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_utils/timed/debouncer.dart';
+import 'package:flutter_folio/_widgets/decorated_container.dart';
 import 'package:flutter_folio/core_packages.dart';
 
 class MovableScrapSelectionBox extends StatefulWidget {
@@ -52,13 +53,7 @@ class MovableScrapSelectionBoxState extends State<MovableScrapSelectionBox> {
           if (isVisible) ...[
             Padding(
               padding: EdgeInsets.all(widget.btnSize),
-              child: IgnorePointer(
-                child: Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(color: theme.accent1, width: 1.5),
-                  ),
-                ),
-              ),
+              child: DecoratedContainer(borderColor: theme.accent1, borderWidth: 1.5, ignorePointer: true),
             ),
           ],
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_folio/_widgets/alignments.dart';
+import 'package:flutter_folio/_widgets/decorated_container.dart';
 import 'package:flutter_folio/_widgets/sized_and_translated.dart';
 import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/data/book_data.dart';
@@ -71,14 +72,11 @@ class _ScrapPopupEditorState extends State<ScrapPopupEditor> {
               child: GestureDetector(
                 onTap: () {}, // Swallow any taps on the background so it won't cause the menu to close
                 child: TopLeft(
-                  child: Container(
-                    height: allRowsHeight + extraPadding * 2,
-                    decoration: BoxDecoration(
-                      color: theme.bg1,
-                      borderRadius: Corners.medBorder,
-                    ),
-                  ),
-                ),
+                    child: DecoratedContainer(
+                  height: allRowsHeight + extraPadding * 2,
+                  color: theme.bg1,
+                  borderRadius: Corners.med,
+                )),
               )),
 
           /// Content,

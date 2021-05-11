@@ -1,5 +1,6 @@
 import 'package:context_menus/context_menus.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_folio/_utils/color_utils.dart';
 import 'package:flutter_folio/_widgets/context_menu_overlay.dart';
 import 'package:flutter_folio/commands/books/delete_page_command.dart';
@@ -44,16 +45,19 @@ class _DraggablePageTitleBtnState extends State<DraggablePageTitleBtn> {
     }
 
     Widget _wrapDraggable(Widget child) {
-      return Draggable<ScrapPageData>(
-          data: widget.page,
-          // Make a copy of ourselves as the drag feedack
-          feedback: DraggablePageTitleBtn(widget.page,
-              height: widget.height, isSelected: widget.isSelected, isDragFeedback: true),
-          onDragStarted: _handleDragStart,
-          onDragEnd: _handleDragEnd,
-          onDraggableCanceled: (_, __) => widget.onDragCancelled?.call(),
-          childWhenDragging: Opacity(child: child, opacity: .4),
-          child: child);
+      return MouseRegion(
+        cursor: SystemMouseCursors.click,
+        child: Draggable<ScrapPageData>(
+            data: widget.page,
+            // Make a copy of ourselves as the drag feedack
+            feedback: DraggablePageTitleBtn(widget.page,
+                height: widget.height, isSelected: widget.isSelected, isDragFeedback: true),
+            onDragStarted: _handleDragStart,
+            onDragEnd: _handleDragEnd,
+            onDraggableCanceled: (_, __) => widget.onDragCancelled?.call(),
+            childWhenDragging: Opacity(child: child, opacity: .4),
+            child: child),
+      );
     }
 
     bool touchMode = context.select((AppModel m) => m.enableTouchMode);
