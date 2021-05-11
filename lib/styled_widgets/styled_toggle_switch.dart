@@ -1,5 +1,5 @@
+import 'package:anchored_popups/anchored_popup_region.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/_widgets/popover/anchored_popup_region.dart';
 import 'package:flutter_folio/core_packages.dart';
 
 class StyledToggleSwitch extends StatefulWidget {

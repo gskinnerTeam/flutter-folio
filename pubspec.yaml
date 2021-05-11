@@ -10,6 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
 
+  anchored_popups: ^0.0.1+2
   animate_do: ^2.0.0
   #todo: land this patch
   auto_size_text:

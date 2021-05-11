@@ -1,6 +1,6 @@
+import 'package:anchored_popups/anchored_popup_region.dart';
+import 'package:anchored_popups/anchored_popups.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/_widgets/popover/anchored_popups.dart';
-import 'package:flutter_folio/_widgets/popover/anchored_popup_region.dart';
 import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/models/app_model.dart';
 import 'package:flutter_folio/themes.dart';
@@ -50,8 +50,10 @@ class _TouchModeToggleBtnState extends State<TouchModeToggleBtn> {
                     key: ValueKey(touchMode),
                     popAnchor: widget.invertPopupAlign ? Alignment.topRight : Alignment.topLeft,
                     anchor: widget.invertPopupAlign ? Alignment.bottomRight : Alignment.bottomLeft,
-                    popChild: StyledTooltip(touchMode ? "Switch to Precision Mode" : "Switch to Touch Mode",
-                        arrowAlignment: widget.invertPopupAlign ? Alignment.topRight : Alignment.topLeft),
+                    popChild: StyledTooltip(
+                      touchMode ? "Switch to Precision Mode" : "Switch to Touch Mode",
+                      arrowAlignment: widget.invertPopupAlign ? Alignment.topRight : Alignment.topLeft,
+                    ),
                     child: MaterialIcon(
                       touchMode ? Icons.mouse : Icons.fingerprint,
                       color: theme.accent1,

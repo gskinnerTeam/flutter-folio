@@ -1,10 +1,10 @@
+import 'package:anchored_popups/anchored_popup_region.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_utils/device_info.dart';
 import 'package:flutter_folio/_utils/input_utils.dart';
 import 'package:flutter_folio/_utils/native_window_utils/window_utils.dart';
-import 'package:flutter_folio/_widgets/popover/anchored_popup_region.dart';
 import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/data/app_user.dart';
 import 'package:flutter_folio/models/app_model.dart';

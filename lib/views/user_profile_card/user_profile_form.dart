@@ -1,8 +1,8 @@
 import 'dart:async';
 
+import 'package:anchored_popups/anchored_popups.dart';
 import 'package:cloudinary_public/cloudinary_public.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/_widgets/popover/anchored_popups.dart';
 import 'package:flutter_folio/commands/app/set_current_user_command.dart';
 import 'package:flutter_folio/commands/app/update_user_command.dart';
 import 'package:flutter_folio/commands/pick_images_command.dart';

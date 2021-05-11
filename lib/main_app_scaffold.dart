@@ -1,7 +1,7 @@
+import 'package:anchored_popups/anchored_popups.dart';
 import 'package:context_menus/context_menus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/_widgets/popover/anchored_popups.dart';
 import 'package:flutter_folio/commands/commands.dart' as Commands;
 import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/models/app_model.dart';
@@ -31,49 +31,45 @@ class _MainAppScaffoldState extends State<MainAppScaffold> with TickerProviderSt
         textDirection: textDirection,
         // Right-click support
         child: StyledContextMenuOverlay(
-          // This navigator sits above the main navigator (pageNavigator). It exists to provide an overlay to the TitleBar which is a sibling of the pageNavigator.
-          child: Navigator(
-            onPopPage: (Route route, result) {
-              if (route.didPop(result)) return true;
-              return false;
-            },
-            pages: [
-              MaterialPage(
-                  // Pop-over (tooltip) support
-                  child: Builder(
-                builder: (BuildContext builderContext) {
-                  /// User a builder to provide a context to the Command layer that can safely use Navigator, Overlay etc
-                  Commands.setContext(builderContext);
-                  // Wrap our views in a controller for custom tooltips and popover controls
-                  return AnchoredPopups(
-                    // Draw a border around the entire window, because we're classy :)
-                    child: _WindowBorder(
+          // Tooltip and popup panel support
+          child: AnchoredPopups(
+            //TODO: Try and remove this navigator + page + builder
+            child: Navigator(
+              onPopPage: (Route route, result) {
+                if (route.didPop(result)) return true;
+                return false;
+              },
+              pages: [
+                MaterialPage(
+                    // Pop-over (tooltip) support
+                    child: Builder(
+                  builder: (BuildContext builderContext) {
+                    /// User a builder to provide a context to the Command layer that can show dialogs, bottom sheets etc
+                    Commands.setContext(builderContext);
+                    return _WindowBorder(
                       color: appTheme.greyStrong,
                       // Supply a top-level scaffold and SafeArea for all views
-                      child: StatsFl(
-                        isEnabled: false,
-                        child: Scaffold(
-                          backgroundColor: appTheme.surface1,
-                          body: SafeArea(
-                            // AppBar + Content
-                            child: Column(
-                              // This column has a reversed vertical direction, because we want the TitleBar to cast a shadow on the content below it.
-                              verticalDirection: VerticalDirection.up,
-                              children: [
-                                // Bottom content area
-                                Expanded(child: widget.pageNavigator),
-                                // Top-aligned TitleBar
-                                if (widget.showAppBar) AppTitleBar(),
-                              ],
-                            ),
+                      child: Scaffold(
+                        backgroundColor: appTheme.surface1,
+                        body: SafeArea(
+                          // AppBar + Content
+                          child: Column(
+                            // This column has a reversed vertical direction, because we want the TitleBar to cast a shadow on the content below it.
+                            verticalDirection: VerticalDirection.up,
+                            children: [
+                              // Bottom content area
+                              Expanded(child: widget.pageNavigator),
+                              // Top-aligned TitleBar
+                              if (widget.showAppBar) AppTitleBar(),
+                            ],
                           ),
                         ),
                       ),
-                    ),
-                  );
-                },
-              ))
-            ],
+                    );
+                  },
+                ))
+              ],
+            ),
           ),
         ),
       ),

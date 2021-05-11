@@ -15,6 +15,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.41.2"
+  anchored_popups:
+    dependency: "direct main"
+    description:
+      name: anchored_popups
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.1+2"
   animate_do:
     dependency: "direct main"
     description:

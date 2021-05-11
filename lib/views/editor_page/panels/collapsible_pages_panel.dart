@@ -29,7 +29,7 @@ class _CollapsiblePagesPanelState extends State<CollapsiblePagesPanel> {
     /// Build
     List<ScrapPageData> list = DataUtils.sortListById((widget.pages), _book?.pageOrder);
     return CollapsingCard(
-      title: "Pages",
+      title: "Pages (${list.length})",
       titleClosed: page?.title,
       icon: _RoundedBtn(onPressed: _handleAddPressed),
       height: widget.height,

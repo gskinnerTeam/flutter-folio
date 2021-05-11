@@ -1,6 +1,6 @@
+import 'package:anchored_popups/anchored_popup_region.dart';
+import 'package:anchored_popups/anchored_popups.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/_widgets/popover/anchored_popup_region.dart';
-import 'package:flutter_folio/_widgets/popover/anchored_popups.dart';
 import 'package:flutter_folio/commands/app/copy_share_link_command.dart';
 import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/data/book_data.dart';
@@ -24,6 +24,7 @@ class StyledSharedBtn extends StatelessWidget {
 
     AppTheme theme = context.watch();
     return AnchoredPopUpRegion.hover(
+        //TODO: anchors should be configurable here?
         anchor: Alignment.centerRight,
         popAnchor: Alignment.centerLeft,
         popChild: StyledTooltip("Copy Share Link", arrowAlignment: Alignment.centerLeft),
