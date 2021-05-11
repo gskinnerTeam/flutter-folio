@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/_widgets/popover/popover_region.dart';
+import 'package:flutter_folio/_widgets/popover/anchored_popup_region.dart';
 import 'package:flutter_folio/core_packages.dart';
 
 class StyledToggleSwitch extends StatefulWidget {
@@ -113,7 +113,7 @@ class _BtnWithTooltip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: PopOverRegion.hover(
+      child: AnchoredPopUpRegion.hover(
         popChild: StyledTooltip(toolTip),
         child: SimpleBtn(onPressed: onPressed, child: Center(child: child)),
       ),

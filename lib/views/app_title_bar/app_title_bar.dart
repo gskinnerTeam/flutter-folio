@@ -4,13 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_folio/_utils/device_info.dart';
 import 'package:flutter_folio/_utils/input_utils.dart';
 import 'package:flutter_folio/_utils/native_window_utils/window_utils.dart';
-import 'package:flutter_folio/_widgets/popover/popover_region.dart';
+import 'package:flutter_folio/_widgets/popover/anchored_popup_region.dart';
 import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/data/app_user.dart';
 import 'package:flutter_folio/models/app_model.dart';
 import 'package:flutter_folio/models/books_model.dart';
 import 'package:flutter_folio/views/app_title_bar/touch_mode_toggle_btn.dart';
-import 'package:flutter_folio/views/user_profile_card/user_profile_dropdown_card.dart';
+import 'package:flutter_folio/views/user_profile_card/user_profile_card.dart';
+import 'package:flutter_folio/views/user_profile_card/user_profile_form.dart';
 
 part 'app_title_bar_desktop.dart';
 part 'app_title_bar_mobile.dart';
@@ -86,7 +87,7 @@ class _AdaptiveProfileBtn extends StatelessWidget {
         StyledCircleImage(padding: EdgeInsets.all(Insets.xs), url: user.imageUrl ?? AppUser.kDefaultImageUrl);
     return useBottomSheet
         ? SimpleBtn(ignoreDensity: true, onPressed: () => _showProfileSheet(context), child: profileIcon)
-        : PopOverRegion.click(
+        : AnchoredPopUpRegion.click(
             popChild: ClipRect(
               child: UserProfileCard(),
               //child: Container(width: 100, height: 100, color: Colors.red),

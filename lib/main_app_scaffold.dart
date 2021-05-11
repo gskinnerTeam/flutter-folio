@@ -1,7 +1,7 @@
 import 'package:context_menus/context_menus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/_widgets/popover/popover_controller.dart';
+import 'package:flutter_folio/_widgets/popover/anchored_popups.dart';
 import 'package:flutter_folio/commands/commands.dart' as Commands;
 import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/models/app_model.dart';
@@ -45,7 +45,7 @@ class _MainAppScaffoldState extends State<MainAppScaffold> with TickerProviderSt
                   /// User a builder to provide a context to the Command layer that can safely use Navigator, Overlay etc
                   Commands.setContext(builderContext);
                   // Wrap our views in a controller for custom tooltips and popover controls
-                  return PopUpOverlay(
+                  return AnchoredPopups(
                     // Draw a border around the entire window, because we're classy :)
                     child: _WindowBorder(
                       color: appTheme.greyStrong,

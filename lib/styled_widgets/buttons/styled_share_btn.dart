@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/_widgets/popover/popover_notifications.dart';
-import 'package:flutter_folio/_widgets/popover/popover_region.dart';
+import 'package:flutter_folio/_widgets/popover/anchored_popup_region.dart';
+import 'package:flutter_folio/_widgets/popover/anchored_popups.dart';
 import 'package:flutter_folio/commands/app/copy_share_link_command.dart';
 import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/data/book_data.dart';
@@ -17,12 +17,13 @@ class StyledSharedBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     void _handleSharePressed() {
-      ClosePopoverNotification().dispatch(context);
+      // Close popup when pressed
+      AnchoredPopups.of(context)?.hide();
       CopyShareLinkCommand().run(book.documentId);
     }
 
     AppTheme theme = context.watch();
-    return PopOverRegion.hover(
+    return AnchoredPopUpRegion.hover(
         anchor: Alignment.centerRight,
         popAnchor: Alignment.centerLeft,
         popChild: StyledTooltip("Copy Share Link", arrowAlignment: Alignment.centerLeft),

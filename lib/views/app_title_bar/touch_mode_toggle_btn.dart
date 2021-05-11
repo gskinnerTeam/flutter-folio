@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/_widgets/popover/popover_notifications.dart';
-import 'package:flutter_folio/_widgets/popover/popover_region.dart';
+import 'package:flutter_folio/_widgets/popover/anchored_popups.dart';
+import 'package:flutter_folio/_widgets/popover/anchored_popup_region.dart';
 import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/models/app_model.dart';
 import 'package:flutter_folio/themes.dart';
@@ -20,7 +20,8 @@ class _TouchModeToggleBtnState extends State<TouchModeToggleBtn> {
   @override
   Widget build(BuildContext context) {
     void handleTouchModeToggled(bool value) {
-      ClosePopoverNotification().dispatch(context);
+      // Manually close popup when mode is toggled, this enables a new tooltip to come in
+      AnchoredPopups.of(context)?.hide();
       context.read<AppModel>().enableTouchMode = !value;
     }
 
@@ -45,7 +46,7 @@ class _TouchModeToggleBtnState extends State<TouchModeToggleBtn> {
                     borderRadius: BorderRadius.circular(99),
                     color: theme.grey.withOpacity(.3),
                   ),
-                  child: PopOverRegion.hover(
+                  child: AnchoredPopUpRegion.hover(
                     key: ValueKey(touchMode),
                     popAnchor: widget.invertPopupAlign ? Alignment.topRight : Alignment.topLeft,
                     anchor: widget.invertPopupAlign ? Alignment.bottomRight : Alignment.bottomLeft,

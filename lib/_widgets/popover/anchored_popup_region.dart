@@ -4,30 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_folio/_utils/safe_print.dart';
 import 'package:flutter_folio/styled_widgets/buttons/styled_buttons.dart';
 
-import 'popover_controller.dart';
-import 'popover_notifications.dart';
+import 'anchored_popups.dart';
 
-/// //////////////////////////////////
-/// POPOVER REGION
-///
-/// 2 Modes,
-/// Simple roll-over mode,
-///   - the Underlay is not shown... instead, a MouseRegion is added
-/// Clickable-mode
-///   - underlay is shown
-///   - barrierDismissable is an option
-///
-///
-///
-///
-enum PopOverRegionMode {
+enum PopUpMode {
   ClickToToggle, // Click a region to open PopOver, click barrier to close.
   Hover, // Open on hoverIn (slightly delayed), close on hoverOut
-  Toast, // Shows a non-interactive tooltip and fades it out after some time
 }
 
-class PopOverRegion extends StatefulWidget {
-  PopOverRegion(
+class AnchoredPopUpRegion extends StatefulWidget {
+  AnchoredPopUpRegion(
       {Key? key,
       required this.child,
       required this.popChild,
@@ -43,24 +28,19 @@ class PopOverRegion extends StatefulWidget {
   final Color? barrierColor;
   final Alignment? anchor;
   final Alignment? popAnchor;
-  final PopOverRegionMode mode;
+  final PopUpMode mode;
   @override
-  PopOverRegionState createState() => PopOverRegionState();
+  AnchoredPopUpRegionState createState() => AnchoredPopUpRegionState();
 
   // Non-interactive tool-tips, triggered on a delayed hover. Auto-close when you roll-out of the PopOverRegion
-  static PopOverRegion hover(
+  static AnchoredPopUpRegion hover(
       {Key? key, required Widget child, required Widget popChild, Alignment? anchor, Alignment? popAnchor}) {
-    return PopOverRegion(
-        key: key,
-        child: child,
-        popChild: popChild,
-        anchor: anchor,
-        popAnchor: popAnchor,
-        mode: PopOverRegionMode.Hover);
+    return AnchoredPopUpRegion(
+        key: key, child: child, popChild: popChild, anchor: anchor, popAnchor: popAnchor, mode: PopUpMode.Hover);
   }
 
   // Click to open/close. Use for interactive panels, or other elements that should close themselves
-  static PopOverRegion click(
+  static AnchoredPopUpRegion click(
       {Key? key,
       required Widget child,
       required Widget popChild,
@@ -68,19 +48,19 @@ class PopOverRegion extends StatefulWidget {
       Alignment? popAnchor,
       bool? barrierDismissable,
       Color? barrierColor}) {
-    return PopOverRegion(
+    return AnchoredPopUpRegion(
       key: key,
       child: child,
       popChild: popChild,
       anchor: anchor,
       popAnchor: popAnchor,
-      mode: PopOverRegionMode.ClickToToggle,
+      mode: PopUpMode.ClickToToggle,
       barrierColor: barrierColor,
       barrierDismissable: barrierDismissable,
     );
   }
 
-  static PopOverRegion hoverWithClick({
+  static AnchoredPopUpRegion hoverWithClick({
     Key? key,
     required Widget child,
     required Widget hoverPopChild,
@@ -103,27 +83,19 @@ class PopOverRegion extends StatefulWidget {
   }
 }
 
-class PopOverRegionState extends State<PopOverRegion> {
+class AnchoredPopUpRegionState extends State<AnchoredPopUpRegion> {
   Timer? _timer;
   LayerLink _link = LayerLink();
 
-  PopUpOverlayState? _popContext;
   @override
   Widget build(BuildContext context) {
     Widget content;
     // If Hover, add a MouseRegion
-    if (widget.mode == PopOverRegionMode.Hover) {
+    if (widget.mode == PopUpMode.Hover) {
       content = MouseRegion(
         opaque: true,
-        onEnter: (_) {
-          _timer?.cancel();
-          _timer = Timer.periodic(Duration(milliseconds: 400), (_) {
-            safePrint("PopoverRegion: Show!");
-            show();
-            _timer?.cancel();
-          });
-        },
-        onExit: (_) => hide(),
+        onEnter: (_) => _handleHoverStart(),
+        onExit: (_) => _handleHoverEnd(),
         child: widget.child,
       );
     } else {
@@ -134,7 +106,9 @@ class PopOverRegionState extends State<PopOverRegion> {
 
   @override
   void dispose() {
-    hide();
+    if (widget.mode == PopUpMode.Hover) {
+      _handleHoverEnd();
+    }
     super.dispose();
   }
 
@@ -144,34 +118,32 @@ class PopOverRegionState extends State<PopOverRegion> {
       return;
     }
     safePrint("PopoverRegion: Sending notification...");
-    ShowPopOverNotification(
-            // Send context with the notification, so the Overlay can use it to send more messages in the future.
-            context,
-            // Provide a link so Flutter will auto-position for us
-            _link,
-            popChild: widget.popChild,
-            anchor: widget.anchor ?? Alignment.bottomCenter,
-            popAnchor: widget.popAnchor ?? Alignment.topCenter,
-            // Don't use a barrier at all when using Hover mode
-            useBarrier: widget.mode != PopOverRegionMode.Hover,
-            barrierColor: widget.barrierColor ?? Colors.transparent,
-            dismissOnBarrierClick: widget.barrierDismissable ?? true,
-            // When a context catches this notification, it will callback.
-            // We use this later to decide whether to ignore the exit event in HoverMode
-            onContextHandled: _handleContextHandled)
-        .dispatch(context);
+    AnchoredPopups.of(context)?.show(context,
+        popChild: widget.popChild,
+        anchor: widget.anchor ?? Alignment.bottomCenter,
+        popAnchor: widget.popAnchor ?? Alignment.topCenter,
+        // Don't use a barrier at all when using Hover mode
+        useBarrier: widget.mode != PopUpMode.Hover,
+        barrierColor: widget.barrierColor ?? Colors.transparent,
+        dismissOnBarrierClick: widget.barrierDismissable ?? true);
   }
 
-  void _handleContextHandled(PopUpOverlayState value) => _popContext = value;
-
-  void hide() {
+  void _handleHoverStart() {
     _timer?.cancel();
-    // Don't close if the overlay is open, it means we've been replaced by a Click action.
-    if (_popContext != null && _popContext!.isBarrierOpen == false) {
-      _popContext?.closeCurrent();
-    } else {
-      // safePrint(
-      //     "PopoverRegion: Hide on exit was skipped, context: $_popContext, isOpen: ${_popContext?.isBarrierOpen}");
+    _timer = Timer.periodic(Duration(milliseconds: 400), (_) {
+      safePrint("PopoverRegion: Show!");
+      show();
+      _timer?.cancel();
+    });
+  }
+
+  void _handleHoverEnd() {
+    _timer?.cancel();
+    AnchoredPopupsController? popups = AnchoredPopups.of(context);
+    // before hiding, make sure we haven't been replaced with some other popup.
+    bool isStillOpen = popups?.currentPopup?.context == context;
+    if (isStillOpen) {
+      popups?.hide();
     }
   }
 }
