@@ -36,7 +36,7 @@ class _AuthFormState extends State<AuthForm> with LoadingStateMixin {
   String get _defaultPass => enableDebugLogin ? "password" : "";
   bool get enableSubmit {
     bool emailAndPassAreValid = EmailValidator.validate(_emailController.text) && _passController.text.length >= 6;
-    print("Enable submit??${_emailController.text}");
+    //print("Enable submit??${_emailController.text}");
     return emailAndPassAreValid;
   }
 
