@@ -1,20 +1,12 @@
-import 'package:anchored_popups/anchored_popup_region.dart';
 import 'package:animate_do/animate_do.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_utils/device_info.dart';
 import 'package:flutter_folio/_utils/input_utils.dart';
 import 'package:flutter_folio/_utils/native_window_utils/window_utils.dart';
 import 'package:flutter_folio/core_packages.dart';
-import 'package:flutter_folio/data/app_user.dart';
 import 'package:flutter_folio/models/app_model.dart';
-import 'package:flutter_folio/models/books_model.dart';
+import 'package:flutter_folio/views/app_title_bar/rounded_profile_button.dart';
 import 'package:flutter_folio/views/app_title_bar/touch_mode_toggle_btn.dart';
-import 'package:flutter_folio/views/user_profile_card/user_profile_card.dart';
-import 'package:flutter_folio/views/user_profile_card/user_profile_form.dart';
-
-part 'app_title_bar_desktop.dart';
-part 'app_title_bar_mobile.dart';
 
 class AppTitleBar extends StatelessWidget {
   @override
@@ -25,17 +17,53 @@ class AppTitleBar extends StatelessWidget {
       constraints: BoxConstraints(maxHeight: 40),
       child: Stack(
         children: [
-          // All titlebars share a bg
           ShadowedBg(theme.surface1),
-          // Switch between mobile and desktop title bars
-          if (DeviceOS.isDesktopOrWeb) ...[
-            _AppTitleBarDesktop(),
-          ] else ...[
-            _AppTitleBarMobile(),
-          ]
+          _AdaptiveTitleBarContent(),
         ],
       ),
     ));
+  }
+}
+
+class _AdaptiveTitleBarContent extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // Determine whether to show back button. We don't want to show it for "guest" users
+    bool isGuestUser = context.select((AppModel m) => m.isGuestUser);
+    bool canGoBack = context.select((AppModel m) => m.canPopNav);
+    bool showBackBtn = isGuestUser == false && canGoBack;
+    double appWidth = context.widthPx;
+    // Mac title bar has a different layout as it's window btns are left aligned
+    bool isMac = DeviceOS.isMacOS;
+    bool isMobile = DeviceOS.isMobile;
+
+    return Stack(children: [
+      // Centered TitleText
+      if (appWidth > 400) Center(child: _TitleText()),
+      // Btns
+      Row(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          if (isMac || isMobile) ...[
+            if (isMac) HSpace(80), // Reserve some space for the native btns
+            if (showBackBtn) _BackBtn(),
+            Spacer(),
+            TouchModeToggleBtn(invertPopupAlign: isMac),
+            HSpace.sm,
+            RoundedProfileBtn(invertRow: true, useBottomSheet: isMobile),
+            HSpace.sm,
+          ] else ...[
+            HSpace.sm,
+            // Linux and Windows are left aligned and simple
+            RoundedProfileBtn(useBottomSheet: isMobile),
+            HSpace.sm,
+            TouchModeToggleBtn(invertPopupAlign: isMac),
+            HSpace.sm,
+            if (showBackBtn) _BackBtn(),
+          ]
+        ],
+      ),
+    ]);
   }
 }
 
@@ -71,37 +99,5 @@ class _BackBtn extends StatelessWidget {
   void handleBackPressed(BuildContext context) {
     InputUtils.unFocus();
     context.read<AppModel>().popNav();
-  }
-}
-
-class _AdaptiveProfileBtn extends StatelessWidget {
-  const _AdaptiveProfileBtn({Key? key, this.useBottomSheet = false, this.invertRow = false}) : super(key: key);
-  final bool useBottomSheet;
-  final bool invertRow;
-  @override
-  Widget build(BuildContext context) {
-    AppUser? user = context.select((AppModel m) => m.currentUser);
-    if (user == null) return Container();
-    //
-    Widget profileIcon =
-        StyledCircleImage(padding: EdgeInsets.all(Insets.xs), url: user.imageUrl ?? AppUser.kDefaultImageUrl);
-    return useBottomSheet
-        ? SimpleBtn(ignoreDensity: true, onPressed: () => _showProfileSheet(context), child: profileIcon)
-        : AnchoredPopUpRegion.click(
-            popChild: ClipRect(
-              child: UserProfileCard(),
-              //child: Container(width: 100, height: 100, color: Colors.red),
-            ),
-            popAnchor: invertRow ? Alignment.topRight : Alignment.topLeft,
-            anchor: invertRow ? Alignment.bottomRight : Alignment.bottomLeft,
-            child: profileIcon);
-  }
-
-  void _showProfileSheet(BuildContext context) {
-    showStyledBottomSheet(context,
-        child: Container(
-          padding: EdgeInsets.all(Insets.xl),
-          child: UserProfileForm(bottomSheet: true),
-        ));
   }
 }
