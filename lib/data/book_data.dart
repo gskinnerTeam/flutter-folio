@@ -169,9 +169,12 @@ class BoxStyle with _$BoxStyle {
     @JsonKey(fromJson: _colorFromJson, toJson: _colorToJson) @Default(Colors.black) Color fgColor,
     @Default(BoxFonts.Lato) BoxFonts font,
     @Default(TextAlign.start) TextAlign align,
+    @JsonKey(fromJson: _weightFromJson, toJson: _weightToJson) @Default(FontWeight.w400) FontWeight fontWeight,
+    @Default(FontStyle.normal) FontStyle fontStyle,
   }) = _BoxStyle;
 
   factory BoxStyle.fromJson(Map<String, dynamic> json) => _$BoxStyleFromJson(json);
+
 }
 
 enum BoxFonts { Caveat, PathwayGothicOne, Amiri, Lato, Mali, AlfaSlabOne }
@@ -196,6 +199,16 @@ String boxFontToFamily(BoxFonts? font) {
   return "Unknown";
 }
 
+TextStyle textStyleFromBoxStyle(BoxStyle boxStyle) {
+  return TextStyle(
+      color: boxStyle.fgColor,
+      backgroundColor: boxStyle.bgColor,
+      fontFamily: boxFontToFamily(boxStyle.font),
+      fontWeight: boxStyle.fontWeight,
+      fontStyle: boxStyle.fontStyle,
+      );
+}
+
 Color _colorFromJson(String colorString) {
   int? intColor = int.tryParse(colorString, radix: 16);
   if (intColor == null)
@@ -205,3 +218,23 @@ Color _colorFromJson(String colorString) {
 }
 
 String _colorToJson(Color color) => color.value.toRadixString(16);
+
+FontWeight _weightFromJson(String? weightString) {
+  int? index = int.tryParse(weightString ?? "");
+  switch (index) {
+    case 0: return FontWeight.w100;
+    case 1: return FontWeight.w200;
+    case 2: return FontWeight.w300;
+    case 3: return FontWeight.w400;
+    case 4: return FontWeight.w500;
+    case 5: return FontWeight.w600;
+    case 6: return FontWeight.w700;
+    case 7: return FontWeight.w800;
+    case 8: return FontWeight.w900;
+    default: return FontWeight.normal;
+  }
+}
+
+String _weightToJson(FontWeight weight) {
+  return weight.index.toString();
+}

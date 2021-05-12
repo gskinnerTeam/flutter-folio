@@ -55,6 +55,16 @@ dependencies:
   firebase_auth: ^1.0.1
   cloud_firestore: ^1.0.1
 
+  # Rich text editor
+  super_editor:
+    path: ../super_editor/super_editor
+      #    git:
+      #      url: git://github.com/superlistapp/super_editor.git
+      #      ref: 3afd9d8cc841a75c848eb44f94228f4a21f0a698
+      #      path: super_editor
+
+
+
 dev_dependencies:
   # sample build cmd
   # flutter pub run build_runner build --delete-conflicting-outputs

@@ -36,6 +36,7 @@ class _NetworkedScrapboardState extends State<NetworkedScrapboard> {
   bool _ignoreKeyboardEvents = false;
   bool _isTranslating = false;
   ValueNotifier<bool> isTranslatingNotifier = ValueNotifier(false);
+  ValueNotifier<TextStyle> _styleNotifier = ValueNotifier(TextStyle());
 
   @override
   Widget build(BuildContext context) {
@@ -89,6 +90,7 @@ class _NetworkedScrapboardState extends State<NetworkedScrapboard> {
               isSelected: isSelected,
               onEditStarted: _handleScrapEditStarted,
               onEditEnded: _handleScrapEditEnded,
+              styleNotifier: _styleNotifier,
             );
           },
           lockAspectForItem: (item) => item.data.contentType == ContentType.Emoji,
@@ -137,6 +139,7 @@ class _NetworkedScrapboardState extends State<NetworkedScrapboard> {
   void _handleScrapEditEnded() => _ignoreKeyboardEvents = false;
 
   void _handleScrapStyleChanged(PlacedScrapItem item, BoxStyle boxStyle) {
+    _styleNotifier.value = textStyleFromBoxStyle(boxStyle);
     item = item.copyWith(boxStyle: boxStyle);
     UpdatePageScrapCommand().run(item);
   }

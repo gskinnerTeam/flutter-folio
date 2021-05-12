@@ -190,6 +190,9 @@ _$_BoxStyle _$_$_BoxStyleFromJson(Map<String, dynamic> json) {
         _$enumDecodeNullable(_$BoxFontsEnumMap, json['font']) ?? BoxFonts.Lato,
     align: _$enumDecodeNullable(_$TextAlignEnumMap, json['align']) ??
         TextAlign.start,
+    fontWeight: _weightFromJson(json['fontWeight'] as String?),
+    fontStyle: _$enumDecodeNullable(_$FontStyleEnumMap, json['fontStyle']) ??
+        FontStyle.normal,
   );
 }
 
@@ -199,6 +202,8 @@ Map<String, dynamic> _$_$_BoxStyleToJson(_$_BoxStyle instance) =>
       'fgColor': _colorToJson(instance.fgColor),
       'font': _$BoxFontsEnumMap[instance.font],
       'align': _$TextAlignEnumMap[instance.align],
+      'fontWeight': _weightToJson(instance.fontWeight),
+      'fontStyle': _$FontStyleEnumMap[instance.fontStyle],
     };
 
 const _$BoxFontsEnumMap = {
@@ -217,4 +222,9 @@ const _$TextAlignEnumMap = {
   TextAlign.justify: 'justify',
   TextAlign.start: 'start',
   TextAlign.end: 'end',
+};
+
+const _$FontStyleEnumMap = {
+  FontStyle.normal: 'normal',
+  FontStyle.italic: 'italic',
 };

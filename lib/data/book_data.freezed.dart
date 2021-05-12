@@ -1701,12 +1701,17 @@ class _$BoxStyleTearOff {
       @JsonKey(fromJson: _colorFromJson, toJson: _colorToJson)
           Color fgColor = Colors.black,
       BoxFonts font = BoxFonts.Lato,
-      TextAlign align = TextAlign.start}) {
+      TextAlign align = TextAlign.start,
+      @JsonKey(fromJson: _weightFromJson, toJson: _weightToJson)
+          FontWeight fontWeight = FontWeight.w400,
+      FontStyle fontStyle = FontStyle.normal}) {
     return _BoxStyle(
       bgColor: bgColor,
       fgColor: fgColor,
       font: font,
       align: align,
+      fontWeight: fontWeight,
+      fontStyle: fontStyle,
     );
   }
 
@@ -1726,6 +1731,9 @@ mixin _$BoxStyle {
   Color get fgColor => throw _privateConstructorUsedError;
   BoxFonts get font => throw _privateConstructorUsedError;
   TextAlign get align => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: _weightFromJson, toJson: _weightToJson)
+  FontWeight get fontWeight => throw _privateConstructorUsedError;
+  FontStyle get fontStyle => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1738,10 +1746,15 @@ abstract class $BoxStyleCopyWith<$Res> {
   factory $BoxStyleCopyWith(BoxStyle value, $Res Function(BoxStyle) then) =
       _$BoxStyleCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(fromJson: _colorFromJson, toJson: _colorToJson) Color bgColor,
-      @JsonKey(fromJson: _colorFromJson, toJson: _colorToJson) Color fgColor,
+      {@JsonKey(fromJson: _colorFromJson, toJson: _colorToJson)
+          Color bgColor,
+      @JsonKey(fromJson: _colorFromJson, toJson: _colorToJson)
+          Color fgColor,
       BoxFonts font,
-      TextAlign align});
+      TextAlign align,
+      @JsonKey(fromJson: _weightFromJson, toJson: _weightToJson)
+          FontWeight fontWeight,
+      FontStyle fontStyle});
 }
 
 /// @nodoc
@@ -1758,6 +1771,8 @@ class _$BoxStyleCopyWithImpl<$Res> implements $BoxStyleCopyWith<$Res> {
     Object? fgColor = freezed,
     Object? font = freezed,
     Object? align = freezed,
+    Object? fontWeight = freezed,
+    Object? fontStyle = freezed,
   }) {
     return _then(_value.copyWith(
       bgColor: bgColor == freezed
@@ -1776,6 +1791,14 @@ class _$BoxStyleCopyWithImpl<$Res> implements $BoxStyleCopyWith<$Res> {
           ? _value.align
           : align // ignore: cast_nullable_to_non_nullable
               as TextAlign,
+      fontWeight: fontWeight == freezed
+          ? _value.fontWeight
+          : fontWeight // ignore: cast_nullable_to_non_nullable
+              as FontWeight,
+      fontStyle: fontStyle == freezed
+          ? _value.fontStyle
+          : fontStyle // ignore: cast_nullable_to_non_nullable
+              as FontStyle,
     ));
   }
 }
@@ -1786,10 +1809,15 @@ abstract class _$BoxStyleCopyWith<$Res> implements $BoxStyleCopyWith<$Res> {
       __$BoxStyleCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(fromJson: _colorFromJson, toJson: _colorToJson) Color bgColor,
-      @JsonKey(fromJson: _colorFromJson, toJson: _colorToJson) Color fgColor,
+      {@JsonKey(fromJson: _colorFromJson, toJson: _colorToJson)
+          Color bgColor,
+      @JsonKey(fromJson: _colorFromJson, toJson: _colorToJson)
+          Color fgColor,
       BoxFonts font,
-      TextAlign align});
+      TextAlign align,
+      @JsonKey(fromJson: _weightFromJson, toJson: _weightToJson)
+          FontWeight fontWeight,
+      FontStyle fontStyle});
 }
 
 /// @nodoc
@@ -1807,6 +1835,8 @@ class __$BoxStyleCopyWithImpl<$Res> extends _$BoxStyleCopyWithImpl<$Res>
     Object? fgColor = freezed,
     Object? font = freezed,
     Object? align = freezed,
+    Object? fontWeight = freezed,
+    Object? fontStyle = freezed,
   }) {
     return _then(_BoxStyle(
       bgColor: bgColor == freezed
@@ -1825,6 +1855,14 @@ class __$BoxStyleCopyWithImpl<$Res> extends _$BoxStyleCopyWithImpl<$Res>
           ? _value.align
           : align // ignore: cast_nullable_to_non_nullable
               as TextAlign,
+      fontWeight: fontWeight == freezed
+          ? _value.fontWeight
+          : fontWeight // ignore: cast_nullable_to_non_nullable
+              as FontWeight,
+      fontStyle: fontStyle == freezed
+          ? _value.fontStyle
+          : fontStyle // ignore: cast_nullable_to_non_nullable
+              as FontStyle,
     ));
   }
 }
@@ -1839,7 +1877,10 @@ class _$_BoxStyle extends _BoxStyle with DiagnosticableTreeMixin {
       @JsonKey(fromJson: _colorFromJson, toJson: _colorToJson)
           this.fgColor = Colors.black,
       this.font = BoxFonts.Lato,
-      this.align = TextAlign.start})
+      this.align = TextAlign.start,
+      @JsonKey(fromJson: _weightFromJson, toJson: _weightToJson)
+          this.fontWeight = FontWeight.w400,
+      this.fontStyle = FontStyle.normal})
       : super._();
 
   factory _$_BoxStyle.fromJson(Map<String, dynamic> json) =>
@@ -1857,10 +1898,16 @@ class _$_BoxStyle extends _BoxStyle with DiagnosticableTreeMixin {
   @JsonKey(defaultValue: TextAlign.start)
   @override
   final TextAlign align;
+  @override
+  @JsonKey(fromJson: _weightFromJson, toJson: _weightToJson)
+  final FontWeight fontWeight;
+  @JsonKey(defaultValue: FontStyle.normal)
+  @override
+  final FontStyle fontStyle;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'BoxStyle(bgColor: $bgColor, fgColor: $fgColor, font: $font, align: $align)';
+    return 'BoxStyle(bgColor: $bgColor, fgColor: $fgColor, font: $font, align: $align, fontWeight: $fontWeight, fontStyle: $fontStyle)';
   }
 
   @override
@@ -1871,7 +1918,9 @@ class _$_BoxStyle extends _BoxStyle with DiagnosticableTreeMixin {
       ..add(DiagnosticsProperty('bgColor', bgColor))
       ..add(DiagnosticsProperty('fgColor', fgColor))
       ..add(DiagnosticsProperty('font', font))
-      ..add(DiagnosticsProperty('align', align));
+      ..add(DiagnosticsProperty('align', align))
+      ..add(DiagnosticsProperty('fontWeight', fontWeight))
+      ..add(DiagnosticsProperty('fontStyle', fontStyle));
   }
 
   @override
@@ -1887,7 +1936,13 @@ class _$_BoxStyle extends _BoxStyle with DiagnosticableTreeMixin {
             (identical(other.font, font) ||
                 const DeepCollectionEquality().equals(other.font, font)) &&
             (identical(other.align, align) ||
-                const DeepCollectionEquality().equals(other.align, align)));
+                const DeepCollectionEquality().equals(other.align, align)) &&
+            (identical(other.fontWeight, fontWeight) ||
+                const DeepCollectionEquality()
+                    .equals(other.fontWeight, fontWeight)) &&
+            (identical(other.fontStyle, fontStyle) ||
+                const DeepCollectionEquality()
+                    .equals(other.fontStyle, fontStyle)));
   }
 
   @override
@@ -1896,7 +1951,9 @@ class _$_BoxStyle extends _BoxStyle with DiagnosticableTreeMixin {
       const DeepCollectionEquality().hash(bgColor) ^
       const DeepCollectionEquality().hash(fgColor) ^
       const DeepCollectionEquality().hash(font) ^
-      const DeepCollectionEquality().hash(align);
+      const DeepCollectionEquality().hash(align) ^
+      const DeepCollectionEquality().hash(fontWeight) ^
+      const DeepCollectionEquality().hash(fontStyle);
 
   @JsonKey(ignore: true)
   @override
@@ -1911,10 +1968,15 @@ class _$_BoxStyle extends _BoxStyle with DiagnosticableTreeMixin {
 
 abstract class _BoxStyle extends BoxStyle {
   factory _BoxStyle(
-      {@JsonKey(fromJson: _colorFromJson, toJson: _colorToJson) Color bgColor,
-      @JsonKey(fromJson: _colorFromJson, toJson: _colorToJson) Color fgColor,
+      {@JsonKey(fromJson: _colorFromJson, toJson: _colorToJson)
+          Color bgColor,
+      @JsonKey(fromJson: _colorFromJson, toJson: _colorToJson)
+          Color fgColor,
       BoxFonts font,
-      TextAlign align}) = _$_BoxStyle;
+      TextAlign align,
+      @JsonKey(fromJson: _weightFromJson, toJson: _weightToJson)
+          FontWeight fontWeight,
+      FontStyle fontStyle}) = _$_BoxStyle;
   _BoxStyle._() : super._();
 
   factory _BoxStyle.fromJson(Map<String, dynamic> json) = _$_BoxStyle.fromJson;
@@ -1929,6 +1991,11 @@ abstract class _BoxStyle extends BoxStyle {
   BoxFonts get font => throw _privateConstructorUsedError;
   @override
   TextAlign get align => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(fromJson: _weightFromJson, toJson: _weightToJson)
+  FontWeight get fontWeight => throw _privateConstructorUsedError;
+  @override
+  FontStyle get fontStyle => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$BoxStyleCopyWith<_BoxStyle> get copyWith =>
