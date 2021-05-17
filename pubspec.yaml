@@ -72,7 +72,7 @@ dev_dependencies:
 msix_config:
   display_name: Flutter Folio
   publisher_display_name: gskinner, inc
-  identity_name: 56347gskinner-xboxapps.FlutterFolio_01zv452zq6r9
+  identity_name: 56347gskinner-xboxapps.FlutterFolio
   msix_version: 1.1.0.0
   start_menu_icon_path: ./source-assets/app-flutter-folio.png
   tile_icon_path: ./source-assets/app-flutter-folio.png
