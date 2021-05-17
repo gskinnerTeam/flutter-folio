@@ -67,7 +67,7 @@ dev_dependencies:
   freezed_annotation: ^0.14.1
   json_serializable:
   flutter_launcher_icons: ^0.9.0
-  msix: ^0.1.15
+  msix: ^2.1.1
 
 msix_config:
   display_name: Flutter Folio
