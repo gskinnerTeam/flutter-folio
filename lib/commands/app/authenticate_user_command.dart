@@ -1,4 +1,4 @@
-import 'package:flutter_folio/_utils/safe_print.dart';
+import 'package:flutter_folio/_utils/log_print.dart';
 import 'package:flutter_folio/commands/app/set_current_user_command.dart';
 import 'package:flutter_folio/commands/commands.dart';
 import 'package:flutter_folio/data/app_user.dart';
@@ -16,14 +16,14 @@ class AuthenticateUserCommand extends BaseAppCommand {
         firebase.userId = email;
         await firebase.addUser(user);
       }
-      safePrint("Authentication complete, user=$user");
+      logPrint("Authentication complete, user=$user");
       // Login??
       if (user != null) {
         SetCurrentUserCommand().run(user);
         return true;
       }
     } on Exception catch (e) {
-      safePrint(e.toString());
+      logPrint(e.toString());
     }
     return false;
   }

@@ -1,5 +1,5 @@
 export 'package:darq/darq.dart'; // Extra list sorting methods sortByDescending, etc
-export 'package:flutter_folio/_utils/safe_print.dart';
+export 'package:flutter_folio/_utils/log_print.dart';
 export 'package:flutter_folio/styled_widgets/styled_widgets.dart';
 export 'package:flutter_folio/styles.dart';
 export 'package:flutter_folio/themes.dart';

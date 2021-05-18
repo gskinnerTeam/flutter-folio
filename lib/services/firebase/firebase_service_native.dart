@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_folio/_utils/safe_print.dart';
+import 'package:flutter_folio/_utils/log_print.dart';
 import 'package:flutter_folio/data/app_user.dart';
 import 'package:flutter_folio/services/firebase/firebase_service.dart';
 
@@ -75,9 +75,9 @@ class NativeFirebaseService extends FirebaseService {
       {String? documentId, bool addUserPath = true}) async {
     if (documentId != null) {
       keys.add(documentId);
-      safePrint("Add Doc ${getPathFromKeys(keys)}");
+      logPrint("Add Doc ${getPathFromKeys(keys)}");
       await firestore.doc(getPathFromKeys(keys, addUserPath: addUserPath)).set(json);
-      safePrint("Add Doc Complete");
+      logPrint("Add Doc Complete");
       return documentId;
     }
     CollectionReference ref = firestore.collection(getPathFromKeys(keys, addUserPath: addUserPath));

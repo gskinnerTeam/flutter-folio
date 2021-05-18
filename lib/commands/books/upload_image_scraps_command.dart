@@ -32,7 +32,7 @@ class UploadImageScrapsCommand extends BaseAppCommand {
 
     // Upload images and get a public Url
     List<CloudinaryResponse> uploads = await cloudStorage.multiUpload(images: paths);
-    uploads.forEach((u) => safePrint(u.secureUrl));
+    uploads.forEach((u) => logPrint(u.secureUrl));
 
     // Now that we have urls, replace the newScraps with ones that have a url
     List<ScrapItem> items = uploads.map((upload) {

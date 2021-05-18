@@ -107,10 +107,10 @@ class AppRouterDelegate extends RouterDelegate<AppLink> with ChangeNotifier {
       // Skip to some initial payload to test deeplinking
       //initialLink = AppLink(user: "shawn@test.com", bookId: "-ePtxV2wZ", pageId: "QZdZ1ZCIb");
     }
-    print("setInitialRoutePath start");
+    logPrint("setInitialRoutePath start");
     await setNewRoutePath(initialLink);
     appModel.hasSetInitialRoute = true;
-    print("setInitialRoutePath complete");
+    logPrint("setInitialRoutePath complete");
   }
 
   @override

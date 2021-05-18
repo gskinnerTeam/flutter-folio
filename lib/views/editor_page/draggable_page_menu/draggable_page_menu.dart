@@ -96,7 +96,7 @@ class DraggablePagesMenuState extends State<DraggablePagesMenu> {
   bool _handleItemDropped(DragTargetDetails<ScrapPageData> details) {
     List<ScrapPageData> pages = List.from(widget.pages);
     int oldIndex = pages.indexOf(details.data);
-    safePrint("Dropped: ${details.data}");
+    logPrint("Dropped: ${details.data}");
     int newIndex = hoverIndex;
     pages.removeAt(oldIndex);
     pages.insert(newIndex, details.data);

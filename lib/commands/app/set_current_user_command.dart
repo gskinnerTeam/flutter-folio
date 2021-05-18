@@ -7,7 +7,7 @@ import 'refresh_menubar_command.dart';
 
 class SetCurrentUserCommand extends BaseAppCommand {
   Future<void> run(AppUser? user) async {
-    safePrint("SetCurrentUserCommand: $user");
+    logPrint("SetCurrentUserCommand: $user");
     // Update appController with new user. If user is null, this acts as a logout command.
     firebase.userId = user?.email;
     appModel.currentUser = user;
@@ -15,7 +15,7 @@ class SetCurrentUserCommand extends BaseAppCommand {
       AppUser? user = await firebase.getUser();
       if (user != null) {
         appModel.currentUser = user;
-        safePrint("User loaded from firebase: ${user.toJson()}");
+        logPrint("User loaded from firebase: ${user.toJson()}");
       }
     }
     // If currentUser is null here, then we've either logged out, or auth failed.

@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter_folio/_utils/path_utils.dart';
-import 'package:flutter_folio/_utils/safe_print.dart';
+import 'package:flutter_folio/_utils/log_print.dart';
 import 'package:path/path.dart' as p;
 
 import 'universal_file.dart';
@@ -33,7 +33,7 @@ class IoFileWriter implements UniversalFile {
     print("Loading file @ $fullPath");
     if (await File("$fullPath").exists()) {
       return await File("$fullPath").readAsString().catchError((Object e) {
-        safePrint(e.toString());
+        logPrint(e.toString());
       });
     }
     return null;

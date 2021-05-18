@@ -35,7 +35,7 @@ class AppLink {
       if (params.containsKey(key)) setter.call(params[key]!);
     }
 
-    safePrint("parse-fromLocation: $location");
+    logPrint("parse-fromLocation: $location");
     // Create the applink, inject any params we've found
     AppLink link = AppLink();
     trySet(AppLink.kBookParam, (s) => link.bookId = s);

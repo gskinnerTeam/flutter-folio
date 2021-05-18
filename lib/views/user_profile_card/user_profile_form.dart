@@ -110,7 +110,7 @@ class _UserProfileFormState extends State<UserProfileForm> {
 
     // Make a command that picks images, uploads them, and returns a list of remote paths?
 
-    uploads.forEach((u) => safePrint(u.secureUrl));
+    uploads.forEach((u) => logPrint(u.secureUrl));
     // Update firebase
     if (uploads.isNotEmpty) {
       AppModel m = context.read();
