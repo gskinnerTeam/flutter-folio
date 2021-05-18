@@ -16,14 +16,14 @@ class AuthenticateUserCommand extends BaseAppCommand {
         firebase.userId = email;
         await firebase.addUser(user);
       }
-      logPrint("Authentication complete, user=$user");
+      log("Authentication complete, user=$user");
       // Login??
       if (user != null) {
         SetCurrentUserCommand().run(user);
         return true;
       }
     } on Exception catch (e) {
-      logPrint(e.toString());
+      log(e.toString());
     }
     return false;
   }

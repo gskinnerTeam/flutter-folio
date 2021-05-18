@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_folio/_utils/log_print.dart';
 import 'package:flutter_folio/commands/app/bootstrap_command.dart';
 import 'package:flutter_folio/models/app_model.dart';
 import 'package:flutter_folio/models/books_model.dart';
@@ -14,41 +15,41 @@ import 'package:flutter_folio/themes.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
-  //Call this first to make sure we can make other system level calls safely
-  WidgetsFlutterBinding.ensureInitialized();
-  // Status bar style on Android/iOS
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle());
+  // Call a method to setup a global error handler so we can log all errors, including ones from native extensions.
+  initErrorLogger(() async {
+    // Status bar style on Android/iOS
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle());
 
-  if (kIsWeb) {
-    // Increase Skia cache size to support bigger images.
-    const int megabyte = 1000000;
-    SystemChannels.skia.invokeMethod('Skia.setResourceCacheMaxBytes', 512 * megabyte);
-    // TODO: cant' await on invokeMethod due to https://github.com/flutter/flutter/issues/77018  so awaiting on Future.delayed instead.
-    await Future<void>.delayed(Duration.zero);
-  }
+    if (kIsWeb) {
+      // Increase Skia cache size to support bigger images.
+      const int megabyte = 1000000;
+      SystemChannels.skia.invokeMethod('Skia.setResourceCacheMaxBytes', 512 * megabyte);
+      // TODO: cant' await on invokeMethod due to https://github.com/flutter/flutter/issues/77018  so awaiting on Future.delayed instead.
+      await Future<void>.delayed(Duration.zero);
+    }
 
-  /// Create core models & services
-  FirebaseService firebase = FirebaseFactory.create();
-  BooksModel booksModel = BooksModel();
-  AppModel appModel = AppModel(booksModel, firebase);
+    /// Create core models & services
+    FirebaseService firebase = FirebaseFactory.create();
+    BooksModel booksModel = BooksModel();
+    AppModel appModel = AppModel(booksModel, firebase);
 
-  // /// Run
-  runApp(MultiProvider(
-    providers: [
-      // Firebase
-      Provider.value(value: firebase),
-      // Cloudinary
-      Provider(create: (_) => CloudStorageService()),
-      // App Model - Stores data related to global settings or app modes
-      ChangeNotifierProvider.value(value: appModel),
-      // BooksModel - Stores data about the content in the app
-      ChangeNotifierProvider.value(value: booksModel),
-    ],
+    // /// Run
+    runApp(MultiProvider(
+      providers: [
+        // Firebase
+        Provider.value(value: firebase),
+        // Cloudinary
+        Provider(create: (_) => CloudStorageService()),
+        // App Model - Stores data related to global settings or app modes
+        ChangeNotifierProvider.value(value: appModel),
+        // BooksModel - Stores data about the content in the app
+        ChangeNotifierProvider.value(value: booksModel),
+      ],
 
-    //child: BasicRouterSpike(),
-    child: _AppBootstrapper(),
-  ));
-  //
+      //child: BasicRouterSpike(),
+      child: _AppBootstrapper(),
+    ));
+  });
 }
 
 // Bootstrap the app, initializing all Controllers and Services

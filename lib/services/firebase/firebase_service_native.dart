@@ -75,9 +75,9 @@ class NativeFirebaseService extends FirebaseService {
       {String? documentId, bool addUserPath = true}) async {
     if (documentId != null) {
       keys.add(documentId);
-      logPrint("Add Doc ${getPathFromKeys(keys)}");
+      log("Add Doc ${getPathFromKeys(keys)}");
       await firestore.doc(getPathFromKeys(keys, addUserPath: addUserPath)).set(json);
-      logPrint("Add Doc Complete");
+      log("Add Doc Complete");
       return documentId;
     }
     CollectionReference ref = firestore.collection(getPathFromKeys(keys, addUserPath: addUserPath));

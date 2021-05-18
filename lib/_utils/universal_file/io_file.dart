@@ -33,7 +33,7 @@ class IoFileWriter implements UniversalFile {
     print("Loading file @ $fullPath");
     if (await File("$fullPath").exists()) {
       return await File("$fullPath").readAsString().catchError((Object e) {
-        logPrint(e.toString());
+        log(e.toString());
       });
     }
     return null;

@@ -23,10 +23,10 @@ class BootstrapCommand extends Commands.BaseAppCommand {
     if (Commands.hasContext == false) {
       Commands.setContext(context);
     }
-    logPrint("Bootstrap Started, v${AppModel.kVersion}");
+    log("Bootstrap Started, v${AppModel.kVersion}");
     // Load AppModel ASAP
     await appModel.load();
-    logPrint("BootstrapCommand - AppModel Loaded, user = ${appModel.currentUser}");
+    log("BootstrapCommand - AppModel Loaded, user = ${appModel.currentUser}");
     if (firebase.isSignedIn == false && appModel.currentUser != null) {
       // If we previously has a user, it's unexpected that firebase has lost auth. Give it some extra time.
       await Future<void>.delayed(Duration(seconds: 1));
@@ -36,23 +36,23 @@ class BootstrapCommand extends Commands.BaseAppCommand {
         appModel.currentUser = null;
       }
     }
-    logPrint("BootstrapCommand - Init Cloud services");
+    log("BootstrapCommand - Init Cloud services");
     // Init services
     cloudStorage.init();
     // Set the cacheSize so we'll use more RAM on desktop and higher spec devices.
-    logPrint("BootstrapCommand - Configure memory cache");
+    log("BootstrapCommand - Configure memory cache");
     _configureMemoryCache();
 
     // Once model is loaded, we can configure the desktop.
     if (DeviceOS.isDesktop) {
-      logPrint("BootstrapCommand - Configure desktop");
+      log("BootstrapCommand - Configure desktop");
       _configureDesktop();
     }
     // Login?
     if (appModel.currentUser != null) {
-      logPrint("BootstrapCommand - Set current user");
+      log("BootstrapCommand - Set current user");
       await SetCurrentUserCommand().run(appModel.currentUser);
-      logPrint("BootstrapCommand - Refresh books");
+      log("BootstrapCommand - Refresh books");
       await RefreshAllBooks();
     }
     // For aesthetics, we'll keep splash screen up for some min-time (skip on web)
@@ -63,8 +63,8 @@ class BootstrapCommand extends Commands.BaseAppCommand {
         await Future<void>.delayed(Duration(milliseconds: remaining));
       }
     }
-    //appModel.hasBootstrapped = true;
-    logPrint("BootstrapCommand - Complete");
+    appModel.hasBootstrapped = true;
+    log("BootstrapCommand - Complete");
   }
 
   void _configureMemoryCache() {
@@ -76,7 +76,7 @@ class BootstrapCommand extends Commands.BaseAppCommand {
         // Use some percentage of system ram, but don't fall below the default, in case this returns 0 or some other invalid value.
         cacheSize = max(cacheSize, (SysInfo.getTotalPhysicalMemory() / 4).round());
       } on Exception catch (e) {
-        logPrint(e.toString());
+        log(e.toString());
       }
     }
     imageCache?.maximumSizeBytes = cacheSize;
