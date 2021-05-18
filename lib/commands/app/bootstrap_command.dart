@@ -26,7 +26,7 @@ class BootstrapCommand extends Commands.BaseAppCommand {
     print("Bootstrap Started, v${AppModel.kVersion}");
     // Load AppModel ASAP
     await appModel.load();
-    safePrint("BootstrapCommand - AppModel Loaded, user = ${appModel.currentUser}");
+    print("BootstrapCommand - AppModel Loaded, user = ${appModel.currentUser}");
     if (firebase.isSignedIn == false && appModel.currentUser != null) {
       // If we previously has a user, it's unexpected that firebase has lost auth. Give it some extra time.
       await Future<void>.delayed(Duration(seconds: 1));
@@ -36,29 +36,35 @@ class BootstrapCommand extends Commands.BaseAppCommand {
         appModel.currentUser = null;
       }
     }
+    print("BootstrapCommand - Init Cloud services");
     // Init services
     cloudStorage.init();
     // Set the cacheSize so we'll use more RAM on desktop and higher spec devices.
+    print("BootstrapCommand - Configure memory cache");
     _configureMemoryCache();
 
     // Once model is loaded, we can configure the desktop.
     if (DeviceOS.isDesktop) {
+      print("BootstrapCommand - Configure desktop");
       _configureDesktop();
     }
     // Login?
     if (appModel.currentUser != null) {
+      print("BootstrapCommand - Set current user");
       await SetCurrentUserCommand().run(appModel.currentUser);
+      print("BootstrapCommand - Refresh books");
       await RefreshAllBooks();
     }
     // For aesthetics, we'll keep splash screen up for some min-time (skip on web)
     if (kIsWeb == false) {
       int remaining = kMinBootstrapTimeMs - (TimeUtils.nowMillis - startTime);
       if (remaining > 0) {
+        print("BootstrapCommand - waiting for $remaining ms");
         await Future<void>.delayed(Duration(milliseconds: remaining));
       }
     }
     appModel.hasBootstrapped = true;
-    safePrint("BootstrapCommand - Complete");
+    print("BootstrapCommand - Complete");
   }
 
   void _configureMemoryCache() {
