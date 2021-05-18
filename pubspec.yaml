@@ -17,7 +17,7 @@ dependencies:
     git:
       url: git://github.com/gskinnerTeam/auto_size_text.git
       ref: 8800276218b053265ffc796a24e84820bebaaeac
-  bitsdojo_window: ^0.1.0
+  bitsdojo_window: ^0.1.0+1
   cached_network_image: ^3.0.0
   cloudinary_public: ^0.8.0
   context_menus: ^0.1.0+5
