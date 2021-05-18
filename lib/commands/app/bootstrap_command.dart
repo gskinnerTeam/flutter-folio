@@ -85,7 +85,9 @@ class BootstrapCommand extends Commands.BaseAppCommand {
   void _configureDesktop() {
     // /// Polish (for Windows OS), to hide any movement of the window on startup.
     IoUtils.instance.showWindowWhenReady();
-    IoUtils.instance.setTitle("Flutter Folio");
+    if (!DeviceOS.isMacOS) {
+      IoUtils.instance.setTitle("Flutter Folio");
+    }
     Size minSize = Size(600, 700);
     if (kDebugMode) minSize = Size(400, 400);
     DesktopWindow.setMinWindowSize(minSize);
