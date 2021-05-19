@@ -5,7 +5,6 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_folio/_utils/context_utils.dart';
 import 'package:flutter_folio/_widgets/animated/auto_fade.dart';
 import 'package:flutter_folio/_widgets/animated/opening_card.dart';
-import 'package:flutter_folio/_widgets/context_menu_overlay.dart';
 import 'package:flutter_folio/_widgets/rounded_card.dart';
 import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/data/book_data.dart';

@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_folio/_widgets/alignments.dart';
 import 'package:flutter_folio/_widgets/animated/animated_rotation.dart';
-import 'package:flutter_folio/_widgets/context_menu_overlay.dart';
 import 'package:flutter_folio/_widgets/gradient_container.dart';
 import 'package:flutter_folio/commands/books/set_current_book_command.dart';
 import 'package:flutter_folio/core_packages.dart';

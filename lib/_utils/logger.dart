@@ -1,23 +1,22 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-void Function(String value)? onPrint;
-String logHistory = "";
-
-class PrintLogger {}
+_Dispatcher logHistory = _Dispatcher("");
 
 void log(String? value) {
   String v = value ?? "";
-  //if (kReleaseMode) return;
-  logHistory = v + "\n" + logHistory;
-  onPrint?.call(v);
+  logHistory.value = v + "\n" + logHistory.value;
+  if (kReleaseMode == false) {
+    print(v);
+  }
 }
 
 void logError(String? value) => log("[ERROR] " + (value ?? ""));
 
 // Take from: https://flutter.dev/docs/testing/errors
-void initErrorLogger(VoidCallback runApp) {
+void initLogger(VoidCallback runApp) {
   runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
     FlutterError.onError = (FlutterErrorDetails details) {
@@ -28,4 +27,8 @@ void initErrorLogger(VoidCallback runApp) {
   }, (Object error, StackTrace stack) {
     logError(stack.toString());
   });
+}
+
+class _Dispatcher extends ValueNotifier<String> {
+  _Dispatcher(String value) : super(value);
 }

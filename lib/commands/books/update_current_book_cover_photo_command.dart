@@ -1,6 +1,7 @@
 import 'package:flutter_folio/_utils/time_utils.dart';
 import 'package:flutter_folio/commands/commands.dart';
 import 'package:flutter_folio/data/book_data.dart';
+import 'package:flutter_folio/styled_widgets/toaster.dart';
 
 class UpdateCurrentBookCoverPhotoCommand extends BaseAppCommand {
   Future<void> run(PlacedScrapItem item) async {
@@ -18,7 +19,7 @@ class UpdateCurrentBookCoverPhotoCommand extends BaseAppCommand {
       booksModel.replaceBook(book);
       // Update db
       firebase.setBook(book);
-      showToast("Cover photo changed!");
+      Toaster.showToast(mainContext, "Cover photo changed!");
     }
   }
 }

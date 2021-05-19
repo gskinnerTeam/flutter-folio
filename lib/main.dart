@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_folio/_utils/log_print.dart';
+import 'package:flutter_folio/_utils/logger.dart';
 import 'package:flutter_folio/commands/app/bootstrap_command.dart';
 import 'package:flutter_folio/models/app_model.dart';
 import 'package:flutter_folio/models/books_model.dart';
@@ -16,7 +16,7 @@ import 'package:provider/provider.dart';
 
 void main() async {
   // Call a method to setup a global error handler so we can log all errors, including ones from native extensions.
-  initErrorLogger(() async {
+  initLogger(() async {
     // Status bar style on Android/iOS
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle());
 
@@ -91,6 +91,7 @@ class _AppBootstrapperState extends State<_AppBootstrapper> {
     // Inject desired density into MaterialTheme for free animation when values change
     materialTheme = ThemeData(visualDensity: VisualDensity(horizontal: density, vertical: density));
     return MaterialApp.router(
+      title: "Flutter Folio",
       debugShowCheckedModeBanner: false,
       theme: materialTheme,
       // Use a custom route/delegate to change navigation // TODO: Replace with VRouter/NavStack

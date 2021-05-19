@@ -2,6 +2,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_folio/_utils/device_info.dart';
 import 'package:flutter_folio/commands/commands.dart';
 import 'package:flutter_folio/routing/app_link.dart';
+import 'package:flutter_folio/styled_widgets/toaster.dart';
 import 'package:share/share.dart';
 
 import '../../_utils/timed/cooldown.dart';
@@ -21,7 +22,7 @@ class CopyShareLinkCommand extends BaseAppCommand {
 
     // Device clipboard
     if (DeviceOS.isDesktopOrWeb) {
-      showToast("Share link copied!");
+      Toaster.showToast(mainContext, "Share link copied!");
       Clipboard.setData(ClipboardData(text: url));
     }
     // Mobile share sheet

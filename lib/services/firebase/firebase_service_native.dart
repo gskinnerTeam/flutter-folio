@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_folio/_utils/log_print.dart';
+import 'package:flutter_folio/_utils/logger.dart';
 import 'package:flutter_folio/data/app_user.dart';
 import 'package:flutter_folio/services/firebase/firebase_service.dart';
 

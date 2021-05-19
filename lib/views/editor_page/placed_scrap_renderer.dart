@@ -6,7 +6,6 @@ import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_utils/string_utils.dart';
 import 'package:flutter_folio/_widgets/app_image.dart';
-import 'package:flutter_folio/_widgets/context_menu_overlay.dart';
 import 'package:flutter_folio/commands/books/update_placed_scrap_command.dart';
 import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/data/book_data.dart';

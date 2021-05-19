@@ -1,8 +1,9 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_folio/_utils/logger.dart';
 import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/themes.dart';
-import 'package:flutter_folio/_utils/log_print.dart' as logPrint;
 
 class SplashPage extends StatefulWidget {
   @override
@@ -10,7 +11,9 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
-  bool _showLoggerView = false;
+  bool _showLogView = false;
+  bool _allowLogView = kDebugMode;
+
   @override
   Widget build(BuildContext context) {
     AppTheme theme = context.watch();
@@ -21,7 +24,7 @@ class _SplashPageState extends State<SplashPage> {
             delay: Duration(milliseconds: 500),
             child: FadeIn(
               child: GestureDetector(
-                onTap: () => setState(() => _showLoggerView = true),
+                onTap: _allowLogView ? () => setState(() => _showLogView = true) : null,
                 child: Container(
                   alignment: Alignment.center,
                   color: theme.surface1,
@@ -40,9 +43,9 @@ class _SplashPageState extends State<SplashPage> {
               ),
             ),
           ),
-          if (_showLoggerView) ...{
+          if (_showLogView) ...{
             Positioned.fill(
-                child: GestureDetector(child: _LoggerView(), onTap: () => setState(() => _showLoggerView = false))),
+                child: GestureDetector(child: _LoggerView(), onTap: () => setState(() => _showLogView = false))),
           }
         ],
       ),
@@ -59,22 +62,24 @@ class __LoggerViewState extends State<_LoggerView> {
   @override
   void initState() {
     super.initState();
-    logPrint.onPrint = (_) => setState(() {});
+    logHistory.addListener(_handleLogChanged);
   }
 
   @override
   void dispose() {
-    logPrint.onPrint = null;
+    logHistory.removeListener(_handleLogChanged);
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
-        color: Colors.white,
-        child: Text(logPrint.logHistory),
+    return Container(
+      color: Colors.white,
+      child: SingleChildScrollView(
+        child: Text(logHistory.value),
       ),
     );
   }
+
+  void _handleLogChanged() => setState(() {});
 }

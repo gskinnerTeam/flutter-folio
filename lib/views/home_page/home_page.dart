@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/_utils/device_info.dart';
 import 'package:flutter_folio/_widgets/gradient_container.dart';
 import 'package:flutter_folio/commands/books/create_folio_command.dart';
 import 'package:flutter_folio/commands/books/refresh_all_books_command.dart';

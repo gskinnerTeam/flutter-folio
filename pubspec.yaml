@@ -22,6 +22,7 @@ dependencies:
   cloudinary_public: ^0.8.0
   context_menus: ^0.1.0+5
   darq: ^1.0.0-dev.3
+  desktop_window: ^0.4.0
   dotted_border: ^2.0.0-nullsafety.0
   email_validator: ^2.0.1
   enum_to_string: ^2.0.0-nullsafety.1
@@ -49,7 +50,6 @@ dependencies:
   url_launcher: ^6.0.2
   uuid: ^3.0.1
   visibility_detector: ^0.2.0-nullsafety.1
-  desktop_window: ^0.4.0
 
   # FIREBASE
   firedart: ^0.9.0+1
