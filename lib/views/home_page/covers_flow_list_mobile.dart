@@ -31,7 +31,7 @@ class _CoversFlowListMobileState extends State<CoversFlowListMobile> {
     int nextPage = (_currentPage + 2).clamp(0, widget.books.length - 1);
     ScrapBookData? nextBook = nextPage == _currentPage ? null : widget.books[nextPage];
     return StyledPageScaffold(
-      body: Stack(
+      body: ClipRect(child: Stack(
         children: [
           PageView.builder(
             controller: _pageController,
@@ -54,7 +54,7 @@ class _CoversFlowListMobileState extends State<CoversFlowListMobile> {
               ),
             ),
         ],
-      ),
+      )),
     );
   }
 
