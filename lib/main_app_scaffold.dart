@@ -27,48 +27,55 @@ class _MainAppScaffoldState extends State<MainAppScaffold> with TickerProviderSt
       value: appTheme,
       child: Directionality(
         textDirection: textDirection,
-        // Right-click support
-        child: StyledContextMenuOverlay(
-          // Tooltip and popup panel support
-          child: AnchoredPopups(
-            //TODO: Try and remove this navigator + page + builder
-            child: Navigator(
-              onPopPage: (Route route, result) {
-                if (route.didPop(result)) return true;
-                return false;
-              },
-              pages: [
-                MaterialPage(
-                    // Pop-over (tooltip) support
-                    child: Builder(
-                  builder: (BuildContext builderContext) {
-                    /// User a builder to provide a context to the Command layer that can show dialogs, bottom sheets etc
-                    Commands.setContext(builderContext);
-                    return _WindowBorder(
-                      color: appTheme.greyStrong,
-                      // Supply a top-level scaffold and SafeArea for all views
-                      child: Scaffold(
-                        backgroundColor: appTheme.surface1,
-                        body: SafeArea(
-                          // AppBar + Content
-                          child: Column(
-                            // This column has a reversed vertical direction, because we want the TitleBar to cast a shadow on the content below it.
-                            verticalDirection: VerticalDirection.up,
-                            children: [
-                              // Bottom content area
-                              Expanded(child: widget.pageNavigator),
-                              // Top-aligned TitleBar
-                              if (widget.showAppBar) AppTitleBar(),
-                            ],
-                          ),
-                        ),
-                      ),
-                    );
+        // TODO: Log a bug on the backspace issue that requires this wrapper
+        child: Navigator(
+          onPopPage: (_, __) => false,
+          pages: [
+            MaterialPage(
+                // Right-click support
+                child: StyledContextMenuOverlay(
+              // Tooltip and popup panel support
+              child: AnchoredPopups(
+                //TODO: Try and remove this navigator + page + builder
+                child: Navigator(
+                  onPopPage: (Route route, result) {
+                    if (route.didPop(result)) return true;
+                    return false;
                   },
-                ))
-              ],
-            ),
-          ),
+                  pages: [
+                    MaterialPage(
+                        // Pop-over (tooltip) support
+                        child: Builder(
+                      builder: (BuildContext builderContext) {
+                        /// User a builder to provide a context to the Command layer that can show dialogs, bottom sheets etc
+                        Commands.setContext(builderContext);
+                        return _WindowBorder(
+                          color: appTheme.greyStrong,
+                          // Supply a top-level scaffold and SafeArea for all views
+                          child: Scaffold(
+                            backgroundColor: appTheme.surface1,
+                            body: SafeArea(
+                              // AppBar + Content
+                              child: Column(
+                                // This column has a reversed vertical direction, because we want the TitleBar to cast a shadow on the content below it.
+                                verticalDirection: VerticalDirection.up,
+                                children: [
+                                  // Bottom content area
+                                  Expanded(child: widget.pageNavigator),
+                                  // Top-aligned TitleBar
+                                  if (widget.showAppBar) AppTitleBar(),
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    ))
+                  ],
+                ),
+              ),
+            ))
+          ],
         ),
       ),
     );
