@@ -25,7 +25,6 @@ class DeviceScreen {
   // Get the device form factor as best we can.
   // Otherwise we will use the screen size to determine which class we fall into.
   static FormFactorType get(BuildContext context) {
-    print(context.diagonalPx);
     double shortestSide = MediaQuery.of(context).size.shortestSide;
     if (shortestSide <= 300) return FormFactorType.SmallPhone;
     if (shortestSide <= 600) return FormFactorType.LargePhone;
