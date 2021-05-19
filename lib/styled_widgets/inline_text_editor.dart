@@ -19,11 +19,13 @@ class InlineTextEditor extends StatefulWidget {
       this.onFocusOut,
       this.controller,
       this.enableContextMenu = true,
-      this.autoFocus = false})
+      this.autoFocus = false,
+      this.maxLength})
       : super(key: key);
   final double width;
   final String text;
   final int maxLines;
+  final int? maxLength;
   final bool autoFocus;
   final TextAlignVertical alignVertical;
   final TextAlign align;
@@ -121,6 +123,9 @@ class _InlineTextEditorState extends State<InlineTextEditor> {
               child: Container(
                 color: theme.accent1.withOpacity(.1),
                 child: TextFormField(
+                    inputFormatters: [
+                      LengthLimitingTextInputFormatter(widget.maxLength),
+                    ],
                     scrollPhysics: NeverScrollableScrollPhysics(),
                     onChanged: widget.onChanged,
                     style: widget.style,
@@ -132,6 +137,7 @@ class _InlineTextEditorState extends State<InlineTextEditor> {
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.only(top: 10, bottom: 0),
                       border: InputBorder.none,
+                      counterText: "",
                       isDense: true,
                     ),
                     minLines: widget.maxLines,

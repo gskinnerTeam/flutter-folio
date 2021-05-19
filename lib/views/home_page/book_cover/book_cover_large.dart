@@ -33,6 +33,7 @@ class LargeBookCover extends StatelessWidget {
               InlineTextEditor(
                 book.title,
                 maxLines: 2,
+                maxLength: 22,
                 onFocusOut: _handleTitleEditingEnded,
                 promptText: "Add Title",
                 key: ValueKey("title" + book.title),
@@ -65,6 +66,7 @@ class LargeBookCover extends StatelessWidget {
                   // SB: Set web to 1 instead of 1.8, it was causing rendering issues where the text would get cut-off.
                   // TODO: Log bug on this ^
                   style: TextStyles.body1.copyWith(height: kIsWeb ? 1 : 1.8, color: theme.greyWeak),
+                  maxLength: 30 * 3,
                   maxLines: 3),
               VSpace(Insets.xl * 1.2 * paddingScale),
 
