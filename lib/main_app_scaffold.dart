@@ -54,18 +54,23 @@ class _MainAppScaffoldState extends State<MainAppScaffold> with TickerProviderSt
                           // Supply a top-level scaffold and SafeArea for all views
                           child: Scaffold(
                             backgroundColor: appTheme.surface1,
-                            body: SafeArea(
-                              // AppBar + Content
-                              child: Column(
-                                // This column has a reversed vertical direction, because we want the TitleBar to cast a shadow on the content below it.
-                                verticalDirection: VerticalDirection.up,
-                                children: [
-                                  // Bottom content area
-                                  Expanded(child: widget.pageNavigator),
-                                  // Top-aligned TitleBar
-                                  if (widget.showAppBar) AppTitleBar(),
-                                ],
-                              ),
+                            body: Stack(
+                              clipBehavior: Clip.antiAlias,
+                              children: [
+                                SafeArea(
+                                  // AppBar + Content
+                                  child: Column(
+                                    // This column has a reversed vertical direction, because we want the TitleBar to cast a shadow on the content below it.
+                                    verticalDirection: VerticalDirection.up,
+                                    children: [
+                                      // Bottom content area
+                                      Expanded(child: widget.pageNavigator),
+                                      // Top-aligned TitleBar
+                                      if (widget.showAppBar) AppTitleBar(),
+                                    ],
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         );
