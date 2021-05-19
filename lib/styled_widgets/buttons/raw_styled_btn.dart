@@ -80,7 +80,6 @@ class _RawBtnState extends State<RawBtn> {
         });
     AppTheme theme = Provider.of(context);
     VisualDensity density = Theme.of(context).visualDensity;
-    if (widget.ignoreDensity) density = VisualDensity.compact;
 
     List<BoxShadow> shadows = (widget.enableShadow) ? Shadows.universal : [];
     BtnColors normalColors = widget.normalColors ?? BtnColors(fg: theme.greyMedium, bg: Colors.transparent);
@@ -104,7 +103,7 @@ class _RawBtnState extends State<RawBtn> {
                 disabledMouseCursor: SystemMouseCursors.basic,
               ).copyWith(
                 minimumSize: MaterialStateProperty.all(Size.zero),
-                //padding: MaterialStateProperty.all(EdgeInsets.zero),
+                padding: widget.ignoreDensity ? MaterialStateProperty.all(EdgeInsets.zero) : null,
                 shape: MaterialStateProperty.all(RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(widget.cornerRadius ?? Corners.med),
                 )),
@@ -115,7 +114,7 @@ class _RawBtnState extends State<RawBtn> {
                 foregroundColor: getMaterialState(normal: normalColors.fg, hover: hoverColors.fg),
                 backgroundColor: getMaterialState(normal: normalColors.bg, hover: hoverColors.bg),
               ),
-              child: Padding(padding: widget.padding ?? EdgeInsets.zero, child: widget.child),
+              child: Padding(padding: EdgeInsets.zero, child: widget.child),
             ),
           ),
 
