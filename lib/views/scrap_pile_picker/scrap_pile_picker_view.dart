@@ -59,15 +59,16 @@ class ScrapPilePickerView extends StatelessWidget {
                         Column(
                           children: [
                             /// Top Title Bar
-                            FocusTraversalGroup(
-                              child: ScrapPilePickerTitleBar(
-                                onClosePressed: () => CloseNotification().dispatch(context),
-                                onSelectAllPressed: state._handleSelectAllPressed,
-                                title: titleText,
-                                isAllSelected: selectedCount == imgCount,
-                                mobileMode: _mobileMode,
+                            if (state.widget.mobileMode == false)
+                              FocusTraversalGroup(
+                                child: ScrapPilePickerTitleBar(
+                                  onClosePressed: () => CloseNotification().dispatch(context),
+                                  onSelectAllPressed: state._handleSelectAllPressed,
+                                  title: titleText,
+                                  isAllSelected: selectedCount == imgCount,
+                                  mobileMode: _mobileMode,
+                                ),
                               ),
-                            ),
 
                             /// Grid List
                             Flexible(
