@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_folio/_utils/string_utils.dart';
 import 'package:flutter_folio/core_packages.dart';
 
@@ -16,7 +17,8 @@ class LabeledTextInput extends StatefulWidget {
       this.controller,
       this.autofillHints,
       this.obscureText = false,
-      this.autoFocus = false})
+      this.autoFocus = false,
+      this.maxLength})
       : super(key: key);
 
   final String label;
@@ -24,6 +26,7 @@ class LabeledTextInput extends StatefulWidget {
   final TextStyle? style;
   final TextStyle? labelStyle;
   final int numLines;
+  final int? maxLength;
   final void Function(String value)? onChanged;
   final void Function(String value)? onSubmit;
   final String? hintText;
@@ -55,6 +58,9 @@ class _LabeledTextInputState extends State<LabeledTextInput> {
           TextFormField(
             controller: widget.controller,
             autofillHints: widget.autofillHints,
+            inputFormatters: [
+              LengthLimitingTextInputFormatter(widget.maxLength),
+            ],
             onFieldSubmitted: widget.onSubmit,
             onChanged: widget.onChanged,
             initialValue: widget.text,
