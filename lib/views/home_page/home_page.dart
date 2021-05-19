@@ -66,11 +66,12 @@ class BooksHomePageState extends State<BooksHomePage> {
                     child: HomeNavBarMobile(onToggled: _handleViewToggled, showListView: _showListView),
                   ),
                 ],
-                HomeNavBar(
-                  onToggled: _handleViewToggled,
-                  showListView: _showListView,
-                  hideButtons: showSmallScreenView,
-                ),
+                if (_showListView == false)
+                  HomeNavBar(
+                    onToggled: _handleViewToggled,
+                    showListView: _showListView,
+                    hideButtons: showSmallScreenView,
+                  ),
               ],
             ),
           );
