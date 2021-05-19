@@ -78,9 +78,14 @@ class _UserProfileFormState extends State<UserProfileForm> {
 
             /// TextInputs
             LabeledTextInput(
-                autoFocus: true, label: "First Name", text: _user?.firstName, onChanged: _handleFirstNameChanged),
+                autoFocus: true,
+                label: "First Name",
+                text: _user?.firstName,
+                maxLength: 30,
+                onChanged: _handleFirstNameChanged),
             VSpace.lg,
-            LabeledTextInput(label: "Last Name", text: _user?.lastName, onChanged: _handleLastNameChanged),
+            LabeledTextInput(
+                label: "Last Name", text: _user?.lastName, maxLength: 30, onChanged: _handleLastNameChanged),
             VSpace.lg,
 
             /// Account
