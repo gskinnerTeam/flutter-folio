@@ -70,9 +70,11 @@ class __LoggerViewState extends State<_LoggerView> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: Text(logPrint.logHistory),
+    return SingleChildScrollView(
+      child: Container(
+        color: Colors.white,
+        child: Text(logPrint.logHistory),
+      ),
     );
   }
 }
