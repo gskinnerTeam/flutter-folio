@@ -26,9 +26,9 @@ class DeletePageCommand extends BaseAppCommand {
       // If we're deleting the current page, we will want to select another one if we can.
       bool wasCurrentPage = booksModel.currentPage?.documentId == page.documentId;
 
-      bool hasPages = booksModel.currentBookPages?.isNotEmpty ?? false;
       // Remove page locally
       booksModel.removePageById(page.documentId);
+      bool hasPages = booksModel.currentBookPages?.isNotEmpty ?? false;
       if (wasCurrentPage && hasPages) {
         booksModel.currentPage = booksModel.currentBookPages?.first;
       }
