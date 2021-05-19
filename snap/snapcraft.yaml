@@ -13,6 +13,7 @@ apps:
     extensions: [flutter-dev]
     plugs:
     - network
+    - home
 
 parts:
   flutter-folio:
