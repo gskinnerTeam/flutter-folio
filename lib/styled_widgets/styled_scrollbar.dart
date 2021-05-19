@@ -8,22 +8,26 @@ class StyledScrollbar extends StatelessWidget {
     required this.child,
     required this.controller,
     this.padding,
+    this.enabled = true,
   }) : super(key: key);
+  final bool enabled;
   final Widget child;
   final ScrollController controller;
   final EdgeInsets? padding;
 
-  //TODO: Log bug for scrollbar: clicking the track should jump to that approximate position
   @override
   Widget build(BuildContext context) {
     bool touchMode = context.select((AppModel m) => m.enableTouchMode);
-    return Scrollbar(
-      controller: controller,
-      radius: Corners.smRadius,
-      thickness: touchMode ? 6 : 10,
-      showTrackOnHover: false,
-      isAlwaysShown: touchMode == false,
-      child: Padding(padding: padding ?? EdgeInsets.only(right: Insets.lg), child: child),
-    );
+    Widget paddedChild = Padding(padding: padding ?? EdgeInsets.only(right: Insets.lg), child: child);
+    return enabled
+        ? Scrollbar(
+            controller: controller,
+            radius: Corners.smRadius,
+            thickness: touchMode ? 6 : 10,
+            showTrackOnHover: false,
+            isAlwaysShown: touchMode == false,
+            child: paddedChild,
+          )
+        : paddedChild;
   }
 }
