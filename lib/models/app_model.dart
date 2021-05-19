@@ -16,7 +16,7 @@ abstract class AbstractModel extends EasyNotifier {}
 // * Make sure file is cleared when we logout (ChangeUserCommand)
 class AppModel extends AbstractModel {
   static const kFileName = "app-model";
-  static const kVersion = "1.2.2";
+  static const kVersion = "1.2.3";
 
   // Determines what the start value should be for touchMode, bases on the current device os
   static bool defaultToTouchMode() => DeviceOS.isMobile;
