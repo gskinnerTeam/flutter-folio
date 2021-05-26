@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_folio/core_packages.dart';
 import 'package:universal_platform/universal_platform.dart';
 
 enum FormFactorType { Monitor, SmallPhone, LargePhone, Tablet }

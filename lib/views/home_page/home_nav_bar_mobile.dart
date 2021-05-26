@@ -4,11 +4,11 @@ import 'package:flutter_folio/commands/books/create_folio_command.dart';
 import 'package:flutter_folio/core_packages.dart';
 import 'package:provider/provider.dart';
 
-class HomeNavBarMobile extends StatelessWidget {
+class HomeNavTabMenu extends StatelessWidget {
   final bool showListView;
   final void Function(bool) onToggled;
 
-  HomeNavBarMobile({this.showListView = true, required this.onToggled});
+  HomeNavTabMenu({this.showListView = true, required this.onToggled});
 
   Widget build(BuildContext context) {
     AppTheme theme = Provider.of(context);

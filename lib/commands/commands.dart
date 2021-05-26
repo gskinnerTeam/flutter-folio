@@ -3,7 +3,6 @@ import 'package:flutter_folio/models/app_model.dart';
 import 'package:flutter_folio/models/books_model.dart';
 import 'package:flutter_folio/services/cloudinary/cloud_storage_service.dart';
 import 'package:flutter_folio/services/firebase/firebase_service.dart';
-import 'package:flutter_folio/styles.dart';
 import 'package:flutter_folio/themes.dart';
 import 'package:provider/provider.dart';
 

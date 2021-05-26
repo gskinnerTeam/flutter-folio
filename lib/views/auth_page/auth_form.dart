@@ -99,14 +99,15 @@ class _AuthFormState extends State<AuthForm> with LoadingStateMixin {
 
                                   /// Title
                                   UiText(
-                                    headerText,
+                                    text: headerText,
                                     style: TextStyles.h2
                                         .copyWith(color: theme.accent1, fontSize: compactVerticalSpace ? 36 : 46),
                                   ),
                                   VSpace(Insets.med * paddingFactor),
 
                                   /// Desc
-                                  UiText(descText,
+                                  UiText(
+                                      text: descText,
                                       style: TextStyles.title2
                                           .copyWith(color: theme.greyStrong, fontSize: bodyTextSize, height: 2)),
                                   VSpace(Insets.xl * paddingFactor),
@@ -138,7 +139,7 @@ class _AuthFormState extends State<AuthForm> with LoadingStateMixin {
                                   /// ERROR MSG
                                   if (_errorText.isNotEmpty) ...[
                                     VSpace(Insets.xs),
-                                    UiText(errorText, style: TextStyles.title2.copyWith(color: theme.focus)),
+                                    UiText(text: errorText, style: TextStyles.title2.copyWith(color: theme.focus)),
                                     VSpace(Insets.xs),
                                   ],
                                   VSpace(Insets.xs),
@@ -158,7 +159,9 @@ class _AuthFormState extends State<AuthForm> with LoadingStateMixin {
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      UiText(switchFormText, style: TextStyles.title2.copyWith(fontSize: bodyTextSize)),
+                                      UiText(
+                                          text: switchFormText,
+                                          style: TextStyles.title2.copyWith(fontSize: bodyTextSize)),
                                       TextBtn(switchFormBtnText,
                                           onPressed: _handleSwitchViewPressed,
                                           style:
@@ -170,7 +173,7 @@ class _AuthFormState extends State<AuthForm> with LoadingStateMixin {
                                     separatorBuilder: () => HSpace.sm,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      UiText("Learn more about Flutter Folio?"),
+                                      UiText(text: "Learn more about Flutter Folio?"),
                                       ContextMenuRegion(
                                         contextMenu:
                                             LinkContextMenu(url: 'https://github.com/gskinnerTeam/flutter-folio'),

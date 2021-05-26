@@ -25,12 +25,12 @@ class DeleteDialog extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                UiText(title, style: TextStyles.body3.copyWith(color: theme.accent1)),
+                UiText(text: title, style: TextStyles.body3.copyWith(color: theme.accent1)),
                 VSpace.sm,
-                UiText(desc1, style: TextStyles.body2),
+                UiText(text: desc1, style: TextStyles.body2),
                 if (StringUtils.isNotEmpty(desc2)) ...[
                   VSpace.sm,
-                  UiText("$desc2", style: TextStyles.body3),
+                  UiText(text: "$desc2", style: TextStyles.body3),
                 ]
               ],
             ),

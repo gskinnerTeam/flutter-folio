@@ -46,7 +46,8 @@ class LargeBookCover extends StatelessWidget {
                 VSpace.med,
 
                 /// Meta-Data (page count, last edited, etc)
-                UiText.rich(TextSpan(children: [
+                UiText(
+                    span: TextSpan(children: [
                   TextSpan(
                       text: "${book.pageCount} page${book.pageCount == 1 ? "" : "s"}, ",
                       style: TextStyles.title1.copyWith(color: theme.surface1)),

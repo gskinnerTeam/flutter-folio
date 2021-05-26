@@ -5,8 +5,8 @@ import 'package:flutter_folio/data/app_user.dart';
 import 'package:flutter_folio/models/app_model.dart';
 import 'package:flutter_folio/models/books_model.dart';
 
-class HomeNavBar extends StatelessWidget {
-  const HomeNavBar(
+class HomeNavToggleMenu extends StatelessWidget {
+  const HomeNavToggleMenu(
       {Key? key,
       this.invertText = false,
       required this.onToggled,
@@ -31,8 +31,8 @@ class HomeNavBar extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: Insets.offset, vertical: Insets.lg),
           child: Row(
             children: [
-              UiText.rich(
-                TextSpan(
+              UiText(
+                span: TextSpan(
                   text: 'Good $_dayPeriod',
                   style:
                       TextStyles.body1.copyWith(height: 1.2, color: showListView ? theme.greyMedium : theme.surface1),

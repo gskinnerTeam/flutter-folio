@@ -47,7 +47,7 @@ class _UserProfileFormState extends State<UserProfileForm> {
 
     return Stack(
       children: [
-        Align(alignment: Alignment.topLeft, child: UiText("v" + AppModel.kVersion, style: TextStyles.caption)),
+        Align(alignment: Alignment.topLeft, child: UiText(text: "v" + AppModel.kVersion, style: TextStyles.caption)),
         Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -89,10 +89,10 @@ class _UserProfileFormState extends State<UserProfileForm> {
             VSpace.lg,
 
             /// Account
-            Container(width: double.infinity, child: UiText("Account", style: TextStyles.caption)),
+            Container(width: double.infinity, child: UiText(text: "Account", style: TextStyles.caption)),
             Row(
               children: [
-                Expanded(child: UiText(_user?.email, style: TextStyles.body3)),
+                Expanded(child: UiText(text: _user?.email, style: TextStyles.body3)),
                 PrimaryBtn(
                     icon: Icons.logout,
                     leadingIcon: false,

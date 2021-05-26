@@ -18,8 +18,8 @@ class EmptyEditorView extends StatelessWidget {
             VSpace.lg,
             Padding(
               padding: EdgeInsets.only(left: Insets.med),
-              child: UiText.rich(
-                  TextSpan(children: [
+              child: UiText(
+                  span: TextSpan(children: [
                     TextSpan(
                         text: "Welcome to Flutter Folio!\n\n",
                         style: TextStyles.title1.copyWith(fontWeight: FontWeight.w800)),

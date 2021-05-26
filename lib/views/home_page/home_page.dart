@@ -36,19 +36,7 @@ class BooksHomePageState extends State<BooksHomePage> {
         : StyledPageScaffold(
             body: Stack(
               children: [
-                /// Content Area
-                /// SB: Disabled IndexedStack for now, focus traversal does not play nicely: https://stackoverflow.com/questions/65888930/flutter-how-to-disable-focustraversal-for-non-visible-children
-                /// TODO: Restore this if it gets fixed, or devise an alternate workaround (write our own IndexedStack? The goal is to maintain state of each view, but only allow focus traversal on the active one)
-                // IndexedStack(
-                //   index: pageIndex,
-                //   children: [
-                //     /// CoverFlow
-                //     CoversFlowList(books: _books),
-                //
-                //     /// Data-grid List View
-                //     ExcludeFocus(excluding: false, child: CoversSortableList(books: _books)),
-                //   ],
-                // ),
+                // Content Area
                 if (books.isEmpty) ...[
                   _EmptyHomeView(),
                 ] else ...[
@@ -59,19 +47,21 @@ class BooksHomePageState extends State<BooksHomePage> {
                           : CoversFlowList(books: books),
                 ],
 
-                /// Top bar and bottom bar, has welcome message and view switcher
+                // On small devices, use a TabMenu that is bottom aligned
                 if (showSmallScreenView) ...[
                   Align(
                     alignment: Alignment.bottomCenter,
-                    child: HomeNavBarMobile(onToggled: _handleViewToggled, showListView: _showListView),
+                    child: HomeNavTabMenu(onToggled: _handleViewToggled, showListView: _showListView),
                   ),
-                ],
-                if (_showListView == false)
-                  HomeNavBar(
+                ]
+                // On larger devices, use a top aligned toggle button with extra information
+                else ...[
+                  HomeNavToggleMenu(
                     onToggled: _handleViewToggled,
                     showListView: _showListView,
                     hideButtons: showSmallScreenView,
                   ),
+                ]
               ],
             ),
           );

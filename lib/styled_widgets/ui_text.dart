@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
 
 // Extends SelectableText, providing default web-like behavior of a non-focuseable but selectable text region
-class UiText extends StatelessWidget {
-  const UiText(this.data, {Key? key, this.style}) : super(key: key);
-  final String? data;
+class UiText extends StatefulWidget {
+  const UiText({Key? key, this.style, this.text, this.span}) : super(key: key);
+  final String? text;
+  final TextSpan? span;
   final TextStyle? style;
 
-  static FocusNode getFocusNode() => FocusNode(skipTraversal: true);
+  @override
+  _UiTextState createState() => _UiTextState();
+}
 
-  static Widget rich(TextSpan span, {TextStyle? style}) {
-    return SelectableText.rich(span, style: style, focusNode: getFocusNode());
-  }
-
+class _UiTextState extends State<UiText> {
+  FocusNode _focusNode = FocusNode(skipTraversal: true);
   @override
   Widget build(BuildContext context) {
-    return SelectableText(data ?? "", style: style, focusNode: getFocusNode());
+    if (widget.span != null) {
+      return SelectableText.rich(widget.span!, style: widget.style, focusNode: _focusNode);
+    } else {
+      return SelectableText(widget.text ?? "", style: widget.style, focusNode: _focusNode);
+    }
   }
 }

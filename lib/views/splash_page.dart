@@ -33,7 +33,8 @@ class _SplashPageState extends State<SplashPage> {
                     children: [
                       AppLogoText(color: theme.accent1),
                       VSpace.sm,
-                      UiText.rich(TextSpan(children: [
+                      UiText(
+                          span: TextSpan(children: [
                         TextSpan(text: "by", style: TextStyles.title2),
                         TextSpan(text: " gskinner", style: TextStyles.title2.copyWith(fontWeight: FontWeight.w800))
                       ]))

@@ -51,7 +51,7 @@ class _LabeledTextInputState extends State<LabeledTextInput> {
         children: [
           // label + spacing
           if (StringUtils.isNotEmpty(widget.label)) ...[
-            UiText(widget.label, style: widget.labelStyle ?? TextStyles.caption),
+            UiText(text: widget.label, style: widget.labelStyle ?? TextStyles.caption),
             VSpace.med,
           ],
           // TextField

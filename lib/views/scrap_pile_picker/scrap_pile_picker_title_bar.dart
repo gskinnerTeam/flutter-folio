@@ -42,7 +42,7 @@ class ScrapPilePickerTitleBar extends StatelessWidget {
               ],
             ),
           Positioned.fill(
-            child: Center(child: UiText(title, style: TextStyles.title1)),
+            child: Center(child: UiText(text: title, style: TextStyles.title1)),
           )
         ],
       ),

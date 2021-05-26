@@ -241,7 +241,7 @@ class SortableListRow extends StatelessWidget {
                         // Title
                         Expanded(
                           child: UiText(
-                            book.title,
+                            text: book.title,
                             style: TextStyles.h2.copyWith(color: Colors.white, height: 1),
                           ),
                         ),
@@ -250,7 +250,8 @@ class SortableListRow extends StatelessWidget {
                           SizedBox(
                             width: 150,
                             child: Center(
-                              child: UiText(timeago.format(book.getLastModifiedDate()),
+                              child: UiText(
+                                  text: timeago.format(book.getLastModifiedDate()),
                                   style: TextStyles.body1.copyWith(color: theme.surface1)),
                             ),
                           ),
@@ -258,7 +259,8 @@ class SortableListRow extends StatelessWidget {
                           SizedBox(
                             width: 150,
                             child: Center(
-                              child: UiText(timeago.format(book.getCreationDate()),
+                              child: UiText(
+                                  text: timeago.format(book.getCreationDate()),
                                   style: TextStyles.body1.copyWith(color: theme.surface1)),
                             ),
                           ),
