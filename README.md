@@ -15,7 +15,7 @@ We exist to build innovative digital experiences for smart clients, and we love 
 <p align="center"><img src="https://flutter.gskinner.com/assets/images/git_dashes.png?" width="800px"></p>
 
 ### Demo Builds
-To preview the app without needing to run a build process you can download from the app store on your device by visiting: 
+To preview the app you can download from the app store on your device by visiting: 
 https://flutter.gskinner.com/folio/#g-download
 
 ### Installation
