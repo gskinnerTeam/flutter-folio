@@ -15,16 +15,8 @@ We exist to build innovative digital experiences for smart clients, and we love 
 <p align="center"><img src="https://flutter.gskinner.com/assets/images/git_dashes.png?" width="800px"></p>
 
 ### Demo Builds
-To preview the app without needing to run a build process you can download any of the latest released builds.
-
-| Target Platfom | Build |
-| ------ | ------ |
-| Web | [ www.flutterfolio.com](https://www.flutterfolio.com/) |
-| Linux | [tar.gz](https://www.flutterfolio.com/builds/latest/linux-build/linux_build.tar.xz?84) |
-| Windows | [.zip](https://www.flutterfolio.com/builds/latest/windows-build/windows_build.zip?84) |
-| macOS | [dmg](https://www.flutterfolio.com/builds/latest/macos-build/FlutterFolio.dmg?84) |
-| Android | Checkout the repo to install on your local device. |
-| iOS | Checkout the repo to install on your local device. |
+To preview the app without needing to run a build process you can download from the app store on your device by visiting: 
+https://flutter.gskinner.com/folio/#g-download
 
 ### Installation
 
