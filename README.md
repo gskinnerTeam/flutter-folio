@@ -1,7 +1,7 @@
 <br />
-<p align="center"><a href="https://flutter.gskinner.com"><img src="https://flutter.gskinner.com/assets/images/gskinnerxflutter.png?" width="440px"></a></p>
+<p align="center"><a href="https://flutter.gskinner.com"><img src="https://flutter.gskinner.com/folio/assets/images/gskinnerxflutter.png?" width="440px"></a></p>
 
-<p align="center"><img src="https://flutter.gskinner.com/assets/images/git_promoimage.png?" width="800px"></p>
+<p align="center"><img src="https://flutter.gskinner.com/folio/assets/images/git_promoimage.png?" width="800px"></p>
 
 # Flutter Folio
 
@@ -12,7 +12,7 @@ In addition to forking and reviewing the [MIT licensed](LICENSE.md) code availab
 ### About gskinner
 We exist to build innovative digital experiences for smart clients, and we love how easy Flutter makes that experience. Don't hesitate to [stop by our site](https://gskinner.com) to learn more about what we do. We'd love to hear from you!
 
-<p align="center"><img src="https://flutter.gskinner.com/assets/images/git_dashes.png?" width="800px"></p>
+<p align="center"><img src="https://flutter.gskinner.com/folio/assets/images/git_dashes.png?" width="800px"></p>
 
 ### Demo Builds
 To preview the app you can download from the app store on your device by visiting: 
