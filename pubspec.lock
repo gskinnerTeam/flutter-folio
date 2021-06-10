@@ -42,7 +42,7 @@ packages:
       name: async
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.5.0"
+    version: "2.6.1"
   auto_size_text:
     dependency: "direct main"
     description:
@@ -456,6 +456,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.9.0"
+  flutter_lints:
+    dependency: transitive
+    description:
+      name: flutter_lints
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.3"
   flutter_lorem:
     dependency: "direct main"
     description:
@@ -641,6 +648,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.0"
+  lints:
+    dependency: transitive
+    description:
+      name: lints
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
   logging:
     dependency: transitive
     description:
@@ -985,9 +999,11 @@ packages:
   super_editor:
     dependency: "direct main"
     description:
-      path: "../super_editor/super_editor"
-      relative: true
-    source: path
+      path: super_editor
+      ref: "7438b7e3508b7b16d1e63f282d311f9796ca77c4"
+      resolved-ref: "7438b7e3508b7b16d1e63f282d311f9796ca77c4"
+      url: "git://github.com/superlistapp/super_editor.git"
+    source: git
     version: "0.1.0"
   synchronized:
     dependency: transitive
@@ -1016,7 +1032,7 @@ packages:
       name: test_api
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.19"
+    version: "0.3.0"
   timeago:
     dependency: "direct main"
     description:

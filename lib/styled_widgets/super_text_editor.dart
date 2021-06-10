@@ -5,6 +5,24 @@ import 'package:flutter_folio/_widgets/context_menu_overlay.dart';
 import 'package:flutter_folio/core_packages.dart';
 import 'package:super_editor/super_editor.dart';
 
+class ColorAttribution extends Attribution {
+  @override
+  String get id => 'color ${background ? "bg" : "fg"}';
+
+  Color color;
+  bool background;
+
+  ColorAttribution({this.color = Colors.black, this.background = false});
+
+  @override
+  bool canMergeWith(Attribution other) {
+    if (other.id == id && (other as ColorAttribution).color == color && other.background == background) {
+      return true;
+    }
+    return false;
+  }
+}
+
 class SuperTextEditor extends StatefulWidget {
   const SuperTextEditor(this.text,
       {Key? key,
@@ -75,7 +93,7 @@ class _SuperTextEditorState extends State<SuperTextEditor> {
 
     return Container(
       color: theme.accent1.withOpacity(.1),
-      child: Editor.custom(
+      child: SuperEditor.custom(
         editor: _editor,
         composer: _composer,
         focusNode: _textFocus,
@@ -101,24 +119,21 @@ class _SuperTextEditorState extends State<SuperTextEditor> {
 
   String _getDocumentText() {
     ParagraphNode? node = widget.document.getNodeAt(0) as ParagraphNode?;
-    if (node == null)
-      return "";
+    if (node == null) return "";
     return node.text.text;
   }
 
   void _toggleStyleForSelection(TextStyle style) {
     final selection = _composer.selection;
-    if (selection == null)
-      return;
+    if (selection == null) return;
 
-    final Set<String> attributeToggles = {};
+    final Set<Attribution> attributeToggles = {};
 
     // Find all of the attributes that exist on nodes that we want to remove and add them to the toggle set
     final nodes = widget.document.getNodesInside(selection.base, selection.extent);
     for (final node in nodes) {
       final ParagraphNode? paragraphNode = node as ParagraphNode?;
-      if (paragraphNode == null)
-        continue;
+      if (paragraphNode == null) continue;
 
       int startOffset = (selection.base.nodePosition as TextPosition).offset;
       int endOffset = (selection.extent.nodePosition as TextPosition).offset;
@@ -132,40 +147,30 @@ class _SuperTextEditorState extends State<SuperTextEditor> {
       print('selection ${startOffset} - ${endOffset}');
 
       for (int i = startOffset; i != endOffset; ++i) {
-        final Set<dynamic> attributes = paragraphNode.text.getAllAttributionsAt(i);
+        final Set<Attribution> attributes = paragraphNode.text.getAllAttributionsAt(i);
         for (final attribute in attributes) {
-          if (attribute is! String)
-            continue;
+          if (attribute is! ColorAttribution) continue;
 
-          if (attribute.startsWith('bg '))
-            attributeToggles.add(attribute);
-
-          if (attribute.startsWith('fg '))
-            attributeToggles.add(attribute);
-
+          attributeToggles.add(attribute);
         }
       }
     }
 
     // Add style attributes to the toggle set
-    if (style.fontStyle == FontStyle.italic)
-      attributeToggles.add('italic');
-    if (style.fontWeight == FontWeight.bold)
-      attributeToggles.add('bold');
+    if (style.fontStyle == FontStyle.italic) attributeToggles.add(NamedAttribution('italics'));
+    if (style.fontWeight == FontWeight.bold) attributeToggles.add(NamedAttribution('bold'));
 
     final bgColor = style.backgroundColor;
     final fgColor = style.color;
 
-    if (bgColor != null)
-      attributeToggles.add('bg ${bgColor.value.toRadixString(16)}');
+    if (bgColor != null) attributeToggles.add(ColorAttribution(color: bgColor, background: true));
 
-    if (fgColor != null)
-      attributeToggles.add('fg ${fgColor.value.toRadixString(16)}');
+    if (fgColor != null) attributeToggles.add(ColorAttribution(color: fgColor));
 
     _editor.executeCommand(ToggleTextAttributionsCommand(
-        documentSelection: selection,
-        attributions: attributeToggles,
-      ));
+      documentSelection: selection,
+      attributions: attributeToggles,
+    ));
 
     print(attributeToggles);
   }
@@ -175,7 +180,7 @@ class _SuperTextEditorState extends State<SuperTextEditor> {
     _toggleStyleForSelection(style);
   }
 
-  TextStyle _styleBuilder(Set<dynamic> attributes) {
+  TextStyle _styleBuilder(Set<Attribution> attributes) {
     TextStyle newStyle = TextStyle(
       color: Colors.black,
       fontSize: 13,
@@ -183,41 +188,33 @@ class _SuperTextEditorState extends State<SuperTextEditor> {
     );
 
     for (final attribute in attributes) {
-      if (attribute is! String) {
-        continue;
-      }
 
-      if (attribute.startsWith('bg ')) {
-        int? colorValue = int.tryParse(attribute.substring(3));
-        if (colorValue != null)
-          newStyle = newStyle.copyWith(backgroundColor: Color(colorValue));
-      }
+      if (attribute is ColorAttribution && attribute.background)
+        newStyle = newStyle.copyWith(backgroundColor: attribute.color);
 
-      if (attribute.startsWith('fg ')) {
-        int? colorValue = int.tryParse(attribute.substring(3));
-        if (colorValue != null)
-          newStyle = newStyle.copyWith(color: Color(colorValue));
-      }
+      if (attribute is ColorAttribution && !attribute.background)
+        newStyle = newStyle.copyWith(color: attribute.color);
 
-      switch (attribute) {
-        case 'bold':
-          newStyle = newStyle.copyWith(
-            fontWeight: FontWeight.bold,
-          );
-          break;
-        case 'italics':
-          newStyle = newStyle.copyWith(
-            fontStyle: FontStyle.italic,
-          );
-          break;
-        case 'strikethrough':
-          newStyle = newStyle.copyWith(
-            decoration: TextDecoration.lineThrough,
-          );
-          break;
+      if (attribute is NamedAttribution) {
+        switch (attribute.name) {
+          case 'bold':
+            newStyle = newStyle.copyWith(
+              fontWeight: FontWeight.bold,
+            );
+            break;
+          case 'italics':
+            newStyle = newStyle.copyWith(
+              fontStyle: FontStyle.italic,
+            );
+            break;
+          case 'strikethrough':
+            newStyle = newStyle.copyWith(
+              decoration: TextDecoration.lineThrough,
+            );
+            break;
+        }
       }
     }
     return newStyle;
   }
-
 }

@@ -57,12 +57,10 @@ dependencies:
 
   # Rich text editor
   super_editor:
-    path: ../super_editor/super_editor
-      #    git:
-      #      url: git://github.com/superlistapp/super_editor.git
-      #      ref: 3afd9d8cc841a75c848eb44f94228f4a21f0a698
-      #      path: super_editor
-
+    git:
+      url: git://github.com/superlistapp/super_editor.git
+      ref: 7438b7e3508b7b16d1e63f282d311f9796ca77c4
+      path: super_editor
 
 
 dev_dependencies:
