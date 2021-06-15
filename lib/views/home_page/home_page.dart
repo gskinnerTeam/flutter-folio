@@ -34,6 +34,7 @@ class BooksHomePageState extends State<BooksHomePage> {
     return books == null
         ? LoadingIndicator()
         : StyledPageScaffold(
+            key: ValueKey('StyledPageScaffold'),
             body: Stack(
               children: [
                 // Content Area

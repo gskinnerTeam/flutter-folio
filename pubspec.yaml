@@ -60,6 +60,9 @@ dependencies:
 dev_dependencies:
   # sample build cmd
   # flutter pub run build_runner build --delete-conflicting-outputs
+  flutter_driver:
+    sdk: flutter
+  test: any
   flutter_test:
     sdk: flutter
   build_runner:
