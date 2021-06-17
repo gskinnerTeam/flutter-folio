@@ -18,11 +18,17 @@ void main() {
       driver.close();
     });
 
+    setUp(() async {
+      await _ensureLoggedIn(driver);
+    });
+
+    tearDown(() async {
+      await _logOut(driver);
+    });
+
     test(
       'homepage scrolling up and down',
       () async {
-        await _ensureLoggedIn(driver);
-
         await driver.startTracing(streams: [TimelineStream.embedder]);
         for (var i = 0; i < 10; i++) {
           // Scroll about 6 pages down ...
@@ -38,14 +44,11 @@ void main() {
         await _saveTimeline('homepage-scrolling', timeline);
       },
       timeout: _increasedTimeout,
-      skip: 'currently only have one folio, so no scrolling',
     );
 
     test('going from login screen to homepage and back', () async {
-      await _ensureLoggedIn(driver);
-
       await driver.startTracing(streams: [TimelineStream.embedder]);
-      for (var i = 0; i < 50; i++) {
+      for (var i = 0; i < 20; i++) {
         // Log out ...
         await driver.tap(roundedProfileButton);
         await driver.tap(logoutButton);
@@ -58,8 +61,6 @@ void main() {
     }, timeout: _increasedTimeout);
 
     test('opening and closing the "create new" sheet', () async {
-      await _ensureLoggedIn(driver);
-
       await driver.startTracing(streams: [TimelineStream.embedder]);
       for (var i = 0; i < 50; i++) {
         // Open ...
@@ -78,16 +79,14 @@ void main() {
 final authSubmitButton = find.byValueKey('auth_submit_button');
 final logoutButton = find.byValueKey('logout_button');
 final materialApp = find.byType('MaterialApp');
-final newFolioFab = find.byType('_NewFolioFab');
 final newFolioCard = find.byType('_NewFolioCard');
+final newFolioFab = find.byType('_NewFolioFab');
 final roundedProfileButton = find.byValueKey('rounded_profile_button');
 final styledPageScaffold = find.byValueKey('StyledPageScaffold');
 
 final Timeout _increasedTimeout = Timeout(const Duration(minutes: 5));
 
 Future<void> _ensureLoggedIn(FlutterDriver driver) async {
-  // await driver.waitFor(find.byType('MainAppScaffold'));
-
   // XXX: The following currently always returns an empty string.
   //      We basically have no way of programmatically learning if we're
   //      logged in or out.
@@ -95,9 +94,12 @@ Future<void> _ensureLoggedIn(FlutterDriver driver) async {
   // print('render tree:');
   // print(renderTree.tree);
 
-  if (false) {
-    await driver.tap(authSubmitButton);
-  }
+  await driver.tap(authSubmitButton);
+}
+
+Future<void> _logOut(FlutterDriver driver) async {
+  await driver.tap(roundedProfileButton);
+  await driver.tap(logoutButton);
 }
 
 Future<void> _saveTimeline(String label, Timeline timeline) async {
