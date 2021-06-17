@@ -12,7 +12,8 @@ void main() {
   // This line enables the extension.
   enableFlutterDriverExtension();
 
-  /// Create core models & services
+  // Create core models & services
+  // TODO: remove dependency on networking by mocking these
   FirebaseService firebase = FirebaseFactory.create();
   BooksModel booksModel = BooksModel();
   AppModel appModel = AppModel(booksModel, firebase);
@@ -29,24 +30,6 @@ void main() {
       // BooksModel - Stores data about the content in the app
       ChangeNotifierProvider.value(value: booksModel),
     ],
-
-    //child: BasicRouterSpike(),
     child: AppBootstrapper(),
   ));
-  // // Call the `main()` function of the app, or call `runApp` with
-  // // any widget you are interested in testing.
-  // // TODO: remove dependency on networking
-  // runApp(
-  //   ChangeNotifierProvider(
-  //     create: (_) => BooksModel(),
-  //     child: MaterialApp(
-  //       home: Scaffold(
-  //         body: Builder(builder: (context) {
-  //           Commands.setContext(context);
-  //           return BooksHomePage();
-  //         }),
-  //       ),
-  //     ),
-  //   ),
-  // );
 }

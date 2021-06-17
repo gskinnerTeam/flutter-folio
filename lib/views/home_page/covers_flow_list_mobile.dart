@@ -39,7 +39,7 @@ class _CoversFlowListMobileState extends State<CoversFlowListMobile> {
             scrollDirection: Axis.vertical,
             itemBuilder: (_, index) => BookCoverWidget(widget.books[index], largeMode: true),
           ),
-          if (_isResting)
+          if (_isResting && nextBook != null)
             Positioned.fill(
               child: FadeInUp(
                 child: FractionalTranslation(
@@ -48,7 +48,7 @@ class _CoversFlowListMobileState extends State<CoversFlowListMobile> {
                       offset: Offset(0, -150),
                       child: Transform.scale(
                         scale: .9,
-                        child: BookCoverWidget(nextBook!, topTitle: true),
+                        child: BookCoverWidget(nextBook, topTitle: true),
                       )),
                 ),
               ),
