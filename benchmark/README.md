@@ -6,14 +6,15 @@ Run the following to gather new benchmark data:
 $ flutter drive --target=benchmark/app.dart --driver=benchmark/app_benchmark.dart --profile --endless-trace-buffer --purge-persistent-cache
 ```
 
-Better yet, run many benchmarks in quick succession.
+You can also run short benchmarks in quick succession, without `--endless-trace-buffer`.
+This might be useful if you have a very specific issue somewhere and want only that.
 
 ```text
 for n in {1..10}; do echo "=== Run number ${n} ==="; \
   flutter drive --target=benchmark/app.dart --driver=benchmark/short_benchmark.dart --profile --purge-persistent-cache; done
 ```
 
-Then combine them.
+Then combine them using `benchmerge`.
 
 
 Install Benchmarkhor (`pub global activate benchmarkhor`), then run:

@@ -19,6 +19,11 @@ void main() {
     });
 
     setUp(() async {
+      // You must manually clear the timeline before every new measurement
+      // when you run the benchmark with `--endless-trace-buffer`.
+      // Otherwise, your tests will contain tracing info of everything that
+      // happened before they started.
+      await driver.clearTimeline();
       await _ensureLoggedIn(driver);
     });
 
