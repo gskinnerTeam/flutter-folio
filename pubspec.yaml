@@ -1,10 +1,10 @@
 name: flutter_folio
 description: Create and share beautiful Scrapbooks using Photos, Text and Stickers!
-publish_to: 'none'
+publish_to: "none"
 version: 1.2.3
 
 environment:
-  sdk: '>=2.12.0 <3.0.0'
+  sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -33,18 +33,18 @@ dependencies:
   file_selector_macos: ^0.0.4
   file_selector_linux: ^0.0.2
   file_selector_web: ^0.8.1
-  flutter_svg: ^0.21.0-nullsafety.0
-  image_picker: ^0.7.2
+  flutter_svg: ^0.22.0
+  image_picker: ^0.8.0+4
   image_size_getter: ^1.0.0
   multi_image_picker: ^4.8.00
   path_provider: ^2.0.1
   provider: ^5.0.0
   random_color: ^1.0.6-nullsafety
-  sized_context: 1.0.0-nullsafety
+  sized_context: ^1.0.0+1
   shared_preferences: ^2.0.4
   share: ^2.0.1
   system_info: ^1.0.0
-  statsfl: 2.0.1-nullsafety
+  statsfl: ^2.0.1+1
   timeago: ^3.0.2
   universal_platform: ^1.0.0-nullsafety
   url_launcher: ^6.0.2
