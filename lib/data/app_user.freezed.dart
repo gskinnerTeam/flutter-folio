@@ -179,9 +179,8 @@ class __$AppUserCopyWithImpl<$Res> extends _$AppUserCopyWithImpl<$Res>
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$_AppUser extends _AppUser {
   _$_AppUser(
       {this.documentId = "",

@@ -4,14 +4,16 @@ import 'package:flutter_folio/core_packages.dart';
 import 'package:provider/provider.dart';
 
 class StyledBottomSheet extends StatelessWidget {
-  StyledBottomSheet({required this.child});
+  const StyledBottomSheet({required this.child, Key? key}) : super(key: key);
+
   final Widget child;
 
+  @override
   Widget build(BuildContext context) {
     AppTheme theme = context.watch();
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.vertical(top: Corners.medRadius, bottom: Radius.zero),
+        borderRadius: const BorderRadius.vertical(top: Corners.medRadius, bottom: Radius.zero),
         color: theme.surface1,
       ),
       child: Column(children: [
@@ -36,7 +38,7 @@ Future<void> showStyledBottomSheet<T>(BuildContext context, {required Widget chi
   return showModalBottomSheet(
       isScrollControlled: true,
       context: context,
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Corners.medRadius, bottom: Radius.zero),
       ),
       builder: (BuildContext context) {

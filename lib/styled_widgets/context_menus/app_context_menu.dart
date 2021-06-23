@@ -8,6 +8,8 @@ import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/models/app_model.dart';
 
 class AppContextMenu extends StatefulWidget {
+  const AppContextMenu({Key? key}) : super(key: key);
+
   @override
   _AppContextMenuState createState() => _AppContextMenuState();
 }

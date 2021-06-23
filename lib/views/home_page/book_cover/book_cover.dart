@@ -35,7 +35,7 @@ class BookCoverWidget extends StatefulWidget {
 }
 
 class _BookCoverWidgetState extends State<BookCoverWidget> {
-  FocusNode _focusNode = FocusNode();
+  final FocusNode _focusNode = FocusNode();
 
   bool _isMouseOver = false;
   set isOver(bool value) {
@@ -92,11 +92,11 @@ class _BookCoverWidgetState extends State<BookCoverWidget> {
                 if (widget.largeMode) ...[
                   FadeInLeft(
                     duration: Times.slower,
-                    child: _SideGradient(Colors.black),
+                    child: const _SideGradient(Colors.black),
                   ),
-                  FadeInUp(child: _BottomGradientLg(Colors.black))
+                  FadeInUp(child: const _BottomGradientLg(Colors.black))
                 ] else ...[
-                  FadeInUp(child: _BottomGradientSm(Colors.black)),
+                  FadeInUp(child: const _BottomGradientSm(Colors.black)),
                 ],
 
                 /// Sit under the text content, and unfocus when tapped.
@@ -132,7 +132,7 @@ class _SideGradient extends StatelessWidget {
   @override
   Widget build(BuildContext context) => HzGradient(
         [color.withOpacity(.8), color.withOpacity(0)],
-        [.15, .8],
+        const [.15, .8],
       );
 }
 
@@ -145,7 +145,7 @@ class _BottomGradientLg extends StatelessWidget {
       alignment: Alignment.bottomCenter,
       child: GradientContainer(
         [color.withOpacity(1), color.withOpacity(1), color.withOpacity(0)],
-        [.2, .55, 1],
+        const [.2, .55, 1],
         height: 300,
         begin: Alignment.bottomCenter,
         end: Alignment.topCenter,
@@ -163,7 +163,7 @@ class _BottomGradientSm extends StatelessWidget {
       alignment: Alignment.bottomCenter,
       child: VtGradient(
         [color.withOpacity(0), color.withOpacity(.8)],
-        [0, 1],
+        const [0, 1],
         height: 60,
       ),
     );

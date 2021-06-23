@@ -14,7 +14,7 @@ class CreatePageCommand extends BaseAppCommand {
     int count = await UpdatePageCountCommand().run(currentPages.length + 1);
     // Create new page
     ScrapPageData newPage = ScrapPageData(
-      documentId: Uuid().v1(),
+      documentId: const Uuid().v1(),
       bookId: currentBook.documentId,
       title: "Page $count",
       desc: "Add a description...",
@@ -23,9 +23,7 @@ class CreatePageCommand extends BaseAppCommand {
 
     /// Add page locally
     booksModel.currentBookPages = List.from(currentPages)..add(newPage);
-    if (booksModel.currentPage == null) {
-      booksModel.currentPage = newPage;
-    }
+    booksModel.currentPage ??= newPage;
 
     /// Add to database
     String pageId = await firebase.addPage(newPage);

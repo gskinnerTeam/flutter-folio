@@ -19,7 +19,7 @@ class StyledPageScaffold extends StatelessWidget {
         backgroundColor: theme.bg1,
         body: Stack(
           children: [
-            ContextMenuRegion(child: Container(), contextMenu: AppContextMenu()),
+            ContextMenuRegion(child: Container(), contextMenu: const AppContextMenu()),
             body,
           ],
         ),

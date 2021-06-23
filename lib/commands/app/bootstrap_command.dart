@@ -8,20 +8,20 @@ import 'package:flutter_folio/_utils/native_window_utils/window_utils.dart';
 import 'package:flutter_folio/_utils/time_utils.dart';
 import 'package:flutter_folio/commands/app/refresh_menubar_command.dart';
 import 'package:flutter_folio/commands/books/refresh_all_books_command.dart';
-import 'package:flutter_folio/commands/commands.dart' as Commands;
+import 'package:flutter_folio/commands/commands.dart' as commands;
 import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/models/app_model.dart';
 import 'package:system_info/system_info.dart';
 
 import 'set_current_user_command.dart';
 
-class BootstrapCommand extends Commands.BaseAppCommand {
+class BootstrapCommand extends commands.BaseAppCommand {
   static int kMinBootstrapTimeMs = 2000;
 
   Future<void> run(BuildContext context) async {
     int startTime = TimeUtils.nowMillis;
-    if (Commands.hasContext == false) {
-      Commands.setContext(context);
+    if (commands.hasContext == false) {
+      commands.setContext(context);
     }
     log("Bootstrap Started, v${AppModel.kVersion}");
     // Load AppModel ASAP
@@ -29,7 +29,7 @@ class BootstrapCommand extends Commands.BaseAppCommand {
     log("BootstrapCommand - AppModel Loaded, user = ${appModel.currentUser}");
     if (firebase.isSignedIn == false && appModel.currentUser != null) {
       // If we previously has a user, it's unexpected that firebase has lost auth. Give it some extra time.
-      await Future<void>.delayed(Duration(seconds: 1));
+      await Future<void>.delayed(const Duration(seconds: 1));
       // See if we don't have auth now...
       if (firebase.isSignedIn == false) {
         //Still no auth, clear the stale user data. // TODO: Can we try some sort of re-auth here instead of just bailing
@@ -53,7 +53,7 @@ class BootstrapCommand extends Commands.BaseAppCommand {
       log("BootstrapCommand - Set current user");
       await SetCurrentUserCommand().run(appModel.currentUser);
       log("BootstrapCommand - Refresh books");
-      await RefreshAllBooks();
+      RefreshAllBooks();
     }
     // For aesthetics, we'll keep splash screen up for some min-time (skip on web)
     if (kIsWeb == false) {
@@ -88,8 +88,8 @@ class BootstrapCommand extends Commands.BaseAppCommand {
     if (!DeviceOS.isMacOS) {
       IoUtils.instance.setTitle("Flutter Folio");
     }
-    Size minSize = Size(600, 700);
-    if (kDebugMode) minSize = Size(400, 400);
+    Size minSize = const Size(600, 700);
+    if (kDebugMode) minSize = const Size(400, 400);
     DesktopWindow.setMinWindowSize(minSize);
     if (appModel.windowSize.shortestSide > 0) {
       DesktopWindow.setWindowSize(appModel.windowSize);

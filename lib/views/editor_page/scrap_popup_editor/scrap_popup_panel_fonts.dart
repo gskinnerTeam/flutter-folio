@@ -31,13 +31,13 @@ class ScrapPopupPanelFonts extends StatelessWidget {
               ),
               Expanded(
                 child: Center(
-                  child: AutoSizeText("${boxFontToDisplay(value)}",
+                  child: AutoSizeText(boxFontToDisplay(value),
                       minFontSize: 10,
                       maxFontSize: 28,
                       maxLines: 1,
                       style: TextStyles.body3.copyWith(
                         fontSize: 32,
-                        fontFamily: "${boxFontToFamily(value)}",
+                        fontFamily: boxFontToFamily(value),
                         height: 1,
                       )),
                 ),
@@ -48,11 +48,11 @@ class ScrapPopupPanelFonts extends StatelessWidget {
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: SingleChildScrollView(
-              child: Container(
+              child: SizedBox(
                 width: 300 - Insets.sm * 2,
                 child: Column(
                   children: [
-                    PanelHeader(label: "Font"),
+                    const PanelHeader(label: "Font"),
                     VSpace(Insets.sm),
                     Row(
                       children: [

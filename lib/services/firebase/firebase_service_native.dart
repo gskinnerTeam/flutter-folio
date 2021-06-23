@@ -7,7 +7,6 @@ import 'package:flutter_folio/data/app_user.dart';
 import 'package:flutter_folio/services/firebase/firebase_service.dart';
 
 class NativeFirebaseService extends FirebaseService {
-  String? userId;
   FirebaseFirestore get firestore => FirebaseFirestore.instance;
   FirebaseAuth get auth => FirebaseAuth.instance;
 
@@ -51,6 +50,7 @@ class NativeFirebaseService extends FirebaseService {
   bool get isSignedIn => _isSignedIn;
 
   // Streams
+  @override
   Stream<Map<String, dynamic>>? getDocStream(List<String> keys) {
     return _getDoc(keys)?.snapshots().map((doc) {
       final data = doc.data() ?? {};
@@ -58,11 +58,12 @@ class NativeFirebaseService extends FirebaseService {
     });
   }
 
+  @override
   Stream<List<Map<String, dynamic>>>? getListStream(List<String> keys) {
     return _getCollection(keys)?.snapshots().map(
       (QuerySnapshot snapshot) {
         return snapshot.docs.map((d) {
-          final data = d.data() ?? {};
+          final data = d.data();
           return data..['documentId'] = d.id;
         }).toList();
       },
@@ -93,6 +94,7 @@ class NativeFirebaseService extends FirebaseService {
     await firestore.doc(getPathFromKeys(keys)).update(json);
   }
 
+  @override
   Future<Map<String, dynamic>?> getDoc(List<String> keys) async {
     try {
       DocumentSnapshot? d = (await _getDoc(keys)?.get());
@@ -105,13 +107,16 @@ class NativeFirebaseService extends FirebaseService {
     return null;
   }
 
+  @override
   Future<List<Map<String, dynamic>>?> getCollection(List<String> keys) async {
     //print("getDocStream: ${keys.toString()}");
     QuerySnapshot? snapshot = (await _getCollection(keys)?.get());
-    snapshot?.docs.forEach((d) {
-      (d.data() ?? {})..['documentId'] = d.id;
-    });
-    return snapshot?.docs.map((d) => (d.data() ?? {})).toList();
+    if (snapshot != null) {
+      for (final d in snapshot.docs) {
+        (d.data())['documentId'] = d.id;
+      }
+    }
+    return snapshot?.docs.map((d) => (d.data())).toList();
   }
 
   DocumentReference? _getDoc(List<String> keys) {

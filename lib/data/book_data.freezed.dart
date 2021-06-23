@@ -231,9 +231,9 @@ class __$ScrapBookDataCopyWithImpl<$Res>
   }
 }
 
-@JsonSerializable(explicitToJson: true)
-
 /// @nodoc
+
+@JsonSerializable(explicitToJson: true)
 class _$_ScrapBookData extends _ScrapBookData with DiagnosticableTreeMixin {
   _$_ScrapBookData(
       {this.documentId = "",
@@ -566,9 +566,9 @@ class __$ScrapPageDataCopyWithImpl<$Res>
   }
 }
 
-@JsonSerializable(explicitToJson: true)
-
 /// @nodoc
+
+@JsonSerializable(explicitToJson: true)
 class _$_ScrapPageData extends _ScrapPageData with DiagnosticableTreeMixin {
   _$_ScrapPageData(
       {this.documentId = "",
@@ -904,9 +904,9 @@ class __$ScrapItemCopyWithImpl<$Res> extends _$ScrapItemCopyWithImpl<$Res>
   }
 }
 
-@JsonSerializable(explicitToJson: true)
-
 /// @nodoc
+
+@JsonSerializable(explicitToJson: true)
 class _$_ScrapItem extends _ScrapItem with DiagnosticableTreeMixin {
   _$_ScrapItem(
       {this.documentId = "",
@@ -1430,9 +1430,9 @@ class __$PlacedScrapItemCopyWithImpl<$Res>
   }
 }
 
-@JsonSerializable(explicitToJson: true)
-
 /// @nodoc
+
+@JsonSerializable(explicitToJson: true)
 class _$_PlacedScrapItem extends _PlacedScrapItem with DiagnosticableTreeMixin {
   _$_PlacedScrapItem(
       {this.documentId = "",
@@ -1829,9 +1829,8 @@ class __$BoxStyleCopyWithImpl<$Res> extends _$BoxStyleCopyWithImpl<$Res>
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$_BoxStyle extends _BoxStyle with DiagnosticableTreeMixin {
   _$_BoxStyle(
       {@JsonKey(fromJson: _colorFromJson, toJson: _colorToJson)

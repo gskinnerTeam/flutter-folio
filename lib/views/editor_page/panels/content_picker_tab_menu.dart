@@ -24,7 +24,7 @@ class ContentPickerTabMenu extends StatefulWidget {
 }
 
 class _ContentPickerTabMenuState extends State<ContentPickerTabMenu> {
-  ContentType? _currentMenuType = null;
+  ContentType? _currentMenuType;
   @override
   Widget build(BuildContext context) {
     return NotificationListener(

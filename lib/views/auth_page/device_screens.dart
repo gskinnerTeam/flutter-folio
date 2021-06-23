@@ -28,19 +28,20 @@ class DeviceScreens extends StatelessWidget {
                 List<Widget> images;
                 if (portraitMode) {
                   images = [
-                    _LandingPageImage("dashedLine-mobile.png", Offset(80, 0), height: 450, scaleOnHover: false),
-                    _LandingPageImage("tablet.png", Offset(-50, 30), height: 200),
-                    _LandingPageImage("web.png", Offset(180, 350), height: 400),
-                    _LandingPageImage("phone.png", Offset(0, 250), height: 260),
-                    _LandingPageImage("laptop.png", Offset(220, 40), height: 250),
+                    _LandingPageImage("dashedLine-mobile.png", const Offset(80, 0), height: 450, scaleOnHover: false),
+                    _LandingPageImage("tablet.png", const Offset(-50, 30), height: 200),
+                    _LandingPageImage("web.png", const Offset(180, 350), height: 400),
+                    _LandingPageImage("phone.png", const Offset(0, 250), height: 260),
+                    _LandingPageImage("laptop.png", const Offset(220, 40), height: 250),
                   ];
                 } else {
                   images = [
-                    _LandingPageImage("dashedLine-desktop.png", Offset(180, -400), height: 1300, scaleOnHover: false),
-                    _LandingPageImage("tablet.png", Offset(0, 50), height: 350),
-                    _LandingPageImage("phone.png", Offset(50, 500), height: 650),
-                    _LandingPageImage("web.png", Offset(440, 600), height: 500),
-                    _LandingPageImage("laptop.png", Offset(550, 100), height: 400),
+                    _LandingPageImage("dashedLine-desktop.png", const Offset(180, -400),
+                        height: 1300, scaleOnHover: false),
+                    _LandingPageImage("tablet.png", const Offset(0, 50), height: 350),
+                    _LandingPageImage("phone.png", const Offset(50, 500), height: 650),
+                    _LandingPageImage("web.png", const Offset(440, 600), height: 500),
+                    _LandingPageImage("laptop.png", const Offset(550, 100), height: 400),
                   ];
                 }
                 return Transform.translate(
@@ -57,7 +58,7 @@ class DeviceScreens extends StatelessWidget {
         if (portraitMode) ...[
           Align(
             alignment: Alignment.bottomCenter,
-            child: VtGradient([theme.surface2.withOpacity(0), theme.surface2], [0, 1], height: 150),
+            child: VtGradient([theme.surface2.withOpacity(0), theme.surface2], const [0, 1], height: 150),
           )
         ],
       ],

@@ -20,11 +20,11 @@ class RoundedProfileBtn extends StatelessWidget {
     return useBottomSheet
         ? SimpleBtn(ignoreDensity: true, onPressed: () => _showProfileSheet(context), child: profileIcon)
         : AnchoredPopUpRegion.hoverWithClick(
-            clickPopChild: ClipRect(
+            clickPopChild: const ClipRect(
               child: UserProfileCard(),
               //child: Container(width: 100, height: 100, color: Colors.red),
             ),
-            hoverPopChild: StyledTooltip("Open User Info panel"),
+            hoverPopChild: const StyledTooltip("Open User Info panel"),
             buttonBuilder: (_, child, show) => SimpleBtn(onPressed: show, child: child),
             hoverPopAnchor: invertRow ? Alignment.topRight : Alignment.topLeft,
             clickPopAnchor: invertRow ? Alignment.topRight : Alignment.topLeft,
@@ -36,7 +36,7 @@ class RoundedProfileBtn extends StatelessWidget {
     showStyledBottomSheet(context,
         child: Container(
           padding: EdgeInsets.all(Insets.xl),
-          child: UserProfileForm(bottomSheet: true),
+          child: const UserProfileForm(bottomSheet: true),
         ));
   }
 }

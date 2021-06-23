@@ -7,7 +7,7 @@ import 'package:flutter_folio/data/book_data.dart';
 import 'package:flutter_folio/models/app_model.dart';
 
 class SimplePagesMenu extends StatelessWidget {
-  SimplePagesMenu(this.pages, {required this.selectedPageId});
+  const SimplePagesMenu(this.pages, {required this.selectedPageId, Key? key}) : super(key: key);
 
   final String? selectedPageId;
   final List<ScrapPageData> pages;
@@ -43,12 +43,13 @@ class SimplePagesMenu extends StatelessWidget {
 }
 
 class _PageBtn extends StatelessWidget {
-  _PageBtn({required this.label, this.isSelected = false, required this.onPressed});
+  const _PageBtn({required this.label, this.isSelected = false, required this.onPressed});
 
   final String label;
   final bool isSelected;
   final VoidCallback onPressed;
 
+  @override
   Widget build(BuildContext context) {
     AppTheme theme = context.watch();
     Color bgColor = isSelected ? theme.accent1.withOpacity(.1) : theme.surface1.withOpacity(.7);
@@ -64,7 +65,7 @@ class _PageBtn extends StatelessWidget {
           color: fgColor,
           width: 1.5,
           child: ConstrainedBox(
-              constraints: BoxConstraints(minWidth: 110),
+              constraints: const BoxConstraints(minWidth: 110),
               child: Container(
                   color: bgColor,
                   alignment: Alignment.center,

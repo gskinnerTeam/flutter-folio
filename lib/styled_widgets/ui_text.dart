@@ -12,7 +12,7 @@ class UiText extends StatefulWidget {
 }
 
 class _UiTextState extends State<UiText> {
-  FocusNode _focusNode = FocusNode(skipTraversal: true);
+  final FocusNode _focusNode = FocusNode(skipTraversal: true);
   @override
   Widget build(BuildContext context) {
     if (widget.span != null) {

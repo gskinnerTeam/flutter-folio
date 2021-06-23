@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 // Tweens from some opening offset + size to fill the entire parent view
 // Relies on Tranform.translate() and SizedBox to move and size the Child
 class OpeningContainer extends StatefulWidget {
-  OpeningContainer({
+  const OpeningContainer({
     Key? key,
     required this.onEnd,
     required this.child,

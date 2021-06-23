@@ -23,12 +23,12 @@ class DeleteScrapsCommand extends BaseAppCommand {
         false;
     //Delete
     if (doDelete) {
-      scrapIds.forEach((id) {
+      for (final id in scrapIds) {
         // Clear local data
         booksModel.removeBookScrapById(id);
         // Delete from db
         firebase.deleteBookScrap(bookId: bookId, scrapId: id);
-      });
+      }
       // Mark book as changed
       UpdateBookModifiedCommand().run(bookId: bookId);
       return true;

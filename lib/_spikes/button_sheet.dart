@@ -5,9 +5,11 @@ import 'package:flutter_folio/styled_widgets/buttons/styled_buttons.dart';
 import 'package:flutter_folio/styled_widgets/styled_spacers.dart';
 
 class ButtonSheet extends StatelessWidget {
+  const ButtonSheet({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    final underline = BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey)));
+    const underline = BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey)));
     Widget _center(Widget w) => Container(child: w, height: 100, decoration: underline, alignment: Alignment.center);
     return GestureDetector(
       onTap: InputUtils.unFocus,

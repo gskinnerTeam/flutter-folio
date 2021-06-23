@@ -24,7 +24,7 @@ class ContentPickerScrapsPanel extends StatefulWidget {
 
 class _ContentPickerScrapsPanelState extends State<ContentPickerScrapsPanel> with RawKeyboardListenerMixin {
   List<ScrapItem> _selectedItems = [];
-  GlobalKey<ScrapPilePickerState> _scrapPileGridKey = GlobalKey();
+  final GlobalKey<ScrapPilePickerState> _scrapPileGridKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
     bool isPageSelected = StringUtils.isNotEmpty(widget.pageId);
@@ -33,7 +33,7 @@ class _ContentPickerScrapsPanelState extends State<ContentPickerScrapsPanel> wit
       visible: widget.isVisible,
       maintainState: true,
       child: GlassCard(
-        child: Container(
+        child: SizedBox(
           width: 520,
           height: 610,
           // Wrap entire view in a FocusTraversalGroup
@@ -142,7 +142,7 @@ class _PanelBottomBar extends StatelessWidget {
           duration: Times.fast,
           opacity: hasSelection ? 1 : .6,
           child: UiText(text: "$selectionCount items selected", style: TextStyles.body3)),
-      Spacer(),
+      const Spacer(),
       SecondaryBtn(onPressed: hasSelection ? onDeletePressed : null, label: "DELETE"),
       HSpace.med,
       PrimaryBtn(onPressed: hasSelection ? onAddPressed : null, label: "ADD TO PAGE"),

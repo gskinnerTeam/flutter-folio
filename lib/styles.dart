@@ -7,11 +7,11 @@ import 'package:flutter/material.dart';
 
 /// Used for all animations in the  app
 class Times {
-  static const Duration fastest = const Duration(milliseconds: 150);
-  static const fast = const Duration(milliseconds: 250);
-  static const medium = const Duration(milliseconds: 350);
-  static const slow = const Duration(milliseconds: 700);
-  static const slower = const Duration(milliseconds: 1000);
+  static const Duration fastest = Duration(milliseconds: 150);
+  static const fast = Duration(milliseconds: 250);
+  static const medium = Duration(milliseconds: 350);
+  static const slow = Duration(milliseconds: 700);
+  static const slower = Duration(milliseconds: 1000);
 }
 
 class Sizes {
@@ -39,16 +39,16 @@ class Insets {
 
 class Corners {
   static const double sm = 3;
-  static const BorderRadius smBorder = const BorderRadius.all(smRadius);
-  static const Radius smRadius = const Radius.circular(sm);
+  static const BorderRadius smBorder = BorderRadius.all(smRadius);
+  static const Radius smRadius = Radius.circular(sm);
 
   static const double med = 5;
-  static const BorderRadius medBorder = const BorderRadius.all(medRadius);
-  static const Radius medRadius = const Radius.circular(med);
+  static const BorderRadius medBorder = BorderRadius.all(medRadius);
+  static const Radius medRadius = Radius.circular(med);
 
   static const double lg = 8;
-  static const BorderRadius lgBorder = const BorderRadius.all(lgRadius);
-  static const Radius lgRadius = const Radius.circular(lg);
+  static const BorderRadius lgBorder = BorderRadius.all(lgRadius);
+  static const Radius lgRadius = Radius.circular(lg);
 }
 
 class Strokes {
@@ -58,10 +58,14 @@ class Strokes {
 
 class Shadows {
   static List<BoxShadow> get universal => [
-        BoxShadow(color: Color(0xff333333).withOpacity(.15), spreadRadius: 0, blurRadius: 10),
+        BoxShadow(color: const Color(0xff333333).withOpacity(.15), spreadRadius: 0, blurRadius: 10),
       ];
   static List<BoxShadow> get small => [
-        BoxShadow(color: Color(0xff333333).withOpacity(.15), spreadRadius: 0, blurRadius: 3, offset: Offset(0, 1)),
+        BoxShadow(
+            color: const Color(0xff333333).withOpacity(.15),
+            spreadRadius: 0,
+            blurRadius: 3,
+            offset: const Offset(0, 1)),
       ];
 }
 
@@ -91,8 +95,8 @@ class Fonts {
 /// `newStyle = TextStyles.body1.copyWith(lineHeight: 2, color: Colors.red)`
 class TextStyles {
   /// Declare a base style for each Family
-  static const TextStyle raleway = const TextStyle(fontFamily: Fonts.raleway, fontWeight: FontWeight.w400, height: 1);
-  static const TextStyle fraunces = const TextStyle(fontFamily: Fonts.fraunces, fontWeight: FontWeight.w400, height: 1);
+  static const TextStyle raleway = TextStyle(fontFamily: Fonts.raleway, fontWeight: FontWeight.w400, height: 1);
+  static const TextStyle fraunces = TextStyle(fontFamily: Fonts.fraunces, fontWeight: FontWeight.w400, height: 1);
 
   static TextStyle get h1 =>
       fraunces.copyWith(fontWeight: FontWeight.w600, fontSize: FontSizes.s48, letterSpacing: -1, height: 1.17);

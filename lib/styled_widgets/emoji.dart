@@ -34,7 +34,8 @@ class Emoji extends StatelessWidget {
   final double? size;
 
   const Emoji(this.emoji, {Key? key, this.size}) : super(key: key);
-  Widget build(BuildContext c) {
+  @override
+  Widget build(BuildContext context) {
     if (emoji == null) return Container();
     String fileName = describeEnum(emoji!).toLowerCase().replaceAll("_", "-");
     String path = 'assets/images/emoji/' + fileName + '.svg';

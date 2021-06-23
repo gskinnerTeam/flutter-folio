@@ -8,7 +8,7 @@ class ScrapData<T> extends EasyNotifier {
   Offset get offset => _offset;
   set offset(Offset value) => notify(() => _offset = value);
 
-  Size _size = Size(100, 100);
+  Size _size = const Size(100, 100);
   Size get size => _size;
   set size(Size value) => notify(() => _size = value);
 

@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 class NoAnimationPage extends Page {
   final Widget child;
-  NoAnimationPage({required this.child, LocalKey? key}) : super(key: key);
+  const NoAnimationPage({required this.child, LocalKey? key}) : super(key: key);
 
+  @override
   Route createRoute(BuildContext context) {
     return PageRouteBuilder(
         maintainState: true,

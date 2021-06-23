@@ -22,6 +22,7 @@ class CoversSortableList extends StatefulWidget {
   const CoversSortableList({Key? key, required this.books, this.rowHeight = 120, this.isMobile = false})
       : super(key: key);
 
+  @override
   State createState() => _CoversSortableListState();
 }
 
@@ -29,7 +30,7 @@ class _CoversSortableListState extends State<CoversSortableList> {
   bool _ascending = true;
   ColType _currentCol = ColType.Name;
 
-  ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
   @override
   void dispose() {
     super.dispose();
@@ -170,7 +171,7 @@ class SortableListHeader extends StatelessWidget {
     return SimpleBtn(
       cornerRadius: 0,
       onPressed: onPressed,
-      child: Container(
+      child: SizedBox(
         height: double.infinity,
         child: Row(
           children: [
@@ -222,9 +223,9 @@ class SortableListRow extends StatelessWidget {
               // Cover Image
               Positioned.fill(child: BookCoverImage(book)),
               // Bg Fade 1
-              CenterRight(child: HzGradient([Colors.black.withOpacity(0), Colors.black], [0, .5], width: 400)),
+              CenterRight(child: HzGradient([Colors.black.withOpacity(0), Colors.black], const [0, .5], width: 400)),
               // Bg Fade 2
-              VtGradient([Colors.black.withOpacity(0), Colors.black.withOpacity(.9)], [0, 1]),
+              VtGradient([Colors.black.withOpacity(0), Colors.black.withOpacity(.9)], const [0, 1]),
               // Press handler
               Positioned.fill(child: SimpleBtn(onPressed: onPressed, child: Container())),
               // Content
@@ -245,7 +246,7 @@ class SortableListRow extends StatelessWidget {
                             style: TextStyles.h2.copyWith(color: Colors.white, height: 1),
                           ),
                         ),
-                        Spacer(),
+                        const Spacer(),
                         if (showModified)
                           SizedBox(
                             width: 150,

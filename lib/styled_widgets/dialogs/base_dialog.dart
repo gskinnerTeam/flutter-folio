@@ -14,7 +14,7 @@ class BaseStyledDialog extends StatelessWidget {
       backgroundColor: bgColor ?? theme.bg1,
       elevation: 0,
       child: ConstrainedBox(
-        constraints: BoxConstraints(minWidth: 280),
+        constraints: const BoxConstraints(minWidth: 280),
         child: Padding(
           padding: padding ?? EdgeInsets.symmetric(vertical: Insets.lg),
           child: IntrinsicWidth(child: child),

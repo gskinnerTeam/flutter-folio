@@ -154,10 +154,10 @@ class PlacedScrapItem with _$PlacedScrapItem implements FirebaseDoc {
 
   ScrapData<PlacedScrapItem> toBoxData() {
     return ScrapData<PlacedScrapItem>(this)
-      ..offset = Offset(this.dx, this.dy)
-      ..aspect = this.aspect
-      ..rot = this.rot
-      ..size = Size(this.width, this.height);
+      ..offset = Offset(dx, dy)
+      ..aspect = aspect
+      ..rot = rot
+      ..size = Size(width, height);
   }
 }
 
@@ -198,10 +198,11 @@ String boxFontToFamily(BoxFonts? font) {
 
 Color _colorFromJson(String colorString) {
   int? intColor = int.tryParse(colorString, radix: 16);
-  if (intColor == null)
+  if (intColor == null) {
     return Colors.black;
-  else
-    return new Color(intColor);
+  } else {
+    return Color(intColor);
+  }
 }
 
 String _colorToJson(Color color) => color.value.toRadixString(16);

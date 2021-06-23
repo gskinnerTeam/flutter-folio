@@ -34,7 +34,7 @@ class MovableScrapSelectionBox extends StatefulWidget {
 }
 
 class MovableScrapSelectionBoxState extends State<MovableScrapSelectionBox> {
-  Debouncer _zoomDebounce = Debouncer(Duration(milliseconds: 350));
+  final Debouncer _zoomDebounce = Debouncer(const Duration(milliseconds: 350));
   bool get isVisible => widget.isVisible;
   @override
   Widget build(BuildContext context) {
@@ -62,7 +62,7 @@ class MovableScrapSelectionBoxState extends State<MovableScrapSelectionBox> {
             Align(
               alignment: Alignment.bottomRight,
               child: FractionalTranslation(
-                translation: Offset(-.5, -.5),
+                translation: const Offset(-.5, -.5),
                 child: _Handle(
                   widget,
                   //icon: Icons.height,
@@ -134,7 +134,7 @@ class _Handle extends StatelessWidget {
                 borderRadius: BorderRadius.circular(isCircular ? 99 : 0),
               ),
               child: Transform.translate(
-                offset: Offset(-1.5, 0),
+                offset: const Offset(-1.5, 0),
                 child: Transform.rotate(
                   angle: -pi / 4,
                   child: hasIcon

@@ -42,7 +42,7 @@ class _StyledToggleSwitchState extends State<StyledToggleSwitch> {
         children: [
           // Dual-color bg
           Container(
-            padding: EdgeInsets.all(2.5),
+            padding: const EdgeInsets.all(2.5),
             decoration: dec(theme.surface1, Corners.sm),
             child: Container(decoration: dec(theme.bg1, Corners.sm - 1)),
           ),

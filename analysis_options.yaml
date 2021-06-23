@@ -1,7 +1,9 @@
+include: package:flutter_lints/flutter.yaml
+
 analyzer:
   exclude:
-      - "**/*.g.dart"
-      - "**/*.freezed.dart"
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
   language:
     strict-inference: true
   strong-mode:
@@ -10,7 +12,5 @@ analyzer:
     missing_required_param: error
 linter:
   rules:
-    always-specify-types: true
-    always_declare_return_types: true
-    prefer-relative-imports: true
-    avoid_types_on_closure_parameters: false
+    avoid_print: false
+    constant_identifier_names: false

@@ -9,12 +9,14 @@ import 'package:flutter_folio/views/app_title_bar/rounded_profile_button.dart';
 import 'package:flutter_folio/views/app_title_bar/touch_mode_toggle_btn.dart';
 
 class AppTitleBar extends StatelessWidget {
+  const AppTitleBar({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final AppTheme theme = context.watch();
     // Optionally wrap the content in a Native title bar. This may be a no-op depending on platform.
     return IoUtils.instance.wrapNativeTitleBarIfRequired(ConstrainedBox(
-      constraints: BoxConstraints(maxHeight: 40),
+      constraints: const BoxConstraints(maxHeight: 40),
       child: Stack(
         children: [
           ShadowedBg(theme.surface1),
@@ -36,7 +38,7 @@ class _AdaptiveTitleBarContent extends StatelessWidget {
     // Mac title bar has a different layout as it's window btns are left aligned
     bool isMac = DeviceOS.isMacOS;
     bool isMobile = DeviceOS.isMobile;
-    bool showTouchToggle = DeviceScreen.isPhone == false;
+    bool showTouchToggle = DeviceScreen.isPhone(context) == false;
     return Stack(children: [
       // Centered TitleText
       if (appWidth > 400) Center(child: _TitleText()),
@@ -45,9 +47,9 @@ class _AdaptiveTitleBarContent extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           if (isMac || isMobile) ...[
-            if (isMac) HSpace(80), // Reserve some space for the native btns
+            if (isMac) const HSpace(80), // Reserve some space for the native btns
             if (showBackBtn) _BackBtn(),
-            Spacer(),
+            const Spacer(),
             if (showTouchToggle) TouchModeToggleBtn(invertPopupAlign: isMac),
             HSpace.sm,
             RoundedProfileBtn(invertRow: true, useBottomSheet: isMobile),
@@ -70,7 +72,7 @@ class _AdaptiveTitleBarContent extends StatelessWidget {
 class _TitleText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return IgnorePointer(
+    return const IgnorePointer(
       child: Center(child: AppLogoText(constraints: BoxConstraints(maxHeight: 16))),
     );
   }
@@ -83,11 +85,11 @@ class _BackBtn extends StatelessWidget {
     return FadeInDown(
         child: SimpleBtn(
       onPressed: () => handleBackPressed(context),
-      child: Container(
+      child: SizedBox(
         height: double.infinity,
         child: Row(
           children: [
-            Icon(Icons.chevron_left),
+            const Icon(Icons.chevron_left),
             Text("Back", style: TextStyles.body2.copyWith(color: theme.greyStrong)),
             HSpace.med
           ],

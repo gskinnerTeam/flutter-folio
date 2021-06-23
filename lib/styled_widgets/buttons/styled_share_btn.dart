@@ -27,7 +27,7 @@ class StyledSharedBtn extends StatelessWidget {
         //TODO: anchors should be configurable here?
         anchor: Alignment.centerRight,
         popAnchor: Alignment.centerLeft,
-        popChild: StyledTooltip("Copy Share Link", arrowAlignment: Alignment.centerLeft),
+        popChild: const StyledTooltip("Copy Share Link", arrowAlignment: Alignment.centerLeft),
         child: SimpleBtn(
             child: Padding(
               padding: EdgeInsets.all(Insets.sm),

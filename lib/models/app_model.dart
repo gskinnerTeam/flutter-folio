@@ -28,9 +28,9 @@ class AppModel extends AbstractModel {
   }
 
   // State
-  Debouncer _saveDebouncer = Debouncer(Duration(seconds: 1));
-  BooksModel _booksModel;
-  FirebaseService _firebase;
+  final Debouncer _saveDebouncer = Debouncer(const Duration(seconds: 1));
+  final BooksModel _booksModel;
+  final FirebaseService _firebase;
 
   /// Touch Mode (show btns instead of using right-click, use larger paddings)
   bool _enableTouchMode = defaultToTouchMode();

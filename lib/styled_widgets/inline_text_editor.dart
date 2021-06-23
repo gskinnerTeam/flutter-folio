@@ -44,7 +44,7 @@ class InlineTextEditor extends StatefulWidget {
 class _InlineTextEditorState extends State<InlineTextEditor> {
   bool _isEditing = false;
   late TextEditingController _textController;
-  FocusNode _textFocus = FocusNode();
+  final FocusNode _textFocus = FocusNode();
 
   @override
   void initState() {
@@ -126,7 +126,7 @@ class _InlineTextEditorState extends State<InlineTextEditor> {
                     inputFormatters: [
                       LengthLimitingTextInputFormatter(widget.maxLength),
                     ],
-                    scrollPhysics: NeverScrollableScrollPhysics(),
+                    scrollPhysics: const NeverScrollableScrollPhysics(),
                     onChanged: widget.onChanged,
                     style: widget.style,
                     textAlign: widget.align,
@@ -134,7 +134,7 @@ class _InlineTextEditorState extends State<InlineTextEditor> {
                     focusNode: _textFocus,
                     cursorColor: theme.grey,
                     controller: _textController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       contentPadding: EdgeInsets.only(top: 10, bottom: 0),
                       border: InputBorder.none,
                       counterText: "",

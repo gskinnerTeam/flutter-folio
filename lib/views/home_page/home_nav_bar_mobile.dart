@@ -8,8 +8,9 @@ class HomeNavTabMenu extends StatelessWidget {
   final bool showListView;
   final void Function(bool) onToggled;
 
-  HomeNavTabMenu({this.showListView = true, required this.onToggled});
+  const HomeNavTabMenu({this.showListView = true, required this.onToggled, Key? key}) : super(key: key);
 
+  @override
   Widget build(BuildContext context) {
     AppTheme theme = Provider.of(context);
 
@@ -36,7 +37,7 @@ class HomeNavTabMenu extends StatelessWidget {
               children: [
                 Flexible(
                     child: SimpleBtn(
-                  child: Container(
+                  child: SizedBox(
                       width: double.infinity,
                       height: menuHeight,
                       child: MaterialIcon(Icons.view_module_rounded, size: FontSizes.s24, color: flowListBtnColor)),
@@ -44,7 +45,7 @@ class HomeNavTabMenu extends StatelessWidget {
                 )),
                 Flexible(
                     child: SimpleBtn(
-                  child: Container(
+                  child: SizedBox(
                       width: double.infinity,
                       height: menuHeight,
                       child: MaterialIcon(Icons.view_list_rounded, size: FontSizes.s24, color: sortableListBtnColor)),
@@ -67,10 +68,11 @@ class HomeNavTabMenu extends StatelessWidget {
 }
 
 class _NewFolioFab extends StatelessWidget {
+  @override
   Widget build(BuildContext context) {
-    void _handleNewPressed() => showStyledBottomSheet(context, child: _NewFolioCard());
+    void _handleNewPressed() => showStyledBottomSheet(context, child: const _NewFolioCard());
 
-    Decoration circleDec(Color c) => ShapeDecoration(shape: CircleBorder(), color: c);
+    Decoration circleDec(Color c) => ShapeDecoration(shape: const CircleBorder(), color: c);
     AppTheme theme = Provider.of(context);
     double size = 72;
     return SimpleBtn(
@@ -82,7 +84,7 @@ class _NewFolioFab extends StatelessWidget {
         child: Container(
           width: size,
           height: size,
-          padding: EdgeInsets.all(8),
+          padding: const EdgeInsets.all(8),
           decoration: circleDec(theme.surface1),
           child: Container(
             decoration: circleDec(theme.accent1),

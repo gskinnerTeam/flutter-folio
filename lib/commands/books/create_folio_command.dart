@@ -11,7 +11,7 @@ class CreateFolioCommand extends BaseAppCommand {
   Future<String> run({String? title, String? desc}) async {
     // Create an empty book
     ScrapBookData book = ScrapBookData(
-      documentId: Uuid().v1(),
+      documentId: const Uuid().v1(),
       title: title ?? "",
       desc: desc ?? "",
       creationTime: TimeUtils.nowMillis,
