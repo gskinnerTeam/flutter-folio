@@ -20,16 +20,7 @@ for n in {1..10}; do echo "=== Run number ${n}/10 ==="; \
 done
 ```
 
-You can also run short benchmarks in quick succession, without `--endless-trace-buffer`.
-This might be useful if you have a very specific issue somewhere and want only that.
-
-```text
-for n in {1..10}; do echo "=== Run number ${n} ==="; \
-  flutter drive --target=benchmark/app.dart --driver=benchmark/app_benchmark.dart --profile --purge-persistent-cache; done
-```
-
-Then combine them using `benchmerge`.
-
+(You can then combine the separate runs into one file using `benchmerge`.)
 
 Install Benchmarkhor (`pub global activate benchmarkhor`), then run:
 
