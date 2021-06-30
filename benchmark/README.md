@@ -11,7 +11,7 @@ This might be useful if you have a very specific issue somewhere and want only t
 
 ```text
 for n in {1..10}; do echo "=== Run number ${n} ==="; \
-  flutter drive --target=benchmark/app.dart --driver=benchmark/short_benchmark.dart --profile --purge-persistent-cache; done
+  flutter drive --target=benchmark/app.dart --driver=benchmark/app_benchmark.dart --profile --purge-persistent-cache; done
 ```
 
 Then combine them using `benchmerge`.
