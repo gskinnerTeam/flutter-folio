@@ -3,16 +3,16 @@ import 'dart:math';
 import 'package:desktop_window/desktop_window.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/_utils/device_info.dart';
-import 'package:flutter_folio/_utils/native_window_utils/window_utils.dart';
-import 'package:flutter_folio/_utils/time_utils.dart';
-import 'package:flutter_folio/commands/app/refresh_menubar_command.dart';
-import 'package:flutter_folio/commands/books/refresh_all_books_command.dart';
-import 'package:flutter_folio/commands/commands.dart' as commands;
-import 'package:flutter_folio/core_packages.dart';
-import 'package:flutter_folio/models/app_model.dart';
 import 'package:system_info/system_info.dart';
 
+import '../../_utils/device_info.dart';
+import '../../_utils/native_window_utils/window_utils.dart';
+import '../../_utils/time_utils.dart';
+import '../../core_packages.dart';
+import '../../models/app_model.dart';
+import '../books/refresh_all_books_command.dart';
+import '../commands.dart' as commands;
+import 'refresh_menubar_command.dart';
 import 'set_current_user_command.dart';
 
 class BootstrapCommand extends commands.BaseAppCommand {

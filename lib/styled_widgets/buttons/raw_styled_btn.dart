@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_folio/_utils/string_utils.dart';
-import 'package:flutter_folio/_widgets/decorated_container.dart';
-import 'package:flutter_folio/_widgets/positioned_all.dart';
-import 'package:flutter_folio/_widgets/rounded_card.dart';
-import 'package:flutter_folio/core_packages.dart';
 import 'package:provider/provider.dart';
+
+import '../../_utils/string_utils.dart';
+import '../../_widgets/decorated_container.dart';
+import '../../_widgets/positioned_all.dart';
+import '../../_widgets/rounded_card.dart';
+import '../../core_packages.dart';
 
 class BtnColors {
   BtnColors({required this.bg, required this.fg, this.outline});

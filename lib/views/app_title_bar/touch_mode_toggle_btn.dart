@@ -1,10 +1,10 @@
 import 'package:anchored_popups/anchored_popup_region.dart';
 import 'package:anchored_popups/anchored_popups.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/_widgets/decorated_container.dart';
-import 'package:flutter_folio/core_packages.dart';
-import 'package:flutter_folio/models/app_model.dart';
-import 'package:flutter_folio/themes.dart';
+import '../../_widgets/decorated_container.dart';
+import '../../core_packages.dart';
+import '../../models/app_model.dart';
+import '../../themes.dart';
 
 /// Toggles the current 'enableTouchMode' settings.
 /// This widget treats density inversely to the rest of the app, as it is meant to indicate the mode the user wants to switch to.

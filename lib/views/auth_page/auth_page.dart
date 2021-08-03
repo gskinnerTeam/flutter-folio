@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/core_packages.dart';
+import '../../core_packages.dart';
 
 import 'auth_form.dart';
 import 'device_screens.dart';

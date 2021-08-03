@@ -1,11 +1,11 @@
 import 'package:anchored_popups/anchored_popups.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/_widgets/decorated_container.dart';
-import 'package:flutter_folio/commands/commands.dart' as commands;
-import 'package:flutter_folio/core_packages.dart';
-import 'package:flutter_folio/models/app_model.dart';
-import 'package:flutter_folio/views/app_title_bar/app_title_bar.dart';
+import '_widgets/decorated_container.dart';
+import 'commands/commands.dart' as commands;
+import 'core_packages.dart';
+import 'models/app_model.dart';
+import 'views/app_title_bar/app_title_bar.dart';
 
 /// Wraps the entire app, providing it with various helper classes and wrapper widgets.
 class MainAppScaffold extends StatefulWidget {

@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_folio/_widgets/alignments.dart';
-import 'package:flutter_folio/data/book_data.dart';
-import 'package:flutter_folio/styles.dart';
-import 'package:flutter_folio/views/editor_page/scrap_popup_editor/animated_menu_panel.dart';
-import 'package:flutter_folio/views/editor_page/scrap_popup_editor/scrap_popup_editor.dart';
+import '../../_widgets/alignments.dart';
+import '../../data/book_data.dart';
+import '../../styles.dart';
+import '../../views/editor_page/scrap_popup_editor/animated_menu_panel.dart';
+import '../../views/editor_page/scrap_popup_editor/scrap_popup_editor.dart';
 
 class PopupPanelSpike extends StatefulWidget {
   const PopupPanelSpike({Key? key}) : super(key: key);

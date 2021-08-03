@@ -1,8 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/_widgets/decorated_container.dart';
-import 'package:flutter_folio/core_packages.dart';
-import 'package:flutter_folio/data/book_data.dart';
+import '../../../_widgets/decorated_container.dart';
+import '../../../core_packages.dart';
+import '../../../data/book_data.dart';
 
 import 'scrap_popup_editor.dart';
 

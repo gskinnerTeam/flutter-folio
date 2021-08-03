@@ -1,11 +1,12 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/_utils/string_utils.dart';
-import 'package:flutter_folio/commands/books/update_page_count_command.dart';
-import 'package:flutter_folio/commands/commands.dart';
-import 'package:flutter_folio/data/book_data.dart';
-import 'package:flutter_folio/styled_widgets/dialogs/delete_dialog.dart';
+
+import '../../_utils/string_utils.dart';
+import '../../data/book_data.dart';
+import '../../styled_widgets/dialogs/delete_dialog.dart';
+import '../commands.dart';
+import 'update_page_count_command.dart';
 
 class DeletePageCommand extends BaseAppCommand {
   Future<void> run(ScrapPageData page) async {

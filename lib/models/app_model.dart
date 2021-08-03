@@ -1,15 +1,15 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/_utils/device_info.dart';
-import 'package:flutter_folio/_utils/easy_notifier.dart';
-import 'package:flutter_folio/_utils/universal_file/universal_file.dart';
-import 'package:flutter_folio/data/app_user.dart';
-import 'package:flutter_folio/models/books_model.dart';
-import 'package:flutter_folio/services/firebase/firebase_service.dart';
-import 'package:flutter_folio/themes.dart';
 
+import '../_utils/device_info.dart';
+import '../_utils/easy_notifier.dart';
 import '../_utils/timed/debouncer.dart';
+import '../_utils/universal_file/universal_file.dart';
+import '../data/app_user.dart';
+import '../services/firebase/firebase_service.dart';
+import '../themes.dart';
+import 'books_model.dart';
 
 abstract class AbstractModel extends EasyNotifier {}
 

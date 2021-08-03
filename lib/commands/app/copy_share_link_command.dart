@@ -1,11 +1,11 @@
 import 'package:flutter/services.dart';
-import 'package:flutter_folio/_utils/device_info.dart';
-import 'package:flutter_folio/commands/commands.dart';
-import 'package:flutter_folio/routing/app_link.dart';
-import 'package:flutter_folio/styled_widgets/toaster.dart';
 import 'package:share/share.dart';
 
+import '../../_utils/device_info.dart';
 import '../../_utils/timed/cooldown.dart';
+import '../../routing/app_link.dart';
+import '../../styled_widgets/toaster.dart';
+import '../commands.dart';
 
 class CopyShareLinkCommand extends BaseAppCommand {
   String get baseUrl => "https://flutterfolio.com/#";

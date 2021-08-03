@@ -1,5 +1,5 @@
 import 'package:flutter/services.dart';
-import 'package:flutter_folio/_utils/device_info.dart';
+import 'device_info.dart';
 
 class KeyboardUtils {
   static bool get isSpanSelectModifierDown => isKeyDown({LogicalKeyboardKey.shiftLeft, LogicalKeyboardKey.shiftRight});

@@ -4,13 +4,13 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:context_menus/context_menus.dart';
 import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/_utils/string_utils.dart';
-import 'package:flutter_folio/_widgets/app_image.dart';
-import 'package:flutter_folio/commands/books/update_placed_scrap_command.dart';
-import 'package:flutter_folio/core_packages.dart';
-import 'package:flutter_folio/data/book_data.dart';
-import 'package:flutter_folio/styled_widgets/emoji.dart';
-import 'package:flutter_folio/views/editor_page/placed_scrap_keyboard_listener.dart';
+import '../../_utils/string_utils.dart';
+import '../../_widgets/app_image.dart';
+import '../../commands/books/update_placed_scrap_command.dart';
+import '../../core_packages.dart';
+import '../../data/book_data.dart';
+import '../../styled_widgets/emoji.dart';
+import 'placed_scrap_keyboard_listener.dart';
 
 import '../../_utils/timed/debouncer.dart';
 

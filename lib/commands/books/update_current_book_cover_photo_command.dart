@@ -1,7 +1,7 @@
-import 'package:flutter_folio/_utils/time_utils.dart';
-import 'package:flutter_folio/commands/commands.dart';
-import 'package:flutter_folio/data/book_data.dart';
-import 'package:flutter_folio/styled_widgets/toaster.dart';
+import '../../_utils/time_utils.dart';
+import '../../data/book_data.dart';
+import '../../styled_widgets/toaster.dart';
+import '../commands.dart';
 
 class UpdateCurrentBookCoverPhotoCommand extends BaseAppCommand {
   Future<void> run(PlacedScrapItem item) async {

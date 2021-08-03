@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_folio/_utils/keyboard_utils.dart';
-import 'package:flutter_folio/_widgets/mixins/raw_keyboard_listener_mixin.dart';
-import 'package:flutter_folio/commands/books/delete_page_scrap_command.dart';
-import 'package:flutter_folio/commands/books/shift_placed_scraps_sort_order_command.dart';
-import 'package:flutter_folio/commands/books/update_current_book_cover_photo_command.dart';
-import 'package:flutter_folio/core_packages.dart';
-import 'package:flutter_folio/data/book_data.dart';
+import '../../_utils/keyboard_utils.dart';
+import '../../_widgets/mixins/raw_keyboard_listener_mixin.dart';
+import '../../commands/books/delete_page_scrap_command.dart';
+import '../../commands/books/shift_placed_scraps_sort_order_command.dart';
+import '../../commands/books/update_current_book_cover_photo_command.dart';
+import '../../core_packages.dart';
+import '../../data/book_data.dart';
 
 // Listens to common keyboard shortcuts for all scraps.
 class PlacedScrapKeyboardListener extends StatefulWidget {

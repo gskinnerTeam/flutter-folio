@@ -1,9 +1,9 @@
 import 'dart:math';
 
-import 'package:flutter_folio/_utils/time_utils.dart';
-import 'package:flutter_folio/commands/books/update_book_modified_command.dart';
-import 'package:flutter_folio/commands/commands.dart';
-import 'package:flutter_folio/data/book_data.dart';
+import '../../_utils/time_utils.dart';
+import '../../data/book_data.dart';
+import '../commands.dart';
+import 'update_book_modified_command.dart';
 
 class UpdatePageCountCommand extends BaseAppCommand {
   Future<int> run(int value, {ScrapBookData? book}) async {

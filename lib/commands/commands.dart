@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/models/app_model.dart';
-import 'package:flutter_folio/models/books_model.dart';
-import 'package:flutter_folio/services/cloudinary/cloud_storage_service.dart';
-import 'package:flutter_folio/services/firebase/firebase_service.dart';
-import 'package:flutter_folio/themes.dart';
 import 'package:provider/provider.dart';
+
+import '../models/app_model.dart';
+import '../models/books_model.dart';
+import '../services/cloudinary/cloud_storage_service.dart';
+import '../services/firebase/firebase_service.dart';
+import '../themes.dart';
 
 BuildContext? _mainContext;
 BuildContext get mainContext => _mainContext!;

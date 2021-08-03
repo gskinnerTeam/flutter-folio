@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/_widgets/gradient_container.dart';
-import 'package:flutter_folio/commands/books/create_folio_command.dart';
-import 'package:flutter_folio/commands/books/refresh_all_books_command.dart';
-import 'package:flutter_folio/core_packages.dart';
-import 'package:flutter_folio/data/book_data.dart';
-import 'package:flutter_folio/models/books_model.dart';
+import '../../_widgets/gradient_container.dart';
+import '../../commands/books/create_folio_command.dart';
+import '../../commands/books/refresh_all_books_command.dart';
+import '../../core_packages.dart';
+import '../../data/book_data.dart';
+import '../../models/books_model.dart';
 
 import 'covers_flow_list.dart';
 import 'covers_flow_list_mobile.dart';

@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_folio/_utils/device_info.dart';
-import 'package:flutter_folio/app_keys.dart';
-import 'package:flutter_folio/data/app_user.dart';
-import 'package:flutter_folio/data/book_data.dart';
-import 'package:flutter_folio/services/firebase/firebase_service_firedart.dart';
-import 'package:flutter_folio/services/firebase/firebase_service_native.dart';
+
+import '../../_utils/device_info.dart';
+import '../../app_keys.dart';
+import '../../data/app_user.dart';
+import '../../data/book_data.dart';
+import 'firebase_service_firedart.dart';
+import 'firebase_service_native.dart';
 
 // CollectionKeys
 class FireIds {

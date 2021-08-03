@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/core_packages.dart';
-import 'package:flutter_folio/models/app_model.dart';
 import 'package:provider/provider.dart';
 
+import '../../core_packages.dart';
+import '../../models/app_model.dart';
 import 'raw_styled_btn.dart';
 
 export 'raw_styled_btn.dart';

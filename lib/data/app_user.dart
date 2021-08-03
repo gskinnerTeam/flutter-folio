@@ -1,5 +1,6 @@
-import 'package:flutter_folio/_utils/string_utils.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import '../_utils/string_utils.dart';
 
 part 'app_user.freezed.dart';
 part 'app_user.g.dart';
@@ -22,7 +23,9 @@ class AppUser with _$AppUser {
 
   String? getDisplayName() {
     String? result = firstName;
-    if (StringUtils.isNotEmpty(lastName)) result = (result ?? "") + " $lastName";
+    if (StringUtils.isNotEmpty(lastName)) {
+      result = (result ?? "") + " $lastName";
+    }
     return result;
   }
 }

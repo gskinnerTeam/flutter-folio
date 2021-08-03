@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/_utils/string_utils.dart';
-import 'package:flutter_folio/core_packages.dart';
 import 'package:universal_platform/universal_platform.dart';
+
+import '../../_utils/string_utils.dart';
+import '../../core_packages.dart';
 
 class DeleteDialog extends StatelessWidget {
   const DeleteDialog({Key? key, required this.title, required this.desc1, this.desc2}) : super(key: key);

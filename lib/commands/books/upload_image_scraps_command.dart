@@ -1,15 +1,15 @@
 import 'dart:io';
 
 import 'package:cloudinary_public/cloudinary_public.dart';
-import 'package:flutter_folio/_utils/time_utils.dart';
-import 'package:flutter_folio/commands/commands.dart';
-import 'package:flutter_folio/commands/pick_images_command.dart';
-import 'package:flutter_folio/core_packages.dart';
-import 'package:flutter_folio/data/book_data.dart';
 import 'package:image_size_getter/file_input.dart';
 import 'package:image_size_getter/image_size_getter.dart' as image_size;
 import 'package:uuid/uuid.dart';
 
+import '../../_utils/time_utils.dart';
+import '../../core_packages.dart';
+import '../../data/book_data.dart';
+import '../commands.dart';
+import '../pick_images_command.dart';
 import 'update_book_modified_command.dart';
 
 class UploadImageScrapsCommand extends BaseAppCommand {

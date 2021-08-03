@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/_utils/native_window_utils/macos_window_utils.dart';
+import '../macos_window_utils.dart';
 
 class MacosTitleBar extends StatefulWidget {
   const MacosTitleBar(this.child, {Key? key}) : super(key: key);

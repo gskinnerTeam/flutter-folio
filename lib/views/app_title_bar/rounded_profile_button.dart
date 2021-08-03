@@ -1,10 +1,10 @@
 import 'package:anchored_popups/anchored_popup_region.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/core_packages.dart';
-import 'package:flutter_folio/data/app_user.dart';
-import 'package:flutter_folio/models/app_model.dart';
-import 'package:flutter_folio/views/user_profile_card/user_profile_card.dart';
-import 'package:flutter_folio/views/user_profile_card/user_profile_form.dart';
+import '../../core_packages.dart';
+import '../../data/app_user.dart';
+import '../../models/app_model.dart';
+import '../user_profile_card/user_profile_card.dart';
+import '../user_profile_card/user_profile_form.dart';
 
 class RoundedProfileBtn extends StatelessWidget {
   const RoundedProfileBtn({Key? key, this.useBottomSheet = false, this.invertRow = false}) : super(key: key);

@@ -3,13 +3,13 @@ import 'dart:async';
 import 'package:anchored_popups/anchored_popups.dart';
 import 'package:cloudinary_public/cloudinary_public.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/commands/app/set_current_user_command.dart';
-import 'package:flutter_folio/commands/app/update_user_command.dart';
-import 'package:flutter_folio/commands/pick_images_command.dart';
-import 'package:flutter_folio/core_packages.dart';
-import 'package:flutter_folio/data/app_user.dart';
-import 'package:flutter_folio/models/app_model.dart';
-import 'package:flutter_folio/services/cloudinary/cloud_storage_service.dart';
+import '../../commands/app/set_current_user_command.dart';
+import '../../commands/app/update_user_command.dart';
+import '../../commands/pick_images_command.dart';
+import '../../core_packages.dart';
+import '../../data/app_user.dart';
+import '../../models/app_model.dart';
+import '../../services/cloudinary/cloud_storage_service.dart';
 
 /// A form to edit the current users details or logout. It is shown in a pop up panel on desktop,
 /// and a bottom sheet on mobile.

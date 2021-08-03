@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_folio/core_packages.dart';
+import '../../../core_packages.dart';
 
 class AnimatedMenuPanel extends StatefulWidget {
   const AnimatedMenuPanel(

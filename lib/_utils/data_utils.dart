@@ -1,4 +1,4 @@
-import 'package:flutter_folio/data/book_data.dart';
+import '../data/book_data.dart';
 
 class _IndexPair {
   int index1, index2;

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/_utils/data_utils.dart';
-import 'package:flutter_folio/_widgets/decorated_container.dart';
-import 'package:flutter_folio/commands/books/create_page_command.dart';
-import 'package:flutter_folio/commands/books/set_current_page_command.dart';
-import 'package:flutter_folio/core_packages.dart';
-import 'package:flutter_folio/data/book_data.dart';
-import 'package:flutter_folio/models/books_model.dart';
-import 'package:flutter_folio/views/editor_page/draggable_page_menu/draggable_page_menu.dart';
+import '../../../_utils/data_utils.dart';
+import '../../../_widgets/decorated_container.dart';
+import '../../../commands/books/create_page_command.dart';
+import '../../../commands/books/set_current_page_command.dart';
+import '../../../core_packages.dart';
+import '../../../data/book_data.dart';
+import '../../../models/books_model.dart';
+import '../draggable_page_menu/draggable_page_menu.dart';
 
 class CollapsiblePagesPanel extends StatefulWidget {
   const CollapsiblePagesPanel(this.pages, {Key? key, required this.height}) : super(key: key);

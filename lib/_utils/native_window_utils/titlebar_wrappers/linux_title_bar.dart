@@ -1,9 +1,10 @@
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/_utils/native_window_utils/titlebar_wrappers/linux_title_bar_buttons.dart';
-import 'package:flutter_folio/themes.dart';
 import 'package:provider/provider.dart';
+
+import '../../../themes.dart';
+import 'linux_title_bar_buttons.dart';
 
 /// Native TitleBar for Linux, uses BitDojo platform
 class LinuxTitleBar extends StatelessWidget {

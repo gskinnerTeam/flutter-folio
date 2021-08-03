@@ -1,12 +1,12 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/_utils/device_info.dart';
-import 'package:flutter_folio/_widgets/alignments.dart';
-import 'package:flutter_folio/core_packages.dart';
-import 'package:flutter_folio/data/book_data.dart';
-import 'package:flutter_folio/models/books_model.dart';
-import 'package:flutter_folio/views/scrap_pile_picker/scrap_pile_picker.dart';
+import '../../_utils/device_info.dart';
+import '../../_widgets/alignments.dart';
+import '../../core_packages.dart';
+import '../../data/book_data.dart';
+import '../../models/books_model.dart';
+import '../scrap_pile_picker/scrap_pile_picker.dart';
 
 import 'empty_editor_view.dart';
 import 'networked_scrapboard.dart';

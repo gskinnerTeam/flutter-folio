@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/core_packages.dart';
-import 'package:flutter_folio/models/app_model.dart';
+import '../../core_packages.dart';
+import '../../models/app_model.dart';
 
 class ScrapPilePickerTitleBar extends StatelessWidget {
   const ScrapPilePickerTitleBar(

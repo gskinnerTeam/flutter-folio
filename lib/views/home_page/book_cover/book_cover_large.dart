@@ -5,12 +5,13 @@ import 'package:context_menus/context_menus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_folio/commands/books/set_current_book_command.dart';
-import 'package:flutter_folio/commands/books/update_book_command.dart';
-import 'package:flutter_folio/core_packages.dart';
-import 'package:flutter_folio/data/book_data.dart';
 import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
+
+import '../../../commands/books/set_current_book_command.dart';
+import '../../../commands/books/update_book_command.dart';
+import '../../../core_packages.dart';
+import '../../../data/book_data.dart';
 
 /// Represents the Widget in "Large Mode"
 class LargeBookCover extends StatelessWidget {

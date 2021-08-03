@@ -1,8 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/_widgets/decorated_container.dart';
-import 'package:flutter_folio/core_packages.dart';
+import '../_widgets/decorated_container.dart';
+import '../core_packages.dart';
 
 class StyledTooltip extends StatelessWidget {
   const StyledTooltip(this.label, {Key? key, this.arrowAlignment = Alignment.topCenter}) : super(key: key);

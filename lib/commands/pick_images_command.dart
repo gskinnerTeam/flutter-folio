@@ -1,8 +1,9 @@
 import 'package:file_selector/file_selector.dart';
-import 'package:flutter_folio/_utils/device_info.dart';
-import 'package:flutter_folio/commands/commands.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:multi_image_picker/multi_image_picker.dart';
+
+import '../_utils/device_info.dart';
+import 'commands.dart';
 
 class PickedImage {
   PickedImage({this.path, this.asset});

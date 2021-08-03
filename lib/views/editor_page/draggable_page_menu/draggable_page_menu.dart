@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/_widgets/decorated_container.dart';
-import 'package:flutter_folio/commands/books/update_book_command.dart';
-import 'package:flutter_folio/core_packages.dart';
-import 'package:flutter_folio/data/book_data.dart';
-import 'package:flutter_folio/models/app_model.dart';
-import 'package:flutter_folio/models/books_model.dart';
-import 'package:flutter_folio/views/editor_page/draggable_page_menu/draggable_page_title_btn.dart';
+import '../../../_widgets/decorated_container.dart';
+import '../../../commands/books/update_book_command.dart';
+import '../../../core_packages.dart';
+import '../../../data/book_data.dart';
+import '../../../models/app_model.dart';
+import '../../../models/books_model.dart';
+import 'draggable_page_title_btn.dart';
 
 class DraggablePagesMenu extends StatefulWidget {
   const DraggablePagesMenu({Key? key, required this.pages, required this.pageId, required this.onPressed})

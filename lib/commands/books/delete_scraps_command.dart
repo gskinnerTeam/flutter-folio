@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/_utils/string_utils.dart';
-import 'package:flutter_folio/commands/commands.dart';
-import 'package:flutter_folio/styled_widgets/dialogs/delete_dialog.dart';
 
+import '../../_utils/string_utils.dart';
+import '../../styled_widgets/dialogs/delete_dialog.dart';
+import '../commands.dart';
 import 'update_book_modified_command.dart';
 
 class DeleteScrapsCommand extends BaseAppCommand {

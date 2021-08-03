@@ -1,16 +1,16 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/_utils/data_utils.dart';
-import 'package:flutter_folio/commands/books/delete_page_scrap_command.dart';
-import 'package:flutter_folio/commands/books/update_page_command.dart';
-import 'package:flutter_folio/commands/books/update_placed_scrap_command.dart';
-import 'package:flutter_folio/core_packages.dart';
-import 'package:flutter_folio/data/book_data.dart';
-import 'package:flutter_folio/models/books_model.dart';
-import 'package:flutter_folio/views/editor_page/placed_scrap_renderer.dart';
-import 'package:flutter_folio/views/editor_page/scrap_popup_editor/scrap_popup_editor.dart';
-import 'package:flutter_folio/views/editor_page/scrapboard/scrap_data.dart';
-import 'package:flutter_folio/views/editor_page/scrapboard/scrapboard.dart';
+import '../../_utils/data_utils.dart';
+import '../../commands/books/delete_page_scrap_command.dart';
+import '../../commands/books/update_page_command.dart';
+import '../../commands/books/update_placed_scrap_command.dart';
+import '../../core_packages.dart';
+import '../../data/book_data.dart';
+import '../../models/books_model.dart';
+import 'placed_scrap_renderer.dart';
+import 'scrap_popup_editor/scrap_popup_editor.dart';
+import 'scrapboard/scrap_data.dart';
+import 'scrapboard/scrapboard.dart';
 
 /// The [NetworkedScrapboard] binds a Scrapboard component to the Database.
 class NetworkedScrapboard extends StatefulWidget {

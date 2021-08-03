@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_folio/_utils/string_utils.dart';
-import 'package:flutter_folio/core_packages.dart';
+import '../_utils/string_utils.dart';
+import '../core_packages.dart';
 
 class LabeledTextInput extends StatefulWidget {
   const LabeledTextInput(

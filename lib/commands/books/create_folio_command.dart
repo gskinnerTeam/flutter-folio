@@ -1,11 +1,12 @@
-import 'package:flutter_folio/_utils/string_utils.dart';
-import 'package:flutter_folio/_utils/time_utils.dart';
-import 'package:flutter_folio/commands/books/refresh_all_books_command.dart';
-import 'package:flutter_folio/commands/books/set_current_book_command.dart';
-import 'package:flutter_folio/commands/commands.dart';
-import 'package:flutter_folio/data/book_data.dart';
-import 'package:flutter_folio/styles.dart';
 import 'package:uuid/uuid.dart';
+
+import '../../_utils/string_utils.dart';
+import '../../_utils/time_utils.dart';
+import '../../data/book_data.dart';
+import '../../styles.dart';
+import '../commands.dart';
+import 'refresh_all_books_command.dart';
+import 'set_current_book_command.dart';
 
 class CreateFolioCommand extends BaseAppCommand {
   Future<String> run({String? title, String? desc}) async {

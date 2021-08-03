@@ -1,6 +1,5 @@
-import 'package:flutter_folio/commands/commands.dart';
-import 'package:flutter_folio/data/book_data.dart';
-
+import '../../data/book_data.dart';
+import '../commands.dart';
 import 'update_book_modified_command.dart';
 
 class DeletePageScrapCommand extends BaseAppCommand {

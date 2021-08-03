@@ -1,4 +1,4 @@
-import 'package:flutter_folio/commands/commands.dart';
+import '../commands.dart';
 
 //TODO: Should we pull this feature completely since it's not supported on Windows?
 class RefreshMenuBarCommand extends BaseAppCommand {

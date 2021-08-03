@@ -2,12 +2,12 @@ import 'package:context_menus/context_menus.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_folio/_utils/context_utils.dart';
-import 'package:flutter_folio/_widgets/animated/auto_fade.dart';
-import 'package:flutter_folio/_widgets/animated/opening_card.dart';
-import 'package:flutter_folio/_widgets/rounded_card.dart';
-import 'package:flutter_folio/core_packages.dart';
-import 'package:flutter_folio/data/book_data.dart';
+import '../../_utils/context_utils.dart';
+import '../../_widgets/animated/auto_fade.dart';
+import '../../_widgets/animated/opening_card.dart';
+import '../../_widgets/rounded_card.dart';
+import '../../core_packages.dart';
+import '../../data/book_data.dart';
 
 import 'book_cover/book_cover.dart';
 

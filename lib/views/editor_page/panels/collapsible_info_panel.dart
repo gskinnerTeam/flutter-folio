@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/commands/app/copy_share_link_command.dart';
-import 'package:flutter_folio/commands/books/update_book_command.dart';
-import 'package:flutter_folio/core_packages.dart';
-import 'package:flutter_folio/data/book_data.dart';
-import 'package:flutter_folio/models/books_model.dart';
+import '../../../commands/app/copy_share_link_command.dart';
+import '../../../commands/books/update_book_command.dart';
+import '../../../core_packages.dart';
+import '../../../data/book_data.dart';
+import '../../../models/books_model.dart';
 
 class CollapsibleInfoPanel extends StatefulWidget {
   const CollapsibleInfoPanel({Key? key, required this.width, required this.height}) : super(key: key);

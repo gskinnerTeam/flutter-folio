@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/_widgets/decorated_container.dart';
-import 'package:flutter_folio/commands/books/create_folio_command.dart';
-import 'package:flutter_folio/core_packages.dart';
 import 'package:provider/provider.dart';
+
+import '../../_widgets/decorated_container.dart';
+import '../../commands/books/create_folio_command.dart';
+import '../../core_packages.dart';
 
 class HomeNavTabMenu extends StatelessWidget {
   final bool showListView;

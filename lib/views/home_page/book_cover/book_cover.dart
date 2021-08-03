@@ -1,15 +1,16 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_folio/_utils/input_utils.dart';
-import 'package:flutter_folio/_widgets/animated/animated_scale.dart';
-import 'package:flutter_folio/_widgets/gradient_container.dart';
-import 'package:flutter_folio/_widgets/rounded_card.dart';
-import 'package:flutter_folio/core_packages.dart';
-import 'package:flutter_folio/data/book_data.dart';
-import 'package:flutter_folio/views/home_page/book_cover/book_cover_large.dart';
-import 'package:flutter_folio/views/home_page/book_cover/book_cover_small.dart';
 import 'package:provider/provider.dart';
+
+import '../../../_utils/input_utils.dart';
+import '../../../_widgets/animated/animated_scale.dart';
+import '../../../_widgets/gradient_container.dart';
+import '../../../_widgets/rounded_card.dart';
+import '../../../core_packages.dart';
+import '../../../data/book_data.dart';
+import 'book_cover_large.dart';
+import 'book_cover_small.dart';
 
 /// Represents the Cover for one ScrapBook.
 /// Supports 2 modes, and holds the shared elements between the modes, like the imageBg, gradients etc

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/routing/app_link.dart';
+import 'app_link.dart';
 
 /// Converts browser location strings to [AppLink], and vice-versa.
 /// This leans on [AppLink] to the actual parsing, so this is largely boilerplate.

@@ -3,16 +3,17 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_folio/_utils/logger.dart';
-import 'package:flutter_folio/commands/app/bootstrap_command.dart';
-import 'package:flutter_folio/models/app_model.dart';
-import 'package:flutter_folio/models/books_model.dart';
-import 'package:flutter_folio/routing/app_route_parser.dart';
-import 'package:flutter_folio/routing/app_router.dart';
-import 'package:flutter_folio/services/cloudinary/cloud_storage_service.dart';
-import 'package:flutter_folio/services/firebase/firebase_service.dart';
-import 'package:flutter_folio/themes.dart';
 import 'package:provider/provider.dart';
+
+import '_utils/logger.dart';
+import 'commands/app/bootstrap_command.dart';
+import 'models/app_model.dart';
+import 'models/books_model.dart';
+import 'routing/app_route_parser.dart';
+import 'routing/app_router.dart';
+import 'services/cloudinary/cloud_storage_service.dart';
+import 'services/firebase/firebase_service.dart';
+import 'themes.dart';
 
 void main() async {
   // Call a method to setup a global error handler so we can log all errors, including ones from native extensions.

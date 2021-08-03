@@ -1,9 +1,9 @@
 import 'dart:io';
 
-import 'package:flutter_folio/_utils/logger.dart';
-import 'package:flutter_folio/_utils/path_utils.dart';
 import 'package:path/path.dart' as p;
 
+import '../logger.dart';
+import '../path_utils.dart';
 import 'universal_file.dart';
 
 class IoFileWriter implements UniversalFile {

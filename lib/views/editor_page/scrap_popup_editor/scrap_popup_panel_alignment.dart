@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_folio/core_packages.dart';
+import '../../../core_packages.dart';
 
 class ScrapPopupPanelAlignment extends StatelessWidget {
   const ScrapPopupPanelAlignment({Key? key, this.onAlignmentPressed, required this.value}) : super(key: key);

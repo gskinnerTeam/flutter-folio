@@ -1,11 +1,11 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/data/book_data.dart';
-import 'package:flutter_folio/styled_widgets/styled_spacers.dart';
-import 'package:flutter_folio/styles.dart';
-import 'package:flutter_folio/views/editor_page/panels/collapsible_info_panel.dart';
-import 'package:flutter_folio/views/editor_page/panels/collapsible_pages_panel.dart';
+import '../../../data/book_data.dart';
+import '../../../styled_widgets/styled_spacers.dart';
+import '../../../styles.dart';
+import 'collapsible_info_panel.dart';
+import 'collapsible_pages_panel.dart';
 
 /// Vertical stack of 2 menus
 /// TODO: This could be more responsive, using more height for the top panel, and more width for both panels when extended.

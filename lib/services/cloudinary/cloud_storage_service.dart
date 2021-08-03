@@ -1,7 +1,8 @@
 import 'package:cloudinary_public/cloudinary_public.dart';
-import 'package:flutter_folio/_utils/string_utils.dart';
-import 'package:flutter_folio/app_keys.dart';
-import 'package:flutter_folio/commands/pick_images_command.dart';
+
+import '../../_utils/string_utils.dart';
+import '../../app_keys.dart';
+import '../../commands/pick_images_command.dart';
 
 class CloudStorageService {
   late CloudinaryPublic _cloudinary;

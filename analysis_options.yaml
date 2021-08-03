@@ -12,5 +12,8 @@ analyzer:
     missing_required_param: error
 linter:
   rules:
+    always_declare_return_types: true
     avoid_print: false
     constant_identifier_names: false
+    directives_ordering: true
+    prefer_relative_imports: true

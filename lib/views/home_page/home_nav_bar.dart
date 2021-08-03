@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/commands/books/create_folio_command.dart';
-import 'package:flutter_folio/core_packages.dart';
-import 'package:flutter_folio/data/app_user.dart';
-import 'package:flutter_folio/models/app_model.dart';
-import 'package:flutter_folio/models/books_model.dart';
+import '../../commands/books/create_folio_command.dart';
+import '../../core_packages.dart';
+import '../../data/app_user.dart';
+import '../../models/app_model.dart';
+import '../../models/books_model.dart';
 
 class HomeNavToggleMenu extends StatelessWidget {
   const HomeNavToggleMenu(

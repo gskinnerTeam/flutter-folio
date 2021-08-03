@@ -1,6 +1,6 @@
-import 'package:flutter_folio/commands/commands.dart';
-import 'package:flutter_folio/data/book_data.dart';
-import 'package:flutter_folio/services/cloudinary/cloud_storage_service.dart';
+import '../../data/book_data.dart';
+import '../../services/cloudinary/cloud_storage_service.dart';
+import '../commands.dart';
 
 class RefreshCurrentPageCommand extends BaseAppCommand {
   Future<void> run() async {

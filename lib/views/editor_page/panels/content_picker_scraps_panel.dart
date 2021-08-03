@@ -1,15 +1,15 @@
 import 'package:context_menus/context_menus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_folio/_utils/notifications/close_notification.dart';
-import 'package:flutter_folio/_utils/string_utils.dart';
-import 'package:flutter_folio/_widgets/mixins/raw_keyboard_listener_mixin.dart';
-import 'package:flutter_folio/commands/app/save_image_to_disk_command.dart';
-import 'package:flutter_folio/commands/books/create_placed_scraps_command.dart';
-import 'package:flutter_folio/commands/books/delete_scraps_command.dart';
-import 'package:flutter_folio/core_packages.dart';
-import 'package:flutter_folio/data/book_data.dart';
-import 'package:flutter_folio/views/scrap_pile_picker/scrap_pile_picker.dart';
+import '../../../_utils/notifications/close_notification.dart';
+import '../../../_utils/string_utils.dart';
+import '../../../_widgets/mixins/raw_keyboard_listener_mixin.dart';
+import '../../../commands/app/save_image_to_disk_command.dart';
+import '../../../commands/books/create_placed_scraps_command.dart';
+import '../../../commands/books/delete_scraps_command.dart';
+import '../../../core_packages.dart';
+import '../../../data/book_data.dart';
+import '../../scrap_pile_picker/scrap_pile_picker.dart';
 
 class ContentPickerScrapsPanel extends StatefulWidget {
   const ContentPickerScrapsPanel({Key? key, required this.bookId, this.isVisible = false, required this.pageId})

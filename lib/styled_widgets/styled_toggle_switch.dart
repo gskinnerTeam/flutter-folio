@@ -1,6 +1,6 @@
 import 'package:anchored_popups/anchored_popup_region.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/core_packages.dart';
+import '../core_packages.dart';
 
 class StyledToggleSwitch extends StatefulWidget {
   StyledToggleSwitch(
@@ -99,7 +99,9 @@ class _StyledToggleSwitchState extends State<StyledToggleSwitch> {
     color ??= theme.grey;
     double size = 16;
     if (appIcon != null) return AppIcon(appIcon, color: color, size: size);
-    if (materialIcon != null) return Icon(materialIcon, color: color, size: size);
+    if (materialIcon != null) {
+      return Icon(materialIcon, color: color, size: size);
+    }
     return Container();
   }
 }

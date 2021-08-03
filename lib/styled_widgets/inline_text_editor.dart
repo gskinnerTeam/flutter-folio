@@ -1,8 +1,8 @@
 import 'package:context_menus/context_menus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_folio/_utils/string_utils.dart';
-import 'package:flutter_folio/core_packages.dart';
+import '../_utils/string_utils.dart';
+import '../core_packages.dart';
 
 //TODO: This is a good package / code example / blogpost
 class InlineTextEditor extends StatefulWidget {

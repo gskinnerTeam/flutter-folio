@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/_widgets/flexibles/seperated_flexibles.dart';
-import 'package:flutter_folio/_widgets/mixins/loading_state_mixin.dart';
-import 'package:flutter_folio/commands/books/delete_page_scrap_command.dart';
-import 'package:flutter_folio/commands/books/shift_placed_scraps_sort_order_command.dart';
-import 'package:flutter_folio/commands/books/update_current_book_cover_photo_command.dart';
-import 'package:flutter_folio/core_packages.dart';
-import 'package:flutter_folio/data/book_data.dart';
-import 'package:flutter_folio/models/books_model.dart';
+import '../../../_widgets/flexibles/seperated_flexibles.dart';
+import '../../../_widgets/mixins/loading_state_mixin.dart';
+import '../../../commands/books/delete_page_scrap_command.dart';
+import '../../../commands/books/shift_placed_scraps_sort_order_command.dart';
+import '../../../commands/books/update_current_book_cover_photo_command.dart';
+import '../../../core_packages.dart';
+import '../../../data/book_data.dart';
+import '../../../models/books_model.dart';
 
 class ScrapPopupPanelButtonStrip extends StatefulWidget {
   const ScrapPopupPanelButtonStrip({Key? key, required this.scrap}) : super(key: key);

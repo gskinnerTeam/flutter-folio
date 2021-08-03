@@ -1,11 +1,11 @@
 import 'package:context_menus/context_menus.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/commands/app/copy_share_link_command.dart';
-import 'package:flutter_folio/commands/books/delete_book_command.dart';
-import 'package:flutter_folio/commands/books/set_current_book_command.dart';
-import 'package:flutter_folio/core_packages.dart';
-import 'package:flutter_folio/data/book_data.dart';
-import 'package:flutter_folio/styled_widgets/context_menus/context_menu_widgets.dart';
+import '../../commands/app/copy_share_link_command.dart';
+import '../../commands/books/delete_book_command.dart';
+import '../../commands/books/set_current_book_command.dart';
+import '../../core_packages.dart';
+import '../../data/book_data.dart';
+import 'context_menu_widgets.dart';
 
 class BookContextMenu extends StatefulWidget {
   const BookContextMenu(this.book, {Key? key}) : super(key: key);

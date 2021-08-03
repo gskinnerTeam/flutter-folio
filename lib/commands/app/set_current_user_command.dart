@@ -1,8 +1,7 @@
-import 'package:flutter_folio/_utils/string_utils.dart';
-import 'package:flutter_folio/commands/commands.dart';
-import 'package:flutter_folio/core_packages.dart';
-import 'package:flutter_folio/data/app_user.dart';
-
+import '../../_utils/string_utils.dart';
+import '../../core_packages.dart';
+import '../../data/app_user.dart';
+import '../commands.dart';
 import 'refresh_menubar_command.dart';
 
 class SetCurrentUserCommand extends BaseAppCommand {

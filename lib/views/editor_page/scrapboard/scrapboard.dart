@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
-// import 'package:flutter/src/gestures/events.dart';
-import 'package:flutter_folio/_utils/input_utils.dart';
-import 'package:flutter_folio/_utils/keyboard_utils.dart';
-import 'package:flutter_folio/_widgets/mixins/raw_keyboard_listener_mixin.dart';
 import 'package:vector_math/vector_math_64.dart' as math64;
 
+// import 'package:flutter/src/gestures/events.dart';
+import '../../../_utils/input_utils.dart';
+import '../../../_utils/keyboard_utils.dart';
+import '../../../_widgets/mixins/raw_keyboard_listener_mixin.dart';
 import 'movable_scrap.dart';
 import 'scrap_data.dart';
 

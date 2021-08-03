@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/_widgets/decorated_container.dart';
-import 'package:flutter_folio/styles.dart';
+
+import '../styles.dart';
+import 'decorated_container.dart';
 
 class RoundedCard extends StatelessWidget {
   const RoundedCard({Key? key, required this.child, this.radius}) : super(key: key);

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/commands/commands.dart';
-import 'package:flutter_folio/data/book_data.dart';
-import 'package:flutter_folio/styled_widgets/dialogs/delete_dialog.dart';
+
+import '../../data/book_data.dart';
+import '../../styled_widgets/dialogs/delete_dialog.dart';
+import '../commands.dart';
 
 class DeleteBookCommand extends BaseAppCommand {
   Future<void> run(ScrapBookData book) async {

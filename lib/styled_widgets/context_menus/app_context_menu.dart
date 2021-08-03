@@ -3,9 +3,9 @@ import 'dart:io';
 import 'package:context_menus/context_menus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/commands/app/set_current_user_command.dart';
-import 'package:flutter_folio/core_packages.dart';
-import 'package:flutter_folio/models/app_model.dart';
+import '../../commands/app/set_current_user_command.dart';
+import '../../core_packages.dart';
+import '../../models/app_model.dart';
 
 class AppContextMenu extends StatefulWidget {
   const AppContextMenu({Key? key}) : super(key: key);
