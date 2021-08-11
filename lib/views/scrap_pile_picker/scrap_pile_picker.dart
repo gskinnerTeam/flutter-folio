@@ -45,7 +45,7 @@ class ScrapPilePicker extends StatefulWidget {
 }
 
 class ScrapPilePickerState extends State<ScrapPilePicker> with RawKeyboardListenerMixin {
-  ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
   List<ScrapItem>? _bookScraps = [];
   List<String> _selectedIds = [];
 
@@ -112,8 +112,11 @@ class ScrapPilePickerState extends State<ScrapPilePicker> with RawKeyboardListen
     // Check whether we're selecting, or de-selecting all
     bool doSelectAll = _selectedIds.length != _bookScraps!.length;
     _selectedIds.clear();
-    if (doSelectAll) {
-      _bookScraps?.forEach((s) => _selectedIds.add(s.documentId));
+    final bookScraps = _bookScraps;
+    if (doSelectAll && bookScraps != null) {
+      for (final s in bookScraps) {
+        _selectedIds.add(s.documentId);
+      }
     }
     setState(() {});
     _notifySelectionChangeHandler();
@@ -122,9 +125,12 @@ class ScrapPilePickerState extends State<ScrapPilePicker> with RawKeyboardListen
   // Converts selected scraps to a list of ids, and notifies any listeners.
   void _notifySelectionChangeHandler() {
     List<ScrapItem> selectedScraps = [];
-    _bookScraps?.forEach((s) {
-      if (_selectedIds.contains(s.documentId)) selectedScraps.add(s);
-    });
+    final bookScraps = _bookScraps;
+    if (bookScraps != null) {
+      for (final s in bookScraps) {
+        if (_selectedIds.contains(s.documentId)) selectedScraps.add(s);
+      }
+    }
     widget.onSelectionChanged?.call(selectedScraps);
   }
 

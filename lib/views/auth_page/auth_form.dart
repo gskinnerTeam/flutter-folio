@@ -11,6 +11,8 @@ import 'package:flutter_folio/styled_widgets/styled_load_spinner.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AuthForm extends StatefulWidget {
+  const AuthForm({Key? key}) : super(key: key);
+
   @override
   _AuthFormState createState() => _AuthFormState();
 }
@@ -74,7 +76,8 @@ class _AuthFormState extends State<AuthForm> with LoadingStateMixin {
               double paddingFactor = compactVerticalSpace ? .5 : 1;
               return Stack(
                 children: [
-                  ContextMenuRegion(isEnabled: kIsWeb == false, contextMenu: AppContextMenu(), child: Container()),
+                  ContextMenuRegion(
+                      isEnabled: kIsWeb == false, contextMenu: const AppContextMenu(), child: Container()),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 60, vertical: Insets.xl),
 
@@ -88,14 +91,14 @@ class _AuthFormState extends State<AuthForm> with LoadingStateMixin {
                         child: Form(
                           child: Center(
                             child: ConstrainedBox(
-                              constraints: BoxConstraints(maxWidth: 500, maxHeight: 500),
+                              constraints: const BoxConstraints(maxWidth: 500, maxHeight: 500),
 
                               /// Use an expanded scrolling column so our form will scroll vertically when it has to
                               child: ExpandedScrollingColumn(
                                 mainAxisSize: MainAxisSize.min,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Spacer(),
+                                  const Spacer(),
 
                                   /// Title
                                   UiText(
@@ -119,7 +122,7 @@ class _AuthFormState extends State<AuthForm> with LoadingStateMixin {
                                     autoFocus: true,
                                     style: TextStyles.body1,
                                     hintText: "Email",
-                                    autofillHints: [AutofillHints.email, AutofillHints.username],
+                                    autofillHints: const [AutofillHints.email, AutofillHints.username],
                                     onChanged: (_) => setState(() {}),
                                   ),
                                   VSpace(Insets.med * paddingFactor),
@@ -130,7 +133,7 @@ class _AuthFormState extends State<AuthForm> with LoadingStateMixin {
                                     controller: _passController,
                                     style: TextStyles.body1,
                                     hintText: "Password",
-                                    autofillHints: [AutofillHints.password],
+                                    autofillHints: const [AutofillHints.password],
                                     onChanged: (_) => setState(() {}),
                                     obscureText: true,
                                   ),
@@ -146,7 +149,7 @@ class _AuthFormState extends State<AuthForm> with LoadingStateMixin {
 
                                   /// SUBMIT BTN
                                   isLoading
-                                      ? Center(child: StyledLoadSpinner())
+                                      ? const Center(child: StyledLoadSpinner())
                                       : PrimaryBtn(
                                           key: Key('auth_submit_button'),
                                           onPressed: enableSubmit ? _handleSubmitPressed : null,
@@ -174,17 +177,17 @@ class _AuthFormState extends State<AuthForm> with LoadingStateMixin {
                                     separatorBuilder: () => HSpace.sm,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      UiText(text: "Learn more about Flutter Folio?"),
+                                      const UiText(text: "Learn more about Flutter Folio?"),
                                       ContextMenuRegion(
                                         contextMenu:
-                                            LinkContextMenu(url: 'https://github.com/gskinnerTeam/flutter-folio'),
+                                            const LinkContextMenu(url: 'https://github.com/gskinnerTeam/flutter-folio'),
                                         child: SimpleBtn(
                                           child: AppIcon(AppIcons.website, color: theme.greyStrong, size: 24),
                                           onPressed: _handleWebsitePressed,
                                         ),
                                       ),
                                       ContextMenuRegion(
-                                        contextMenu: LinkContextMenu(url: "https://flutter.gskinner.com"),
+                                        contextMenu: const LinkContextMenu(url: "https://flutter.gskinner.com"),
                                         child: SimpleBtn(
                                           child: AppIcon(AppIcons.github, color: theme.greyStrong, size: 24),
                                           onPressed: _handleGitPressed,
@@ -192,7 +195,7 @@ class _AuthFormState extends State<AuthForm> with LoadingStateMixin {
                                       ),
                                     ],
                                   ),
-                                  Spacer(),
+                                  const Spacer(),
                                 ],
                               ),
                             ),

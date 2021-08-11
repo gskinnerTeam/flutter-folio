@@ -56,9 +56,9 @@ class LinuxCloseButton extends _LinuxWindowButton {
 
 Widget _linuxWindowButtonBuilder(WindowButtonContext context, Widget icon) {
   return Container(
-    margin: EdgeInsets.all(5),
+    margin: const EdgeInsets.all(5),
     decoration: ShapeDecoration(
-      shape: CircleBorder(),
+      shape: const CircleBorder(),
       color: context.backgroundColor,
     ),
     child: icon,

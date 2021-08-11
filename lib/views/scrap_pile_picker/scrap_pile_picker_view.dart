@@ -14,7 +14,7 @@ class ScrapPilePickerView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scraps = bookScraps;
-    if (scraps == null) return LoadingIndicator();
+    if (scraps == null) return const LoadingIndicator();
     //TODO: Feature this code snippet
     // Depending on the mode, we'll have different btns for adding images
     List<Widget> btns = [
@@ -27,7 +27,7 @@ class ScrapPilePickerView extends StatelessWidget {
     ];
     return VisibilityDetector(
       onVisibilityChanged: state._handleVisibilityChanged,
-      key: ValueKey("scrap-pile"),
+      key: const ValueKey("scrap-pile"),
       child: FocusTraversalGroup(
         child: GestureDetector(
           onTap: state._handleBgTapped,
@@ -52,7 +52,7 @@ class ScrapPilePickerView extends StatelessWidget {
                         /// Bg Gradient
                         VtGradient(
                           [Colors.black.withOpacity(0), Colors.black.withOpacity(.05)],
-                          [.6, 1],
+                          const [.6, 1],
                         ),
 
                         // Make sure scraps are sorted by creation time
@@ -172,6 +172,7 @@ class _TileBtn extends StatelessWidget {
   final AppIcons icon;
   final VoidCallback onPressed;
 
+  @override
   Widget build(BuildContext context) {
     AppTheme theme = context.watch();
     return Padding(
@@ -185,7 +186,7 @@ class _TileBtn extends StatelessWidget {
               all: 2,
               child: DottedBorder(
                   radius: Corners.medRadius,
-                  dashPattern: [6, 3],
+                  dashPattern: const [6, 3],
                   strokeWidth: 1,
                   padding: EdgeInsets.zero,
                   color: theme.grey,

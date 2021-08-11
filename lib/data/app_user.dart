@@ -21,7 +21,7 @@ class AppUser with _$AppUser {
   factory AppUser.fromJson(Map<String, dynamic> json) => _$AppUserFromJson(json);
 
   String? getDisplayName() {
-    String? result = firstName ?? null;
+    String? result = firstName;
     if (StringUtils.isNotEmpty(lastName)) result = (result ?? "") + " $lastName";
     return result;
   }

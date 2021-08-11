@@ -11,7 +11,7 @@ mixin LoadingStateMixin<T extends StatefulWidget> on State<T> {
     setState(() => _isLoading = isLoading);
   }
 
-  Future<R> load<R>(Future<R> action()) async {
+  Future<R> load<R>(Future<R> Function() action) async {
     isLoading = true;
     R result = await action();
     isLoading = false;

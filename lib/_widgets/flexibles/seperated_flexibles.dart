@@ -84,6 +84,6 @@ class SeparatedColumn extends StatelessWidget {
       textDirection: textDirection,
       verticalDirection: verticalDirection,
     );
-    return Padding(padding: this.padding, child: col);
+    return Padding(padding: padding, child: col);
   }
 }

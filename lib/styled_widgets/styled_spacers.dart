@@ -1,23 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_folio/core_packages.dart';
 
-class Space extends StatelessWidget {
-  final double width;
-  final double height;
-
-  Space(this.width, this.height);
-
-  @override
-  Widget build(BuildContext context) => SizedBox(width: width, height: height);
-}
-
 class VSpace extends StatelessWidget {
   final double size;
 
   const VSpace(this.size, {Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => Space(0, size);
+  Widget build(BuildContext context) => SizedBox(height: size);
 
   static VSpace get xs => VSpace(Insets.xs);
   static VSpace get sm => VSpace(Insets.sm);
@@ -32,7 +22,7 @@ class HSpace extends StatelessWidget {
   const HSpace(this.size, {Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => Space(size, 0);
+  Widget build(BuildContext context) => SizedBox(width: size);
 
   static HSpace get xs => HSpace(Insets.xs);
   static HSpace get sm => HSpace(Insets.sm);

@@ -2,7 +2,7 @@ import 'package:anchored_popups/anchored_popups.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_widgets/decorated_container.dart';
-import 'package:flutter_folio/commands/commands.dart' as Commands;
+import 'package:flutter_folio/commands/commands.dart' as commands;
 import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/models/app_model.dart';
 import 'package:flutter_folio/views/app_title_bar/app_title_bar.dart';
@@ -48,7 +48,7 @@ class _MainAppScaffoldState extends State<MainAppScaffold> with TickerProviderSt
                         child: Builder(
                       builder: (BuildContext builderContext) {
                         /// User a builder to provide a context to the Command layer that can show dialogs, bottom sheets etc
-                        Commands.setContext(builderContext);
+                        commands.setContext(builderContext);
                         return _WindowBorder(
                           color: appTheme.greyStrong,
                           // Supply a top-level scaffold and SafeArea for all views
@@ -66,7 +66,7 @@ class _MainAppScaffoldState extends State<MainAppScaffold> with TickerProviderSt
                                       // Bottom content area
                                       Expanded(child: widget.pageNavigator),
                                       // Top-aligned TitleBar
-                                      if (widget.showAppBar) AppTitleBar(),
+                                      if (widget.showAppBar) const AppTitleBar(),
                                     ],
                                   ),
                                 ),

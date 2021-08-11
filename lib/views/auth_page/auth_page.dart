@@ -7,6 +7,8 @@ import 'auth_form.dart';
 import 'device_screens.dart';
 
 class AuthPage extends StatelessWidget {
+  const AuthPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     AppTheme theme = context.watch();
@@ -27,11 +29,11 @@ class AuthPage extends StatelessWidget {
         children: [
           if (hideDevices) ...[
             // If just showing the form, let it flex
-            Flexible(child: AuthForm()),
+            const Flexible(child: AuthForm()),
           ] else ...[
             // Let the device screen be flexible
             Flexible(child: DeviceScreens(useVerticalLayout)),
-            SizedBox(width: formWidth, height: formHeight, child: AuthForm()),
+            SizedBox(width: formWidth, height: formHeight, child: const AuthForm()),
           ]
         ],
       ),

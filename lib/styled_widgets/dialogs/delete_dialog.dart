@@ -30,7 +30,7 @@ class DeleteDialog extends StatelessWidget {
                 UiText(text: desc1, style: TextStyles.body2),
                 if (StringUtils.isNotEmpty(desc2)) ...[
                   VSpace.sm,
-                  UiText(text: "$desc2", style: TextStyles.body3),
+                  UiText(text: desc2, style: TextStyles.body3),
                 ]
               ],
             ),
@@ -40,7 +40,7 @@ class DeleteDialog extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Spacer(),
+              const Spacer(),
               Row(
                 textDirection: btnDirection,
                 children: [

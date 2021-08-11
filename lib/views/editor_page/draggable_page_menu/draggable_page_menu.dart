@@ -18,7 +18,7 @@ class DraggablePagesMenu extends StatefulWidget {
 }
 
 class DraggablePagesMenuState extends State<DraggablePagesMenu> {
-  ValueNotifier<int> _hoverIndexNotifier = ValueNotifier(-1);
+  final ValueNotifier<int> _hoverIndexNotifier = ValueNotifier(-1);
   bool get isDragging => hoverIndex != -1;
   int get hoverIndex => _hoverIndexNotifier.value;
   List<ScrapPageData> get pages => widget.pages;

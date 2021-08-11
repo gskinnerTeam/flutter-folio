@@ -25,10 +25,10 @@ class _CoversFlowListState extends State<CoversFlowList> {
   ScrapBookData? _fgBook;
   Offset? _currentCardPos;
   bool _isOpening = false;
-  ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
   Map<int, GlobalKey<_CollapsingListCardState>> keysByIndex = {};
 
-  Size get cardSize => Size(260, 141);
+  Size get cardSize => const Size(260, 141);
 
   @override
   void initState() {
@@ -44,7 +44,7 @@ class _CoversFlowListState extends State<CoversFlowList> {
       _bgBook = l.firstWhere((b) => b?.documentId == _bgBook?.documentId, orElse: () => null);
       _fgBook = l.firstWhere((b) => b?.documentId == _fgBook?.documentId, orElse: () => null);
       // If the current book is missing, fallback to the first item in the list
-      if (_bgBook == null && widget.books.length > 0) {
+      if (_bgBook == null && widget.books.isNotEmpty) {
         _bgBook = prevBook; // use the deleted object as the bg for a nice transition
         _fgBook = widget.books[0];
       }
@@ -71,7 +71,7 @@ class _CoversFlowListState extends State<CoversFlowList> {
                 /// BackgroundCard, this gets updated when the OpeningCard finishes opening
                 if (_bgBook != null) ...[
                   ContextMenuRegion(
-                    contextMenu: AppContextMenu(),
+                    contextMenu: const AppContextMenu(),
                     child: BookCoverWidget(_bgBook!, largeMode: true),
                   ),
                 ],
@@ -178,9 +178,9 @@ class _CoversFlowListState extends State<CoversFlowList> {
       // The _bgBook may be stale since the _fgBook was changed, update it before we start a new transition.
       // We didn't want to update it while the user was editing text, but we need to now as the _fgBook is switching to a new object.
       if (_bgBook != null) {
-        widget.books.forEach((b) {
+        for (final b in widget.books) {
           if (b.documentId == _bgBook?.documentId) _bgBook = b;
-        });
+        }
       }
       // Start opening
       _currentCardPos = localPos;
@@ -203,7 +203,7 @@ class _CoversFlowListState extends State<CoversFlowList> {
 }
 
 class _CollapsingListCard extends StatefulWidget {
-  _CollapsingListCard(this.data,
+  const _CollapsingListCard(this.data,
       {required this.openWidth,
       required this.openHeight,
       this.closedWidth,

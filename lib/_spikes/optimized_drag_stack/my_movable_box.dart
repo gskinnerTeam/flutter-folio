@@ -9,6 +9,7 @@ class BoxTransformData extends ChangeNotifier {
   BoxTransformData({this.offset = Offset.zero, this.scale = 1});
 
   @override
+  // ignore: unnecessary_overrides
   void notifyListeners() => super.notifyListeners();
 }
 

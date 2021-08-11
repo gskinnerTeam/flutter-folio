@@ -18,7 +18,7 @@ class CoversFlowListMobile extends StatefulWidget {
 class _CoversFlowListMobileState extends State<CoversFlowListMobile> {
   bool _isResting = true;
   int _currentPage = 0;
-  PageController _pageController = PageController();
+  final PageController _pageController = PageController();
 
   @override
   void initState() {
@@ -31,7 +31,8 @@ class _CoversFlowListMobileState extends State<CoversFlowListMobile> {
     int nextPage = (_currentPage + 2).clamp(0, widget.books.length - 1);
     ScrapBookData? nextBook = nextPage == _currentPage ? null : widget.books[nextPage];
     return StyledPageScaffold(
-      body: ClipRect(child: Stack(
+      body: ClipRect(
+          child: Stack(
         children: [
           PageView.builder(
             controller: _pageController,
@@ -43,9 +44,9 @@ class _CoversFlowListMobileState extends State<CoversFlowListMobile> {
             Positioned.fill(
               child: FadeInUp(
                 child: FractionalTranslation(
-                  translation: Offset(0, 1),
+                  translation: const Offset(0, 1),
                   child: Transform.translate(
-                      offset: Offset(0, -150),
+                      offset: const Offset(0, -150),
                       child: Transform.scale(
                         scale: .9,
                         child: BookCoverWidget(nextBook, topTitle: true),

@@ -1,4 +1,4 @@
-import 'package:file_selector/file_selector.dart' as FileSelector;
+import 'package:file_selector/file_selector.dart' as file_selector;
 import 'package:file_selector/file_selector.dart';
 import 'package:flutter_folio/_utils/device_info.dart';
 import 'package:flutter_folio/commands/commands.dart';
@@ -10,7 +10,7 @@ class SaveImageToDiskCommand extends BaseAppCommand {
   Future<void> run(String url) async {
     if (canUse == false) return;
     String fileName = url.split("/").last;
-    final path = await FileSelector.getSavePath(acceptedTypeGroups: [
+    final path = await file_selector.getSavePath(acceptedTypeGroups: [
       XTypeGroup(label: 'images', extensions: ['jpg', 'jpeg', 'png'])
     ], suggestedName: fileName, confirmButtonText: "Save");
     print(path);

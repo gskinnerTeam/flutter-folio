@@ -8,7 +8,7 @@ class AppLink {
   static const String kBookParam = "bk";
   static const String kPageParam = "pg";
   static const String kUserParam = "u";
-  static Codec<String, String> _stringToBase64 = utf8.fuse(base64);
+  static final Codec<String, String> _stringToBase64 = utf8.fuse(base64);
 
   AppLink({this.pageId, this.bookId, this.user});
   String? pageId;
@@ -45,7 +45,7 @@ class AppLink {
   }
 
   String toLocation() {
-    String addKeyValPair({required String key, String? value}) => value == null ? "" : "${key}=$value&";
+    String addKeyValPair({required String key, String? value}) => value == null ? "" : "$key=$value&";
     String loc = "/?";
     loc += addKeyValPair(key: kBookParam, value: bookId);
     loc += addKeyValPair(key: kPageParam, value: pageId);

@@ -16,6 +16,8 @@ List<BoxTransformData> _boxes = List.generate(
 
 // Create a Stack that will render each Box
 class OptimizedDragStack extends StatefulWidget {
+  const OptimizedDragStack({Key? key}) : super(key: key);
+
   @override
   _OptimizedDragStackState createState() => _OptimizedDragStackState();
 }
@@ -44,6 +46,7 @@ class _OptimizedDragStackState extends State<OptimizedDragStack> {
     }
   }
 
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
@@ -75,7 +78,7 @@ class _SquareImage extends StatelessWidget {
         width: 100 * scale,
         height: 100 * scale,
         child: Container(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           color: RandomColor().randomColor(),
           child: CachedNetworkImage(
             imageUrl:

@@ -18,7 +18,7 @@ void main() async {
   // Call a method to setup a global error handler so we can log all errors, including ones from native extensions.
   initLogger(() async {
     // Status bar style on Android/iOS
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle());
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle());
 
     if (kIsWeb) {
       // Increase Skia cache size to support bigger images.

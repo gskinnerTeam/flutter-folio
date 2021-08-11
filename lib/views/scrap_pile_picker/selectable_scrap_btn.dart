@@ -8,7 +8,8 @@ import 'package:flutter_folio/styled_widgets/styled_load_spinner.dart';
 import 'scrap_pile_picker.dart';
 
 class SelectableScrapBtn extends StatelessWidget {
-  SelectableScrapBtn({Key? key, required this.img, required this.onPressed, this.isSelected = false});
+  const SelectableScrapBtn({Key? key, required this.img, required this.onPressed, this.isSelected = false})
+      : super(key: key);
 
   final VoidCallback onPressed;
   final String img;
@@ -18,7 +19,7 @@ class SelectableScrapBtn extends StatelessWidget {
   Widget build(BuildContext context) {
     AppTheme theme = context.watch();
     if (StringUtils.isEmpty(img)) {
-      return Center(child: StyledLoadSpinner());
+      return const Center(child: StyledLoadSpinner());
     }
     return Stack(
       children: [

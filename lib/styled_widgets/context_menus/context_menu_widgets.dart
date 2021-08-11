@@ -25,6 +25,8 @@ class ContextMenuIconHovered extends StatelessWidget {
 }
 
 class ContextDivider extends StatelessWidget {
+  const ContextDivider({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     AppTheme theme = context.watch();

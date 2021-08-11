@@ -6,13 +6,15 @@ import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/themes.dart';
 
 class SplashPage extends StatefulWidget {
+  const SplashPage({Key? key}) : super(key: key);
+
   @override
   _SplashPageState createState() => _SplashPageState();
 }
 
 class _SplashPageState extends State<SplashPage> {
   bool _showLogView = false;
-  bool _allowLogView = kDebugMode;
+  final bool _allowLogView = kDebugMode;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,7 @@ class _SplashPageState extends State<SplashPage> {
       body: Stack(
         children: [
           FadeOut(
-            delay: Duration(milliseconds: 500),
+            delay: const Duration(milliseconds: 500),
             child: FadeIn(
               child: GestureDetector(
                 onTap: _allowLogView ? () => setState(() => _showLogView = true) : null,

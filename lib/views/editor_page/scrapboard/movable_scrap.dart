@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter/src/gestures/events.dart';
 import 'package:flutter_folio/_widgets/listenable_builder.dart';
 import 'package:flutter_folio/_widgets/sized_and_translated.dart';
 import 'package:flutter_folio/core_packages.dart';
@@ -135,7 +134,7 @@ class _DraggableHitArea extends StatelessWidget {
         onTap: state._handleTapUp,
         //onTapDown: (_) => state._handleTapDown(),
         // Use simple btn for easy mouseOver effect
-        child: Container(
+        child: SizedBox(
           width: double.infinity,
           height: double.infinity,
           child: child,

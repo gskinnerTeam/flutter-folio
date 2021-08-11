@@ -37,16 +37,16 @@ class HomeNavToggleMenu extends StatelessWidget {
                   style:
                       TextStyles.body1.copyWith(height: 1.2, color: showListView ? theme.greyMedium : theme.surface1),
                   children: <TextSpan>[
-                    if (name != null) TextSpan(text: " " + name, style: TextStyle(fontWeight: FontWeight.bold)),
+                    if (name != null) TextSpan(text: " " + name, style: const TextStyle(fontWeight: FontWeight.bold)),
                     TextSpan(text: ". ${breakText ? "\n" : ""}You've created "),
                     TextSpan(
-                        text: " ${bookCount} folio${bookCount == 1 ? "" : "s"}",
-                        style: TextStyle(fontWeight: FontWeight.bold)),
-                    TextSpan(text: " in total."),
+                        text: " $bookCount folio${bookCount == 1 ? "" : "s"}",
+                        style: const TextStyle(fontWeight: FontWeight.bold)),
+                    const TextSpan(text: " in total."),
                   ],
                 ),
               ),
-              Spacer(),
+              const Spacer(),
               if (hideButtons == false) ...[
                 SecondaryBtn(
                     label: "NEW FOLIO",

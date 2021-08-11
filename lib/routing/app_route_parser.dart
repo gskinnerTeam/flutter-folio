@@ -15,9 +15,9 @@ class AppRouteParser extends RouteInformationParser<AppLink> {
 
   @override
   // Convert an applink into a string used for the browser location
-  RouteInformation restoreRouteInformation(AppLink appLink) {
+  RouteInformation restoreRouteInformation(AppLink configuration) {
     // Ask the applink to give us a string
-    String location = appLink.toLocation();
+    String location = configuration.toLocation();
     //safePrint("restoreRouteInfo: $location");
     // Pass that string back to the OS so it can update the url bar
     return RouteInformation(location: location);

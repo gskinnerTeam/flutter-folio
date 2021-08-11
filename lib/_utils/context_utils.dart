@@ -9,7 +9,7 @@ class ContextUtils {
     } catch (e) {
       print(e);
     }
-    return Size(1, 1);
+    return const Size(1, 1);
   }
 
   static Offset localToGlobal(BuildContext c, {Offset local = Offset.zero}) {

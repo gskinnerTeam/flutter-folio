@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/src/gestures/events.dart';
+// import 'package:flutter/src/gestures/events.dart';
 import 'package:flutter_folio/_utils/input_utils.dart';
 import 'package:flutter_folio/_utils/keyboard_utils.dart';
 import 'package:flutter_folio/_widgets/mixins/raw_keyboard_listener_mixin.dart';
@@ -53,16 +53,16 @@ class ScrapboardState<T> extends State<Scrapboard<T>> with RawKeyboardListenerMi
 
   /// Internal
   ValueNotifier<bool> isCardHovered = ValueNotifier(false);
-  TransformationController _transformController = TransformationController();
+  final TransformationController _transformController = TransformationController();
   double _scale = 1;
-  List<String> _selectedBoxIds = [];
+  final List<String> _selectedBoxIds = [];
   bool _isSpaceBarDown = false;
 
   // We create a copy of the assigned boxList, so we can work on it internally
   List<ScrapData<T>> get _tmpBoxes => widget.boxes;
 
   // We create a key for each boxData so we can access their state and control them if needed.
-  Map<String, GlobalKey<MovableScrapState>> _boxKeysById = {};
+  final Map<String, GlobalKey<MovableScrapState>> _boxKeysById = {};
 
   @override
   bool get enableKeyListener => true;
@@ -84,7 +84,7 @@ class ScrapboardState<T> extends State<Scrapboard<T>> with RawKeyboardListenerMi
     final _selected = _getSelectedBoxInstances();
     // If a singe item is selected, use the itemControlsBuilder to show any item controls provided by the parent widget.
     Widget? itemControls;
-    if ((_selected.length) > 0) {
+    if (_selected.isNotEmpty) {
       itemControls = widget.itemControlsBuilder?.call(_selected.first.data);
     }
     return Scaffold(
@@ -98,7 +98,7 @@ class ScrapboardState<T> extends State<Scrapboard<T>> with RawKeyboardListenerMi
                 onTap: _handleBgPressed,
                 child: InteractiveViewer(
                     transformationController: _transformController,
-                    boundaryMargin: EdgeInsets.all(double.infinity),
+                    boundaryMargin: const EdgeInsets.all(double.infinity),
                     minScale: 0.5,
                     maxScale: 3,
                     constrained: false,

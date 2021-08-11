@@ -36,7 +36,7 @@ class ScrapPopupEditor extends StatefulWidget {
 
 class _ScrapPopupEditorState extends State<ScrapPopupEditor> {
   int _btnIndex = -1;
-  BoxStyle _defaultStyle = BoxStyle();
+  final BoxStyle _defaultStyle = BoxStyle();
   BoxStyle get scrapStyle => widget.scrap.boxStyle ?? _defaultStyle;
 
   @override
@@ -94,7 +94,7 @@ class _ScrapPopupEditorState extends State<ScrapPopupEditor> {
                   if (row1Height > 0) ...[
                     /// Text-Align
                     animatedPanel(
-                      Offset(0, 0), // Pos(row: 0, item: 0)
+                      const Offset(0, 0), // Pos(row: 0, item: 0)
                       Size(width / 2, row1Height),
                       enableBgTap: false,
                       index: 0,
@@ -236,7 +236,7 @@ class _MenuItem extends StatelessWidget {
   Widget build(BuildContext context) {
     AppTheme theme = context.watch();
     return Padding(
-      padding: EdgeInsets.all(4),
+      padding: const EdgeInsets.all(4),
       child: AnimatedContainer(
           duration: Times.fast,
           width: double.infinity,
@@ -265,7 +265,7 @@ class PanelHeader extends StatelessWidget {
     return SizedBox(
       height: 20,
       child: Stack(children: [
-        if (showBackArrow) MaterialIcon(Icons.chevron_left),
+        if (showBackArrow) const MaterialIcon(Icons.chevron_left),
         Center(child: Text(label, style: TextStyles.caption.copyWith(color: theme.grey))),
       ]),
     );
@@ -273,13 +273,15 @@ class PanelHeader extends StatelessWidget {
 }
 
 class PopPanelIconBtn extends StatelessWidget {
+  const PopPanelIconBtn({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return SimpleBtn(
       onPressed: null,
       child: Container(
         padding: EdgeInsets.all(Insets.sm),
-        child: MaterialIcon(Icons.rotate_right_outlined),
+        child: const MaterialIcon(Icons.rotate_right_outlined),
       ),
     );
   }

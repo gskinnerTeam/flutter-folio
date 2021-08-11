@@ -13,17 +13,19 @@ IoUtils _instance = IoUtilsNative();
 IoUtils getInstance() => _instance;
 
 class IoUtilsNative implements IoUtils {
-  IoUtilsNative() {}
+  IoUtilsNative();
 
+  @override
   void showWindowWhenReady() {
     if (Platform.isWindows == false) return;
     doWhenWindowReady(() {
       // Apply min-window size, allow a smaller size when developing for easier responsive testing.
-      appWindow.minSize = kReleaseMode ? Size(800, 600) : Size(300, 400);
+      appWindow.minSize = kReleaseMode ? const Size(800, 600) : const Size(300, 400);
       appWindow.show();
     });
   }
 
+  @override
   Widget wrapNativeTitleBarIfRequired(Widget child) {
     if (DeviceOS.isWindows) {
       return WindowsTitleBar(child);

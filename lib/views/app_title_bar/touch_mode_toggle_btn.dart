@@ -33,7 +33,7 @@ class _TouchModeToggleBtnState extends State<TouchModeToggleBtn> {
       data: ThemeData(visualDensity: VisualDensity.compact),
       child: SimpleBtn(
         onPressed: () => handleTouchModeToggled(touchMode),
-        child: Container(
+        child: SizedBox(
           width: 40,
           child: Stack(
             children: [

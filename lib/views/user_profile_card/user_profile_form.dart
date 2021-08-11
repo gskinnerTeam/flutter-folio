@@ -14,7 +14,7 @@ import 'package:flutter_folio/services/cloudinary/cloud_storage_service.dart';
 /// A form to edit the current users details or logout. It is shown in a pop up panel on desktop,
 /// and a bottom sheet on mobile.
 class UserProfileForm extends StatefulWidget {
-  UserProfileForm({this.bottomSheet = false});
+  const UserProfileForm({this.bottomSheet = false, Key? key}) : super(key: key);
 
   final bool bottomSheet;
 
@@ -89,7 +89,7 @@ class _UserProfileFormState extends State<UserProfileForm> {
             VSpace.lg,
 
             /// Account
-            Container(width: double.infinity, child: UiText(text: "Account", style: TextStyles.caption)),
+            SizedBox(width: double.infinity, child: UiText(text: "Account", style: TextStyles.caption)),
             Row(
               children: [
                 Expanded(child: UiText(text: _user?.email, style: TextStyles.body3)),
@@ -115,8 +115,10 @@ class _UserProfileFormState extends State<UserProfileForm> {
     List<CloudinaryResponse> uploads = await cloudStorage.multiUpload(images: paths);
 
     // Make a command that picks images, uploads them, and returns a list of remote paths?
+    for (final u in uploads) {
+      log(u.secureUrl);
+    }
 
-    uploads.forEach((u) => log(u.secureUrl));
     // Update firebase
     if (uploads.isNotEmpty) {
       AppModel m = context.read();

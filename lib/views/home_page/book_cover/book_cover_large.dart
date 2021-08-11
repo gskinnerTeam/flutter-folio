@@ -24,9 +24,9 @@ class LargeBookCover extends StatelessWidget {
     double paddingScale = context.heightPx < 650 ? .5 : 1;
     return LayoutBuilder(
       builder: (_, constraints) => FadeInLeft(
-        delay: Duration(milliseconds: 500),
+        delay: const Duration(milliseconds: 500),
         child: ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: 510),
+          constraints: const BoxConstraints(maxWidth: 510),
           child: FocusTraversalGroup(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
