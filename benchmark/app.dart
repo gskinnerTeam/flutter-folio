@@ -31,7 +31,7 @@ void main() {
       // BooksModel - Stores data about the content in the app
       ChangeNotifierProvider.value(value: booksModel),
     ],
-    child: AppBootstrapper(),
+    child: const AppBootstrapper(),
   ));
 }
 
@@ -64,8 +64,7 @@ class _MockFirebaseService implements FirebaseService {
   }
 
   @override
-  Future<String> addDoc(List<String> keys, Map<String, dynamic> json,
-      {String? documentId, bool addUserPath = true}) {
+  Future<String> addDoc(List<String> keys, Map<String, dynamic> json, {String? documentId, bool addUserPath = true}) {
     throw UnimplementedError();
   }
 
@@ -90,8 +89,7 @@ class _MockFirebaseService implements FirebaseService {
   }
 
   @override
-  Future<void> deleteBookScrap(
-      {required String bookId, required String scrapId}) {
+  Future<void> deleteBookScrap({required String bookId, required String scrapId}) {
     throw UnimplementedError();
   }
 
@@ -128,8 +126,7 @@ class _MockFirebaseService implements FirebaseService {
   }
 
   @override
-  Future<List<PlacedScrapItem>?> getAllPlacedScraps(
-      {required String bookId, required String pageId}) {
+  Future<List<PlacedScrapItem>?> getAllPlacedScraps({required String bookId, required String pageId}) {
     throw UnimplementedError();
   }
 
@@ -159,8 +156,7 @@ class _MockFirebaseService implements FirebaseService {
   }
 
   @override
-  Future<ScrapPageData?> getPage(
-      {required String bookId, required String pageId}) {
+  Future<ScrapPageData?> getPage({required String bookId, required String pageId}) {
     throw UnimplementedError();
   }
 
@@ -209,10 +205,7 @@ class _MockFirebaseService implements FirebaseService {
   }
 
   @override
-  Future<AppUser?> signIn(
-      {required String email,
-      required String password,
-      bool createAccount = false}) async {
+  Future<AppUser?> signIn({required String email, required String password, bool createAccount = false}) async {
     _currentUser = _mockUser;
     return _mockUser;
   }

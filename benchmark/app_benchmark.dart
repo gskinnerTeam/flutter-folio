@@ -37,12 +37,10 @@ void main() {
         await driver.startTracing(streams: [TimelineStream.embedder]);
         for (var i = 0; i < 10; i++) {
           // Scroll about 6 pages down ...
-          await driver.scroll(
-              styledPageScaffold, 0, -6000, const Duration(seconds: 1));
+          await driver.scroll(styledPageScaffold, 0, -6000, const Duration(seconds: 1));
           await driver.tap(styledPageScaffold);
           // ... and about 5 pages up.
-          await driver.scroll(
-              styledPageScaffold, 0, 5000, const Duration(seconds: 2));
+          await driver.scroll(styledPageScaffold, 0, 5000, const Duration(seconds: 2));
           await driver.tap(styledPageScaffold);
         }
         final timeline = await driver.stopTracingAndDownloadTimeline();
@@ -71,8 +69,7 @@ void main() {
         // Open ...
         await driver.tap(newFolioFab);
         // ... and close.
-        await driver.scroll(
-            newFolioCard, 0, 5000, const Duration(milliseconds: 200));
+        await driver.scroll(newFolioCard, 0, 5000, const Duration(milliseconds: 200));
       }
       final timeline = await driver.stopTracingAndDownloadTimeline();
 
@@ -89,7 +86,7 @@ final newFolioFab = find.byType('_NewFolioFab');
 final roundedProfileButton = find.byValueKey('rounded_profile_button');
 final styledPageScaffold = find.byValueKey('StyledPageScaffold');
 
-final Timeout _increasedTimeout = Timeout(const Duration(minutes: 5));
+const Timeout _increasedTimeout = Timeout(Duration(minutes: 5));
 
 Future<void> _ensureLoggedIn(FlutterDriver driver) async {
   // XXX: The following currently always returns an empty string.

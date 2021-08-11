@@ -76,7 +76,7 @@ class _AdaptiveTitleBarContent extends StatelessWidget {
     ]);
   }
 
-  static Key _profileBtnKey = Key('rounded_profile_button');
+  static const Key _profileBtnKey = Key('rounded_profile_button');
 }
 
 class _TitleText extends StatelessWidget {

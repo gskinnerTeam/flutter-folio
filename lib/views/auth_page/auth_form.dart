@@ -151,7 +151,7 @@ class _AuthFormState extends State<AuthForm> with LoadingStateMixin {
                                   isLoading
                                       ? const Center(child: StyledLoadSpinner())
                                       : PrimaryBtn(
-                                          key: Key('auth_submit_button'),
+                                          key: const Key('auth_submit_button'),
                                           onPressed: enableSubmit ? _handleSubmitPressed : null,
                                           child: Container(
                                               alignment: Alignment.center,
