@@ -32,7 +32,7 @@ class _AuthFormState extends State<AuthForm> with LoadingStateMixin {
   late TextEditingController _passController;
 
   // Provided quick login for devs
-  bool enableDebugLogin = kDebugMode; // && false;
+  bool enableDebugLogin = !kReleaseMode; // && false;
   String get _defaultEmail => enableDebugLogin ? "shawn@test.com" : "";
   String get _defaultPass => enableDebugLogin ? "password" : "";
   bool get enableSubmit {
@@ -151,6 +151,7 @@ class _AuthFormState extends State<AuthForm> with LoadingStateMixin {
                                   isLoading
                                       ? const Center(child: StyledLoadSpinner())
                                       : PrimaryBtn(
+                                          key: const Key('auth_submit_button'),
                                           onPressed: enableSubmit ? _handleSubmitPressed : null,
                                           child: Container(
                                               alignment: Alignment.center,

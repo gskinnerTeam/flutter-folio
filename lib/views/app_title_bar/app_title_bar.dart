@@ -53,12 +53,19 @@ class _AdaptiveTitleBarContent extends StatelessWidget {
             const Spacer(),
             if (showTouchToggle) TouchModeToggleBtn(invertPopupAlign: isMac),
             HSpace.sm,
-            RoundedProfileBtn(invertRow: true, useBottomSheet: isMobile),
+            RoundedProfileBtn(
+              key: _profileBtnKey,
+              invertRow: true,
+              useBottomSheet: isMobile,
+            ),
             HSpace.sm,
           ] else ...[
             HSpace.sm,
             // Linux and Windows are left aligned and simple
-            RoundedProfileBtn(useBottomSheet: isMobile),
+            RoundedProfileBtn(
+              key: _profileBtnKey,
+              useBottomSheet: isMobile,
+            ),
             HSpace.sm,
             if (showTouchToggle) TouchModeToggleBtn(invertPopupAlign: isMac),
             HSpace.sm,
@@ -68,6 +75,8 @@ class _AdaptiveTitleBarContent extends StatelessWidget {
       ),
     ]);
   }
+
+  static const Key _profileBtnKey = Key('rounded_profile_button');
 }
 
 class _TitleText extends StatelessWidget {

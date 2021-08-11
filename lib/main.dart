@@ -47,18 +47,20 @@ void main() async {
       ],
 
       //child: BasicRouterSpike(),
-      child: _AppBootstrapper(),
+      child: const AppBootstrapper(),
     ));
   });
 }
 
 // Bootstrap the app, initializing all Controllers and Services
-class _AppBootstrapper extends StatefulWidget {
+class AppBootstrapper extends StatefulWidget {
+  const AppBootstrapper({Key? key}) : super(key: key);
+
   @override
   _AppBootstrapperState createState() => _AppBootstrapperState();
 }
 
-class _AppBootstrapperState extends State<_AppBootstrapper> {
+class _AppBootstrapperState extends State<AppBootstrapper> {
   AppRouteParser routeParser = AppRouteParser();
   late AppRouterDelegate router;
   @override
