@@ -27,7 +27,7 @@ class _CollapsibleInfoPanelState extends State<CollapsibleInfoPanel> {
       icon: IconBtn(Icons.share, ignoreDensity: false, color: theme.greyStrong, onPressed: _handleSharePressed),
       child: Padding(
         padding: EdgeInsets.all(Insets.lg).copyWith(top: Insets.med),
-        child: Container(
+        child: SizedBox(
           width: double.infinity,
           height: widget.height,
           child: Column(

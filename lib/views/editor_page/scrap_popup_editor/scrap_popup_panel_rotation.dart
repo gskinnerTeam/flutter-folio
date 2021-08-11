@@ -16,16 +16,16 @@ class ScrapPopupPanelRotation extends StatelessWidget {
       children: [
         /// Closed State
         if (!isOpen) ...[
-          PopPanelIconBtn(),
+          const PopPanelIconBtn(),
         ] else ...[
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: SingleChildScrollView(
-              child: Container(
+              child: SizedBox(
                 width: 300 - Insets.sm * 2,
                 child: Column(
                   children: [
-                    PanelHeader(label: "Rotation", showBackArrow: false),
+                    const PanelHeader(label: "Rotation", showBackArrow: false),
                     SizedBox(
                         width: 280,
                         child: CupertinoSlider(min: -180, max: 180, value: degrees, onChanged: onDegreesChanged)),

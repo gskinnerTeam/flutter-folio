@@ -19,7 +19,7 @@ class GradientContainer extends StatelessWidget {
           child: child,
           width: width,
           height: height,
-          alignment: alignment ?? null,
+          alignment: alignment,
           decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: begin ?? Alignment.centerLeft,

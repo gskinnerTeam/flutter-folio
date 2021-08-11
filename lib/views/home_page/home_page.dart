@@ -13,6 +13,8 @@ import 'home_nav_bar.dart';
 import 'home_nav_bar_mobile.dart';
 
 class BooksHomePage extends StatefulWidget {
+  const BooksHomePage({Key? key}) : super(key: key);
+
   @override
   BooksHomePageState createState() => BooksHomePageState();
 }
@@ -32,7 +34,7 @@ class BooksHomePageState extends State<BooksHomePage> {
     bool showSmallScreenView = context.widthPx < 600;
     books?.sort((a, b) => a.lastModifiedTime > b.lastModifiedTime ? -1 : 1);
     return books == null
-        ? LoadingIndicator()
+        ? const LoadingIndicator()
         : StyledPageScaffold(
             body: Stack(
               children: [
@@ -83,7 +85,7 @@ class _EmptyHomeView extends StatelessWidget {
       Padding(
         padding: EdgeInsets.all(Insets.offset),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Spacer(),
+          const Spacer(),
           Text("Welcome to Flutter Folio!", style: TextStyles.h1.copyWith(color: Colors.white)),
           VSpace.sm,
           SizedBox(
@@ -98,7 +100,7 @@ class _EmptyHomeView extends StatelessWidget {
               PrimaryBtn(onPressed: _handleNewFolioPressed, label: "YOUR FIRST FOLIO", icon: Icons.add),
             ],
           ),
-          Spacer(),
+          const Spacer(),
         ]),
       ),
     ]);
@@ -109,8 +111,8 @@ class _EmptyHomeView extends StatelessWidget {
 
 class _SideGradient extends StatelessWidget {
   @override
-  Widget build(BuildContext context) => Container(
+  Widget build(BuildContext context) => SizedBox(
         width: 800,
-        child: HzGradient([Colors.black.withOpacity(.75), Colors.black.withOpacity(0)], [.2, 1]),
+        child: HzGradient([Colors.black.withOpacity(.75), Colors.black.withOpacity(0)], const [.2, 1]),
       );
 }

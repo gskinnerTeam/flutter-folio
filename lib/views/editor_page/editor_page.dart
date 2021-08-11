@@ -30,7 +30,7 @@ class _EditorPageState extends State<EditorPage> {
   Widget build(BuildContext context) {
     String? pageId = context.select((BooksModel m) => m.currentPage?.documentId);
     List<ScrapPageData>? pageList = context.select((BooksModel m) => m.currentBookPages);
-    if (pageList == null) return LoadingIndicator();
+    if (pageList == null) return const LoadingIndicator();
     double leftMenuWidth = 212;
     // Check form factor of device to see if we want to allow them to edit
     // Disable editing for phone users, or when in read-only mode

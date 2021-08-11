@@ -47,9 +47,7 @@ abstract class FirebaseService {
   /// //////////////////////////////////////////////////
 
   // shared setUserId method
-  String? _userId;
-  String? get userId => _userId;
-  set userId(String? value) => _userId = value;
+  String? userId;
   List<String> get userPath => [FireIds.users, userId ?? ""];
   // Helper method for getting a path from keys, and optionally prepending the scope (users/email)
   String getPathFromKeys(List<String> keys, {bool addUserPath = true}) {

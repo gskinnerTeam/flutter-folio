@@ -27,11 +27,12 @@ class AppIcon extends StatelessWidget {
   final Color color;
 
   const AppIcon(this.icon, {Key? key, required this.size, required this.color}) : super(key: key);
-  Widget build(BuildContext c) {
+  @override
+  Widget build(BuildContext context) {
     String i = describeEnum(icon).toLowerCase().replaceAll("_", "-");
     String path = 'assets/images/icons/' + i + '.png';
     //print(path);
-    return Container(
+    return SizedBox(
       width: size,
       height: size,
       child: Center(

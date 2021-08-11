@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class _AnimatedSize extends StatelessWidget {
-  _AnimatedSize(
+  const _AnimatedSize(
       {required this.child,
       required this.duration,
       required this.begin,
@@ -13,6 +13,7 @@ class _AnimatedSize extends StatelessWidget {
   final Size end;
   final Curve curve;
 
+  @override
   Widget build(BuildContext context) {
     return TweenAnimationBuilder<Size>(
       duration: duration,

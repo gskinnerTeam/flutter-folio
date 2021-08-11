@@ -67,7 +67,7 @@ class _RoundedBtn extends StatelessWidget {
     return SimpleBtn(
         onPressed: onPressed,
         ignoreDensity: false,
-        child: Container(
+        child: SizedBox(
           width: 30,
           height: 30,
           child: DecoratedContainer(

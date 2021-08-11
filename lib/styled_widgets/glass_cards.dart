@@ -68,7 +68,7 @@ class _CollapsingCardState extends State<CollapsingCard> with TickerProviderStat
       title = widget.titleClosed!;
     }
     double headerHeight = context.select((AppModel m) => m.enableTouchMode) ? 50 : 40;
-    return Container(
+    return SizedBox(
       height: animatedHeightValue(headerHeight),
       child: Stack(
         children: [
@@ -139,7 +139,7 @@ class _CollapsableCardHeader extends StatelessWidget {
                 opacity: animation,
                 child: VtGradient(
                   [Colors.black.withOpacity(.1), Colors.black.withOpacity(0)],
-                  [0, 1],
+                  const [0, 1],
                 ))),
 
         /// Clickable Header
@@ -159,7 +159,7 @@ class _CollapsableCardHeader extends StatelessWidget {
               child: Row(
                 children: [
                   HSpace.sm,
-                  Transform.rotate(angle: pi * animation.value, child: Icon(Icons.keyboard_arrow_down)),
+                  Transform.rotate(angle: pi * animation.value, child: const Icon(Icons.keyboard_arrow_down)),
                   HSpace.xs,
                   Expanded(
                       child: Text(title.toUpperCase(),

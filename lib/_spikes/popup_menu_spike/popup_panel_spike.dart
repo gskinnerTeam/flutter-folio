@@ -8,6 +8,8 @@ import 'package:flutter_folio/views/editor_page/scrap_popup_editor/animated_menu
 import 'package:flutter_folio/views/editor_page/scrap_popup_editor/scrap_popup_editor.dart';
 
 class PopupPanelSpike extends StatefulWidget {
+  const PopupPanelSpike({Key? key}) : super(key: key);
+
   @override
   _PopupPanelSpikeState createState() => _PopupPanelSpikeState();
 }
@@ -30,7 +32,7 @@ class _PopupPanelSpikeState extends State<PopupPanelSpike> {
             //Positioned(child: ControlPanel(), left: 100, top: 100),
 
             Transform.translate(
-              offset: Offset(100, 50),
+              offset: const Offset(100, 50),
               //child: _ExamplePopupPanel(),
               child: ScrapPopupEditor(
                   onRotChanged: (value) {
@@ -69,7 +71,6 @@ class _ExamplePopupPanelState extends State<_ExamplePopupPanel> {
           childBuilder: childBuilder);
     }
 
-    ;
     timeDilation = 1;
     double row1Height = 60;
     double row2Height = 40;
@@ -96,7 +97,7 @@ class _ExamplePopupPanelState extends State<_ExamplePopupPanel> {
             ..._sortChildrenWithSelectedOnTop([
               /// TOP ROW
               animatedPanel(
-                Offset(0, 0), // Pos(row: 0, item: 0)
+                const Offset(0, 0), // Pos(row: 0, item: 0)
                 Size(150, row1Height),
                 index: 0,
                 openHeight: 100,
@@ -104,7 +105,7 @@ class _ExamplePopupPanelState extends State<_ExamplePopupPanel> {
               ),
 
               animatedPanel(
-                Offset(150, 0), // Pos(row: 0, item: 1)
+                const Offset(150, 0), // Pos(row: 0, item: 1)
                 Size(150, row1Height),
                 index: 1,
                 openHeight: 100,
@@ -163,7 +164,7 @@ class Content extends StatelessWidget {
         key: ValueKey(isOpen),
         child: Stack(fit: StackFit.expand, children: [
           if (isOpen == false) Text(lbl),
-          if (isOpen) Center(child: Text(lbl, style: TextStyle(fontSize: 32)))
+          if (isOpen) Center(child: Text(lbl, style: const TextStyle(fontSize: 32)))
         ]),
       ),
     );

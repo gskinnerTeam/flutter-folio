@@ -8,7 +8,7 @@ import 'package:flutter_folio/data/book_data.dart';
 import 'package:flutter_folio/styled_widgets/context_menus/context_menu_widgets.dart';
 
 class BookContextMenu extends StatefulWidget {
-  BookContextMenu(this.book);
+  const BookContextMenu(this.book, {Key? key}) : super(key: key);
   final ScrapBookData book;
 
   @override
@@ -34,8 +34,8 @@ class _BookContextMenuState extends State<BookContextMenu> with ContextMenuState
           context,
           ContextMenuButtonConfig(
             "View",
-            icon: ContextMenuIcon(icon: AppIcons.view),
-            iconHover: ContextMenuIconHovered(icon: AppIcons.view),
+            icon: const ContextMenuIcon(icon: AppIcons.view),
+            iconHover: const ContextMenuIconHovered(icon: AppIcons.view),
             onPressed: () => handlePressed(context, () => _handleViewPressed(context)),
           ),
         ),
@@ -44,8 +44,8 @@ class _BookContextMenuState extends State<BookContextMenu> with ContextMenuState
           context,
           ContextMenuButtonConfig(
             "Share",
-            icon: ContextMenuIcon(icon: AppIcons.share),
-            iconHover: ContextMenuIconHovered(icon: AppIcons.share),
+            icon: const ContextMenuIcon(icon: AppIcons.share),
+            iconHover: const ContextMenuIconHovered(icon: AppIcons.share),
             onPressed: () => handlePressed(context, () => _handleSharePressed()),
           ),
         ),
@@ -54,8 +54,8 @@ class _BookContextMenuState extends State<BookContextMenu> with ContextMenuState
           context,
           ContextMenuButtonConfig(
             "Delete",
-            icon: ContextMenuIcon(icon: AppIcons.trashcan),
-            iconHover: ContextMenuIconHovered(icon: AppIcons.trashcan),
+            icon: const ContextMenuIcon(icon: AppIcons.trashcan),
+            iconHover: const ContextMenuIconHovered(icon: AppIcons.trashcan),
             onPressed: () => handlePressed(context, () => _handleDeletePressed()),
           ),
           // Custom hover color for delete button

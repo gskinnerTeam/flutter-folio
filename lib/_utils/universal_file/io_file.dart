@@ -31,8 +31,8 @@ class IoFileWriter implements UniversalFile {
   Future<String?> read() async {
     await getDataPath();
     print("Loading file @ $fullPath");
-    if (await File("$fullPath").exists()) {
-      return await File("$fullPath").readAsString().catchError((Object e) {
+    if (await File(fullPath).exists()) {
+      return await File(fullPath).readAsString().catchError((Object e) {
         log(e.toString());
       });
     }
@@ -45,7 +45,7 @@ class IoFileWriter implements UniversalFile {
     print("[IoFileWriter] Writing file to: $fullPath");
     try {
       FileMode writeMode = append ? FileMode.append : FileMode.write;
-      File("$fullPath").writeAsString(value, mode: writeMode);
+      File(fullPath).writeAsString(value, mode: writeMode);
     } catch (e) {
       print("$e");
     }

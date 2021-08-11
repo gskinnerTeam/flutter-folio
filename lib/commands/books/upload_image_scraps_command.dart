@@ -18,7 +18,7 @@ class UploadImageScrapsCommand extends BaseAppCommand {
     // Create scraps without images to start
     List<ScrapItem> newScraps = paths
         .map((e) => ScrapItem(
-              documentId: Uuid().v1(),
+              documentId: const Uuid().v1(),
               bookId: bookId,
               contentType: ContentType.Photo,
               creationTime: TimeUtils.nowMillis,
@@ -32,7 +32,9 @@ class UploadImageScrapsCommand extends BaseAppCommand {
 
     // Upload images and get a public Url
     List<CloudinaryResponse> uploads = await cloudStorage.multiUpload(images: paths);
-    uploads.forEach((u) => log(u.secureUrl));
+    for (final u in uploads) {
+      log(u.secureUrl);
+    }
 
     // Now that we have urls, replace the newScraps with ones that have a url
     List<ScrapItem> items = uploads.map((upload) {
@@ -42,29 +44,25 @@ class UploadImageScrapsCommand extends BaseAppCommand {
 
       // Get picked image for this upload
       double aspect = 1;
-      if (originalFilename != null) {
-        // Try and find a picked image matching the uploaded fragment
-        PickedImage? pickedImage = List<PickedImage?>.from(paths)
-            .firstWhere((img) => img?.path?.contains(originalFilename) ?? false, orElse: () => null);
-        if (pickedImage != null) {
-          if (pickedImage.path != null && (pickedImage.path?.contains("http") ?? false) == false) {
-            final size = image_size.ImageSizeGetter.getSize(FileInput(File(pickedImage.path!)));
-            aspect = size.width / size.height;
-          } else if (pickedImage.asset != null && pickedImage.asset!.originalWidth != null) {
-            aspect = pickedImage.asset!.originalWidth! / pickedImage.asset!.originalHeight!;
-          }
+      PickedImage? pickedImage = List<PickedImage?>.from(paths)
+          .firstWhere((img) => img?.path?.contains(originalFilename) ?? false, orElse: () => null);
+      if (pickedImage != null) {
+        if (pickedImage.path != null && (pickedImage.path?.contains("http") ?? false) == false) {
+          final size = image_size.ImageSizeGetter.getSize(FileInput(File(pickedImage.path!)));
+          aspect = size.width / size.height;
+        } else if (pickedImage.asset != null && pickedImage.asset!.originalWidth != null) {
+          aspect = pickedImage.asset!.originalWidth! / pickedImage.asset!.originalHeight!;
         }
       }
       // Prefer the https url if we have one
-      String? url = upload.secureUrl ?? upload.url;
-      if (url != null) {
-        return s.copyWith(data: url, aspect: aspect); // Inject url
-      }
-      return s;
+      String? url = upload.secureUrl;
+      return s.copyWith(data: url, aspect: aspect);
     }).toList();
 
     // Update locally with finished urls
-    items.forEach((item) => booksModel.replaceBookScrap(item));
+    for (final item in items) {
+      booksModel.replaceBookScrap(item);
+    }
 
     // Push all scraps to the db
     await Future.wait(

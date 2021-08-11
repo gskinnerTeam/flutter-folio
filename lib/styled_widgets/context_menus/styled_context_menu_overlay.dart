@@ -12,7 +12,7 @@ class StyledContextMenuOverlay extends StatelessWidget {
   Widget build(BuildContext context) {
     AppTheme theme = context.watch();
     return ContextMenuOverlay(
-      dividerBuilder: (_) => ContextDivider(),
+      dividerBuilder: (_) => const ContextDivider(),
       cardBuilder: (_, children) => ContextMenuCard(children: children, padding: EdgeInsets.zero),
       buttonStyle: ContextMenuButtonStyle(
         textStyle: TextStyles.body2,

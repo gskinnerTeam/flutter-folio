@@ -4,7 +4,7 @@ import 'dart:math';
 import 'package:flutter/services.dart';
 
 class MacosWindowUtils {
-  static const methodChannel = const MethodChannel("flutterfolio.com/io");
+  static const methodChannel = MethodChannel("flutterfolio.com/io");
   static const kMinTitlebarHeight = 24.0;
   static const kDefaultTitlebarHeight = 24.0;
   static double _calculatedTitlebarHeight = 0.0;

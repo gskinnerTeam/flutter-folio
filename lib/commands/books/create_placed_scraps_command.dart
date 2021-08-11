@@ -8,7 +8,7 @@ import 'package:uuid/uuid.dart';
 
 class CreatePlacedScrapCommand extends BaseAppCommand {
   Future<void> run({required String pageId, Size? size, required List<ScrapItem> scraps}) async {
-    if (scraps.isEmpty) return null;
+    if (scraps.isEmpty) return;
     List<PlacedScrapItem> scrapsToPlace = scraps.map((scrap) {
       bool isText = scrap.contentType == ContentType.Text;
       // Choose some default width for new items
@@ -16,7 +16,7 @@ class CreatePlacedScrapCommand extends BaseAppCommand {
       if (isText) contentWidth = 500;
 
       return PlacedScrapItem(
-        documentId: Uuid().v1(),
+        documentId: const Uuid().v1(),
         bookId: scrap.bookId,
         pageId: pageId,
         aspect: scrap.aspect,
@@ -41,7 +41,7 @@ class CreatePlacedScrapCommand extends BaseAppCommand {
       );
     }).toList();
     // Add them to firebase
-    scrapsToPlace.forEach((s) async {
+    for (var s in scrapsToPlace) {
       String documentId = await firebase.addPlacedScrap(s);
       s = s.copyWith(documentId: documentId);
       // Write documentId back to db
@@ -49,7 +49,7 @@ class CreatePlacedScrapCommand extends BaseAppCommand {
       // Update local data
       booksModel.currentPageScraps = List.from(booksModel.currentPageScraps ?? [])..add(s);
       return;
-    });
+    }
     // Mark book as changed
     UpdateBookModifiedCommand().run(bookId: scrapsToPlace.first.bookId);
   }

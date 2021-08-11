@@ -15,7 +15,7 @@ class SizedAndTranslated extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Alignment pivot = pivotPoint ?? Alignment(.5, .5);
+    Alignment pivot = pivotPoint ?? const Alignment(.5, .5);
     return Transform.translate(
       offset: offset,
       child: Transform.translate(

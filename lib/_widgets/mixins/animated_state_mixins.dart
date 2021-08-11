@@ -7,7 +7,7 @@ mixin AnimationMixin1<T extends StatefulWidget> on State<T> implements TickerPro
 
   @override
   void initState() {
-    var defaultDuration = Duration(milliseconds: 350);
+    var defaultDuration = const Duration(milliseconds: 350);
     anim1 = AnimationController(vsync: this, duration: defaultDuration);
     initAnimations();
     super.initState();
@@ -30,7 +30,7 @@ mixin AnimationMixin2<T extends StatefulWidget> on State<T>, TickerProviderState
 
   @override
   void initState() {
-    var defaultDuration = Duration(milliseconds: 350);
+    var defaultDuration = const Duration(milliseconds: 350);
     anim1 = AnimationController(vsync: this, duration: defaultDuration);
     anim2 = AnimationController(vsync: this, duration: defaultDuration);
     initAnimations();
@@ -59,7 +59,7 @@ mixin AnimationMixin3<T extends StatefulWidget> on State<T>, TickerProviderState
 
   @override
   void initState() {
-    var defaultDuration = Duration(milliseconds: 350);
+    var defaultDuration = const Duration(milliseconds: 350);
     anim1 = AnimationController(vsync: this, duration: defaultDuration);
     anim2 = AnimationController(vsync: this, duration: defaultDuration);
     anim3 = AnimationController(vsync: this, duration: defaultDuration);
@@ -92,7 +92,7 @@ mixin AnimationMixin4<T extends StatefulWidget> on State<T>, TickerProviderState
 
   @override
   void initState() {
-    var defaultDuration = Duration(milliseconds: 350);
+    var defaultDuration = const Duration(milliseconds: 350);
     anim1 = AnimationController(vsync: this, duration: defaultDuration);
     anim2 = AnimationController(vsync: this, duration: defaultDuration);
     anim3 = AnimationController(vsync: this, duration: defaultDuration);

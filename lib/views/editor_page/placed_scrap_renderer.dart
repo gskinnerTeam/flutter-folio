@@ -33,17 +33,18 @@ class PlacedScrapRenderer extends StatelessWidget {
     // Figure out what type of renderer to use for this srap
     if (item.isPhoto) scrapBox = _PhotoBox(item);
     if (item.isEmoji) scrapBox = _EmojiBox(item);
-    if (item.isText)
+    if (item.isText) {
       scrapBox = _TextBox(
         item,
         isSelected: isSelected,
         onEditStarted: onEditStarted,
         onEditEnded: onEditEnded,
       );
+    }
     // Couldn't find a renderer, fail gracefully but make sure we hide the invalid content
     if (scrapBox == null) {
       debugPrint("[PlacedScrapRenderer] Warning: Unknown scrap type found: ${item.contentType}");
-      return SizedBox(width: 0, height: 0);
+      return const SizedBox(width: 0, height: 0);
     }
 
     return PlacedScrapKeyboardListener(
@@ -68,7 +69,7 @@ class _EmojiBox extends StatelessWidget {
   Widget build(BuildContext context) {
     // If emoji is length of 1, this is legacy data, have a beer!
     if (StringUtils.isEmpty(item.data) || item.data.length <= 2) {
-      return Emoji(Emojis.beers);
+      return const Emoji(Emojis.beers);
     }
     return Emoji(EnumToString.fromString(Emojis.values, item.data));
   }
@@ -95,7 +96,7 @@ class _TextBox extends StatefulWidget {
 }
 
 class _TextBoxState extends State<_TextBox> {
-  Debouncer textChangedDebounce = Debouncer(Duration(milliseconds: 150));
+  Debouncer textChangedDebounce = Debouncer(const Duration(milliseconds: 150));
   String? _txtValue;
 
   @override
@@ -118,7 +119,7 @@ class _TextBoxState extends State<_TextBox> {
 
     String promptText = "Type something...";
     return Container(
-      padding: EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(8.0),
       color: widget.item.boxStyle?.bgColor ?? Colors.transparent,
       child: LayoutBuilder(builder: (_, constraints) {
         return AutoSizeText(
@@ -145,7 +146,7 @@ class _TextBoxState extends State<_TextBox> {
                   )
                 : Container(
                     alignment: Alignment.center,
-                    child: Container(
+                    child: SizedBox(
                       width: double.infinity,
                       child: Text(StringUtils.defaultOnEmpty(widget.item.data, promptText),
                           style:
@@ -155,7 +156,7 @@ class _TextBoxState extends State<_TextBox> {
                     ),
                   );
           },
-          style: TextStyle(fontSize: 999, letterSpacing: 0, height: 1.25),
+          style: const TextStyle(fontSize: 999, letterSpacing: 0, height: 1.25),
         );
       }),
     );

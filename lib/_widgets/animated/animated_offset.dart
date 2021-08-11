@@ -2,19 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_folio/_widgets/alignments.dart';
 
 class AnimatedOffset extends StatelessWidget {
-  AnimatedOffset({
+  const AnimatedOffset({
     required this.child,
     required this.duration,
     this.begin,
     required this.end,
     this.curve = Curves.easeOut,
-  });
+    Key? key,
+  }) : super(key: key);
   final Widget child;
   final Duration duration;
   final Offset? begin;
   final Offset end;
   final Curve curve;
 
+  @override
   Widget build(BuildContext context) {
     return TweenAnimationBuilder<Offset>(
       duration: duration,

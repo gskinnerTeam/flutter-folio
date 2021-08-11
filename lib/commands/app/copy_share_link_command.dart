@@ -9,7 +9,7 @@ import '../../_utils/timed/cooldown.dart';
 
 class CopyShareLinkCommand extends BaseAppCommand {
   String get baseUrl => "https://flutterfolio.com/#";
-  static CoolDown mobileShareCooldown = CoolDown(Duration(seconds: 1));
+  static CoolDown mobileShareCooldown = CoolDown(const Duration(seconds: 1));
 
   Future<void> run(String bookId, {String? pageId}) async {
     // Form a url using an AppLink

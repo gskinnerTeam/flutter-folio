@@ -33,7 +33,7 @@ class DraggablePageTitleBtn extends StatefulWidget {
 
 class _DraggablePageTitleBtnState extends State<DraggablePageTitleBtn> {
   bool _isDragActivated = false;
-  Debouncer _textDebounce = Debouncer(Duration(milliseconds: 100));
+  final Debouncer _textDebounce = Debouncer(const Duration(milliseconds: 100));
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +94,7 @@ class _DraggablePageTitleBtnState extends State<DraggablePageTitleBtn> {
                 )
               : Text(label, style: TextStyles.caption),
           //
-          Spacer(),
+          const Spacer(),
           if (!widget.isDragFeedback) ...[
             _wrapDraggable(
               _FadingDragHandle(
@@ -160,7 +160,7 @@ class _FadingDragHandle extends StatelessWidget {
     return AnimatedOpacity(
       duration: Times.fast,
       opacity: opacity,
-      child: Container(width: width, height: height, child: icon),
+      child: SizedBox(width: width, height: height, child: icon),
     );
   }
 }

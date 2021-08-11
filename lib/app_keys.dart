@@ -1,4 +1,3 @@
-
 class AppKeys {
   static String cloudinaryCloud = "flutterfoliodemo";
   static String cloudinaryPreset = "ujszrrfn";

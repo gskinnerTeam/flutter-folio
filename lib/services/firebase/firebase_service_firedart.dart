@@ -18,6 +18,7 @@ class DartFirebaseService extends FirebaseService {
 
   DocumentReference get userDoc => firestore.document(userPath.join("/"));
 
+  @override
   Future<void> init() async {
     final prefsStore = await PreferencesStore.create();
     FirebaseAuth.initialize(apiKey, prefsStore);
@@ -38,6 +39,7 @@ class DartFirebaseService extends FirebaseService {
       }
       _isSignedIn = true;
       return AppUser(email: user.email ?? "", fireId: user.id);
+      // ignore: empty_catches
     } catch (e) {}
     return null;
   }
@@ -48,10 +50,12 @@ class DartFirebaseService extends FirebaseService {
     _isSignedIn = false;
   }
 
+  @override
   bool get isSignedIn => _isSignedIn;
 
   /// ///////////////////////////////
   /// CRUD
+  @override
   Future<Map<String, dynamic>?> getDoc(List<String> keys) async {
     // print("getDocData: ${keys.toString()}");
     try {
@@ -63,16 +67,20 @@ class DartFirebaseService extends FirebaseService {
     return null;
   }
 
+  @override
   Future<List<Map<String, dynamic>>?> getCollection(List<String> keys) async {
     // print("getDocStream: ${keys.toString()}");
     Page<Document>? docs = (await _getCollection(keys)?.get());
-    docs?.forEach((d) {
-      d.map..['documentId'] = d.id;
-    });
+    if (docs != null) {
+      for (final d in docs) {
+        d.map['documentId'] = d.id;
+      }
+    }
     return docs?.map((d) => d.map).toList();
   }
 
   // Streams
+  @override
   Stream<Map<String, dynamic>>? getDocStream(List<String> keys) {
     // print("getDocStream: ${keys.toString()}");
     return _getDoc(keys)?.stream.map((d) {
@@ -81,6 +89,7 @@ class DartFirebaseService extends FirebaseService {
     });
   }
 
+  @override
   Stream<List<Map<String, dynamic>>>? getListStream(List<String> keys) {
     // print("getListStream: ${keys.toString()}");
     return _getCollection(keys)?.stream.map(
@@ -137,7 +146,7 @@ class PreferencesStore extends TokenStore {
 
   static Future<PreferencesStore> create() async => PreferencesStore._internal(await SharedPreferences.getInstance());
 
-  SharedPreferences _prefs;
+  final SharedPreferences _prefs;
 
   PreferencesStore._internal(this._prefs);
 

@@ -32,7 +32,7 @@ class ScrapPopupPanelColor extends StatelessWidget {
               PanelHeader(label: label),
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.only(top: 4, left: 12, right: 12, bottom: 8),
+                  padding: const EdgeInsets.only(top: 4, left: 12, right: 12, bottom: 8),
                   child: GridView.count(
                     crossAxisCount: 7,
                     childAspectRatio: 1,
@@ -54,15 +54,15 @@ class ScrapPopupPanelColor extends StatelessWidget {
             ],
           )
         ] else ...[
-          Container(
+          SizedBox(
             height: double.infinity,
             child: Padding(
-              padding: EdgeInsets.only(bottom: 6),
+              padding: const EdgeInsets.only(bottom: 6),
               child: Row(
                 children: [
                   Text(label, style: TextStyles.caption.copyWith(color: theme.grey)),
-                  MaterialIcon(Icons.chevron_right, size: 16),
-                  Spacer(),
+                  const MaterialIcon(Icons.chevron_right, size: 16),
+                  const Spacer(),
                   _ColorSwatch(value, isSelected: false)
                 ],
                 crossAxisAlignment: CrossAxisAlignment.center,
