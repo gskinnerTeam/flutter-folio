@@ -96,8 +96,6 @@ class AppModel extends AbstractModel {
     return false;
   }
 
-  bool get canPopNav => _booksModel.currentBook != null;
-
   void scheduleSave() => _saveDebouncer.run(save);
 
   Future<void> save() async {

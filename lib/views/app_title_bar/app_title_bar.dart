@@ -5,6 +5,7 @@ import '../../_utils/input_utils.dart';
 import '../../_utils/native_window_utils/window_utils.dart';
 import '../../core_packages.dart';
 import '../../models/app_model.dart';
+import '../../models/books_model.dart';
 import 'rounded_profile_button.dart';
 import 'touch_mode_toggle_btn.dart';
 
@@ -28,11 +29,13 @@ class AppTitleBar extends StatelessWidget {
 }
 
 class _AdaptiveTitleBarContent extends StatelessWidget {
+  static const Key _profileBtnKey = Key('rounded_profile_button');
+
   @override
   Widget build(BuildContext context) {
     // Determine whether to show back button. We don't want to show it for "guest" users
     bool isGuestUser = context.select((AppModel m) => m.isGuestUser);
-    bool canGoBack = context.select((AppModel m) => m.canPopNav);
+    bool canGoBack = context.select((BooksModel m) => m.currentBook != null);
     bool showBackBtn = isGuestUser == false && canGoBack;
     double appWidth = context.widthPx;
     // Mac title bar has a different layout as it's window btns are left aligned
@@ -52,12 +55,19 @@ class _AdaptiveTitleBarContent extends StatelessWidget {
             const Spacer(),
             if (showTouchToggle) TouchModeToggleBtn(invertPopupAlign: isMac),
             HSpace.sm,
-            RoundedProfileBtn(invertRow: true, useBottomSheet: isMobile),
+            RoundedProfileBtn(
+              key: _profileBtnKey,
+              invertRow: true,
+              useBottomSheet: isMobile,
+            ),
             HSpace.sm,
           ] else ...[
             HSpace.sm,
             // Linux and Windows are left aligned and simple
-            RoundedProfileBtn(useBottomSheet: isMobile),
+            RoundedProfileBtn(
+              key: _profileBtnKey,
+              useBottomSheet: isMobile,
+            ),
             HSpace.sm,
             if (showTouchToggle) TouchModeToggleBtn(invertPopupAlign: isMac),
             HSpace.sm,

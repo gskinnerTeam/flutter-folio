@@ -94,6 +94,7 @@ class _UserProfileFormState extends State<UserProfileForm> {
               children: [
                 Expanded(child: UiText(text: _user?.email, style: TextStyles.body3)),
                 PrimaryBtn(
+                    key: const Key('logout_button'),
                     icon: Icons.logout,
                     leadingIcon: false,
                     label: "LOGOUT",
