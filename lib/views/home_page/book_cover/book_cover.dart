@@ -86,7 +86,11 @@ class _BookCoverWidgetState extends State<BookCoverWidget> {
                 ),
 
                 /// Black overlay, fades out on mouseOver
-                AnimatedContainer(duration: Times.slow, color: Colors.black.withOpacity(overlayOpacity)),
+                if (overlayOpacity > 0)
+                  AnimatedContainer(
+                      duration: Times.slow,
+                      color: Colors.black.withOpacity(overlayOpacity),
+                  ),
 
                 /// When in large mode, show some gradients, should sit under the Text elements
                 if (widget.largeMode) ...[
