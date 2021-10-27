@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_folio/_utils/device_info.dart';
 import 'package:flutter_folio/_widgets/alignments.dart';
-import 'package:flutter_folio/_widgets/animated/animated_rotation.dart';
+import 'package:flutter_folio/_widgets/animated/animated_rotation.dart' as amrotation;
 import 'package:flutter_folio/_widgets/gradient_container.dart';
 import 'package:flutter_folio/commands/books/set_current_book_command.dart';
 import 'package:flutter_folio/core_packages.dart';
@@ -184,7 +184,7 @@ class SortableListHeader extends StatelessWidget {
             AnimatedOpacity(
               opacity: sortDir == 0 ? 0 : 1,
               duration: Times.fast,
-              child: AnimatedRotation(
+              child: amrotation.AnimatedRotation(
                 duration: Times.fast,
                 end: sortDir == 1 ? 180 : 0,
                 child: Icon(
