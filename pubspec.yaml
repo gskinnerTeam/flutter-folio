@@ -49,7 +49,7 @@ dependencies:
   universal_platform: ^1.0.0-nullsafety
   url_launcher: ^6.0.2
   uuid: ^3.0.1
-  visibility_detector: ^0.2.0-nullsafety.1
+  visibility_detector: ^0.2.2
 
   # FIREBASE
   firedart: ^0.9.0+1
