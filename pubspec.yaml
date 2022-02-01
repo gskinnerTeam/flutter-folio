@@ -12,7 +12,6 @@ dependencies:
 
   anchored_popups: ^0.1.0
   animate_do: ^2.0.0
-  #todo: land this patch
   auto_size_text:
     git:
       url: git://github.com/gskinnerTeam/auto_size_text.git
@@ -49,7 +48,7 @@ dependencies:
   universal_platform: ^1.0.0-nullsafety
   url_launcher: ^6.0.2
   uuid: ^3.0.1
-  visibility_detector: ^0.2.0-nullsafety.1
+  visibility_detector: ^0.2.2
 
   # FIREBASE
   firedart: ^0.9.0+1

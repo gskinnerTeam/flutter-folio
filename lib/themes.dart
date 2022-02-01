@@ -75,9 +75,9 @@ class AppTheme {
       colorScheme: ColorScheme(
           brightness: isDark ? Brightness.dark : Brightness.light,
           primary: accent1,
-          primaryVariant: shift(accent1, .1),
+          primaryContainer: shift(accent1, .1),
           secondary: accent1,
-          secondaryVariant: shift(accent1, .1),
+          secondaryContainer: shift(accent1, .1),
           background: bg1,
           surface: surface1,
           onBackground: mainTextColor,
@@ -95,7 +95,6 @@ class AppTheme {
           selectionHandleColor: Colors.transparent,
           selectionColor: surface1,
         ),
-        buttonColor: accent1,
         highlightColor: shift(accent1, .1),
         toggleableActiveColor: accent1);
     // All done, return the ThemeData

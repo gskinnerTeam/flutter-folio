@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_utils/native_window_utils/macos_window_utils.dart';
 

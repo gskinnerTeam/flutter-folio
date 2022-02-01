@@ -1,8 +1,6 @@
 import 'dart:math';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_folio/_widgets/listenable_builder.dart';
 import 'package:flutter_folio/_widgets/sized_and_translated.dart';
 import 'package:flutter_folio/core_packages.dart';
@@ -115,14 +113,12 @@ class MovableScrapState extends State<MovableScrap> {
 }
 
 class _DraggableHitArea extends StatelessWidget {
-  const _DraggableHitArea(this.state, {Key? key, required this.child, this.isEnabled = true}) : super(key: key);
+  const _DraggableHitArea(this.state, {Key? key, required this.child}) : super(key: key);
   final MovableScrapState state;
   final Widget child;
-  final bool isEnabled;
 
   @override
   Widget build(BuildContext context) {
-    if (isEnabled == false) return child;
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       onEnter: (_) => state.widget.onMouseOverChanged.call(true),

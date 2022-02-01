@@ -1,5 +1,4 @@
 import 'dart:math';
-import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -19,9 +18,9 @@ abstract class FirebaseDoc {
 
 /// One book, contains many pages
 @freezed
+@JsonSerializable(explicitToJson: true)
 class ScrapBookData with _$ScrapBookData implements FirebaseDoc {
   const ScrapBookData._();
-  @JsonSerializable(explicitToJson: true)
   factory ScrapBookData({
     @Default("") String documentId,
     String? key,
@@ -68,9 +67,9 @@ class ScrapBookData with _$ScrapBookData implements FirebaseDoc {
 
 // One page in a ScrapBook, contains many placed items's
 @freezed
+@JsonSerializable(explicitToJson: true)
 class ScrapPageData with _$ScrapPageData implements FirebaseDoc {
   const ScrapPageData._();
-  @JsonSerializable(explicitToJson: true)
   factory ScrapPageData({
     @Default("") String documentId,
     String? key,
@@ -87,9 +86,9 @@ class ScrapPageData with _$ScrapPageData implements FirebaseDoc {
 // A scrap that is in the "pile" for some book. Not tied to any specific page.
 // A scrap will capture time and location whenever possible, and optionally contain multiple photos or some text
 @freezed
+@JsonSerializable(explicitToJson: true)
 class ScrapItem with _$ScrapItem implements FirebaseDoc {
   const ScrapItem._();
-  @JsonSerializable(explicitToJson: true)
   factory ScrapItem({
     @Default("") String documentId,
     String? key,
@@ -108,9 +107,9 @@ class ScrapItem with _$ScrapItem implements FirebaseDoc {
 // A Scrap that has been placed onto a page, it has a position, rotation and scale.
 // It may have a reference to a scrapId from the pile, or it may just be a piece of content itself
 @freezed
+@JsonSerializable(explicitToJson: true)
 class PlacedScrapItem with _$PlacedScrapItem implements FirebaseDoc {
   const PlacedScrapItem._();
-  @JsonSerializable(explicitToJson: true)
   factory PlacedScrapItem({
     @Default("") String documentId,
     String? key,
@@ -165,8 +164,8 @@ class PlacedScrapItem with _$PlacedScrapItem implements FirebaseDoc {
 class BoxStyle with _$BoxStyle {
   const BoxStyle._();
   factory BoxStyle({
-    @JsonKey(fromJson: _colorFromJson, toJson: _colorToJson) @Default(Colors.transparent) Color bgColor,
-    @JsonKey(fromJson: _colorFromJson, toJson: _colorToJson) @Default(Colors.black) Color fgColor,
+    Color bgColor,
+    Color fgColor,
     @Default(BoxFonts.Lato) BoxFonts font,
     @Default(TextAlign.start) TextAlign align,
   }) = _BoxStyle;

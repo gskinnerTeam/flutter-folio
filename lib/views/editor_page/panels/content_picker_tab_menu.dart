@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:anchored_popups/anchored_popup_region.dart';
 import 'package:anchored_popups/anchored_popups.dart';
 import 'package:flutter/material.dart';

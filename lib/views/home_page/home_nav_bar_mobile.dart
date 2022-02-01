@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_folio/_widgets/decorated_container.dart';
 import 'package:flutter_folio/commands/books/create_folio_command.dart';
 import 'package:flutter_folio/core_packages.dart';
-import 'package:provider/provider.dart';
 
 class HomeNavTabMenu extends StatelessWidget {
   final bool showListView;
@@ -70,7 +69,7 @@ class HomeNavTabMenu extends StatelessWidget {
 class _NewFolioFab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    void _handleNewPressed() => showStyledBottomSheet(context, child: const _NewFolioCard());
+    void _handleNewPressed() => showStyledBottomSheet<void>(context, child: const _NewFolioCard());
 
     Decoration circleDec(Color c) => ShapeDecoration(shape: const CircleBorder(), color: c);
     AppTheme theme = Provider.of(context);

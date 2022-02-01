@@ -33,7 +33,7 @@ class RoundedProfileBtn extends StatelessWidget {
   }
 
   void _showProfileSheet(BuildContext context) {
-    showStyledBottomSheet(context,
+    showStyledBottomSheet<void>(context,
         child: Container(
           padding: EdgeInsets.all(Insets.xl),
           child: const UserProfileForm(bottomSheet: true),

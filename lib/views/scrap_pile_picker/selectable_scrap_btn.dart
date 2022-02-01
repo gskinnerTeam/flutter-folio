@@ -3,8 +3,6 @@ import 'package:flutter_folio/_utils/string_utils.dart';
 import 'package:flutter_folio/_widgets/app_image.dart';
 import 'package:flutter_folio/_widgets/decorated_container.dart';
 import 'package:flutter_folio/core_packages.dart';
-import 'package:flutter_folio/styled_widgets/styled_load_spinner.dart';
-
 import 'scrap_pile_picker.dart';
 
 class SelectableScrapBtn extends StatelessWidget {

@@ -1,9 +1,7 @@
 import 'dart:math';
 
 import 'package:context_menus/context_menus.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_folio/_utils/device_info.dart';
 import 'package:flutter_folio/_widgets/alignments.dart';
 import 'package:flutter_folio/_widgets/animated/animated_rotation.dart' as amrotation;

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_widgets/decorated_container.dart';
 import 'package:flutter_folio/core_packages.dart';
-import 'package:provider/provider.dart';
 
 class StyledBottomSheet extends StatelessWidget {
   const StyledBottomSheet({required this.child, Key? key}) : super(key: key);

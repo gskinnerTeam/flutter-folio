@@ -4,12 +4,10 @@ import 'package:animate_do/animate_do.dart';
 import 'package:context_menus/context_menus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_folio/commands/books/set_current_book_command.dart';
 import 'package:flutter_folio/commands/books/update_book_command.dart';
 import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/data/book_data.dart';
-import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 /// Represents the Widget in "Large Mode"

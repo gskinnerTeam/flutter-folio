@@ -1,12 +1,10 @@
 import 'package:enum_to_string/enum_to_string.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_utils/notifications/close_notification.dart';
 import 'package:flutter_folio/_utils/string_utils.dart';
 import 'package:flutter_folio/commands/books/create_placed_scraps_command.dart';
 import 'package:flutter_folio/core_packages.dart';
 import 'package:flutter_folio/data/book_data.dart';
-import 'package:flutter_folio/styled_widgets/emoji.dart';
 
 class ContentPickerEmojiPanel extends StatefulWidget {
   const ContentPickerEmojiPanel({Key? key, required this.isVisible, required this.bookId, required this.pageId})

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_folio/core_packages.dart';
 
 class ScrapPopupPanelAlignment extends StatelessWidget {

@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_widgets/animated/animated_scale.dart' as amscale;
 import 'package:flutter_folio/_widgets/gradient_container.dart';

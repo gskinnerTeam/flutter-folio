@@ -1,7 +1,6 @@
 import 'package:context_menus/context_menus.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_folio/_utils/context_utils.dart';
 import 'package:flutter_folio/_widgets/animated/auto_fade.dart';
 import 'package:flutter_folio/_widgets/animated/opening_card.dart';
@@ -204,14 +203,7 @@ class _CoversFlowListState extends State<CoversFlowList> {
 
 class _CollapsingListCard extends StatefulWidget {
   const _CollapsingListCard(this.data,
-      {required this.openWidth,
-      required this.openHeight,
-      this.closedWidth,
-      this.closedHeight,
-      required this.onPressed,
-      required this.isSelected,
-      this.vertical = false,
-      Key? key})
+      {required this.openWidth, required this.openHeight, required this.onPressed, required this.isSelected, Key? key})
       : super(key: key);
 
   final ScrapBookData data;
@@ -219,9 +211,6 @@ class _CollapsingListCard extends StatefulWidget {
   final double openHeight;
   final void Function(Offset pos, ScrapBookData data) onPressed;
   final bool isSelected;
-  final bool vertical;
-  final double? closedWidth;
-  final double? closedHeight;
 
   @override
   _CollapsingListCardState createState() => _CollapsingListCardState();
@@ -236,9 +225,9 @@ class _CollapsingListCardState extends State<_CollapsingListCard> {
       duration: Times.slow,
       curve: Curves.easeOut,
       // Close the card when it is selected
-      width: widget.isSelected ? widget.closedWidth ?? 0 : widget.openWidth,
-      height: widget.isSelected ? widget.closedHeight ?? 0 : widget.openHeight,
-      padding: !widget.vertical ? EdgeInsets.only(right: gap) : EdgeInsets.only(bottom: gap),
+      width: widget.openWidth,
+      height: widget.openHeight,
+      padding: EdgeInsets.only(right: gap),
       // Mask the rounded corners
       child: SimpleBtn(
         onPressed: widget.isSelected ? null : _handlePressed,

@@ -1,6 +1,5 @@
 import 'package:context_menus/context_menus.dart';
 import 'package:dotted_border/dotted_border.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_folio/_utils/device_info.dart';

@@ -1,7 +1,4 @@
 // Provides btns (rotate, scale etc) and a border around the movable box.
-import 'dart:math';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_utils/timed/debouncer.dart';
@@ -101,20 +98,14 @@ class MovableScrapSelectionBoxState extends State<MovableScrapSelectionBox> {
 }
 
 class _Handle extends StatelessWidget {
-  const _Handle(this.widget,
-      {Key? key, this.icon, required this.onPanUpdate, required this.onPanEnd, this.isCircular = false})
-      : super(key: key);
+  const _Handle(this.widget, {Key? key, required this.onPanUpdate, required this.onPanEnd}) : super(key: key);
   final MovableScrapSelectionBox widget;
-  final IconData? icon;
   final void Function(Offset delta) onPanUpdate;
   final void Function() onPanEnd;
-  final bool isCircular;
 
   @override
   Widget build(BuildContext context) {
     AppTheme theme = context.watch();
-    double btnScale = 1;
-    bool hasIcon = icon != null;
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
       onPanUpdate: (d) => onPanUpdate(d.delta),
@@ -131,16 +122,7 @@ class _Handle extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.white,
                 border: Border.all(color: theme.accent1),
-                borderRadius: BorderRadius.circular(isCircular ? 99 : 0),
-              ),
-              child: Transform.translate(
-                offset: const Offset(-1.5, 0),
-                child: Transform.rotate(
-                  angle: -pi / 4,
-                  child: hasIcon
-                      ? MaterialIcon(icon!, color: theme.accent1, size: widget.btnSize / 2 * btnScale)
-                      : Container(),
-                ),
+                borderRadius: BorderRadius.circular(0),
               ),
             ),
           ),

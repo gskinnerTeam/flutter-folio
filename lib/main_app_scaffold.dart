@@ -1,5 +1,4 @@
 import 'package:anchored_popups/anchored_popups.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_widgets/decorated_container.dart';
 import 'package:flutter_folio/commands/commands.dart' as commands;

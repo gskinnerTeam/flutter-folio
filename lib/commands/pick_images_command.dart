@@ -25,7 +25,7 @@ class PickImagesCommand extends BaseAppCommand {
     } else {
       if (enableCamera) {
         final picker = ImagePicker();
-        images = [PickedImage()..path = (await picker.getImage(source: ImageSource.camera))?.path];
+        images = [PickedImage()..path = (await picker.pickImage(source: ImageSource.camera))?.path];
       } else {
         int maxImages = 24; // Need to pick some limit
         // Get assets

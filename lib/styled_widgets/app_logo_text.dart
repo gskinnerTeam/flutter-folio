@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_folio/core_packages.dart';
 
 class AppLogoText extends StatelessWidget {

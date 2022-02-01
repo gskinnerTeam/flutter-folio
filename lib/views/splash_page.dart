@@ -1,9 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_folio/_utils/logger.dart';
 import 'package:flutter_folio/core_packages.dart';
-import 'package:flutter_folio/themes.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);

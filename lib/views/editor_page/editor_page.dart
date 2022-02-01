@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/_utils/device_info.dart';
 import 'package:flutter_folio/_widgets/alignments.dart';
@@ -93,7 +91,7 @@ class _EditorPageState extends State<EditorPage> {
   }
 
   void _handleScrapPilePressed(BuildContext context, String bookId) {
-    showStyledBottomSheet(context,
+    showStyledBottomSheet<void>(context,
         child: SizedBox(
           height: context.heightPx * .6,
           // Show scrap-pile picker in a bottom-sheet

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_folio/core_packages.dart';
-import 'package:flutter_folio/styled_widgets/styled_spacers.dart';
 
 class EmptyEditorView extends StatelessWidget {
   const EmptyEditorView({Key? key, required this.readOnly}) : super(key: key);
