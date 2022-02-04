@@ -22,14 +22,9 @@ https://flutter.gskinner.com/folio/#g-download
 
 If you're new to Flutter the first thing you'll need is to follow the [setup instructions](https://flutter.dev/docs/get-started/install). 
 
-Once Flutter is setup, you can use the latest `stable` channel, or switch to the latest `master` version to get the most current fixes for desktop/web:
- * Run `flutter channel master`
+Once Flutter is setup, you can use the latest `stable` channel:
+ * Run `flutter channel stable`
  * Run `flutter upgrade`
-
-If you've never run a desktop build before, you will need to enable it with a one-time command for your current platform:
-* `flutter config --enable-macos-desktop`
-* `flutter config --enable-windows-desktop`
-* `flutter config --enable-linux-desktop`
 
 Once you're on `dev` and desktop is enabled, you're ready to run the app:
 * `flutter run -d windows`
