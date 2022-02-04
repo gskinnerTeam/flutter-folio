@@ -49,7 +49,7 @@ packages:
       name: args
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.0"
+    version: "2.3.0"
   async:
     dependency: transitive
     description:
@@ -643,7 +643,7 @@ packages:
       name: image
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.2"
+    version: "3.1.1"
   image_picker:
     dependency: "direct main"
     description:
@@ -672,13 +672,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
-  injector:
-    dependency: transitive
-    description:
-      name: injector
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.0"
   intl:
     dependency: transitive
     description:
@@ -762,7 +755,7 @@ packages:
       name: msix
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.3"
+    version: "2.8.13"
   multi_image_picker:
     dependency: "direct main"
     description:
@@ -797,7 +790,7 @@ packages:
       name: package_config
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0"
+    version: "2.0.2"
   path:
     dependency: transitive
     description:
