@@ -14,7 +14,8 @@ dependencies:
   animate_do: ^2.0.0
   auto_size_text:
     git:
-      url: git://github.com/gskinnerTeam/auto_size_text.git
+      url: https://github.com/gskinnerTeam/auto_size_text.git
+      branch: feature-add-textbuilder
       ref: 8800276218b053265ffc796a24e84820bebaaeac
   bitsdojo_window: ^0.1.0+1
   cached_network_image: ^3.0.0
